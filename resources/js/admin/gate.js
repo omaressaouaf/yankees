@@ -24,14 +24,16 @@ class Gate {
         this.validateAbilityName(abilityName);
         return this.abilities[abilityName](payload);
     }
+    hasRole(role) {
+        return this.user.roles.includes(role) ? true : false;
+    }
 }
 
 const gate = new Gate(window.authUser);
-
 // For admins and deliverymen
 gate.define("charge", order => {
     return (
-        gate.user.role == "admin" &&
+        gate.hasRole("admin") &&
         !order.user_charged &&
         !order.payment_confirmation_required &&
         order.payment_mode == "stripe" &&
@@ -41,7 +43,7 @@ gate.define("charge", order => {
 });
 gate.define("refund", order => {
     return (
-        gate.user.role == "admin" &&
+        gate.hasRole("admin") &&
         order.payment_mode == "stripe" &&
         order.user_charged &&
         !order.user_refunded &&
@@ -49,11 +51,10 @@ gate.define("refund", order => {
     );
 });
 gate.define("update-order", order => {
-
     return order.status != "failed" && order.status != "cancelled";
 });
 gate.define("manage", () => {
-    return gate.user.role == "admin";
+    return gate.hasRole("admin");
 });
 // For Clients
 gate.define("checkout", ({ cartObject, minOrderPrice }) => {

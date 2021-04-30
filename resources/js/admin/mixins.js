@@ -33,7 +33,7 @@ export const orderStatusMixin = {
     methods: {
         customMultiselectLabel(option) {
             return translate("admin." + option);
-            
+
         },
         bindStatusClass(status, element) {
             switch (true) {

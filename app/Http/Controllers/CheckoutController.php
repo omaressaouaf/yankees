@@ -11,7 +11,11 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
 {
-
+    public $checkoutService;
+    public function __construct(CheckoutService $checkoutService)
+    {
+        $this->checkoutService = $checkoutService;
+    }
     public function index()
     {
         if (Gate::denies('checkout')) {
@@ -32,7 +36,7 @@ class CheckoutController extends Controller
             "nameOnCard" => "required_if:paymentMode,stripe",
             "paymentMethod" => "required_if:paymentMode,stripe"
         ]);
-        ['msg' => $msg, 'status' => $status] = (new CheckoutService)->checkout($request->address_id, $request->nameOnCard, $request->paymentMode, $request->paymentMethod);
+        ['msg' => $msg, 'status' => $status] =$this->checkoutService->checkout($request->address_id, $request->nameOnCard, $request->paymentMode, $request->paymentMethod);
         return response()->json([
             'msg' => __($msg)
         ], $status);

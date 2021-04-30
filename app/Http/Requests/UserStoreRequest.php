@@ -30,9 +30,7 @@ class UserStoreRequest extends FormRequest
             'address' => 'nullable',
             'phone' => 'nullable',
             'password' => 'required|min:8',
-            'role' => [
-                'required', Rule::in(['client', 'deliveryman' , 'admin']),
-            ],
+            'roles' => 'required|array'
         ];
     }
 }

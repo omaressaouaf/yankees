@@ -14,9 +14,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _mixins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins */ "./resources/js/admin/mixins.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
-/* harmony import */ var _addresses_AddressList_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../addresses/AddressList.vue */ "./resources/js/admin/components/addresses/AddressList.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+/* harmony import */ var _addresses_AddressList_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../addresses/AddressList.vue */ "./resources/js/admin/components/addresses/AddressList.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -177,6 +177,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -184,7 +185,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [_mixins__WEBPACK_IMPORTED_MODULE_1__.dataTableMixin],
   components: {
-    AddressList: _addresses_AddressList_vue__WEBPACK_IMPORTED_MODULE_3__.default
+    AddressList: _addresses_AddressList_vue__WEBPACK_IMPORTED_MODULE_4__.default
   },
   data: function data() {
     return {
@@ -205,7 +206,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     postIsLoading: function postIsLoading() {
       return this.isLoading["post"];
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)("users", ["allUsers", "isLoading"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("users", ["allUsers", "isLoading"])),
   methods: _objectSpread({
     handleClickAddressBtn: function handleClickAddressBtn(userId) {
       this.clickedUserId = userId;
@@ -228,7 +229,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      (0,_helpers__WEBPACK_IMPORTED_MODULE_3__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -247,7 +248,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee);
       })));
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)("users", ["fetchUsers", "deleteUser", "bulkDeleteUsers"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("users", ["fetchUsers", "deleteUser", "bulkDeleteUsers"])),
   created: function created() {
     this.fetchUsers();
   }
@@ -267,7 +268,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "dataTableMixin": () => (/* binding */ dataTableMixin),
 /* harmony export */   "orderStatusMixin": () => (/* binding */ orderStatusMixin)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
 var dataTableMixin = {
   data: function data() {
@@ -566,7 +566,9 @@ var render = function() {
                           _vm._v(_vm._s(_vm.translate("admin.phone")))
                         ]),
                         _vm._v(" "),
-                        _c("th", [_vm._v(_vm._s(_vm.translate("admin.role")))]),
+                        _c("th", [
+                          _vm._v(_vm._s(_vm.translate("admin.roles")))
+                        ]),
                         _vm._v(" "),
                         _c("th", [
                           _vm._v(_vm._s(_vm.translate("admin.joinedAt")))
@@ -670,21 +672,26 @@ var render = function() {
                                   ])
                                 ]),
                                 _vm._v(" "),
-                                _c("td", [
-                                  _c("h4", [
-                                    _c(
+                                _c(
+                                  "td",
+                                  _vm._l(user.roles, function(role) {
+                                    return _c(
                                       "span",
-                                      { staticClass: "badge badge-success" },
+                                      {
+                                        key: role.id,
+                                        staticClass: "badge badge-success"
+                                      },
                                       [
                                         _vm._v(
                                           _vm._s(
-                                            _vm.translate("admin." + user.role)
+                                            _vm.translate("admin." + role.name)
                                           )
                                         )
                                       ]
                                     )
-                                  ])
-                                ]),
+                                  }),
+                                  0
+                                ),
                                 _vm._v(" "),
                                 _c("td", [
                                   _vm._v(

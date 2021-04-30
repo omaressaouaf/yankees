@@ -15,10 +15,9 @@ class CheckRoles
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next , ...$roles)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-
-        if (!in_array($request->user()->role , $roles)) {
+        if (!$request->user()->hasAnyRole($roles)) {
             abort(403);
         }
         return $next($request);

@@ -33,14 +33,14 @@ class AuthServiceProvider extends ServiceProvider
         });
         // For admins and delivery men
         Gate::define('charge', function (User $user, Order $order) {
-            return ($user->role == "admin" && $order->payment_mode == "stripe"  &&
+            return ($user->hasRole('admin') && $order->payment_mode == "stripe"  &&
                 !$order->user_charged &&
                 !$order->payment_confirmation_required &&
                 $order->status != "cancelled" &&
                 $order->status != "failed");
         });
         Gate::define('refund', function (User $user, Order $order) {
-            return ($user->role == "admin" && $order->payment_mode == "stripe"  &&
+            return ($user->hasRole('admin') && $order->payment_mode == "stripe"  &&
                 $order->user_charged &&
                 !$order->user_refunded &&
                 $order->status == "cancelled");
@@ -49,13 +49,14 @@ class AuthServiceProvider extends ServiceProvider
             if ($order->status == 'failed' || $order->status == "cancelled") {
                 return false;
             }
-            if ($user->role == "deliveryman") {
-                return ($order->deliveryman_id == $request_deliveryman_id) && $request_status == "delivered";
+            if (!$user->hasRole("admin")) {
+                return $order->status=="out_for_delivery" ?($order->deliveryman_id == $request_deliveryman_id) && $request_status == "delivered" : false;
+                
             }
             return (!$request_deliveryman_id) && ($request_status == "out_for_delivery" || $request_status == "delivered") ? false : true;
         });
         Gate::define('read-order', function (User $user, $order) {
-            return $user->role == "admin" || $user->id == $order->deliveryman_id;
+            return $user->hasRole('admin') || $user->id == $order->deliveryman_id;
         });
     }
 }

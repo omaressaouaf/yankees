@@ -170,7 +170,7 @@ return [
         "start"=> "Start hour",
         "end"=> "End Hour",
         "label"=> "The Label",
-        "role" => "The Role",
+        "roles" => "The Roles",
         "content" => "The Content"
 
     ],

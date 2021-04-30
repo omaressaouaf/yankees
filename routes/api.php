@@ -36,6 +36,7 @@ Route::group(['middleware' => "setLocale"], function () {
         });
         Route::group(['middleware' =>  'roles:admin'], function () {
             // users
+            Route::get('/users/roles', [UserController::class, 'getRoles']);
             Route::get('/users/deliverymen', [UserController::class, 'getDeliverymen']);
             Route::delete('/users/bulk/{ids}', [UserController::class, 'bulk_destroy']);
             Route::apiResource('users', UserController::class);

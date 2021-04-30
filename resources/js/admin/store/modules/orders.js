@@ -11,8 +11,7 @@ import {
 const state = {
     orders: [],
     order: { user: {} },
-    deliverymen: [],
-
+    deliverymen : [],
     loading: {
         get: false,
         post: false,
@@ -27,11 +26,11 @@ const getters = {
     allOrders(state) {
         return state.orders;
     },
+    allDeliverymen(state) {
+        return state.deliverymen
+    },
     orderObject(state) {
         return state.order;
-    },
-    allDeliverymen(state) {
-        return state.deliverymen;
     },
     isLoading(state) {
         return state.loading;
@@ -41,6 +40,7 @@ const getters = {
     }
 };
 const actions = {
+
     async fetchOrders(store) {
         try {
             store.commit("setLoading", "get");
@@ -120,17 +120,7 @@ const actions = {
         }
         store.commit("clearLoading", updatedOrder.loading);
     },
-    async fetchDeliverymen(store) {
-        try {
-            store.commit("setLoading", "deliverymen");
-            const res = await axios.get("/api/users/deliverymen");
-            store.commit("setDeliverymen", res.data.deliverymen);
-        } catch (err) {
-            redirectToErrorPageIfNeeded(err.response.status);
-            fireToast("danger", translate("front.errorMessage"));
-        }
-        store.commit("clearLoading", "deliverymen");
-    },
+
     async chargeUser(store) {
         try {
             nProgress.start();
@@ -191,7 +181,18 @@ const actions = {
         }
         store.commit("clearLoading", "refund");
         nProgress.done();
-    }
+    },
+    async fetchDeliverymen(store) {
+        try {
+            store.commit("setLoading", "deliverymen");
+            const res = await axios.get("/api/users/deliverymen");
+            store.commit("setDeliverymen", res.data.deliverymen);
+        } catch (err) {
+            redirectToErrorPageIfNeeded(err.response.status);
+            fireToast("danger", translate("front.errorMessage"));
+        }
+        store.commit("clearLoading", "deliverymen");
+    },
 };
 const mutations = {
     setOrders(state, orders) {

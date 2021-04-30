@@ -70,8 +70,11 @@ The above copyright notice and this permission notice shall be included in all c
             window.currentLocale = '{{ config('app.locale') }}';
             window.availableLocales = @json(config('app.available_locales'));
             window.appName = '{{ config('app.name') }}';
-            window.appLogo = '{{ config('app.logo') }}'
-            window.authUser = @json(auth()->user());
+            window.appLogo = '{{ config('app.logo') }}';
+            const authUser = @json(auth()->user());
+            authUser['roles'] = @json(auth()->user()->roles()->pluck('name'));
+            window.authUser = authUser
+            window.abilities = @json(Gate::abilities());
             window.Laravel = {!! json_encode([
     'csrfToken' => csrf_token(),
 ]) !!}

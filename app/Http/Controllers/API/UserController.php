@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -17,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users =  User::latest()->get();
+        $users =  User::latest()->with('roles')->get();
         return response()->json([
             'users' => $users
         ], 200);
@@ -31,17 +33,28 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $user =  User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            'role' => $request->role
-        ]);
-        return response()->json([
-            'message' => 'user created succefully',
-            'user' => $user
-        ], 201);
+
+
+        try {
+            DB::beginTransaction();
+            $user =  User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+            ]);
+            $user->roles()->sync(array_column($request->roles, 'id'));
+            DB::commit();
+            return response()->json([
+                'message' => 'user created succefully',
+                'user' => $user
+            ], 201);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'error' => "user wasn't created. " . $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
@@ -53,7 +66,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return response()->json([
-            'user' => $user
+            'user' => $user->load('roles')
         ], 200);
     }
 
@@ -66,12 +79,21 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        $user->update($request->only(['name', 'email', 'phone', 'role']));
-        return response()->json([
-            'message' => 'user updated succefully',
-            'user' => $user
-
-        ], 200);
+        try {
+            DB::beginTransaction();
+            $user->update($request->only(['name', 'email', 'phone']));
+            $user->roles()->sync(array_column($request->roles, 'id'));
+            DB::commit();
+            return response()->json([
+                'message' => 'user updated succefully',
+                'user' => $user
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'error' => "user wasn't updated. " . $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
@@ -99,9 +121,16 @@ class UserController extends Controller
     }
     public function getDeliverymen()
     {
-        $deliverymen =  User::where('role', 'deliveryman')->get();
+        $deliverymen =  Role::where('name', 'deliveryman')->first()->users;
         return response()->json([
             'deliverymen' => $deliverymen
         ], 200);
+    }
+    public function getRoles()
+    {
+        $roles = Role::all();
+        return response()->json([
+            'roles' => $roles
+        ]);
     }
 }

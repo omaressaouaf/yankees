@@ -11,8 +11,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -209,42 +209,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   data: function data() {
     return {
-      roles: ["client", "deliveryman", "admin"],
       form: {
         name: "",
         email: "",
         phone: "",
         password: "",
-        role: ""
+        roles: []
       }
     };
   },
   validations: {
     form: {
       name: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
       },
       email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.required,
-        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.email
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
+        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.email
       },
       phone: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
       },
       password: {
-        required: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.requiredIf)(function () {
+        required: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.requiredIf)(function () {
           return this.isCreateMode;
         }),
-        minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.minLength)(8)
+        minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(8)
       },
-      role: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.required
+      roles: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
       }
     }
   },
@@ -262,11 +265,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     postIsLoading: function postIsLoading() {
       return this.isLoading["post"];
+    },
+    rolesAreLoading: function rolesAreLoading() {
+      return this.isLoading['roles'];
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("users", ["userObject", "isLoading", "serverErrors"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("users", ["userObject", 'allRoles', "isLoading", "serverErrors"])),
   methods: _objectSpread({
     customLabel: function customLabel(option) {
-      return translate("admin." + option);
+      return translate("admin." + option.name);
     },
     handleSubmit: function handleSubmit() {
       this.$v.$touch();
@@ -279,7 +285,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("users", ["addUser", "fetchUser", "updateUser"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("users", ["addUser", "fetchUser", "updateUser", 'fetchRoles'])),
   mounted: function mounted() {
     this.$store.commit("users/clearUser");
     this.$store.commit("users/clearServerErrors");
@@ -287,6 +293,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     if (!this.isCreateMode) {
       this.fetchUser(this.$route.params.id);
     }
+
+    this.fetchRoles();
   }
 });
 
@@ -850,25 +858,29 @@ var render = function() {
                               {
                                 staticClass: "ml-5",
                                 attrs: {
-                                  validator: _vm.$v.form.role,
-                                  name: "role"
+                                  validator: _vm.$v.form.roles,
+                                  name: "roles"
                                 }
                               },
                               [
                                 _c("multiselect", {
                                   attrs: {
-                                    options: _vm.roles,
-                                    "close-on-select": true,
-                                    "clear-on-select": true,
+                                    options: _vm.allRoles,
                                     "preserve-search": true,
+                                    multiple: true,
+                                    "close-on-select": false,
+                                    "close-on-remove": false,
+                                    loading: _vm.rolesAreLoading,
                                     placeholder:
                                       _vm.translate("admin.select") +
                                       " " +
                                       _vm.translate(
-                                        "validation.attributes.role"
+                                        "validation.attributes.roles"
                                       ),
                                     "custom-label": _vm.customLabel,
-                                    "show-labels": false
+                                    "show-labels": false,
+                                    "track-by": "id",
+                                    label: "name"
                                   },
                                   scopedSlots: _vm._u([
                                     {
@@ -888,7 +900,8 @@ var render = function() {
                                                   _vm._v(
                                                     _vm._s(
                                                       _vm.translate(
-                                                        "admin." + props.option
+                                                        "admin." +
+                                                          props.option.name
                                                       )
                                                     )
                                                   )
@@ -901,17 +914,17 @@ var render = function() {
                                     }
                                   ]),
                                   model: {
-                                    value: _vm.$v.form.role.$model,
+                                    value: _vm.$v.form.roles.$model,
                                     callback: function($$v) {
                                       _vm.$set(
-                                        _vm.$v.form.role,
+                                        _vm.$v.form.roles,
                                         "$model",
                                         typeof $$v === "string"
                                           ? $$v.trim()
                                           : $$v
                                       )
                                     },
-                                    expression: "$v.form.role.$model"
+                                    expression: "$v.form.roles.$model"
                                   }
                                 })
                               ],

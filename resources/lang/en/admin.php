@@ -104,7 +104,7 @@ return [
     "userCharged" => "User charged",
     "failure" => 'Failure',
     "paymentConfirmationRequired" => "Payment confirmation required",
-    "role" => "Role",
+    "roles" => "Roles",
     "admin" => "Admin",
     "deliveryman" => "Delivery man",
     "client" => "Client",
@@ -123,6 +123,7 @@ return [
     "deliverymanRequired" => "A delivery man is required for out for delivery and delivered statuses",
     "manageProfile" => "Manage Your Profile",
     "orderCreated" => "New Order has been placed.",
+    "deliverymanSelected" => "You have been selected to deliver an order.",
     "noNotifications" => "You're all caught up",
     "notificationsCenter" => "Notifications center"
 

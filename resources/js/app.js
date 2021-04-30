@@ -11,10 +11,14 @@ import Vuelidate from "vuelidate";
 import Loading from "vue-loading-overlay";
 import InfiniteLoading from "vue-infinite-loading";
 import swal from "sweetalert2";
-import gate from './admin/gate'
+import gate from './admin/gate';
+import dayjs from "dayjs";
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
 
 
+// ______________________________________________Component global registration______________________________
 
 Vue.component(
     "meals-index",
@@ -25,7 +29,15 @@ Vue.component("loading", Loading);
 Vue.component('address-selector' , require('./admin/components/addresses/AddressSelector.vue').default);
 Vue.component('address-list' , require('./admin/components/addresses/AddressList.vue').default);
 Vue.component('checkout-form' , require('./components/CheckoutForm.vue').default);
+Vue.component('locale-switcher' , require('./admin/components/partials/LocaleSwitcher.vue').default);
+Vue.component('notifications-list' , require('./admin/components/notifications/NotificationsList.vue').default);
 
+// ______________________________________________Filters______________________________________________
+
+Vue.filter("formateDateTimeago", function(dt) {
+    return dayjs(dt).fromNow()
+});
+// ______________________________________________Vue and packages Config___________
 
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
@@ -48,7 +60,9 @@ window.translate=require('./VueTranslation/Translation').default.translate;
 Vue.prototype.translate=require('./VueTranslation/Translation').default.translate;
 window.swal = swal;
 Vue.prototype.$gate = gate;
-
+if (document.documentElement.lang == "fr") {
+    dayjs.locale("fr");
+}
 const router = new VueRouter({
     mode: "history",
     routes: []

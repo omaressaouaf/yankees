@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\DeliverymanSelected;
 use Exception;
 use App\Models\User;
 use App\Models\Order;
@@ -17,10 +18,17 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class OrderController extends Controller
 {
+    public $checkoutService;
+    public function __construct(CheckoutService $checkoutService)
+    {
+        $this->checkoutService = $checkoutService;
+    }
 
     public function index()
     {
-        $orders = auth()->user()->role == "admin"  ? Order::latest()->with('user')->get() : auth()->user()->deliveryorders;
+        /** @var \App\Models\User */
+        $authUser = auth()->user();
+        $orders = $authUser->hasRole('admin')  ? Order::latest()->with('user')->get() : $authUser->deliveryorders;
         return response()->json([
             'orders' => $orders
         ], 200);
@@ -41,15 +49,17 @@ class OrderController extends Controller
         $request->validate([
             'status' => ['required', Rule::in(['pending', 'processing', 'out_for_delivery', 'delivered', 'cancelled'])],
         ]);
+
         $order->update([
             'status' => $request->status,
             "deliveryman_id" => $request->deliveryman_id
         ]);
-        if ($request->status != $order->status) {
+        $changes = $order->getChanges();
+        if (array_key_exists('status', $changes)) {
             // TODO : OrderStatusChanged event . broadcast notification to user
         }
-        if ($request->deliveryman_id != $order->deliveryman_id) {
-            // TODO : DeliverymanSelected event . broadcast notification to deliveryman
+        if (array_key_exists('deliveryman_id', $changes) &&  $order->deliveryman_id != null && auth()->id() !=  $order->deliveryman_id) {
+            DeliverymanSelected::dispatch($order);
         }
         return response()->json([
             'message' => 'order updated succefully',
@@ -78,7 +88,7 @@ class OrderController extends Controller
     public function chargeUser(Request $request, Order $order)
     {
         $this->authorize('charge', $order);
-        ['msg' => $msg, 'status' => $status] = (new CheckoutService)->chargeUser($order);
+        ['msg' => $msg, 'status' => $status] = $this->checkoutService->chargeUser($order);
         return response()->json([
             'msg' => __($msg)
         ], $status);
@@ -86,7 +96,7 @@ class OrderController extends Controller
     public function refundUser(Request $request, Order $order)
     {
         $this->authorize('refund', $order);
-        ['msg' => $msg, 'status' => $status] = (new CheckoutService)->refundUser($order);
+        ['msg' => $msg, 'status' => $status] = $this->checkoutService->refundUser($order);
         return response()->json([
             'msg' => __($msg)
         ], $status);

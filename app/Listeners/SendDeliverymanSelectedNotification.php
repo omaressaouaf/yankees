@@ -2,15 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Models\Role;
 use App\Models\User;
-use App\Events\OrderCreated;
+use App\Events\DeliverymanSelected;
 use App\Notifications\OrderNotification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Notification;
 
-class SendOrderCreatedNotification
+class SendDeliverymanSelectedNotification
 {
     /**
      * Create the event listener.
@@ -25,12 +23,11 @@ class SendOrderCreatedNotification
     /**
      * Handle the event.
      *
-     * @param  OrderCreated  $event
+     * @param  DeliverymanSelected  $event
      * @return void
      */
-    public function handle(OrderCreated $event)
+    public function handle(DeliverymanSelected $event)
     {
-        $admins =Role::where('name' , 'admin')->first()->users;
-        Notification::send($admins , new OrderNotification($event->order ,  'orderCreated'));
+        $event->order->deliveryman->notify(new OrderNotification($event->order, "deliverymanSelected"));
     }
 }

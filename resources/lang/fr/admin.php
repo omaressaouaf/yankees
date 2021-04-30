@@ -104,7 +104,7 @@ return [
     "userCharged" => "Utilisateur facturé",
     "failure" => 'Échec',
     "paymentConfirmationRequired" => "Confirmation de paiement requise",
-    "role" => "Rôle",
+    "roles" => "Rôles",
     "admin" => "Admin",
     "deliveryman" => "Livreur",
     "client" => "Client",
@@ -123,6 +123,7 @@ return [
     "deliverymanRequired" => "Un livreur est requis pour les statuts En route et Livré",
     "manageProfile" => "Gérez votre profil",
     "orderCreated" => "Une nouvelle commande a été passée.",
+    "deliverymanSelected" => "Vous avez été sélectionné pour livrer une commande.",
     "noNotifications" => "Rien pour l'instant",
     "notificationsCenter" => "Centre de notifications"
 

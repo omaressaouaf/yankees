@@ -14,6 +14,7 @@
     </a>
     <div
       class="dropdown-menu dropdown-menu-right"
+      style="min-width: 449px"
       aria-labelledby="navbarDropdownMenuLink"
     >
       <h6 class="dropdown-header py-3 w-100">
@@ -41,29 +42,32 @@
       </div>
       <div v-else class="noti-wrapper has-cool-scrollbar">
         <div v-if="notifications.length">
-          <router-link
+          <div
+            style="cursor: pointer"
             :class="{ 'bg-grey': !notification.read_at }"
             v-for="notification in notifications"
             :key="notification.id"
             class="dropdown-item py-3 d-flex align-items-center mb-2"
-            :to="notification.data.url"
+            @click="navigate(notification.data.url)"
           >
             <span
-              class="fa fa-lg mr-2"
-              style="border-radius: 100%; padding: 14px 13px"
-              :class="bindIcon(notification.data.message)"
-            ></span>
+              class="material-icons mr-2 text-light"
+              :class="determineIconAndBG(notification.data.event_name)['bg']"
+              style="border-radius: 100%; padding: 11px 11px"
+            >
+              {{ determineIconAndBG(notification.data.event_name)["icon"] }}
+            </span>
             <span>
               <p class="small text-muted mb-0 pb-0">
                 {{ notification.created_at | formateDateTimeago }}
               </p>
               {{
-                translate("admin." + notification.data.message) +
+                translate("admin." + notification.data.event_name) +
                 " ID :" +
                 notification.data.order.id
               }}
             </span>
-          </router-link>
+          </div>
         </div>
         <div v-else class="dropdown-item py-3">
           {{ translate("admin.noNotifications") }}
@@ -74,7 +78,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import { fireToast } from "../../helpers";
 
 export default {
@@ -85,16 +88,33 @@ export default {
       notifications: [],
       unreadNotificationsLength: [],
       loading: false,
+      authUser: window.authUser,
     };
   },
-  computed: {
-    ...mapGetters("auth", ["authUser"]),
-  },
+
   methods: {
-    bindIcon(notificationMessage) {
-      switch (notificationMessage) {
+    revertToDefaultDocumentTitle() {
+      document.title = `${this.$route.meta.title} - ${this.appName}`;
+    },
+    navigate(url) {
+      if (this.$route.path.indexOf("/admin") != -1) {
+        this.$router.push(url).catch((err) => {});
+      } else {
+        window.location.href = url;
+      }
+    },
+    determineIconAndBG(event_name) {
+      switch (event_name) {
         case "orderCreated":
-          return "fa-shopping-bag bg-success text-light";
+          return {
+            icon: "shopping_bag",
+            bg: "bg-success",
+          };
+        case "deliverymanSelected":
+          return {
+            icon: "delivery_dining",
+            bg: "bg-info",
+          };
       }
     },
     getNotifications() {
@@ -117,13 +137,15 @@ export default {
           this.loading = false;
         });
     },
-    deleteNotifications() {
+    deleteNotifications(e) {
+      e.stopPropagation();
       this.loading = true;
       axios
         .delete("/api/notifications")
         .then((res) => {
           this.notifications = [];
           this.unreadNotificationsLength = 0;
+          this.revertToDefaultDocumentTitle()
         })
         .catch((err) => {
           console.log(err);
@@ -137,26 +159,35 @@ export default {
         .put("/api/notifications")
         .then((res) => {
           this.getNotifications();
-          document.title = this.$route.meta.title;
+          this.revertToDefaultDocumentTitle()
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+    increaseDocumentTileCount() {
+      const oldNotificationsTemplate = `(${
+        this.unreadNotificationsLength - 1
+      })`;
+      if (document.title.indexOf(oldNotificationsTemplate) != -1) {
+        document.title = document.title.replace(oldNotificationsTemplate, "");
+      }
+      document.title = `(${this.unreadNotificationsLength}) ${document.title}`;
     },
     async handleBroadcast(notification) {
       const newNotification = {
         id: notification.id,
         data: {
           order: notification.order,
-          message: notification.message,
+          event_name: notification.event_name,
           url: notification.url,
         },
         read_at: null,
       };
       this.notifications.unshift(newNotification);
       this.unreadNotificationsLength++;
-      document.title = `(${this.unreadNotificationsLength}) ${document.title}`;
-      if (notification.message == "orderCreated") {
+      this.increaseDocumentTileCount();
+      if (notification.event_name == "orderCreated") {
         this.$store.commit("orders/addOrder", notification.order);
       }
       new Audio("/storage/notification.mp3").play();
@@ -164,14 +195,14 @@ export default {
         const permission = await Notification.requestPermission();
         if (permission === "granted") {
           new Notification(appName, {
-            body: translate("admin." + notification.message),
+            body: translate("admin." + notification.event_name),
             icon: appLogo,
             silent: true,
           });
           return;
         }
       }
-      fireToast("info", translate("admin." + notification.message));
+      fireToast("info", translate("admin." + notification.event_name));
     },
   },
   mounted() {
@@ -194,6 +225,7 @@ export default {
 .noti-wrapper {
   max-height: 450px !important;
   overflow: auto !important;
+  min-width: 449px;
 }
 .bg-grey {
   background-color: #eeeeee;

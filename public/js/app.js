@@ -2323,6 +2323,280 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      appLogo: this.$store.state.appLogo,
+      appName: this.$store.state.appName,
+      notifications: [],
+      unreadNotificationsLength: [],
+      loading: false,
+      authUser: window.authUser
+    };
+  },
+  methods: {
+    revertToDefaultDocumentTitle: function revertToDefaultDocumentTitle() {
+      document.title = "".concat(this.$route.meta.title, " - ").concat(this.appName);
+    },
+    navigate: function navigate(url) {
+      if (this.$route.path.indexOf("/admin") != -1) {
+        this.$router.push(url)["catch"](function (err) {});
+      } else {
+        window.location.href = url;
+      }
+    },
+    determineIconAndBG: function determineIconAndBG(event_name) {
+      switch (event_name) {
+        case "orderCreated":
+          return {
+            icon: "shopping_bag",
+            bg: "bg-success"
+          };
+
+        case "deliverymanSelected":
+          return {
+            icon: "delivery_dining",
+            bg: "bg-info"
+          };
+      }
+    },
+    getNotifications: function getNotifications() {
+      var _this = this;
+
+      this.loading = true;
+      axios.get("/api/notifications").then(function (res) {
+        _this.notifications = res.data.notifications;
+
+        var unreadNotifications = _this.notifications.filter(function (notification) {
+          return notification.read_at == null;
+        });
+
+        _this.unreadNotificationsLength = unreadNotifications.length;
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        _this.loading = false;
+      });
+    },
+    deleteNotifications: function deleteNotifications(e) {
+      var _this2 = this;
+
+      e.stopPropagation();
+      this.loading = true;
+      axios["delete"]("/api/notifications").then(function (res) {
+        _this2.notifications = [];
+        _this2.unreadNotificationsLength = 0;
+
+        _this2.revertToDefaultDocumentTitle();
+      })["catch"](function (err) {
+        console.log(err);
+      })["finally"](function () {
+        _this2.loading = false;
+      });
+    },
+    markNotifications: function markNotifications() {
+      var _this3 = this;
+
+      axios.put("/api/notifications").then(function (res) {
+        _this3.getNotifications();
+
+        _this3.revertToDefaultDocumentTitle();
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    increaseDocumentTileCount: function increaseDocumentTileCount() {
+      var oldNotificationsTemplate = "(".concat(this.unreadNotificationsLength - 1, ")");
+
+      if (document.title.indexOf(oldNotificationsTemplate) != -1) {
+        document.title = document.title.replace(oldNotificationsTemplate, "");
+      }
+
+      document.title = "(".concat(this.unreadNotificationsLength, ") ").concat(document.title);
+    },
+    handleBroadcast: function handleBroadcast(notification) {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var newNotification, permission;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                newNotification = {
+                  id: notification.id,
+                  data: {
+                    order: notification.order,
+                    event_name: notification.event_name,
+                    url: notification.url
+                  },
+                  read_at: null
+                };
+
+                _this4.notifications.unshift(newNotification);
+
+                _this4.unreadNotificationsLength++;
+
+                _this4.increaseDocumentTileCount();
+
+                if (notification.event_name == "orderCreated") {
+                  _this4.$store.commit("orders/addOrder", notification.order);
+                }
+
+                new Audio("/storage/notification.mp3").play();
+
+                if (!("Notification" in window)) {
+                  _context.next = 13;
+                  break;
+                }
+
+                _context.next = 9;
+                return Notification.requestPermission();
+
+              case 9:
+                permission = _context.sent;
+
+                if (!(permission === "granted")) {
+                  _context.next = 13;
+                  break;
+                }
+
+                new Notification(appName, {
+                  body: translate("admin." + notification.event_name),
+                  icon: appLogo,
+                  silent: true
+                });
+                return _context.abrupt("return");
+
+              case 13:
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_1__.fireToast)("info", translate("admin." + notification.event_name));
+
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  mounted: function mounted() {
+    var _this5 = this;
+
+    //   listening for dropdown close event
+    $("#notificationsDropdown").on("hide.bs.dropdown", function () {
+      if (_this5.unreadNotificationsLength) {
+        _this5.markNotifications();
+      }
+    }); // monitor any broadcast notifications using echo
+
+    Echo["private"]("App.Models.User.".concat(this.authUser.id)).notification(this.handleBroadcast);
+    this.getNotifications();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=script&lang=js& ***!
@@ -2368,6 +2642,73 @@ __webpack_require__.r(__webpack_exports__);
     modalIsAddressSelector: function modalIsAddressSelector() {
       return this.modalId == "addressSelectorModal";
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      currentLocale: window.currentLocale,
+      availableLocales: window.availableLocales
+    };
   }
 });
 
@@ -4027,6 +4368,11 @@ var Gate = /*#__PURE__*/function () {
       this.validateAbilityName(abilityName);
       return this.abilities[abilityName](payload);
     }
+  }, {
+    key: "hasRole",
+    value: function hasRole(role) {
+      return this.user.roles.includes(role) ? true : false;
+    }
   }]);
 
   return Gate;
@@ -4035,16 +4381,16 @@ var Gate = /*#__PURE__*/function () {
 var gate = new Gate(window.authUser); // For admins and deliverymen
 
 gate.define("charge", function (order) {
-  return gate.user.role == "admin" && !order.user_charged && !order.payment_confirmation_required && order.payment_mode == "stripe" && order.status != "cancelled" && order.status != "failed";
+  return gate.hasRole("admin") && !order.user_charged && !order.payment_confirmation_required && order.payment_mode == "stripe" && order.status != "cancelled" && order.status != "failed";
 });
 gate.define("refund", function (order) {
-  return gate.user.role == "admin" && order.payment_mode == "stripe" && order.user_charged && !order.user_refunded && order.status == "cancelled";
+  return gate.hasRole("admin") && order.payment_mode == "stripe" && order.user_charged && !order.user_refunded && order.status == "cancelled";
 });
 gate.define("update-order", function (order) {
   return order.status != "failed" && order.status != "cancelled";
 });
 gate.define("manage", function () {
-  return gate.user.role == "admin";
+  return gate.hasRole("admin");
 }); // For Clients
 
 gate.define("checkout", function (_ref) {
@@ -4377,15 +4723,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/users */ "./resources/js/admin/store/modules/users.js");
-/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/admin/store/modules/categories.js");
-/* harmony import */ var _modules_extras__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/extras */ "./resources/js/admin/store/modules/extras.js");
-/* harmony import */ var _modules_meals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/meals */ "./resources/js/admin/store/modules/meals.js");
-/* harmony import */ var _modules_orders__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/orders */ "./resources/js/admin/store/modules/orders.js");
-/* harmony import */ var _modules_sections__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/sections */ "./resources/js/admin/store/modules/sections.js");
-/* harmony import */ var _modules_auth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/auth */ "./resources/js/admin/store/modules/auth.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/users */ "./resources/js/admin/store/modules/users.js");
+/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/admin/store/modules/categories.js");
+/* harmony import */ var _modules_extras__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/extras */ "./resources/js/admin/store/modules/extras.js");
+/* harmony import */ var _modules_meals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/meals */ "./resources/js/admin/store/modules/meals.js");
+/* harmony import */ var _modules_orders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/orders */ "./resources/js/admin/store/modules/orders.js");
+/* harmony import */ var _modules_sections__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/sections */ "./resources/js/admin/store/modules/sections.js");
+/* harmony import */ var _modules_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/auth */ "./resources/js/admin/store/modules/auth.js");
 
 
 
@@ -4395,8 +4741,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_7__.default.use(vuex__WEBPACK_IMPORTED_MODULE_8__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_8__.default.Store({
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vuex__WEBPACK_IMPORTED_MODULE_0__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_0__.default.Store({
   state: {
     appName: window.appName,
     appLogo: window.appLogo,
@@ -4414,13 +4760,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_8__.default.Store({
     }
   },
   modules: {
-    users: _modules_users__WEBPACK_IMPORTED_MODULE_0__.default,
-    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_1__.default,
-    extras: _modules_extras__WEBPACK_IMPORTED_MODULE_2__.default,
-    meals: _modules_meals__WEBPACK_IMPORTED_MODULE_3__.default,
-    orders: _modules_orders__WEBPACK_IMPORTED_MODULE_4__.default,
-    sections: _modules_sections__WEBPACK_IMPORTED_MODULE_5__.default,
-    auth: _modules_auth__WEBPACK_IMPORTED_MODULE_6__.default
+    users: _modules_users__WEBPACK_IMPORTED_MODULE_1__.default,
+    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_2__.default,
+    extras: _modules_extras__WEBPACK_IMPORTED_MODULE_3__.default,
+    meals: _modules_meals__WEBPACK_IMPORTED_MODULE_4__.default,
+    orders: _modules_orders__WEBPACK_IMPORTED_MODULE_5__.default,
+    sections: _modules_sections__WEBPACK_IMPORTED_MODULE_6__.default,
+    auth: _modules_auth__WEBPACK_IMPORTED_MODULE_7__.default
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
@@ -5612,11 +5958,11 @@ var getters = {
   allOrders: function allOrders(state) {
     return state.orders;
   },
-  orderObject: function orderObject(state) {
-    return state.order;
-  },
   allDeliverymen: function allDeliverymen(state) {
     return state.deliverymen;
+  },
+  orderObject: function orderObject(state) {
+    return state.order;
   },
   isLoading: function isLoading(state) {
     return state.loading;
@@ -5813,52 +6159,17 @@ var actions = {
       }, _callee5, null, [[0, 9]]);
     }))();
   },
-  fetchDeliverymen: function fetchDeliverymen(store) {
+  chargeUser: function chargeUser(store) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
-      var res;
+      var status;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
               _context6.prev = 0;
-              store.commit("setLoading", "deliverymen");
-              _context6.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/deliverymen");
-
-            case 4:
-              res = _context6.sent;
-              store.commit("setDeliverymen", res.data.deliverymen);
-              _context6.next = 12;
-              break;
-
-            case 8:
-              _context6.prev = 8;
-              _context6.t0 = _context6["catch"](0);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
-
-            case 12:
-              store.commit("clearLoading", "deliverymen");
-
-            case 13:
-            case "end":
-              return _context6.stop();
-          }
-        }
-      }, _callee6, null, [[0, 8]]);
-    }))();
-  },
-  chargeUser: function chargeUser(store) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
-      var status;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
-        while (1) {
-          switch (_context7.prev = _context7.next) {
-            case 0:
-              _context7.prev = 0;
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               store.commit("setLoading", "charge");
-              _context7.next = 5;
+              _context6.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/charge/".concat(store.state.order.id));
 
             case 5:
@@ -5867,23 +6178,23 @@ var actions = {
               store.commit("updateOrder", {
                 user_charged: true
               });
-              _context7.next = 17;
+              _context6.next = 17;
               break;
 
             case 10:
-              _context7.prev = 10;
-              _context7.t0 = _context7["catch"](0);
-              status = _context7.t0.response.status;
+              _context6.prev = 10;
+              _context6.t0 = _context6["catch"](0);
+              status = _context6.t0.response.status;
 
               if (status == 400) {
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context7.t0.response.data.msg);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context6.t0.response.data.msg);
                 store.commit("updateOrder", {
                   status: "failed"
                 });
               }
 
               if (status == 406) {
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("warning", translate("admin.failure"), _context7.t0.response.data.msg);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("warning", translate("admin.failure"), _context6.t0.response.data.msg);
                 store.commit("updateOrder", {
                   payment_confirmation_required: true
                 });
@@ -5901,23 +6212,23 @@ var actions = {
 
             case 19:
             case "end":
-              return _context7.stop();
+              return _context6.stop();
           }
         }
-      }, _callee7, null, [[0, 10]]);
+      }, _callee6, null, [[0, 10]]);
     }))();
   },
   refundUser: function refundUser(store) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
       var status;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context7.prev = _context7.next) {
             case 0:
-              _context8.prev = 0;
+              _context7.prev = 0;
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               store.commit("setLoading", "refund");
-              _context8.next = 5;
+              _context7.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/refund/".concat(store.state.order.id));
 
             case 5:
@@ -5926,16 +6237,16 @@ var actions = {
               store.commit("updateOrder", {
                 user_refunded: true
               });
-              _context8.next = 16;
+              _context7.next = 16;
               break;
 
             case 10:
-              _context8.prev = 10;
-              _context8.t0 = _context8["catch"](0);
-              status = _context8.t0.response.status;
+              _context7.prev = 10;
+              _context7.t0 = _context7["catch"](0);
+              status = _context7.t0.response.status;
 
               if (status == 400) {
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context8.t0.response.data.msg);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context7.t0.response.data.msg);
               }
 
               if (status == 500) {
@@ -5950,10 +6261,45 @@ var actions = {
 
             case 18:
             case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7, null, [[0, 10]]);
+    }))();
+  },
+  fetchDeliverymen: function fetchDeliverymen(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              _context8.prev = 0;
+              store.commit("setLoading", "deliverymen");
+              _context8.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/deliverymen");
+
+            case 4:
+              res = _context8.sent;
+              store.commit("setDeliverymen", res.data.deliverymen);
+              _context8.next = 12;
+              break;
+
+            case 8:
+              _context8.prev = 8;
+              _context8.t0 = _context8["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context8.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+              store.commit("clearLoading", "deliverymen");
+
+            case 13:
+            case "end":
               return _context8.stop();
           }
         }
-      }, _callee8, null, [[0, 10]]);
+      }, _callee8, null, [[0, 8]]);
     }))();
   }
 };
@@ -6209,16 +6555,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   users: [],
+  deliverymen: [],
+  roles: [],
   user: {},
   loading: {
     get: false,
-    post: false
+    post: false,
+    roles: false
   },
   serverErrors: null
 };
 var getters = {
   allUsers: function allUsers(state) {
     return state.users;
+  },
+  allDeliverymen: function allDeliverymen(state) {
+    return state.deliverymen;
+  },
+  allRoles: function allRoles(state) {
+    return state.roles;
   },
   userObject: function userObject(state) {
     return state.user;
@@ -6253,7 +6608,7 @@ var actions = {
               _context.prev = 8;
               _context.t0 = _context["catch"](0);
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context.t0.response.status);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
 
             case 12:
               store.commit("clearLoading", "get");
@@ -6266,22 +6621,21 @@ var actions = {
       }, _callee, null, [[0, 8]]);
     }))();
   },
-  deleteUser: function deleteUser(store, id) {
-    (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+  fetchRoles: function fetchRoles(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
-              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              store.commit("setLoading", "roles");
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/roles");
 
             case 4:
-              store.commit("removeUser", id);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.deleted", {
-                item: translate("admin.user")
-              }));
+              res = _context2.sent;
+              store.commit("setRoles", res.data.roles);
               _context2.next = 12;
               break;
 
@@ -6289,7 +6643,43 @@ var actions = {
               _context2.prev = 8;
               _context2.t0 = _context2["catch"](0);
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context2.t0.response.status);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+              store.commit("clearLoading", "roles");
+
+            case 13:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 8]]);
+    }))();
+  },
+  deleteUser: function deleteUser(store, id) {
+    (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/".concat(id));
+
+            case 4:
+              store.commit("removeUser", id);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.deleted", {
+                item: translate("admin.user")
+              }));
+              _context3.next = 12;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
 
             case 12:
               store.commit("clearLoading");
@@ -6297,53 +6687,13 @@ var actions = {
 
             case 14:
             case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, null, [[0, 8]]);
-    })));
-  },
-  addUser: function addUser(store, newUser) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.prev = 0;
-              store.commit("setLoading", "post");
-              _context3.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/users", newUser);
-
-            case 4:
-              res = _context3.sent;
-              store.commit("addUser", res.data.user);
-              store.commit("clearUser");
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.created", {
-                item: translate("admin.user")
-              }));
-              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/users");
-              _context3.next = 15;
-              break;
-
-            case 11:
-              _context3.prev = 11;
-              _context3.t0 = _context3["catch"](0);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
-              store.commit("setServerErrors", _context3.t0);
-
-            case 15:
-              store.commit("clearLoading", "post");
-
-            case 16:
-            case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[0, 11]]);
-    }))();
+      }, _callee3, null, [[0, 8]]);
+    })));
   },
-  fetchUser: function fetchUser(store, id) {
+  addUser: function addUser(store, newUser) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -6351,34 +6701,39 @@ var actions = {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.prev = 0;
-              store.commit("setLoading", "get");
+              store.commit("setLoading", "post");
               _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/users", newUser);
 
             case 4:
               res = _context4.sent;
-              store.commit("setUser", res.data.user);
-              _context4.next = 12;
+              store.commit("addUser", res.data.user);
+              store.commit("clearUser");
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.created", {
+                item: translate("admin.user")
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/users");
+              _context4.next = 15;
               break;
 
-            case 8:
-              _context4.prev = 8;
+            case 11:
+              _context4.prev = 11;
               _context4.t0 = _context4["catch"](0);
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context4.t0.response.status);
               store.commit("setServerErrors", _context4.t0);
 
-            case 12:
-              store.commit("clearLoading", "get");
+            case 15:
+              store.commit("clearLoading", "post");
 
-            case 13:
+            case 16:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[0, 8]]);
+      }, _callee4, null, [[0, 11]]);
     }))();
   },
-  updateUser: function updateUser(store, updatedUser) {
+  fetchUser: function fetchUser(store, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
@@ -6386,12 +6741,47 @@ var actions = {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.prev = 0;
-              store.commit("setLoading", "post");
+              store.commit("setLoading", "get");
               _context5.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/users/".concat(updatedUser.id), updatedUser);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/".concat(id));
 
             case 4:
               res = _context5.sent;
+              store.commit("setUser", res.data.user);
+              _context5.next = 12;
+              break;
+
+            case 8:
+              _context5.prev = 8;
+              _context5.t0 = _context5["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context5.t0.response.status);
+              store.commit("setServerErrors", _context5.t0);
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 8]]);
+    }))();
+  },
+  updateUser: function updateUser(store, updatedUser) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.prev = 0;
+              store.commit("setLoading", "post");
+              _context6.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/users/".concat(updatedUser.id), updatedUser);
+
+            case 4:
+              res = _context6.sent;
               store.commit("updateUser", res.data.user); // if (res.data.user.id == store.rootState.auth.authUser.id) {
               //     store.commit("auth/setAuthUser", res.data.user, {
               //         root: true
@@ -6402,36 +6792,36 @@ var actions = {
                 item: translate("admin.user")
               }));
               _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/users");
-              _context5.next = 14;
+              _context6.next = 14;
               break;
 
             case 10:
-              _context5.prev = 10;
-              _context5.t0 = _context5["catch"](0);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context5.t0.response.status);
-              store.commit("setServerErrors", _context5.t0);
+              _context6.prev = 10;
+              _context6.t0 = _context6["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
+              store.commit("setServerErrors", _context6.t0);
 
             case 14:
               store.commit("clearLoading", "post");
 
             case 15:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, _callee5, null, [[0, 10]]);
+      }, _callee6, null, [[0, 10]]);
     }))();
   },
   bulkDeleteUsers: function bulkDeleteUsers(store, selectedItems) {
     return new Promise( /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(resolve) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(resolve) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
-                _context6.prev = 0;
+                _context7.prev = 0;
                 store.commit("setLoading", "post");
-                _context6.next = 4;
+                _context7.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/bulk/" + selectedItems);
 
               case 4:
@@ -6439,24 +6829,24 @@ var actions = {
                 (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.bulkDeleted"));
                 store.commit("clearLoading", "post");
                 resolve();
-                _context6.next = 14;
+                _context7.next = 14;
                 break;
 
               case 10:
-                _context6.prev = 10;
-                _context6.t0 = _context6["catch"](0);
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+                _context7.prev = 10;
+                _context7.t0 = _context7["catch"](0);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context7.t0.response.status);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
 
               case 14:
                 store.commit("clearLoading", "post");
 
               case 15:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6, null, [[0, 10]]);
+        }, _callee7, null, [[0, 10]]);
       }));
 
       return function (_x) {
@@ -6468,6 +6858,9 @@ var actions = {
 var mutations = {
   setUsers: function setUsers(state, users) {
     state.users = users;
+  },
+  setRoles: function setRoles(state, roles) {
+    state.roles = roles;
   },
   removeUser: function removeUser(state, id) {
     state.users = state.users.filter(function (user) {
@@ -6532,10 +6925,10 @@ var mutations = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 /* harmony import */ var skeleton_loader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! skeleton-loader-vue */ "./node_modules/skeleton-loader-vue/dist/skeleton-loader-vue.esm.js");
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
@@ -6543,6 +6936,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _admin_gate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./admin/gate */ "./resources/js/admin/gate.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! dayjs/plugin/relativeTime */ "./node_modules/dayjs/plugin/relativeTime.js");
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_7__);
 // const { default: axios } = require("axios");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -6557,14 +6954,25 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 
 
+
+
+dayjs__WEBPACK_IMPORTED_MODULE_6___default().extend((dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_7___default())); // ______________________________________________Component global registration______________________________
+
 Vue.component("meals-index", __webpack_require__(/*! ./components/meals/MealsIndex.vue */ "./resources/js/components/meals/MealsIndex.vue").default);
 Vue.component("vue-skeleton-loader", skeleton_loader_vue__WEBPACK_IMPORTED_MODULE_1__.default);
 Vue.component("loading", (vue_loading_overlay__WEBPACK_IMPORTED_MODULE_2___default()));
 Vue.component('address-selector', __webpack_require__(/*! ./admin/components/addresses/AddressSelector.vue */ "./resources/js/admin/components/addresses/AddressSelector.vue").default);
 Vue.component('address-list', __webpack_require__(/*! ./admin/components/addresses/AddressList.vue */ "./resources/js/admin/components/addresses/AddressList.vue").default);
 Vue.component('checkout-form', __webpack_require__(/*! ./components/CheckoutForm.vue */ "./resources/js/components/CheckoutForm.vue").default);
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_6__.default);
-Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_7__.default);
+Vue.component('locale-switcher', __webpack_require__(/*! ./admin/components/partials/LocaleSwitcher.vue */ "./resources/js/admin/components/partials/LocaleSwitcher.vue").default);
+Vue.component('notifications-list', __webpack_require__(/*! ./admin/components/notifications/NotificationsList.vue */ "./resources/js/admin/components/notifications/NotificationsList.vue").default); // ______________________________________________Filters______________________________________________
+
+Vue.filter("formateDateTimeago", function (dt) {
+  return dayjs__WEBPACK_IMPORTED_MODULE_6___default()(dt).fromNow();
+}); // ______________________________________________Vue and packages Config___________
+
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_8__.default);
+Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_9__.default);
 Vue.use((vue_infinite_loading__WEBPACK_IMPORTED_MODULE_3___default()), {
   props: {
     spinner: 'spiral'
@@ -6581,7 +6989,12 @@ window.translate = __webpack_require__(/*! ./VueTranslation/Translation */ "./re
 Vue.prototype.translate = __webpack_require__(/*! ./VueTranslation/Translation */ "./resources/js/VueTranslation/Translation.js").default.translate;
 window.swal = (sweetalert2__WEBPACK_IMPORTED_MODULE_4___default());
 Vue.prototype.$gate = _admin_gate__WEBPACK_IMPORTED_MODULE_5__.default;
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__.default({
+
+if (document.documentElement.lang == "fr") {
+  dayjs__WEBPACK_IMPORTED_MODULE_6___default().locale("fr");
+}
+
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_8__.default({
   mode: "history",
   routes: []
 });
@@ -13609,6 +14022,30 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.noti-wrapper[data-v-47d36d38] {\r\n  max-height: 450px !important;\r\n  overflow: auto !important;\r\n  min-width: 449px;\n}\n.bg-grey[data-v-47d36d38] {\r\n  background-color: #eeeeee;\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=style&index=0&id=eab2716c&scoped=true&lang=css&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=style&index=0&id=eab2716c&scoped=true&lang=css& ***!
@@ -13874,6 +14311,28 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
+
+/***/ }),
+
+/***/ "./node_modules/dayjs/dayjs.min.js":
+/*!*****************************************!*\
+  !*** ./node_modules/dayjs/dayjs.min.js ***!
+  \*****************************************/
+/***/ (function(module) {
+
+!function(t,e){ true?module.exports=e():0}(this,function(){"use strict";var t="millisecond",e="second",n="minute",r="hour",i="day",s="week",u="month",a="quarter",o="year",f="date",h=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[^0-9]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,c=/\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,d={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},$=function(t,e,n){var r=String(t);return!r||r.length>=e?t:""+Array(e+1-r.length).join(n)+t},l={s:$,z:function(t){var e=-t.utcOffset(),n=Math.abs(e),r=Math.floor(n/60),i=n%60;return(e<=0?"+":"-")+$(r,2,"0")+":"+$(i,2,"0")},m:function t(e,n){if(e.date()<n.date())return-t(n,e);var r=12*(n.year()-e.year())+(n.month()-e.month()),i=e.clone().add(r,u),s=n-i<0,a=e.clone().add(r+(s?-1:1),u);return+(-(r+(n-i)/(s?i-a:a-i))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(h){return{M:u,y:o,w:s,d:i,D:f,h:r,m:n,s:e,ms:t,Q:a}[h]||String(h||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},y="en",M={};M[y]=d;var m=function(t){return t instanceof S},D=function(t,e,n){var r;if(!t)return y;if("string"==typeof t)M[t]&&(r=t),e&&(M[t]=e,r=t);else{var i=t.name;M[i]=t,r=i}return!n&&r&&(y=r),r||!n&&y},v=function(t,e){if(m(t))return t.clone();var n="object"==typeof e?e:{};return n.date=t,n.args=arguments,new S(n)},g=l;g.l=D,g.i=m,g.w=function(t,e){return v(t,{locale:e.$L,utc:e.$u,x:e.$x,$offset:e.$offset})};var S=function(){function d(t){this.$L=D(t.locale,null,!0),this.parse(t)}var $=d.prototype;return $.parse=function(t){this.$d=function(t){var e=t.date,n=t.utc;if(null===e)return new Date(NaN);if(g.u(e))return new Date;if(e instanceof Date)return new Date(e);if("string"==typeof e&&!/Z$/i.test(e)){var r=e.match(h);if(r){var i=r[2]-1||0,s=(r[7]||"0").substring(0,3);return n?new Date(Date.UTC(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)):new Date(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)}}return new Date(e)}(t),this.$x=t.x||{},this.init()},$.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},$.$utils=function(){return g},$.isValid=function(){return!("Invalid Date"===this.$d.toString())},$.isSame=function(t,e){var n=v(t);return this.startOf(e)<=n&&n<=this.endOf(e)},$.isAfter=function(t,e){return v(t)<this.startOf(e)},$.isBefore=function(t,e){return this.endOf(e)<v(t)},$.$g=function(t,e,n){return g.u(t)?this[e]:this.set(n,t)},$.unix=function(){return Math.floor(this.valueOf()/1e3)},$.valueOf=function(){return this.$d.getTime()},$.startOf=function(t,a){var h=this,c=!!g.u(a)||a,d=g.p(t),$=function(t,e){var n=g.w(h.$u?Date.UTC(h.$y,e,t):new Date(h.$y,e,t),h);return c?n:n.endOf(i)},l=function(t,e){return g.w(h.toDate()[t].apply(h.toDate("s"),(c?[0,0,0,0]:[23,59,59,999]).slice(e)),h)},y=this.$W,M=this.$M,m=this.$D,D="set"+(this.$u?"UTC":"");switch(d){case o:return c?$(1,0):$(31,11);case u:return c?$(1,M):$(0,M+1);case s:var v=this.$locale().weekStart||0,S=(y<v?y+7:y)-v;return $(c?m-S:m+(6-S),M);case i:case f:return l(D+"Hours",0);case r:return l(D+"Minutes",1);case n:return l(D+"Seconds",2);case e:return l(D+"Milliseconds",3);default:return this.clone()}},$.endOf=function(t){return this.startOf(t,!1)},$.$set=function(s,a){var h,c=g.p(s),d="set"+(this.$u?"UTC":""),$=(h={},h[i]=d+"Date",h[f]=d+"Date",h[u]=d+"Month",h[o]=d+"FullYear",h[r]=d+"Hours",h[n]=d+"Minutes",h[e]=d+"Seconds",h[t]=d+"Milliseconds",h)[c],l=c===i?this.$D+(a-this.$W):a;if(c===u||c===o){var y=this.clone().set(f,1);y.$d[$](l),y.init(),this.$d=y.set(f,Math.min(this.$D,y.daysInMonth())).$d}else $&&this.$d[$](l);return this.init(),this},$.set=function(t,e){return this.clone().$set(t,e)},$.get=function(t){return this[g.p(t)]()},$.add=function(t,a){var f,h=this;t=Number(t);var c=g.p(a),d=function(e){var n=v(h);return g.w(n.date(n.date()+Math.round(e*t)),h)};if(c===u)return this.set(u,this.$M+t);if(c===o)return this.set(o,this.$y+t);if(c===i)return d(1);if(c===s)return d(7);var $=(f={},f[n]=6e4,f[r]=36e5,f[e]=1e3,f)[c]||1,l=this.$d.getTime()+t*$;return g.w(l,this)},$.subtract=function(t,e){return this.add(-1*t,e)},$.format=function(t){var e=this;if(!this.isValid())return"Invalid Date";var n=t||"YYYY-MM-DDTHH:mm:ssZ",r=g.z(this),i=this.$locale(),s=this.$H,u=this.$m,a=this.$M,o=i.weekdays,f=i.months,h=function(t,r,i,s){return t&&(t[r]||t(e,n))||i[r].substr(0,s)},d=function(t){return g.s(s%12||12,t,"0")},$=i.meridiem||function(t,e,n){var r=t<12?"AM":"PM";return n?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:g.s(a+1,2,"0"),MMM:h(i.monthsShort,a,f,3),MMMM:h(f,a),D:this.$D,DD:g.s(this.$D,2,"0"),d:String(this.$W),dd:h(i.weekdaysMin,this.$W,o,2),ddd:h(i.weekdaysShort,this.$W,o,3),dddd:o[this.$W],H:String(s),HH:g.s(s,2,"0"),h:d(1),hh:d(2),a:$(s,u,!0),A:$(s,u,!1),m:String(u),mm:g.s(u,2,"0"),s:String(this.$s),ss:g.s(this.$s,2,"0"),SSS:g.s(this.$ms,3,"0"),Z:r};return n.replace(c,function(t,e){return e||l[t]||r.replace(":","")})},$.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},$.diff=function(t,f,h){var c,d=g.p(f),$=v(t),l=6e4*($.utcOffset()-this.utcOffset()),y=this-$,M=g.m(this,$);return M=(c={},c[o]=M/12,c[u]=M,c[a]=M/3,c[s]=(y-l)/6048e5,c[i]=(y-l)/864e5,c[r]=y/36e5,c[n]=y/6e4,c[e]=y/1e3,c)[d]||y,h?M:g.a(M)},$.daysInMonth=function(){return this.endOf(u).$D},$.$locale=function(){return M[this.$L]},$.locale=function(t,e){if(!t)return this.$L;var n=this.clone(),r=D(t,e,!0);return r&&(n.$L=r),n},$.clone=function(){return g.w(this.$d,this)},$.toDate=function(){return new Date(this.valueOf())},$.toJSON=function(){return this.isValid()?this.toISOString():null},$.toISOString=function(){return this.$d.toISOString()},$.toString=function(){return this.$d.toUTCString()},d}(),p=S.prototype;return v.prototype=p,[["$ms",t],["$s",e],["$m",n],["$H",r],["$W",i],["$M",u],["$y",o],["$D",f]].forEach(function(t){p[t[1]]=function(e){return this.$g(e,t[0],t[1])}}),v.extend=function(t,e){return t.$i||(t(e,S,v),t.$i=!0),v},v.locale=D,v.isDayjs=m,v.unix=function(t){return v(1e3*t)},v.en=M[y],v.Ls=M,v.p={},v});
+
+
+/***/ }),
+
+/***/ "./node_modules/dayjs/plugin/relativeTime.js":
+/*!***************************************************!*\
+  !*** ./node_modules/dayjs/plugin/relativeTime.js ***!
+  \***************************************************/
+/***/ (function(module) {
+
+!function(r,t){ true?module.exports=t():0}(this,function(){"use strict";return function(r,t,e){r=r||{};var n=t.prototype,o={future:"in %s",past:"%s ago",s:"a few seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"};function i(r,t,e,o){return n.fromToBase(r,t,e,o)}e.en.relativeTime=o,n.fromToBase=function(t,n,i,d,u){for(var a,f,s,l=i.$locale().relativeTime||o,h=r.thresholds||[{l:"s",r:44,d:"second"},{l:"m",r:89},{l:"mm",r:44,d:"minute"},{l:"h",r:89},{l:"hh",r:21,d:"hour"},{l:"d",r:35},{l:"dd",r:25,d:"day"},{l:"M",r:45},{l:"MM",r:10,d:"month"},{l:"y",r:17},{l:"yy",d:"year"}],m=h.length,c=0;c<m;c+=1){var y=h[c];y.d&&(a=d?e(t).diff(i,y.d,!0):i.diff(t,y.d,!0));var p=(r.rounding||Math.round)(Math.abs(a));if(s=a>0,p<=y.r||!y.r){p<=1&&c>0&&(y=h[c-1]);var v=l[y.l];u&&(p=u(""+p)),f="string"==typeof v?v.replace("%d",p):v(p,n,y.l,s);break}}if(n)return f;var M=s?l.future:l.past;return"function"==typeof M?M(f):M.replace("%s",f)},n.to=function(r,t){return i(r,t,this,!0)},n.from=function(r,t){return i(r,t,this)};var d=function(r){return r.$u?e.utc():e()};n.toNow=function(r){return this.to(d(this),r)},n.fromNow=function(r){return this.from(d(this),r)}}});
+
 
 /***/ }),
 
@@ -56773,6 +57232,36 @@ __vue_component__$2.install = install; // Export component by default
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsList_vue_vue_type_style_index_0_id_47d36d38_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsList_vue_vue_type_style_index_0_id_47d36d38_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsList_vue_vue_type_style_index_0_id_47d36d38_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=style&index=0&id=eab2716c&scoped=true&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=style&index=0&id=eab2716c&scoped=true&lang=css& ***!
@@ -61055,6 +61544,47 @@ component.options.__file = "resources/js/admin/components/addresses/AddressSelec
 
 /***/ }),
 
+/***/ "./resources/js/admin/components/notifications/NotificationsList.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/admin/components/notifications/NotificationsList.vue ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _NotificationsList_vue_vue_type_template_id_47d36d38_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NotificationsList.vue?vue&type=template&id=47d36d38&scoped=true& */ "./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=template&id=47d36d38&scoped=true&");
+/* harmony import */ var _NotificationsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NotificationsList.vue?vue&type=script&lang=js& */ "./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _NotificationsList_vue_vue_type_style_index_0_id_47d36d38_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css& */ "./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__.default)(
+  _NotificationsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _NotificationsList_vue_vue_type_template_id_47d36d38_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _NotificationsList_vue_vue_type_template_id_47d36d38_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "47d36d38",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/admin/components/notifications/NotificationsList.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/admin/components/partials/BaseModal.vue":
 /*!**************************************************************!*\
   !*** ./resources/js/admin/components/partials/BaseModal.vue ***!
@@ -61092,6 +61622,45 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/admin/components/partials/BaseModal.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/admin/components/partials/LocaleSwitcher.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/admin/components/partials/LocaleSwitcher.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocaleSwitcher.vue?vue&type=template&id=769e0ddd& */ "./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd&");
+/* harmony import */ var _LocaleSwitcher_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocaleSwitcher.vue?vue&type=script&lang=js& */ "./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _LocaleSwitcher_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__.render,
+  _LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/admin/components/partials/LocaleSwitcher.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -61569,6 +62138,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NotificationsList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/admin/components/partials/BaseModal.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************!*\
   !*** ./resources/js/admin/components/partials/BaseModal.vue?vue&type=script&lang=js& ***!
@@ -61582,6 +62167,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BaseModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LocaleSwitcher.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -61761,6 +62362,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css&":
+/*!************************************************************************************************************************************!*\
+  !*** ./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsList_vue_vue_type_style_index_0_id_47d36d38_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader/dist/cjs.js!../../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=style&index=0&id=47d36d38&scoped=true&lang=css&");
+
+
+/***/ }),
+
 /***/ "./resources/js/admin/components/partials/BaseModal.vue?vue&type=style&index=0&id=eab2716c&scoped=true&lang=css&":
 /*!***********************************************************************************************************************!*\
   !*** ./resources/js/admin/components/partials/BaseModal.vue?vue&type=style&index=0&id=eab2716c&scoped=true&lang=css& ***!
@@ -61899,6 +62513,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=template&id=47d36d38&scoped=true&":
+/*!**********************************************************************************************************************!*\
+  !*** ./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=template&id=47d36d38&scoped=true& ***!
+  \**********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsList_vue_vue_type_template_id_47d36d38_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsList_vue_vue_type_template_id_47d36d38_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NotificationsList_vue_vue_type_template_id_47d36d38_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NotificationsList.vue?vue&type=template&id=47d36d38&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=template&id=47d36d38&scoped=true&");
+
+
+/***/ }),
+
 /***/ "./resources/js/admin/components/partials/BaseModal.vue?vue&type=template&id=eab2716c&scoped=true&":
 /*!*********************************************************************************************************!*\
   !*** ./resources/js/admin/components/partials/BaseModal.vue?vue&type=template&id=eab2716c&scoped=true& ***!
@@ -61912,6 +62543,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseModal_vue_vue_type_template_id_eab2716c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseModal_vue_vue_type_template_id_eab2716c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BaseModal.vue?vue&type=template&id=eab2716c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=template&id=eab2716c&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LocaleSwitcher.vue?vue&type=template&id=769e0ddd& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd&");
 
 
 /***/ }),
@@ -62457,6 +63105,210 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=template&id=47d36d38&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/notifications/NotificationsList.vue?vue&type=template&id=47d36d38&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "li",
+    {
+      staticClass: "nav-item dropdown",
+      attrs: { id: "notificationsDropdown" }
+    },
+    [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link",
+          attrs: {
+            href: "#",
+            id: "navbarDropdownMenuLink",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false"
+          }
+        },
+        [
+          _c("i", { staticClass: "material-icons" }, [_vm._v("notifications")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "notification" }, [
+            _vm._v(_vm._s(_vm.unreadNotificationsLength))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "d-lg-none d-md-block" }, [
+            _vm._v("Notifications")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-menu dropdown-menu-right",
+          staticStyle: { "min-width": "449px" },
+          attrs: { "aria-labelledby": "navbarDropdownMenuLink" }
+        },
+        [
+          _c("h6", { staticClass: "dropdown-header py-3 w-100" }, [
+            _vm._v(
+              "\n      " +
+                _vm._s(_vm.translate("admin.notificationsCenter")) +
+                "\n      "
+            ),
+            _vm.notifications.length
+              ? _c(
+                  "span",
+                  {
+                    staticClass: "float-right text-danger",
+                    staticStyle: { cursor: "pointer" },
+                    on: { click: _vm.deleteNotifications }
+                  },
+                  [
+                    _c("u", [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(_vm.translate("admin.delete")) +
+                          "\n        "
+                      )
+                    ])
+                  ]
+                )
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _vm.loading
+            ? _c(
+                "div",
+                { staticClass: "text-center w-100" },
+                [
+                  _c("loading", {
+                    attrs: {
+                      loader: "dots",
+                      color: "#2B51C4",
+                      active: _vm.loading,
+                      "is-full-page": false,
+                      width: 80,
+                      height: 200
+                    },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.loading = $event
+                      }
+                    }
+                  })
+                ],
+                1
+              )
+            : _c("div", { staticClass: "noti-wrapper has-cool-scrollbar" }, [
+                _vm.notifications.length
+                  ? _c(
+                      "div",
+                      _vm._l(_vm.notifications, function(notification) {
+                        return _c(
+                          "div",
+                          {
+                            key: notification.id,
+                            staticClass:
+                              "dropdown-item py-3 d-flex align-items-center mb-2",
+                            class: { "bg-grey": !notification.read_at },
+                            staticStyle: { cursor: "pointer" },
+                            on: {
+                              click: function($event) {
+                                return _vm.navigate(notification.data.url)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "span",
+                              {
+                                staticClass: "material-icons mr-2 text-light",
+                                class: _vm.determineIconAndBG(
+                                  notification.data.event_name
+                                )["bg"],
+                                staticStyle: {
+                                  "border-radius": "100%",
+                                  padding: "11px 11px"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n            " +
+                                    _vm._s(
+                                      _vm.determineIconAndBG(
+                                        notification.data.event_name
+                                      )["icon"]
+                                    ) +
+                                    "\n          "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("span", [
+                              _c(
+                                "p",
+                                { staticClass: "small text-muted mb-0 pb-0" },
+                                [
+                                  _vm._v(
+                                    "\n              " +
+                                      _vm._s(
+                                        _vm._f("formateDateTimeago")(
+                                          notification.created_at
+                                        )
+                                      ) +
+                                      "\n            "
+                                  )
+                                ]
+                              ),
+                              _vm._v(
+                                "\n            " +
+                                  _vm._s(
+                                    _vm.translate(
+                                      "admin." + notification.data.event_name
+                                    ) +
+                                      " ID :" +
+                                      notification.data.order.id
+                                  ) +
+                                  "\n          "
+                              )
+                            ])
+                          ]
+                        )
+                      }),
+                      0
+                    )
+                  : _c("div", { staticClass: "dropdown-item py-3" }, [
+                      _vm._v(
+                        "\n        " +
+                          _vm._s(_vm.translate("admin.noNotifications")) +
+                          "\n      "
+                      )
+                    ])
+              ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=template&id=eab2716c&scoped=true&":
 /*!************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/BaseModal.vue?vue&type=template&id=eab2716c&scoped=true& ***!
@@ -62523,6 +63375,94 @@ var staticRenderFns = [
     )
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("li", { staticClass: "nav-item dropdown" }, [
+    _c(
+      "a",
+      {
+        staticClass: "nav-link dropdown-toggle text-uppercase",
+        attrs: {
+          href: "#",
+          id: "navbarDropdown",
+          role: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [
+        _c("img", {
+          staticClass: "mr-2",
+          attrs: {
+            src: "/storage/images/design/" + _vm.currentLocale + ".png",
+            width: "30",
+            height: "20",
+            alt: ""
+          }
+        }),
+        _vm._v("\n    " + _vm._s(_vm.currentLocale) + "\n  ")
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "dropdown-menu dropdown-menu-right",
+        attrs: { "aria-labelledby": "navbarDropdown" }
+      },
+      _vm._l(_vm.availableLocales, function(locale, index) {
+        return _c(
+          "a",
+          {
+            key: index,
+            staticClass: "dropdown-item text-uppercase",
+            attrs: {
+              href:
+                locale == _vm.currentLocale
+                  ? _vm.$route.path + "#"
+                  : "/setLocale/" + locale
+            }
+          },
+          [
+            _c("img", {
+              staticClass: "mr-2",
+              attrs: {
+                src: "/storage/images/design/" + locale + ".png",
+                width: "30",
+                height: "20",
+                alt: ""
+              }
+            }),
+            _vm._v("\n      " + _vm._s(locale) + "\n    ")
+          ]
+        )
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -83236,7 +84176,7 @@ var index = {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"en":{"admin":{"adminPanel":"Admin Panel","overview":"Overview","dashboard":"Dashboard","management":"Management","users":"Users","categories":"Categories","extras":"Extras","options":"Options","menus":"Menus","account":"Account","profile":"Profile","logout":"Log Out","delete":"Delete","add":"Add","new":"New","save":"Save","edit":"Edit","discard":"Discard","enter":"Enter","select":"Select","the":"The","theFem":"The","user":"User","category":"Category","extra":"Extra","option":"Option","menu":"Menu","generalInfo":"General Info","canManage":"is able to manage the site data","optional":"Optional","optionalFem":"Optional","to":"To","for":"For","this":"This","thisFem":"This","name":"Name","phone":"Phone","address":"Address","joinedAt":"Joined at","createdAt":"Created at","title":"Title","price":"Price","active":"Active","selectToAdd":"Select to Add","noExtras":"There are no Extras .","next":"Next","previous":"Prev","newOptions":"NEW OPTIONS","oldOptions":"OLD OPTIONS","confirmationTitle":"are you sure ?","confirmationText":"You won\'t be able to revert this","confirmationConfirm":"Yes, do it","settings":"Settings","orders":"Orders","general":"General","cart":"Cart","appNameDesc":"used for branding and emails","time":"Estimated time","tax":"Tax Rate","created":":item created successfully","updated":":item updated successfully","deleted":":item deleted successfully","bulkDeleted":"Selected item(s) deleted successfully","openingHours":"Opening Hours","addOpeningHours":"Add your business hours","splitHours":"Split hours","closed":"Closed","setAsClosed":"Set as Closed","monday":"monday","tuesday":"tuesday","wednesday":"Wednesday","thursday":"thursday","friday":"friday","saturday":"saturday","sunday":"sunday","forcedClose":"Forced Close","forcedCloseText":"this option will override the schedule and force close the restaurant","selectPolygon":"Select a polygon","noCategoryForMeal":"There is no category for the menu . it might have been deleted","min_order_price":"Minimum order price","nameOnCard":"Name on card","paymentDetails":"Payment Details","cashOnDeliveryText":"You will pay cash once the products are delivered","paymentMode":"Payment Mode","status":"Status","passedAt":"Passed at","orderDetails":"Order details","order":"Order","noUserForOrder":"No user in the database for this order . he might have been deleted","filterBy":"Filter by","pending":"Pending","processing":"Processing","out_for_delivery":"Out for Delivery","delivered":"Delivered","cancelled":"Cancelled","failed":"Failed","charge":"Charge","userCharged":"User charged","failure":"Failure","paymentConfirmationRequired":"Payment confirmation required","role":"Role","admin":"Admin","deliveryman":"Delivery man","client":"Client","print":"Print","invoice":"Invoice","track":"Track Order","paymentSuccessful":"Payment was successful","refund":"Refund","userRefunded":"User Refunded","onlinePayment":"Online Payment","refundSuccessful":"Refund was successful","subtotal":"Subtotal","from":"From","quantity":"Quantity","deliverymanRequired":"A delivery man is required for out for delivery and delivered statuses","manageProfile":"Manage Your Profile","orderCreated":"New Order has been placed.","noNotifications":"You\'re all caught up","notificationsCenter":"Notifications center"},"auth":{"failed":"These credentials do not match our records.","password":"The provided password is incorrect.","throttle":"Too many login attempts. Please try again in :seconds seconds."},"front":{"searchTitle":"Customize the search","search":"Search","categories":"Categories","filters":"Filters","all":"All","allFem":"All","category":"Category","addToCart":"Add","noMeals":"Sorry! There are no menus available","noMealsText":"we suggest to modify the search","noDescription":"Description not Available","noOption":"No Thank you","unavailable":"Not Available","customize":"Customize Your","yourCart":"Your Cart","delete":"Remove","cartEmpty":"Your cart is empty","cartEmptyText":"Buy a delicious meal before it gets cold","weAccept":"We accept","total":"Total with taxes","delivery":"Delivery","checkout":"Go to Checkout","dontDelay":"Don\'t delay the purchase,\\r\\n    adding items to your cart does not mean\\r\\n    Reserving them","successMessage":"Menu added to your cart","errorMessage":"an Error ocurred . Try again","and":"and","chooseAddress":"Choose your Address","chooseAddressText":"Choose your Address from the map or detect browser location","addressDetails":"Details (ex : Floor , House)","geolocationNotSupported":"Your Browser does not support Geolocation .Please enter your address Manually","permissionDenied":"You denied the Permission . Please add your address manually","add":"Add","addressAdded":"Address added successfully","noAddress":"No address available","outOfDeliveryZone":"Our of delivery zone","addressDirections":"Address Directions","detectAddresses":"Detect Addresses Automatically","toggleInstructions":"Toggle Instructions"},"pagination":{"previous":"&laquo; Previous","next":"Next &raquo;"},"passwords":{"reset":"Your password has been reset!","sent":"We have emailed your password reset link!","throttled":"Please wait before retrying.","token":"This password reset token is invalid.","user":"We can\'t find a user with that email address."},"validation":{"accepted":" :attribute must be accepted.","active_url":" :attribute is not a valid URL.","after":" :attribute must be a date after :date.","after_or_equal":" :attribute must be a date after or equal to :date.","alpha":" :attribute must only contain letters.","alpha_dash":" :attribute must only contain letters, numbers, dashes and underscores.","alpha_num":" :attribute must only contain letters and numbers.","array":" :attribute must be an array.","before":" :attribute must be a date before :date.","before_or_equal":" :attribute must be a date before or equal to :date.","between":{"numeric":" :attribute must be between :min and :max.","file":" :attribute must be between :min and :max kilobytes.","string":" :attribute must be between :min and :max characters.","array":" :attribute must have between :min and :max items."},"boolean":" :attribute must be true or false.","confirmed":" :attribute confirmation does not match.","date":" :attribute is not a valid date.","date_equals":" :attribute must be a date equal to :date.","date_format":" :attribute does not match the format :format.","different":" :attribute and :other must be different.","digits":" :attribute must be :digits digits.","digits_between":" :attribute must be between :min and :max digits.","dimensions":" :attribute has invalid image dimensions.","distinct":" :attribute has a duplicate value.","email":" :attribute must be a valid email address.","ends_with":" :attribute must end with one of the following: :values.","exists":" selected :attribute is invalid.","file":" :attribute must be a file.","filled":" :attribute must have a value.","gt":{"numeric":" :attribute must be greater than :value.","file":" :attribute must be greater than :value kilobytes.","string":" :attribute must be greater than :value characters.","array":" :attribute must have more than :value items."},"gte":{"numeric":" :attribute must be greater than or equal :value.","file":" :attribute must be greater than or equal :value kilobytes.","string":" :attribute must be greater than or equal :value characters.","array":" :attribute must have :value items or more."},"image":" :attribute must be an image.","in":" selected :attribute is invalid.","in_array":" :attribute does not exist in :other.","integer":" :attribute must be an integer.","ip":" :attribute must be a valid IP address.","ipv4":" :attribute must be a valid IPv4 address.","ipv6":" :attribute must be a valid IPv6 address.","json":" :attribute must be a valid JSON string.","lt":{"numeric":" :attribute must be less than :value.","file":" :attribute must be less than :value kilobytes.","string":" :attribute must be less than :value characters.","array":" :attribute must have less than :value items."},"lte":{"numeric":" :attribute must be less than or equal :value.","file":" :attribute must be less than or equal :value kilobytes.","string":" :attribute must be less than or equal :value characters.","array":" :attribute must not have more than :value items."},"max":{"numeric":" :attribute must not be greater than :max.","file":" :attribute must not be greater than :max kilobytes.","string":" :attribute must not be greater than :max characters.","array":" :attribute must not have more than :max items."},"mimes":" :attribute must be a file of type: :values.","mimetypes":" :attribute must be a file of type: :values.","min":{"numeric":" :attribute must be at least :min.","file":" :attribute must be at least :min kilobytes.","string":" :attribute must be at least :min characters.","array":" :attribute must have at least :min items."},"multiple_of":" :attribute must be a multiple of :value.","not_in":" selected :attribute is invalid.","not_regex":" :attribute format is invalid.","numeric":" :attribute must be a number.","password":" password is incorrect.","present":" :attribute must be present.","regex":" :attribute format is invalid.","required":" :attribute is required.","required_if":" :attribute is required when :other is :value.","required_unless":" :attribute is required unless :other is in :values.","required_with":" :attribute is required when :values is present.","required_with_all":" :attribute is required when :values are present.","required_without":" :attribute is required when :values is not present.","required_without_all":" :attribute is required when none of :values are present.","prohibited_if":" :attribute is prohibited when :other is :value.","prohibited_unless":" :attribute is prohibited unless :other is in :values.","same":" :attribute and :other must match.","size":{"numeric":" :attribute must be :size.","file":" :attribute must be :size kilobytes.","string":" :attribute must be :size characters.","array":" :attribute must contain :size items."},"starts_with":" :attribute must start with one of the following: :values.","string":" :attribute must be a string.","timezone":" :attribute must be a valid zone.","unique":" :attribute has already been taken.","uploaded":" :attribute failed to upload.","url":" :attribute format is invalid.","uuid":" :attribute must be a valid UUID.","isBetweenTheMinAndAdminSelectedOptions":" :attribute must be between the min and selected options sum","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"The Name","email":"The Email","address":"The Address","phone":"The Phone number","password":"The Password","is_admin":"is Admin","slug":"The Slug","title":"The Title","price":"The Price","description":"The Description","image":"The Image","category_id":"The Category","min":"The Min","max":"The Max","time":"The Time","tax":"The Tax rate","start":"Start hour","end":"End Hour","label":"The Label","role":"The Role","content":"The Content"}}},"fr":{"0":1,"admin":{"adminPanel":"Panneau d\'Administration","overview":"Aperçu","dashboard":"Tableau de bord","management":"Gestion","users":"Utilisateurs","categories":"Catégories","extras":"Extras","options":"Options","menus":"Menus","account":"Compte","profile":"Profil","logout":"Se déconnecter","delete":"Suppression","add":"Ajouter","new":"Nouveau","save":"Sauvgarder","edit":"Modifier","discard":"Annuler","enter":"Entrer","select":"Sélectionner","the":"Le","theFem":"La","user":"Utilisateur","category":"Catégorie","extra":"Extra","option":"Option","menu":"Menu","generalInfo":"Info générales","canManage":"peut gérer les données du site","optional":"Optionnel","optionalFem":"Optionnelle","to":"À","for":"Pour","this":"Ce","thisFem":"Cette","name":"Nom","phone":"N.Téléphone","address":"Adresse","joinedAt":"Rejoint à","createdAt":"Créé à","title":"Titre","price":"Prix","active":"Actif","selectToAdd":"sélectionner pour ajouter","noExtras":"Il n\'y a pas de Extra .","next":"Suiv","previous":"Précéd","newOptions":"NOUVELLES OPTIONS","oldOptions":"ANCIENNES OPTIONS","confirmationTitle":"êtes-vous sûr ? ","confirmationText":"Vous ne pourrez pas récupérer  cela !","confirmationConfirm":"Oui, fais-le","settings":"Paramètres","orders":"Commandes","general":"Général","cart":"Panier","appNameDesc":"utilisé pour la marque et les e-mails","time":"Temps estimé","tax":"Taux d\'imposition","created":":item ajoutée avec succès","updated":":item modifiée avec succès","deleted":":item supprimées avec succès","bulkDeleted":"Éléments sélectionné(s) supprimés avec succès","openingHours":"Heures d\'ouverture","addOpeningHours":"Ajouter vos heures d\'ouverture","splitHours":"heures fractionnées","closed":"Fermé","setAsClosed":"Définir comme fermé","monday":"lundi","tuesday":"mardi","wednesday":"mercredi","thursday":"jeudi","friday":"vendredi","saturday":"samedi","sunday":"dimanche","forcedClose":"Fermeture forcée","forcedCloseText":"cette option remplacera l\'horaire et fermera le restaurant forcément","selectPolygon":"Sélectionnez un polygone","noCategoryForMeal":"Il n\'y a pas de catégorie pour le menu. il a peut-être été supprimé","min_order_price":"Prix ​​minimum de commande","nameOnCard":"Nom sur la carte","paymentDetails":"Détails de paiement","cashOnDeliveryText":"Vous paierez en espèces une fois les produits livrés","paymentMode":"Mode de paiement","status":"Statut","passedAt":"Passé à","orderDetails":"Détails de la commande","order":"Commande","noUserForOrder":"Aucun utilisateur dans la base de données pour cette commande. il aurait pu être supprimé","filterBy":"Filtrer par","pending":"En attente","processing":"En cours","out_for_delivery":"En route","delivered":"Livré","cancelled":"Annulé","failed":"Manquée","charge":"Facturez","userCharged":"Utilisateur facturé","failure":"Échec","paymentConfirmationRequired":"Confirmation de paiement requise","role":"Rôle","admin":"Admin","deliveryman":"Livreur","client":"Client","print":"Imprimer","invoice":"Facture","track":"Tracer Commande","paymentSuccessful":"Le paiement a réussi","refund":"Rembourser","userRefunded":"Utilisateur remboursé","onlinePayment":"Paiement en ligne","refundSuccessful":"Le remboursement a réussi","subtotal":"Sous-total","from":"De","quantity":"Quantité","deliverymanRequired":"Un livreur est requis pour les statuts En route et Livré","manageProfile":"Gérez votre profil","orderCreated":"Une nouvelle commande a été passée.","noNotifications":"Rien pour l\'instant","notificationsCenter":"Centre de notifications"},"auth":{"failed":"Ces identifiants ne correspondent pas à nos enregistrements.","password":"Le mot de passe fourni est incorrect.","throttle":"Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes."},"front":{"searchTitle":"Personnaliser la Recherche","search":"Rechercher","categories":"Catégories","filters":"Filtres","all":"Tous","allFem":"Toutes","category":"Catégorie","addToCart":"Ajouter","noMeals":"Pardon! Il n\'y a pas de menus disponibles","noMealsText":"nous suggérons de modifier la recherche","noDescription":"Description non disponible","noOption":"Non Merci","unavailable":"Non Disponible","customize":"Personnalisez votre","yourCart":"Votre Panier","delete":"Retirer","cartEmpty":"Votre Panier est Vide","cartEmptyText":"Achetez un délicieux repas avant qu\'il ne fasse froid","weAccept":"nous acceptons","total":"Total avec les taxes","delivery":"Livraison","checkout":"Valider La Commande","dontDelay":"Ne retardez pas l\'achat,\\r\\n    ajouter des articles à votre panier ne signifie pas les\\r\\n    réserver","successMessage":"Menu ajouté au panier","errorMessage":"Une erreur s\'est produite . Réessayer","and":"et","chooseAddress":"Choisissez votre adresse","chooseAddressText":"Choisissez votre adresse sur la carte ou détectez l\'emplacement du navigateur","addressDetails":"Détails (ex: étage, maison)","geolocationNotSupported":"Votre navigateur ne prend pas en charge la géolocalisation. Veuillez saisir votre adresse manuellement","permissionDenied":"Vous avez refusé l\'autorisation. Veuillez ajouter votre adresse manuellement","add":"Ajouter","addressAdded":"Adresse ajouté avec success","noAddress":"Aucune adresse disponible","outOfDeliveryZone":"Hors de zone de livraison","addressDirections":"Directions d\'Adresse","detectAddresses":"Détecter automatiquement les adresses","toggleInstructions":"Basculer Instructions"},"pagination":{"next":"Suivant &raquo;","previous":"&laquo; Précédent"},"passwords":{"reset":"Votre mot de passe a été réinitialisé !","sent":"Nous vous avons envoyé par email le lien de réinitialisation du mot de passe !","throttled":"Veuillez patienter avant de réessayer.","token":"Ce jeton de réinitialisation du mot de passe n\'est pas valide.","user":"Aucun utilisateur n\'a été trouvé avec cette adresse email."},"validation":{"accepted":":attribute doit être accepté.","active_url":":attribute n\'est pas une URL valide.","after":":attribute doit être une date postérieure au :date.","after_or_equal":":attribute doit être une date postérieure ou égale au :date.","alpha":":attribute doit contenir uniquement des lettres.","alpha_dash":":attribute doit contenir uniquement des lettres, des chiffres et des tirets.","alpha_num":":attribute doit contenir uniquement des chiffres et des lettres.","array":":attribute doit être un tableau.","attached":":attribute est déjà attaché(e).","before":":attribute doit être une date antérieure au :date.","before_or_equal":":attribute doit être une date antérieure ou égale au :date.","between":{"array":"tableau :attribute doit contenir entre :min et :max éléments.","file":"La taille du fichier de :attribute doit être comprise entre :min et :max kilo-octets.","numeric":"La valeur de :attribute doit être comprise entre :min et :max.","string":"texte :attribute doit contenir entre :min et :max caractères."},"boolean":":attribute doit être vrai ou faux.","confirmed":"de confirmation :attribute ne correspond pas.","date":":attribute n\'est pas une date valide.","date_equals":":attribute doit être une date égale à :date.","date_format":":attribute ne correspond pas au format :format.","different":" champs :attribute et :other doivent être différents.","digits":":attribute doit contenir :digits chiffres.","digits_between":":attribute doit contenir entre :min et :max chiffres.","dimensions":"La taille de l\'image :attribute n\'est pas conforme.","distinct":":attribute a une valeur en double.","email":":attribute doit être une adresse email valide.","ends_with":":attribute doit se terminer par une des valeurs suivantes : :values","exists":":attribute sélectionné est invalide.","file":":attribute doit être un fichier.","filled":":attribute doit avoir une valeur.","gt":{"array":"tableau :attribute doit contenir plus de :value éléments.","file":"La taille du fichier de :attribute doit être supérieure à :value kilo-octets.","numeric":"La valeur de :attribute doit être supérieure à :value.","string":"texte :attribute doit contenir plus de :value caractères."},"gte":{"array":"tableau :attribute doit contenir au moins :value éléments.","file":"La taille du fichier de :attribute doit être supérieure ou égale à :value kilo-octets.","numeric":"La valeur de :attribute doit être supérieure ou égale à :value.","string":"texte :attribute doit contenir au moins :value caractères."},"image":":attribute doit être une image.","in":":attribute est invalide.","in_array":":attribute n\'existe pas dans :other.","integer":":attribute doit être un entier.","ip":":attribute doit être une adresse IP valide.","ipv4":":attribute doit être une adresse IPv4 valide.","ipv6":":attribute doit être une adresse IPv6 valide.","json":":attribute doit être un document JSON valide.","lt":{"array":"tableau :attribute doit contenir moins de :value éléments.","file":"La taille du fichier de :attribute doit être inférieure à :value kilo-octets.","numeric":"La valeur de :attribute doit être inférieure à :value.","string":"texte :attribute doit contenir moins de :value caractères."},"lte":{"array":"tableau :attribute doit contenir au plus :value éléments.","file":"La taille du fichier de :attribute doit être inférieure ou égale à :value kilo-octets.","numeric":"La valeur de :attribute doit être inférieure ou égale à :value.","string":"texte :attribute doit contenir au plus :value caractères."},"max":{"array":"tableau :attribute ne peut contenir plus de :max éléments.","file":"La taille du fichier de :attribute ne peut pas dépasser :max kilo-octets.","numeric":"La valeur de :attribute ne peut être supérieure à :max.","string":"texte de :attribute ne peut contenir plus de :max caractères."},"mimes":":attribute doit être un fichier de type : :values.","mimetypes":":attribute doit être un fichier de type : :values.","min":{"array":"tableau :attribute doit contenir au moins :min éléments.","file":"La taille du fichier de :attribute doit être supérieure à :min kilo-octets.","numeric":"La valeur de :attribute doit être supérieure ou égale à :min.","string":"texte :attribute doit contenir au moins :min caractères."},"multiple_of":"La valeur de :attribute doit être un multiple de :value","not_in":":attribute sélectionné n\'est pas valide.","not_regex":"format du :attribute n\'est pas valide.","numeric":":attribute doit contenir un nombre.","password":"mot de passe est incorrect","present":":attribute doit être présent.","prohibited":":attribute est interdit.","prohibited_if":":attribute est interdit quand :other a la valeur :value.","prohibited_unless":":attribute est interdit à moins que :other est l\'une des valeurs :values.","regex":"format du :attribute est invalide.","relatable":":attribute n\'est sans doute pas associé(e) avec cette donnée.","required":":attribute est obligatoire.","required_if":":attribute est obligatoire quand la valeur de :other est :value.","required_unless":":attribute est obligatoire sauf si :other est :values.","required_with":":attribute est obligatoire quand :values est présent.","required_with_all":":attribute est obligatoire quand :values sont présents.","required_without":":attribute est obligatoire quand :values n\'est pas présent.","required_without_all":":attribute est requis quand aucun de :values n\'est présent.","same":" champs :attribute et :other doivent être identiques.","size":{"array":"tableau :attribute doit contenir :size éléments.","file":"La taille du fichier de :attribute doit être de :size kilo-octets.","numeric":"La valeur de :attribute doit être :size.","string":"texte de :attribute doit contenir :size caractères."},"starts_with":":attribute doit commencer avec une des valeurs suivantes : :values","string":":attribute doit être une chaîne de caractères.","timezone":":attribute doit être un fuseau horaire valide.","unique":"La valeur du :attribute est déjà utilisée.","uploaded":"fichier du :attribute n\'a pu être téléversé.","url":"format de l\'URL de :attribute n\'est pas valide.","uuid":":attribute doit être un UUID valide","isBetweenTheMinAndAdminSelectedOptions":":attribute doit être compris entre le min et la somme des options","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"Le Nom","email":"l\'Email","address":"l\'Adresse","phone":"Le Numéro de Téléphone","password":"Le Mot de passe","is_admin":"Est Admin","slug":"Le Slug","title":"Le Titre","price":"Le Prix","description":"La Description","image":"l\'Image","category_id":"La Catégorie","min":"Le Min","max":"Le Max","time":"Le Temps","tax":"Le Taux d\'imposition","start":"Heure de début","end":"Heure de fin","label":"Le Label","role":"Le Rôle","content":"Le Contenu"}}}}');
+module.exports = JSON.parse('{"en":{"admin":{"adminPanel":"Admin Panel","overview":"Overview","dashboard":"Dashboard","management":"Management","users":"Users","categories":"Categories","extras":"Extras","options":"Options","menus":"Menus","account":"Account","profile":"Profile","logout":"Log Out","delete":"Delete","add":"Add","new":"New","save":"Save","edit":"Edit","discard":"Discard","enter":"Enter","select":"Select","the":"The","theFem":"The","user":"User","category":"Category","extra":"Extra","option":"Option","menu":"Menu","generalInfo":"General Info","canManage":"is able to manage the site data","optional":"Optional","optionalFem":"Optional","to":"To","for":"For","this":"This","thisFem":"This","name":"Name","phone":"Phone","address":"Address","joinedAt":"Joined at","createdAt":"Created at","title":"Title","price":"Price","active":"Active","selectToAdd":"Select to Add","noExtras":"There are no Extras .","next":"Next","previous":"Prev","newOptions":"NEW OPTIONS","oldOptions":"OLD OPTIONS","confirmationTitle":"are you sure ?","confirmationText":"You won\'t be able to revert this","confirmationConfirm":"Yes, do it","settings":"Settings","orders":"Orders","general":"General","cart":"Cart","appNameDesc":"used for branding and emails","time":"Estimated time","tax":"Tax Rate","created":":item created successfully","updated":":item updated successfully","deleted":":item deleted successfully","bulkDeleted":"Selected item(s) deleted successfully","openingHours":"Opening Hours","addOpeningHours":"Add your business hours","splitHours":"Split hours","closed":"Closed","setAsClosed":"Set as Closed","monday":"monday","tuesday":"tuesday","wednesday":"Wednesday","thursday":"thursday","friday":"friday","saturday":"saturday","sunday":"sunday","forcedClose":"Forced Close","forcedCloseText":"this option will override the schedule and force close the restaurant","selectPolygon":"Select a polygon","noCategoryForMeal":"There is no category for the menu . it might have been deleted","min_order_price":"Minimum order price","nameOnCard":"Name on card","paymentDetails":"Payment Details","cashOnDeliveryText":"You will pay cash once the products are delivered","paymentMode":"Payment Mode","status":"Status","passedAt":"Passed at","orderDetails":"Order details","order":"Order","noUserForOrder":"No user in the database for this order . he might have been deleted","filterBy":"Filter by","pending":"Pending","processing":"Processing","out_for_delivery":"Out for Delivery","delivered":"Delivered","cancelled":"Cancelled","failed":"Failed","charge":"Charge","userCharged":"User charged","failure":"Failure","paymentConfirmationRequired":"Payment confirmation required","roles":"Roles","admin":"Admin","deliveryman":"Delivery man","client":"Client","print":"Print","invoice":"Invoice","track":"Track Order","paymentSuccessful":"Payment was successful","refund":"Refund","userRefunded":"User Refunded","onlinePayment":"Online Payment","refundSuccessful":"Refund was successful","subtotal":"Subtotal","from":"From","quantity":"Quantity","deliverymanRequired":"A delivery man is required for out for delivery and delivered statuses","manageProfile":"Manage Your Profile","orderCreated":"New Order has been placed.","deliverymanSelected":"You have been selected to deliver an order.","noNotifications":"You\'re all caught up","notificationsCenter":"Notifications center"},"auth":{"failed":"These credentials do not match our records.","password":"The provided password is incorrect.","throttle":"Too many login attempts. Please try again in :seconds seconds."},"front":{"searchTitle":"Customize the search","search":"Search","categories":"Categories","filters":"Filters","all":"All","allFem":"All","category":"Category","addToCart":"Add","noMeals":"Sorry! There are no menus available","noMealsText":"we suggest to modify the search","noDescription":"Description not Available","noOption":"No Thank you","unavailable":"Not Available","customize":"Customize Your","yourCart":"Your Cart","delete":"Remove","cartEmpty":"Your cart is empty","cartEmptyText":"Buy a delicious meal before it gets cold","weAccept":"We accept","total":"Total with taxes","delivery":"Delivery","checkout":"Go to Checkout","dontDelay":"Don\'t delay the purchase,\\r\\n    adding items to your cart does not mean\\r\\n    Reserving them","successMessage":"Menu added to your cart","errorMessage":"an Error ocurred . Try again","and":"and","chooseAddress":"Choose your Address","chooseAddressText":"Choose your Address from the map or detect browser location","addressDetails":"Details (ex : Floor , House)","geolocationNotSupported":"Your Browser does not support Geolocation .Please enter your address Manually","permissionDenied":"You denied the Permission . Please add your address manually","add":"Add","addressAdded":"Address added successfully","noAddress":"No address available","outOfDeliveryZone":"Our of delivery zone","addressDirections":"Address Directions","detectAddresses":"Detect Addresses Automatically","toggleInstructions":"Toggle Instructions"},"pagination":{"previous":"&laquo; Previous","next":"Next &raquo;"},"passwords":{"reset":"Your password has been reset!","sent":"We have emailed your password reset link!","throttled":"Please wait before retrying.","token":"This password reset token is invalid.","user":"We can\'t find a user with that email address."},"validation":{"accepted":" :attribute must be accepted.","active_url":" :attribute is not a valid URL.","after":" :attribute must be a date after :date.","after_or_equal":" :attribute must be a date after or equal to :date.","alpha":" :attribute must only contain letters.","alpha_dash":" :attribute must only contain letters, numbers, dashes and underscores.","alpha_num":" :attribute must only contain letters and numbers.","array":" :attribute must be an array.","before":" :attribute must be a date before :date.","before_or_equal":" :attribute must be a date before or equal to :date.","between":{"numeric":" :attribute must be between :min and :max.","file":" :attribute must be between :min and :max kilobytes.","string":" :attribute must be between :min and :max characters.","array":" :attribute must have between :min and :max items."},"boolean":" :attribute must be true or false.","confirmed":" :attribute confirmation does not match.","date":" :attribute is not a valid date.","date_equals":" :attribute must be a date equal to :date.","date_format":" :attribute does not match the format :format.","different":" :attribute and :other must be different.","digits":" :attribute must be :digits digits.","digits_between":" :attribute must be between :min and :max digits.","dimensions":" :attribute has invalid image dimensions.","distinct":" :attribute has a duplicate value.","email":" :attribute must be a valid email address.","ends_with":" :attribute must end with one of the following: :values.","exists":" selected :attribute is invalid.","file":" :attribute must be a file.","filled":" :attribute must have a value.","gt":{"numeric":" :attribute must be greater than :value.","file":" :attribute must be greater than :value kilobytes.","string":" :attribute must be greater than :value characters.","array":" :attribute must have more than :value items."},"gte":{"numeric":" :attribute must be greater than or equal :value.","file":" :attribute must be greater than or equal :value kilobytes.","string":" :attribute must be greater than or equal :value characters.","array":" :attribute must have :value items or more."},"image":" :attribute must be an image.","in":" selected :attribute is invalid.","in_array":" :attribute does not exist in :other.","integer":" :attribute must be an integer.","ip":" :attribute must be a valid IP address.","ipv4":" :attribute must be a valid IPv4 address.","ipv6":" :attribute must be a valid IPv6 address.","json":" :attribute must be a valid JSON string.","lt":{"numeric":" :attribute must be less than :value.","file":" :attribute must be less than :value kilobytes.","string":" :attribute must be less than :value characters.","array":" :attribute must have less than :value items."},"lte":{"numeric":" :attribute must be less than or equal :value.","file":" :attribute must be less than or equal :value kilobytes.","string":" :attribute must be less than or equal :value characters.","array":" :attribute must not have more than :value items."},"max":{"numeric":" :attribute must not be greater than :max.","file":" :attribute must not be greater than :max kilobytes.","string":" :attribute must not be greater than :max characters.","array":" :attribute must not have more than :max items."},"mimes":" :attribute must be a file of type: :values.","mimetypes":" :attribute must be a file of type: :values.","min":{"numeric":" :attribute must be at least :min.","file":" :attribute must be at least :min kilobytes.","string":" :attribute must be at least :min characters.","array":" :attribute must have at least :min items."},"multiple_of":" :attribute must be a multiple of :value.","not_in":" selected :attribute is invalid.","not_regex":" :attribute format is invalid.","numeric":" :attribute must be a number.","password":" password is incorrect.","present":" :attribute must be present.","regex":" :attribute format is invalid.","required":" :attribute is required.","required_if":" :attribute is required when :other is :value.","required_unless":" :attribute is required unless :other is in :values.","required_with":" :attribute is required when :values is present.","required_with_all":" :attribute is required when :values are present.","required_without":" :attribute is required when :values is not present.","required_without_all":" :attribute is required when none of :values are present.","prohibited_if":" :attribute is prohibited when :other is :value.","prohibited_unless":" :attribute is prohibited unless :other is in :values.","same":" :attribute and :other must match.","size":{"numeric":" :attribute must be :size.","file":" :attribute must be :size kilobytes.","string":" :attribute must be :size characters.","array":" :attribute must contain :size items."},"starts_with":" :attribute must start with one of the following: :values.","string":" :attribute must be a string.","timezone":" :attribute must be a valid zone.","unique":" :attribute has already been taken.","uploaded":" :attribute failed to upload.","url":" :attribute format is invalid.","uuid":" :attribute must be a valid UUID.","isBetweenTheMinAndAdminSelectedOptions":" :attribute must be between the min and selected options sum","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"The Name","email":"The Email","address":"The Address","phone":"The Phone number","password":"The Password","is_admin":"is Admin","slug":"The Slug","title":"The Title","price":"The Price","description":"The Description","image":"The Image","category_id":"The Category","min":"The Min","max":"The Max","time":"The Time","tax":"The Tax rate","start":"Start hour","end":"End Hour","label":"The Label","roles":"The Roles","content":"The Content"}}},"fr":{"0":1,"admin":{"adminPanel":"Panneau d\'Administration","overview":"Aperçu","dashboard":"Tableau de bord","management":"Gestion","users":"Utilisateurs","categories":"Catégories","extras":"Extras","options":"Options","menus":"Menus","account":"Compte","profile":"Profil","logout":"Se déconnecter","delete":"Suppression","add":"Ajouter","new":"Nouveau","save":"Sauvgarder","edit":"Modifier","discard":"Annuler","enter":"Entrer","select":"Sélectionner","the":"Le","theFem":"La","user":"Utilisateur","category":"Catégorie","extra":"Extra","option":"Option","menu":"Menu","generalInfo":"Info générales","canManage":"peut gérer les données du site","optional":"Optionnel","optionalFem":"Optionnelle","to":"À","for":"Pour","this":"Ce","thisFem":"Cette","name":"Nom","phone":"N.Téléphone","address":"Adresse","joinedAt":"Rejoint à","createdAt":"Créé à","title":"Titre","price":"Prix","active":"Actif","selectToAdd":"sélectionner pour ajouter","noExtras":"Il n\'y a pas de Extra .","next":"Suiv","previous":"Précéd","newOptions":"NOUVELLES OPTIONS","oldOptions":"ANCIENNES OPTIONS","confirmationTitle":"êtes-vous sûr ? ","confirmationText":"Vous ne pourrez pas récupérer  cela !","confirmationConfirm":"Oui, fais-le","settings":"Paramètres","orders":"Commandes","general":"Général","cart":"Panier","appNameDesc":"utilisé pour la marque et les e-mails","time":"Temps estimé","tax":"Taux d\'imposition","created":":item ajoutée avec succès","updated":":item modifiée avec succès","deleted":":item supprimées avec succès","bulkDeleted":"Éléments sélectionné(s) supprimés avec succès","openingHours":"Heures d\'ouverture","addOpeningHours":"Ajouter vos heures d\'ouverture","splitHours":"heures fractionnées","closed":"Fermé","setAsClosed":"Définir comme fermé","monday":"lundi","tuesday":"mardi","wednesday":"mercredi","thursday":"jeudi","friday":"vendredi","saturday":"samedi","sunday":"dimanche","forcedClose":"Fermeture forcée","forcedCloseText":"cette option remplacera l\'horaire et fermera le restaurant forcément","selectPolygon":"Sélectionnez un polygone","noCategoryForMeal":"Il n\'y a pas de catégorie pour le menu. il a peut-être été supprimé","min_order_price":"Prix ​​minimum de commande","nameOnCard":"Nom sur la carte","paymentDetails":"Détails de paiement","cashOnDeliveryText":"Vous paierez en espèces une fois les produits livrés","paymentMode":"Mode de paiement","status":"Statut","passedAt":"Passé à","orderDetails":"Détails de la commande","order":"Commande","noUserForOrder":"Aucun utilisateur dans la base de données pour cette commande. il aurait pu être supprimé","filterBy":"Filtrer par","pending":"En attente","processing":"En cours","out_for_delivery":"En route","delivered":"Livré","cancelled":"Annulé","failed":"Manquée","charge":"Facturez","userCharged":"Utilisateur facturé","failure":"Échec","paymentConfirmationRequired":"Confirmation de paiement requise","roles":"Rôles","admin":"Admin","deliveryman":"Livreur","client":"Client","print":"Imprimer","invoice":"Facture","track":"Tracer Commande","paymentSuccessful":"Le paiement a réussi","refund":"Rembourser","userRefunded":"Utilisateur remboursé","onlinePayment":"Paiement en ligne","refundSuccessful":"Le remboursement a réussi","subtotal":"Sous-total","from":"De","quantity":"Quantité","deliverymanRequired":"Un livreur est requis pour les statuts En route et Livré","manageProfile":"Gérez votre profil","orderCreated":"Une nouvelle commande a été passée.","deliverymanSelected":"Vous avez été sélectionné pour livrer une commande.","noNotifications":"Rien pour l\'instant","notificationsCenter":"Centre de notifications"},"auth":{"failed":"Ces identifiants ne correspondent pas à nos enregistrements.","password":"Le mot de passe fourni est incorrect.","throttle":"Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes."},"front":{"searchTitle":"Personnaliser la Recherche","search":"Rechercher","categories":"Catégories","filters":"Filtres","all":"Tous","allFem":"Toutes","category":"Catégorie","addToCart":"Ajouter","noMeals":"Pardon! Il n\'y a pas de menus disponibles","noMealsText":"nous suggérons de modifier la recherche","noDescription":"Description non disponible","noOption":"Non Merci","unavailable":"Non Disponible","customize":"Personnalisez votre","yourCart":"Votre Panier","delete":"Retirer","cartEmpty":"Votre Panier est Vide","cartEmptyText":"Achetez un délicieux repas avant qu\'il ne fasse froid","weAccept":"nous acceptons","total":"Total avec les taxes","delivery":"Livraison","checkout":"Valider La Commande","dontDelay":"Ne retardez pas l\'achat,\\r\\n    ajouter des articles à votre panier ne signifie pas les\\r\\n    réserver","successMessage":"Menu ajouté au panier","errorMessage":"Une erreur s\'est produite . Réessayer","and":"et","chooseAddress":"Choisissez votre adresse","chooseAddressText":"Choisissez votre adresse sur la carte ou détectez l\'emplacement du navigateur","addressDetails":"Détails (ex: étage, maison)","geolocationNotSupported":"Votre navigateur ne prend pas en charge la géolocalisation. Veuillez saisir votre adresse manuellement","permissionDenied":"Vous avez refusé l\'autorisation. Veuillez ajouter votre adresse manuellement","add":"Ajouter","addressAdded":"Adresse ajouté avec success","noAddress":"Aucune adresse disponible","outOfDeliveryZone":"Hors de zone de livraison","addressDirections":"Directions d\'Adresse","detectAddresses":"Détecter automatiquement les adresses","toggleInstructions":"Basculer Instructions"},"pagination":{"next":"Suivant &raquo;","previous":"&laquo; Précédent"},"passwords":{"reset":"Votre mot de passe a été réinitialisé !","sent":"Nous vous avons envoyé par email le lien de réinitialisation du mot de passe !","throttled":"Veuillez patienter avant de réessayer.","token":"Ce jeton de réinitialisation du mot de passe n\'est pas valide.","user":"Aucun utilisateur n\'a été trouvé avec cette adresse email."},"validation":{"accepted":":attribute doit être accepté.","active_url":":attribute n\'est pas une URL valide.","after":":attribute doit être une date postérieure au :date.","after_or_equal":":attribute doit être une date postérieure ou égale au :date.","alpha":":attribute doit contenir uniquement des lettres.","alpha_dash":":attribute doit contenir uniquement des lettres, des chiffres et des tirets.","alpha_num":":attribute doit contenir uniquement des chiffres et des lettres.","array":":attribute doit être un tableau.","attached":":attribute est déjà attaché(e).","before":":attribute doit être une date antérieure au :date.","before_or_equal":":attribute doit être une date antérieure ou égale au :date.","between":{"array":"tableau :attribute doit contenir entre :min et :max éléments.","file":"La taille du fichier de :attribute doit être comprise entre :min et :max kilo-octets.","numeric":"La valeur de :attribute doit être comprise entre :min et :max.","string":"texte :attribute doit contenir entre :min et :max caractères."},"boolean":":attribute doit être vrai ou faux.","confirmed":"de confirmation :attribute ne correspond pas.","date":":attribute n\'est pas une date valide.","date_equals":":attribute doit être une date égale à :date.","date_format":":attribute ne correspond pas au format :format.","different":" champs :attribute et :other doivent être différents.","digits":":attribute doit contenir :digits chiffres.","digits_between":":attribute doit contenir entre :min et :max chiffres.","dimensions":"La taille de l\'image :attribute n\'est pas conforme.","distinct":":attribute a une valeur en double.","email":":attribute doit être une adresse email valide.","ends_with":":attribute doit se terminer par une des valeurs suivantes : :values","exists":":attribute sélectionné est invalide.","file":":attribute doit être un fichier.","filled":":attribute doit avoir une valeur.","gt":{"array":"tableau :attribute doit contenir plus de :value éléments.","file":"La taille du fichier de :attribute doit être supérieure à :value kilo-octets.","numeric":"La valeur de :attribute doit être supérieure à :value.","string":"texte :attribute doit contenir plus de :value caractères."},"gte":{"array":"tableau :attribute doit contenir au moins :value éléments.","file":"La taille du fichier de :attribute doit être supérieure ou égale à :value kilo-octets.","numeric":"La valeur de :attribute doit être supérieure ou égale à :value.","string":"texte :attribute doit contenir au moins :value caractères."},"image":":attribute doit être une image.","in":":attribute est invalide.","in_array":":attribute n\'existe pas dans :other.","integer":":attribute doit être un entier.","ip":":attribute doit être une adresse IP valide.","ipv4":":attribute doit être une adresse IPv4 valide.","ipv6":":attribute doit être une adresse IPv6 valide.","json":":attribute doit être un document JSON valide.","lt":{"array":"tableau :attribute doit contenir moins de :value éléments.","file":"La taille du fichier de :attribute doit être inférieure à :value kilo-octets.","numeric":"La valeur de :attribute doit être inférieure à :value.","string":"texte :attribute doit contenir moins de :value caractères."},"lte":{"array":"tableau :attribute doit contenir au plus :value éléments.","file":"La taille du fichier de :attribute doit être inférieure ou égale à :value kilo-octets.","numeric":"La valeur de :attribute doit être inférieure ou égale à :value.","string":"texte :attribute doit contenir au plus :value caractères."},"max":{"array":"tableau :attribute ne peut contenir plus de :max éléments.","file":"La taille du fichier de :attribute ne peut pas dépasser :max kilo-octets.","numeric":"La valeur de :attribute ne peut être supérieure à :max.","string":"texte de :attribute ne peut contenir plus de :max caractères."},"mimes":":attribute doit être un fichier de type : :values.","mimetypes":":attribute doit être un fichier de type : :values.","min":{"array":"tableau :attribute doit contenir au moins :min éléments.","file":"La taille du fichier de :attribute doit être supérieure à :min kilo-octets.","numeric":"La valeur de :attribute doit être supérieure ou égale à :min.","string":"texte :attribute doit contenir au moins :min caractères."},"multiple_of":"La valeur de :attribute doit être un multiple de :value","not_in":":attribute sélectionné n\'est pas valide.","not_regex":"format du :attribute n\'est pas valide.","numeric":":attribute doit contenir un nombre.","password":"mot de passe est incorrect","present":":attribute doit être présent.","prohibited":":attribute est interdit.","prohibited_if":":attribute est interdit quand :other a la valeur :value.","prohibited_unless":":attribute est interdit à moins que :other est l\'une des valeurs :values.","regex":"format du :attribute est invalide.","relatable":":attribute n\'est sans doute pas associé(e) avec cette donnée.","required":":attribute est obligatoire.","required_if":":attribute est obligatoire quand la valeur de :other est :value.","required_unless":":attribute est obligatoire sauf si :other est :values.","required_with":":attribute est obligatoire quand :values est présent.","required_with_all":":attribute est obligatoire quand :values sont présents.","required_without":":attribute est obligatoire quand :values n\'est pas présent.","required_without_all":":attribute est requis quand aucun de :values n\'est présent.","same":" champs :attribute et :other doivent être identiques.","size":{"array":"tableau :attribute doit contenir :size éléments.","file":"La taille du fichier de :attribute doit être de :size kilo-octets.","numeric":"La valeur de :attribute doit être :size.","string":"texte de :attribute doit contenir :size caractères."},"starts_with":":attribute doit commencer avec une des valeurs suivantes : :values","string":":attribute doit être une chaîne de caractères.","timezone":":attribute doit être un fuseau horaire valide.","unique":"La valeur du :attribute est déjà utilisée.","uploaded":"fichier du :attribute n\'a pu être téléversé.","url":"format de l\'URL de :attribute n\'est pas valide.","uuid":":attribute doit être un UUID valide","isBetweenTheMinAndAdminSelectedOptions":":attribute doit être compris entre le min et la somme des options","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"Le Nom","email":"l\'Email","address":"l\'Adresse","phone":"Le Numéro de Téléphone","password":"Le Mot de passe","is_admin":"Est Admin","slug":"Le Slug","title":"Le Titre","price":"Le Prix","description":"La Description","image":"l\'Image","category_id":"La Catégorie","min":"Le Min","max":"Le Max","time":"Le Temps","tax":"Le Taux d\'imposition","start":"Heure de début","end":"Heure de fin","label":"Le Label","roles":"Les Rôles","content":"Le Contenu"}}}}');
 
 /***/ })
 

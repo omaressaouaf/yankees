@@ -3,14 +3,13 @@
     <the-breadcrumb>
       <li class="breadcrumb-item active">{{ translate("admin.orders") }}</li>
     </the-breadcrumb>
+    <orders-invoice />
+    <address-directions
+      :end-address-line="orderObject.address_line"
+      :end-address-details="orderObject.address_details"
+    />
     <orders-single-skeleton v-if="getIsLoading" />
     <div v-else class="d-print-none">
-      <orders-invoice />
-      <address-directions
-        :end-address-line="orderObject.address_line"
-        :end-address-details="orderObject.address_details"
-      />
-
       <div class="row mb-0 py-0">
         <div class="col-md-12 d-flex flex-wrap">
           <button
@@ -51,6 +50,7 @@
                     :searchable="true"
                     :placeholder="translate('admin.deliveryman')"
                     :loading="deliverymenIsLoading"
+                    :disabled="deliverymenIsLoading"
                     track-by="id"
                     label="name"
                     :show-labels="false"
@@ -80,10 +80,11 @@
                     :custom-label="customMultiselectLabel"
                     :show-labels="false"
                     :loading="statusIsLoading"
+                    :disabled="statusIsLoading"
                   >
-                    <template slot="option" slot-scope="props">
-                      <div class="option__desc">
-                        <span class="option__title">{{
+                    <template slot="option" slot-scope="props" >
+                      <div class="option__desc" >
+                        <span class="option__title" >{{
                           translate("admin." + props.option)
                         }}</span>
                       </div>
@@ -359,7 +360,7 @@ export default {
       if (this.$gate.can("manage")) {
         return this.statuses.filter((status) => status != "failed");
       }
-      return ["delivered"];
+      return   ["delivered"]
     },
     getIsLoading() {
       return this.isLoading["get"];
@@ -445,10 +446,10 @@ export default {
 
     ...mapActions("orders", [
       "fetchOrder",
-      "fetchDeliverymen",
       "updateOrder",
       "chargeUser",
       "refundUser",
+      "fetchDeliverymen",
     ]),
   },
 

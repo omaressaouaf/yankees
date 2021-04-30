@@ -29,10 +29,7 @@ class UserUpdateRequest extends FormRequest
             'email' => 'required|email|unique:users,email,' . $this->user->id,
             'address' => "nullable",
             'phone' => "nullable",
-            'role' => [
-                'required', Rule::in(['client', 'deliveryman' , 'admin']),
-            ],
-
+            'roles' => 'required|array'
         ];
     }
 }

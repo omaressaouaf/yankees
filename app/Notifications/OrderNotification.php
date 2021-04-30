@@ -12,15 +12,17 @@ class OrderNotification extends Notification
 {
     use Queueable;
     public $order;
+    public $event_name;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order ,string $event_name)
     {
         $this->order = $order;
+        $this->event_name = $event_name;
     }
 
     /**
@@ -44,7 +46,7 @@ class OrderNotification extends Notification
         return [
             "order" => $this->order,
             'url' => '/admin/orders/' . $this->order->id,
-            'message' => 'orderCreated'
+            'event_name' => $this->event_name
         ];
     }
 }

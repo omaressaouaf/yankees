@@ -133,27 +133,31 @@
                 <div class="col-md-6">
                   <form-group
                     class="ml-5"
-                    :validator="$v.form.role"
-                    name="role"
+                    :validator="$v.form.roles"
+                    name="roles"
                   >
                     <multiselect
-                      v-model.trim="$v.form.role.$model"
-                      :options="roles"
-                      :close-on-select="true"
-                      :clear-on-select="true"
+                      v-model.trim="$v.form.roles.$model"
+                      :options="allRoles"
                       :preserve-search="true"
+                      :multiple="true"
+                      :close-on-select="false"
+                      :close-on-remove="false"
+                      :loading="rolesAreLoading"
                       :placeholder="
                         translate('admin.select') +
                         ' ' +
-                        translate('validation.attributes.role')
+                        translate('validation.attributes.roles')
                       "
                       :custom-label="customLabel"
                       :show-labels="false"
+                      track-by="id"
+                      label="name"
                     >
                       <template slot="option" slot-scope="props">
                         <div class="option__desc">
                           <span class="option__title">{{
-                            translate("admin." + props.option)
+                            translate("admin." + props.option.name)
                           }}</span>
                         </div>
                       </template>
@@ -201,13 +205,12 @@ export default {
   components: {},
   data() {
     return {
-      roles: ["client", "deliveryman", "admin"],
       form: {
         name: "",
         email: "",
         phone: "",
         password: "",
-        role: "",
+        roles: [],
       },
     };
   },
@@ -229,7 +232,7 @@ export default {
         }),
         minLength: minLength(8),
       },
-      role: {
+      roles: {
         required,
       },
     },
@@ -249,11 +252,14 @@ export default {
     postIsLoading() {
       return this.isLoading["post"];
     },
-    ...mapGetters("users", ["userObject", "isLoading", "serverErrors"]),
+    rolesAreLoading() {
+      return this.isLoading['roles']
+    },
+    ...mapGetters("users", ["userObject" , 'allRoles',"isLoading", "serverErrors"  ]),
   },
   methods: {
     customLabel(option) {
-      return translate("admin." + option);
+      return translate("admin." + option.name);
     },
     handleSubmit() {
       this.$v.$touch();
@@ -265,7 +271,9 @@ export default {
         }
       }
     },
-    ...mapActions("users", ["addUser", "fetchUser", "updateUser"]),
+
+    ...mapActions("users", ["addUser", "fetchUser", "updateUser" , 'fetchRoles' ]),
+
   },
 
   mounted() {
@@ -274,6 +282,7 @@ export default {
     if (!this.isCreateMode) {
       this.fetchUser(this.$route.params.id);
     }
+    this.fetchRoles()
   },
 };
 </script>

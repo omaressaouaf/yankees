@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use App\Events\OrderCreated;
 use App\Listeners\SendOrderCreatedNotification;
+use App\Events\DeliverymanSelected;
+use App\Listeners\SendDeliverymanSelectedNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -21,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderCreated::class => [
             SendOrderCreatedNotification::class,
+        ],
+        DeliverymanSelected::class => [
+            SendDeliverymanSelectedNotification::class,
         ]
     ];
 

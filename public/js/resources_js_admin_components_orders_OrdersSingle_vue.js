@@ -407,19 +407,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _mixins__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins */ "./resources/js/admin/mixins.js");
-/* harmony import */ var _OrdersSingleSkeleton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrdersSingleSkeleton.vue */ "./resources/js/admin/components/orders/OrdersSingleSkeleton.vue");
-/* harmony import */ var _OrdersInvoice_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OrdersInvoice.vue */ "./resources/js/admin/components/orders/OrdersInvoice.vue");
-/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
-/* harmony import */ var _addresses_AddressDirections_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../addresses/AddressDirections.vue */ "./resources/js/admin/components/addresses/AddressDirections.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins */ "./resources/js/admin/mixins.js");
+/* harmony import */ var _OrdersSingleSkeleton_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OrdersSingleSkeleton.vue */ "./resources/js/admin/components/orders/OrdersSingleSkeleton.vue");
+/* harmony import */ var _OrdersInvoice_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./OrdersInvoice.vue */ "./resources/js/admin/components/orders/OrdersInvoice.vue");
+/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+/* harmony import */ var _addresses_AddressDirections_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../addresses/AddressDirections.vue */ "./resources/js/admin/components/addresses/AddressDirections.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -762,11 +763,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    OrdersSingleSkeleton: _OrdersSingleSkeleton_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-    OrdersInvoice: _OrdersInvoice_vue__WEBPACK_IMPORTED_MODULE_2__.default,
-    AddressDirections: _addresses_AddressDirections_vue__WEBPACK_IMPORTED_MODULE_5__.default
+    OrdersSingleSkeleton: _OrdersSingleSkeleton_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    OrdersInvoice: _OrdersInvoice_vue__WEBPACK_IMPORTED_MODULE_3__.default,
+    AddressDirections: _addresses_AddressDirections_vue__WEBPACK_IMPORTED_MODULE_6__.default
   },
-  mixins: [_mixins__WEBPACK_IMPORTED_MODULE_0__.orderStatusMixin],
+  mixins: [_mixins__WEBPACK_IMPORTED_MODULE_1__.orderStatusMixin],
   data: function data() {
     return {
       form: {}
@@ -802,18 +803,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     refundIsLoading: function refundIsLoading() {
       return this.isLoading["refund"];
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)("orders", ["orderObject", "allDeliverymen", "isLoading", "serverErrors"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("orders", ["orderObject", "allDeliverymen", "isLoading", "serverErrors"])),
   methods: _objectSpread({
     handleRefund: function handleRefund() {
       var _this = this;
 
-      (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)(function () {
+      (0,_helpers__WEBPACK_IMPORTED_MODULE_5__.fireConfirm)(function () {
         _this.refundUser(_this.orderObject);
       });
     },
     handleDeliverymanRemove: function handleDeliverymanRemove() {
       if (this.orderObject.status == "out_for_delivery" || this.orderObject.status == "delivered") {
-        (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", "Validation", translate("admin.deliverymanRequired"));
+        (0,_helpers__WEBPACK_IMPORTED_MODULE_5__.fireAlert)("error", "Validation", translate("admin.deliverymanRequired"));
         return;
       }
 
@@ -836,7 +837,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       if (!this.orderObject.deliveryman_id && (selectedOption == "out_for_delivery" || selectedOption == "delivered")) {
-        (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", "Validation", translate("admin.deliverymanRequired"));
+        (0,_helpers__WEBPACK_IMPORTED_MODULE_5__.fireAlert)("error", "Validation", translate("admin.deliverymanRequired"));
         return;
       }
 
@@ -848,7 +849,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
 
       if (selectedOption == "cancelled") {
-        (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)(function () {
+        (0,_helpers__WEBPACK_IMPORTED_MODULE_5__.fireConfirm)(function () {
           _this2.updateOrder(updatedOrder);
         });
         return;
@@ -856,7 +857,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.updateOrder(updatedOrder);
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)("orders", ["fetchOrder", "fetchDeliverymen", "updateOrder", "chargeUser", "refundUser"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("orders", ["fetchOrder", "updateOrder", "chargeUser", "refundUser", "fetchDeliverymen"])),
   mounted: function mounted() {
     this.$store.commit("orders/clearOrder");
     this.$store.commit("orders/clearServerErrors");
@@ -1099,7 +1100,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "dataTableMixin": () => (/* binding */ dataTableMixin),
 /* harmony export */   "orderStatusMixin": () => (/* binding */ orderStatusMixin)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
 var dataTableMixin = {
   data: function data() {
@@ -1877,25 +1877,29 @@ var render = function() {
                   [
                     _c("div", { staticClass: "col-md-12" }, [
                       _c("div", { staticClass: "card p-4" }, [
-                        _c("div", { staticClass: "d-flex flex-row" }, [
-                          _c("img", {
-                            attrs: {
-                              src: _vm.appLogo,
-                              width: "70",
-                              height: "45"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "d-flex flex-column" }, [
-                            _c("span", { staticClass: "font-weight-bold" }, [
-                              _vm._v(_vm._s(_vm.appName))
-                            ]),
+                        _c(
+                          "div",
+                          { staticClass: "d-flex flex-row align-items-center" },
+                          [
+                            _c("img", {
+                              attrs: {
+                                src: _vm.appLogo,
+                                width: "70",
+                                height: "70"
+                              }
+                            }),
                             _vm._v(" "),
-                            _c("small", [
-                              _vm._v("#-" + _vm._s(_vm.orderObject.id))
+                            _c("div", { staticClass: "d-flex flex-column" }, [
+                              _c("span", { staticClass: "font-weight-bold" }, [
+                                _vm._v(_vm._s(_vm.appName))
+                              ]),
+                              _vm._v(" "),
+                              _c("small", [
+                                _vm._v("#-" + _vm._s(_vm.orderObject.id))
+                              ])
                             ])
-                          ])
-                        ]),
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("hr"),
                         _vm._v(" "),
@@ -2228,302 +2232,660 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
+      _c("orders-invoice"),
+      _vm._v(" "),
+      _c("address-directions", {
+        attrs: {
+          "end-address-line": _vm.orderObject.address_line,
+          "end-address-details": _vm.orderObject.address_details
+        }
+      }),
+      _vm._v(" "),
       _vm.getIsLoading
         ? _c("orders-single-skeleton")
-        : _c(
-            "div",
-            { staticClass: "d-print-none" },
-            [
-              _c("orders-invoice"),
-              _vm._v(" "),
-              _c("address-directions", {
-                attrs: {
-                  "end-address-line": _vm.orderObject.address_line,
-                  "end-address-details": _vm.orderObject.address_details
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "row mb-0 py-0" }, [
-                _c("div", { staticClass: "col-md-12 d-flex flex-wrap" }, [
+        : _c("div", { staticClass: "d-print-none" }, [
+            _c("div", { staticClass: "row mb-0 py-0" }, [
+              _c("div", { staticClass: "col-md-12 d-flex flex-wrap" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger mr-2",
+                    attrs: {
+                      "data-toggle": "modal",
+                      "data-target": ".invoiceModal"
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-print mr-1" }),
+                    _vm._v(
+                      " " +
+                        _vm._s(_vm.translate("admin.invoice")) +
+                        "\n        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    attrs: {
+                      "data-toggle": "modal",
+                      "data-target": "#addressDirectionsModal"
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-location-arrow mr-1" }),
+                    _vm._v("\n          Directions\n        ")
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-8" }, [
+                _c("div", { staticClass: "card mt-4" }, [
                   _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger mr-2",
-                      attrs: {
-                        "data-toggle": "modal",
-                        "data-target": ".invoiceModal"
-                      }
-                    },
+                    "div",
+                    { staticClass: "card-body" },
                     [
-                      _c("i", { staticClass: "fa fa-print mr-1" }),
-                      _vm._v(
-                        " " +
-                          _vm._s(_vm.translate("admin.invoice")) +
-                          "\n        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info",
-                      attrs: {
-                        "data-toggle": "modal",
-                        "data-target": "#addressDirectionsModal"
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "fa fa-location-arrow mr-1" }),
-                      _vm._v("\n          Directions\n        ")
-                    ]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-8" }, [
-                  _c("div", { staticClass: "card mt-4" }, [
-                    _c(
-                      "div",
-                      { staticClass: "card-body" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "d-flex flex-wrap align-items-center"
-                          },
-                          [
-                            _c("h4", [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(_vm.translate("admin.orderDetails")) +
-                                  "\n              "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "mr-2 ml-auto" },
-                              [
-                                _vm.$gate.can(
-                                  "update-order",
-                                  _vm.orderObject
-                                ) && _vm.$gate.can("manage")
-                                  ? _c("multiselect", {
-                                      attrs: {
-                                        options: _vm.allDeliverymen,
-                                        value: _vm.orderObject.deliveryman,
-                                        searchable: true,
-                                        placeholder: _vm.translate(
-                                          "admin.deliveryman"
-                                        ),
-                                        loading: _vm.deliverymenIsLoading,
-                                        "track-by": "id",
-                                        label: "name",
-                                        "show-labels": false
-                                      },
-                                      on: {
-                                        select: _vm.handleDeliverymanSelect,
-                                        remove: _vm.handleDeliverymanRemove
-                                      },
-                                      scopedSlots: _vm._u(
-                                        [
-                                          {
-                                            key: "option",
-                                            fn: function(props) {
-                                              return [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "option__desc"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "option__title"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            props.option.name
-                                                          )
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c("br"),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "option__small small"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            props.option.email
-                                                          )
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            }
-                                          }
-                                        ],
-                                        null,
-                                        false,
-                                        477554730
-                                      )
-                                    })
-                                  : _vm._e()
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticStyle: { "max-width": "170px" } },
-                              [
-                                _vm.$gate.can("update-order", _vm.orderObject)
-                                  ? _c("multiselect", {
-                                      attrs: {
-                                        options: _vm.availableStatuses,
-                                        value: _vm.orderObject.status,
-                                        allowEmpty: false,
-                                        "preserve-search": true,
-                                        placeholder: _vm.translate(
-                                          "admin.status"
-                                        ),
-                                        "custom-label":
-                                          _vm.customMultiselectLabel,
-                                        "show-labels": false,
-                                        loading: _vm.statusIsLoading
-                                      },
-                                      on: { select: _vm.handleStatusSelect },
-                                      scopedSlots: _vm._u(
-                                        [
-                                          {
-                                            key: "option",
-                                            fn: function(props) {
-                                              return [
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass: "option__desc"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "span",
-                                                      {
-                                                        staticClass:
-                                                          "option__title"
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            _vm.translate(
-                                                              "admin." +
-                                                                props.option
-                                                            )
-                                                          )
-                                                        )
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            }
-                                          }
-                                        ],
-                                        null,
-                                        false,
-                                        3535872665
-                                      )
-                                    })
-                                  : _vm._e()
-                              ],
-                              1
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("hr"),
-                        _vm._v(" "),
-                        _c("div", [
-                          _c(
-                            "span",
-                            {
-                              staticClass: "p-2 badge float-right",
-                              class: _vm.bindStatusClass(
-                                _vm.orderObject.status,
-                                "badge"
-                              ),
-                              staticStyle: { opacity: "0.8" }
-                            },
-                            [
-                              _c("i", {
-                                staticClass: "fa",
-                                class: _vm.bindStatusClass(
-                                  _vm.orderObject.status,
-                                  "icon"
-                                )
-                              }),
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(
-                                    _vm.translate(
-                                      "admin." + _vm.orderObject.status
-                                    )
-                                  ) +
-                                  "\n              "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "text-muted mb-0" }, [
+                      _c(
+                        "div",
+                        { staticClass: "d-flex flex-wrap align-items-center" },
+                        [
+                          _c("h4", [
                             _vm._v(
                               "\n                " +
-                                _vm._s(_vm.translate("admin.order")) +
-                                " ID : " +
-                                _vm._s(_vm.orderObject.id) +
+                                _vm._s(_vm.translate("admin.orderDetails")) +
                                 "\n              "
                             )
                           ]),
                           _vm._v(" "),
                           _c(
-                            "p",
-                            { staticClass: "text-muted mb-0 text-capitalize" },
+                            "div",
+                            { staticClass: "mr-2 ml-auto" },
                             [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(_vm.translate("admin.paymentMode")) +
-                                  " :\n                " +
-                                  _vm._s(_vm.orderObject.payment_mode) +
-                                  "\n              "
-                              )
-                            ]
+                              _vm.$gate.can("update-order", _vm.orderObject) &&
+                              _vm.$gate.can("manage")
+                                ? _c("multiselect", {
+                                    attrs: {
+                                      options: _vm.allDeliverymen,
+                                      value: _vm.orderObject.deliveryman,
+                                      searchable: true,
+                                      placeholder: _vm.translate(
+                                        "admin.deliveryman"
+                                      ),
+                                      loading: _vm.deliverymenIsLoading,
+                                      disabled: _vm.deliverymenIsLoading,
+                                      "track-by": "id",
+                                      label: "name",
+                                      "show-labels": false
+                                    },
+                                    on: {
+                                      select: _vm.handleDeliverymanSelect,
+                                      remove: _vm.handleDeliverymanRemove
+                                    },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "option",
+                                          fn: function(props) {
+                                            return [
+                                              _c(
+                                                "div",
+                                                { staticClass: "option__desc" },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "option__title"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          props.option.name
+                                                        )
+                                                      )
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c("br"),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "option__small small"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          props.option.email
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      false,
+                                      477554730
+                                    )
+                                  })
+                                : _vm._e()
+                            ],
+                            1
                           ),
                           _vm._v(" "),
-                          _vm.orderObject.deliveryman
-                            ? _c(
-                                "p",
+                          _c(
+                            "div",
+                            { staticStyle: { "max-width": "170px" } },
+                            [
+                              _vm.$gate.can("update-order", _vm.orderObject)
+                                ? _c("multiselect", {
+                                    attrs: {
+                                      options: _vm.availableStatuses,
+                                      value: _vm.orderObject.status,
+                                      allowEmpty: false,
+                                      "preserve-search": true,
+                                      placeholder: _vm.translate(
+                                        "admin.status"
+                                      ),
+                                      "custom-label":
+                                        _vm.customMultiselectLabel,
+                                      "show-labels": false,
+                                      loading: _vm.statusIsLoading,
+                                      disabled: _vm.statusIsLoading
+                                    },
+                                    on: { select: _vm.handleStatusSelect },
+                                    scopedSlots: _vm._u(
+                                      [
+                                        {
+                                          key: "option",
+                                          fn: function(props) {
+                                            return [
+                                              _c(
+                                                "div",
+                                                { staticClass: "option__desc" },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass:
+                                                        "option__title"
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.translate(
+                                                            "admin." +
+                                                              props.option
+                                                          )
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      null,
+                                      false,
+                                      3535872665
+                                    )
+                                  })
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "p-2 badge float-right",
+                            class: _vm.bindStatusClass(
+                              _vm.orderObject.status,
+                              "badge"
+                            ),
+                            staticStyle: { opacity: "0.8" }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fa",
+                              class: _vm.bindStatusClass(
+                                _vm.orderObject.status,
+                                "icon"
+                              )
+                            }),
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  _vm.translate(
+                                    "admin." + _vm.orderObject.status
+                                  )
+                                ) +
+                                "\n              "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "text-muted mb-0" }, [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(_vm.translate("admin.order")) +
+                              " ID : " +
+                              _vm._s(_vm.orderObject.id) +
+                              "\n              "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          { staticClass: "text-muted mb-0 text-capitalize" },
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(_vm.translate("admin.paymentMode")) +
+                                " :\n                " +
+                                _vm._s(_vm.orderObject.payment_mode) +
+                                "\n              "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.orderObject.deliveryman
+                          ? _c(
+                              "p",
+                              {
+                                staticClass: "text-muted mb-0 text-capitalize"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(_vm.translate("admin.deliveryman")) +
+                                    " :\n                "
+                                ),
+                                _c(
+                                  _vm.$gate.can("manage")
+                                    ? "router-link"
+                                    : "div",
+                                  {
+                                    tag: "component",
+                                    attrs: {
+                                      to: {
+                                        name: "users.edit",
+                                        params: {
+                                          id: _vm.orderObject.deliveryman.id
+                                        }
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("u", [
+                                      _vm._v(
+                                        "\n                    " +
+                                          _vm._s(
+                                            _vm.orderObject.deliveryman.name
+                                          ) +
+                                          "\n                    "
+                                      ),
+                                      _c(
+                                        "span",
+                                        { staticClass: "small mr-2" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.orderObject.deliveryman.email
+                                            )
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.orderObject.payment_mode == "stripe"
+                          ? _c("div", [
+                              _c("p", { staticClass: "h6 mt-3" }, [
+                                _vm._v(
+                                  _vm._s(_vm.translate("admin.onlinePayment"))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "text-muted mb-0 pb-0" }, [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(_vm.translate("admin.nameOnCard")) +
+                                    " :\n                  " +
+                                    _vm._s(_vm.orderObject.name_on_card) +
+                                    "\n                "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "text-muted mb-0 pb-0" }, [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(_vm.translate("admin.userCharged")) +
+                                    " :\n                  "
+                                ),
+                                _c("i", {
+                                  staticClass: "fa",
+                                  class: [
+                                    _vm.orderObject.user_charged
+                                      ? "fa-check text-success"
+                                      : "fa-times text-danger"
+                                  ]
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "text-muted mb-0 pb-0" }, [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(
+                                      _vm.translate("admin.userRefunded")
+                                    ) +
+                                    " :\n                  "
+                                ),
+                                _c("i", {
+                                  staticClass: "fa",
+                                  class: [
+                                    _vm.orderObject.user_refunded
+                                      ? "fa-check text-success"
+                                      : "fa-times text-danger"
+                                  ]
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _vm.orderObject.payment_confirmation_required
+                                ? _c(
+                                    "p",
+                                    { staticClass: "text-muted mb-0 pb-0" },
+                                    [
+                                      _vm._v(
+                                        "\n                  " +
+                                          _vm._s(
+                                            _vm.translate(
+                                              "admin.paymentConfirmationRequired"
+                                            )
+                                          ) +
+                                          " :\n                  "
+                                      ),
+                                      _c("i", {
+                                        staticClass: "fa fa-check text-success"
+                                      })
+                                    ]
+                                  )
+                                : _vm._e()
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _vm._l(_vm.orderObject.meals, function(meal) {
+                        return _c(
+                          "div",
+                          { key: meal.id, staticClass: "row mb-3" },
+                          [
+                            _c("div", { staticClass: "col-md-3" }, [
+                              _c("img", {
+                                staticClass: "img-fluid",
+                                attrs: { src: meal.resizedImage, alt: "" }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-5" }, [
+                              _c(
+                                "h4",
                                 {
-                                  staticClass: "text-muted mb-0 text-capitalize"
+                                  staticClass: "mb-0 pb-0",
+                                  class: { "text-danger": !meal.id }
                                 },
                                 [
+                                  _c(
+                                    meal.id && _vm.$gate.can("manage")
+                                      ? "router-link"
+                                      : "div",
+                                    {
+                                      tag: "component",
+                                      attrs: {
+                                        to: {
+                                          name: "meals.edit",
+                                          params: { id: meal.id }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      !meal.id
+                                        ? _c("i", {
+                                            staticClass: "fa fa-info-circle"
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(
+                                        "\n                    " +
+                                          _vm._s(meal.title) +
+                                          "\n                  "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("p", {
+                                staticClass: "text-muted",
+                                staticStyle: { "white-space": "pre-wrap" },
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    meal.pivot.user_selected_options
+                                  )
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-2" }, [
+                              _c("p", [_vm._v(_vm._s(meal.pivot.qty) + "X")])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-md-2 font-weight-bold" },
+                              [
+                                _c("p", [
                                   _vm._v(
-                                    "\n                " +
-                                      _vm._s(
-                                        _vm.translate("admin.deliveryman")
-                                      ) +
-                                      " :\n                "
-                                  ),
+                                    _vm._s(meal.pivot.meal_subtotal) + " dhs"
+                                  )
+                                ])
+                              ]
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-5 offset-md-7" }, [
+                          _c("p", [
+                            _c("span", { staticClass: "font-weight-bold" }, [
+                              _vm._v(_vm._s(_vm.translate("admin.subtotal")))
+                            ]),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "float-right" }, [
+                              _vm._v(_vm._s(_vm.orderObject.subtotal) + " dhs")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", {}, [
+                            _c("span", { staticClass: "font-weight-bold" }, [
+                              _vm._v(_vm._s(_vm.translate("front.delivery")))
+                            ]),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "float-right" }, [
+                              _vm._v(
+                                _vm._s(_vm.orderObject.delivery_price) + " dhs"
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text-danger" }, [
+                            _c("span", { staticClass: "font-weight-bold" }, [
+                              _vm._v(_vm._s(_vm.translate("admin.tax")))
+                            ]),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "float-right" }, [
+                              _vm._v(_vm._s(_vm.orderObject.tax_price) + " dhs")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("hr"),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "text-success" }, [
+                            _c("span", { staticClass: "font-weight-bold" }, [
+                              _vm._v("Total")
+                            ]),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "float-right" }, [
+                              _vm._v(_vm._s(_vm.orderObject.total) + " dhs")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _vm.$gate.can("manage")
+                            ? _c("div", [
+                                _vm.$gate.can("charge", _vm.orderObject)
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-success btn-block",
+                                        attrs: {
+                                          disabled: _vm.chargeIsLoading
+                                        },
+                                        on: { click: _vm.chargeUser }
+                                      },
+                                      [
+                                        _vm.chargeIsLoading
+                                          ? _c("i", {
+                                              staticClass:
+                                                "fa fa-circle-notch fa-spin mr-1"
+                                            })
+                                          : _c(
+                                              "i",
+                                              {
+                                                staticClass:
+                                                  "material-icons mr-1"
+                                              },
+                                              [_vm._v("credit_score")]
+                                            ),
+                                        _vm._v(
+                                          "\n                    " +
+                                            _vm._s(
+                                              _vm.translate("admin.charge")
+                                            ) +
+                                            "\n                    " +
+                                            _vm._s(_vm.orderObject.total) +
+                                            " dhs\n                  "
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.$gate.can("refund", _vm.orderObject)
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-danger btn-block",
+                                        attrs: {
+                                          disabled: _vm.refundIsLoading
+                                        },
+                                        on: { click: _vm.handleRefund }
+                                      },
+                                      [
+                                        _vm.refundIsLoading
+                                          ? _c("i", {
+                                              staticClass:
+                                                "fa fa-circle-notch fa-spin mr-1"
+                                            })
+                                          : _c(
+                                              "i",
+                                              {
+                                                staticClass:
+                                                  "material-icons mr-1"
+                                              },
+                                              [_vm._v("credit_score")]
+                                            ),
+                                        _vm._v(
+                                          "\n                    " +
+                                            _vm._s(
+                                              _vm.translate("admin.refund")
+                                            ) +
+                                            "\n                    " +
+                                            _vm._s(_vm.orderObject.total) +
+                                            " dhs\n                  "
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
+                        ])
+                      ])
+                    ],
+                    2
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("div", { staticClass: "card mt-4" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex align-items-center justify-content-between"
+                      },
+                      [_c("h4", [_vm._v("Client")])]
+                    ),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _vm.orderObject.user
+                      ? _c("div", [
+                          _c("div", { staticClass: "d-flex" }, [
+                            _c("img", {
+                              staticClass: "img-fluid mr-2",
+                              staticStyle: { "border-radius": "50%" },
+                              attrs: {
+                                width: "70",
+                                height: "50",
+                                src:
+                                  "/storage/images/design/avatarplaceholder.png",
+                                alt: ""
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c(
+                                "u",
+                                { staticClass: "mb-0 text-dark" },
+                                [
                                   _c(
                                     _vm.$gate.can("manage")
                                       ? "router-link"
@@ -2534,472 +2896,75 @@ var render = function() {
                                         to: {
                                           name: "users.edit",
                                           params: {
-                                            id: _vm.orderObject.deliveryman.id
+                                            id: _vm.orderObject.user.id
                                           }
                                         }
                                       }
                                     },
                                     [
-                                      _c("u", [
-                                        _vm._v(
-                                          "\n                    " +
-                                            _vm._s(
-                                              _vm.orderObject.deliveryman.name
-                                            ) +
-                                            "\n                    "
-                                        ),
-                                        _c(
-                                          "span",
-                                          { staticClass: "small mr-2" },
-                                          [
-                                            _vm._v(
-                                              _vm._s(
-                                                _vm.orderObject.deliveryman
-                                                  .email
-                                              )
-                                            )
-                                          ]
-                                        )
-                                      ])
+                                      _vm._v(
+                                        "\n                      " +
+                                          _vm._s(_vm.orderObject.user.name) +
+                                          "\n                    "
+                                      )
                                     ]
                                   )
                                 ],
                                 1
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.orderObject.payment_mode == "stripe"
-                            ? _c("div", [
-                                _c("p", { staticClass: "h6 mt-3" }, [
-                                  _vm._v(
-                                    _vm._s(_vm.translate("admin.onlinePayment"))
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "p",
-                                  { staticClass: "text-muted mb-0 pb-0" },
-                                  [
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.translate("admin.nameOnCard")
-                                        ) +
-                                        " :\n                  " +
-                                        _vm._s(_vm.orderObject.name_on_card) +
-                                        "\n                "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "p",
-                                  { staticClass: "text-muted mb-0 pb-0" },
-                                  [
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.translate("admin.userCharged")
-                                        ) +
-                                        " :\n                  "
-                                    ),
-                                    _c("i", {
-                                      staticClass: "fa",
-                                      class: [
-                                        _vm.orderObject.user_charged
-                                          ? "fa-check text-success"
-                                          : "fa-times text-danger"
-                                      ]
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "p",
-                                  { staticClass: "text-muted mb-0 pb-0" },
-                                  [
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.translate("admin.userRefunded")
-                                        ) +
-                                        " :\n                  "
-                                    ),
-                                    _c("i", {
-                                      staticClass: "fa",
-                                      class: [
-                                        _vm.orderObject.user_refunded
-                                          ? "fa-check text-success"
-                                          : "fa-times text-danger"
-                                      ]
-                                    })
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _vm.orderObject.payment_confirmation_required
-                                  ? _c(
-                                      "p",
-                                      { staticClass: "text-muted mb-0 pb-0" },
-                                      [
-                                        _vm._v(
-                                          "\n                  " +
-                                            _vm._s(
-                                              _vm.translate(
-                                                "admin.paymentConfirmationRequired"
-                                              )
-                                            ) +
-                                            " :\n                  "
-                                        ),
-                                        _c("i", {
-                                          staticClass:
-                                            "fa fa-check text-success"
-                                        })
-                                      ]
-                                    )
-                                  : _vm._e()
-                              ])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("hr"),
-                        _vm._v(" "),
-                        _vm._l(_vm.orderObject.meals, function(meal) {
-                          return _c(
-                            "div",
-                            { key: meal.id, staticClass: "row mb-3" },
-                            [
-                              _c("div", { staticClass: "col-md-3" }, [
-                                _c("img", {
-                                  staticClass: "img-fluid",
-                                  attrs: { src: meal.resizedImage, alt: "" }
-                                })
-                              ]),
+                              ),
                               _vm._v(" "),
-                              _c("div", { staticClass: "col-md-5" }, [
-                                _c(
-                                  "h4",
-                                  {
-                                    staticClass: "mb-0 pb-0",
-                                    class: { "text-danger": !meal.id }
-                                  },
-                                  [
-                                    _c(
-                                      meal.id && _vm.$gate.can("manage")
-                                        ? "router-link"
-                                        : "div",
-                                      {
-                                        tag: "component",
-                                        attrs: {
-                                          to: {
-                                            name: "meals.edit",
-                                            params: { id: meal.id }
-                                          }
-                                        }
-                                      },
-                                      [
-                                        !meal.id
-                                          ? _c("i", {
-                                              staticClass: "fa fa-info-circle"
-                                            })
-                                          : _vm._e(),
-                                        _vm._v(
-                                          "\n                    " +
-                                            _vm._s(meal.title) +
-                                            "\n                  "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c("p", {
-                                  staticClass: "text-muted",
-                                  staticStyle: { "white-space": "pre-wrap" },
-                                  domProps: {
-                                    innerHTML: _vm._s(
-                                      meal.pivot.user_selected_options
-                                    )
-                                  }
-                                })
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col-md-2" }, [
-                                _c("p", [_vm._v(_vm._s(meal.pivot.qty) + "X")])
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "col-md-2 font-weight-bold" },
-                                [
-                                  _c("p", [
-                                    _vm._v(
-                                      _vm._s(meal.pivot.meal_subtotal) + " dhs"
-                                    )
-                                  ])
-                                ]
-                              )
-                            ]
-                          )
-                        }),
-                        _vm._v(" "),
-                        _c("hr"),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col-md-5 offset-md-7" }, [
-                            _c("p", [
-                              _c("span", { staticClass: "font-weight-bold" }, [
-                                _vm._v(_vm._s(_vm.translate("admin.subtotal")))
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "float-right" }, [
+                              _c("p", { staticClass: "text-muted" }, [
                                 _vm._v(
-                                  _vm._s(_vm.orderObject.subtotal) + " dhs"
+                                  "ID : " + _vm._s(_vm.orderObject.user.id)
                                 )
                               ])
-                            ]),
-                            _vm._v(" "),
-                            _c("p", {}, [
-                              _c("span", { staticClass: "font-weight-bold" }, [
-                                _vm._v(_vm._s(_vm.translate("front.delivery")))
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "float-right" }, [
-                                _vm._v(
-                                  _vm._s(_vm.orderObject.delivery_price) +
-                                    " dhs"
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "text-danger" }, [
-                              _c("span", { staticClass: "font-weight-bold" }, [
-                                _vm._v(_vm._s(_vm.translate("admin.tax")))
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "float-right" }, [
-                                _vm._v(
-                                  _vm._s(_vm.orderObject.tax_price) + " dhs"
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("hr"),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "text-success" }, [
-                              _c("span", { staticClass: "font-weight-bold" }, [
-                                _vm._v("Total")
-                              ]),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "float-right" }, [
-                                _vm._v(_vm._s(_vm.orderObject.total) + " dhs")
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _vm.$gate.can("manage")
-                              ? _c("div", [
-                                  _vm.$gate.can("charge", _vm.orderObject)
-                                    ? _c(
-                                        "button",
-                                        {
-                                          staticClass:
-                                            "btn btn-success btn-block",
-                                          attrs: {
-                                            disabled: _vm.chargeIsLoading
-                                          },
-                                          on: { click: _vm.chargeUser }
-                                        },
-                                        [
-                                          _vm.chargeIsLoading
-                                            ? _c("i", {
-                                                staticClass:
-                                                  "fa fa-circle-notch fa-spin mr-1"
-                                              })
-                                            : _c(
-                                                "i",
-                                                {
-                                                  staticClass:
-                                                    "material-icons mr-1"
-                                                },
-                                                [_vm._v("credit_score")]
-                                              ),
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                _vm.translate("admin.charge")
-                                              ) +
-                                              "\n                    " +
-                                              _vm._s(_vm.orderObject.total) +
-                                              " dhs\n                  "
-                                          )
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.$gate.can("refund", _vm.orderObject)
-                                    ? _c(
-                                        "button",
-                                        {
-                                          staticClass:
-                                            "btn btn-danger btn-block",
-                                          attrs: {
-                                            disabled: _vm.refundIsLoading
-                                          },
-                                          on: { click: _vm.handleRefund }
-                                        },
-                                        [
-                                          _vm.refundIsLoading
-                                            ? _c("i", {
-                                                staticClass:
-                                                  "fa fa-circle-notch fa-spin mr-1"
-                                              })
-                                            : _c(
-                                                "i",
-                                                {
-                                                  staticClass:
-                                                    "material-icons mr-1"
-                                                },
-                                                [_vm._v("credit_score")]
-                                              ),
-                                          _vm._v(
-                                            "\n                    " +
-                                              _vm._s(
-                                                _vm.translate("admin.refund")
-                                              ) +
-                                              "\n                    " +
-                                              _vm._s(_vm.orderObject.total) +
-                                              " dhs\n                  "
-                                          )
-                                        ]
-                                      )
-                                    : _vm._e()
-                                ])
-                              : _vm._e()
+                            ])
                           ])
                         ])
-                      ],
-                      2
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [
-                  _c("div", { staticClass: "card mt-4" }, [
-                    _c("div", { staticClass: "card-body" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "d-flex align-items-center justify-content-between"
-                        },
-                        [_c("h4", [_vm._v("Client")])]
-                      ),
-                      _vm._v(" "),
-                      _c("hr"),
-                      _vm._v(" "),
-                      _vm.orderObject.user
-                        ? _c("div", [
-                            _c("div", { staticClass: "d-flex" }, [
-                              _c("img", {
-                                staticClass: "img-fluid mr-2",
-                                staticStyle: { "border-radius": "50%" },
-                                attrs: {
-                                  width: "70",
-                                  height: "50",
-                                  src:
-                                    "/storage/images/design/avatarplaceholder.png",
-                                  alt: ""
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", [
-                                _c(
-                                  "u",
-                                  { staticClass: "mb-0 text-dark" },
-                                  [
-                                    _c(
-                                      _vm.$gate.can("manage")
-                                        ? "router-link"
-                                        : "div",
-                                      {
-                                        tag: "component",
-                                        attrs: {
-                                          to: {
-                                            name: "users.edit",
-                                            params: {
-                                              id: _vm.orderObject.user.id
-                                            }
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                      " +
-                                            _vm._s(_vm.orderObject.user.name) +
-                                            "\n                    "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c("p", { staticClass: "text-muted" }, [
-                                  _vm._v(
-                                    "ID : " + _vm._s(_vm.orderObject.user.id)
-                                  )
-                                ])
-                              ])
-                            ])
+                      : _c("div", [
+                          _c("p", { staticClass: "text-danger" }, [
+                            _c("i", { staticClass: "fa fa-info-circle" }),
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(_vm.translate("admin.noUserForOrder")) +
+                                "\n              "
+                            )
                           ])
-                        : _c("div", [
-                            _c("p", { staticClass: "text-danger" }, [
-                              _c("i", { staticClass: "fa fa-info-circle" }),
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(
-                                    _vm.translate("admin.noUserForOrder")
-                                  ) +
-                                  "\n              "
-                              )
-                            ])
-                          ]),
-                      _vm._v(" "),
-                      _c("hr"),
-                      _vm._v(" "),
-                      _c("h5", [_vm._v("Contact")]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _c("i", { staticClass: "fa fa-envelope mr-1" }),
-                        _vm._v(" " + _vm._s(_vm.orderObject.email))
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _c("i", { staticClass: "fa fa-phone mr-1" }),
-                        _vm._v(" " + _vm._s(_vm.orderObject.phone))
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _c("i", { staticClass: "fa fa-map-marker-alt mr-1" }),
-                        _vm._v(
-                          "\n              " +
-                            _vm._s(_vm.orderObject.address_line) +
-                            " "
-                        ),
-                        _c("br"),
-                        _vm._v(
-                          "\n              " +
-                            _vm._s(_vm.orderObject.address_details) +
-                            "\n            "
-                        )
-                      ])
+                        ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v("Contact")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c("i", { staticClass: "fa fa-envelope mr-1" }),
+                      _vm._v(" " + _vm._s(_vm.orderObject.email))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c("i", { staticClass: "fa fa-phone mr-1" }),
+                      _vm._v(" " + _vm._s(_vm.orderObject.phone))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _c("i", { staticClass: "fa fa-map-marker-alt mr-1" }),
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.orderObject.address_line) +
+                          " "
+                      ),
+                      _c("br"),
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.orderObject.address_details) +
+                          "\n            "
+                      )
                     ])
                   ])
                 ])
               ])
-            ],
-            1
-          )
+            ])
+          ])
     ],
     1
   )

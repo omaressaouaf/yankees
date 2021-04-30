@@ -10,39 +10,16 @@
 
 
                 @auth
-                    @if (in_array(auth()->user()->role, ['deliveryman', 'admin']))
+                    @if (auth()->user()->hasAnyRole(['admin' , 'deliveryman']))
                         <li class="nav-item ">
                             <a href="/admin/dashboard" class="nav-link "> <i class="fa fa-lock mr-1"></i>
                                 Admin</a>
                         </li>
                     @endif
-              
+
                 @endauth
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="/storage/images/design/{{ App::getLocale() }}.png" class="mr-1" width="30"
-                            height="20" alt="">
-                        {{ App::getLocale() }}
-
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @foreach (config('app.available_locales') as $locale)
-                            <a class="dropdown-item text-uppercase" href="
-                            @if (App::isLocale($locale)) {{ Request::url() . '#' }}
-             @else
-                              /setLocale/{{ $locale }} @endif">
-                                <img src="/storage/images/design/{{ $locale }}.png" class="mr-1" width="30"
-                                    height="20" alt="">
-                                {{ $locale }}
-                            </a>
-                        @endforeach
-                    </div>
-                </li>
-
-
-
+                <notifications-list />
+                <locale-switcher />
             </ul>
         </div>
     </div>
@@ -77,7 +54,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"
                                     onclick="event.preventDefault();
-                                                                                                                            document.querySelector('.logout-form').submit();">Se
+                                                                                                                                    document.querySelector('.logout-form').submit();">Se
                                     déconnecter</a>
                                 <form class="logout-form" action="{{ route('logout') }}" method="post">
                                     @csrf</form>

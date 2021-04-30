@@ -8,10 +8,13 @@ import {
 } from "../../helpers";
 const state = {
     users: [],
+    deliverymen: [],
+    roles: [],
     user: {},
     loading: {
         get: false,
-        post: false
+        post: false,
+        roles : false
     },
     serverErrors: null
 };
@@ -19,9 +22,16 @@ const getters = {
     allUsers(state) {
         return state.users;
     },
+    allDeliverymen(state) {
+        return state.deliverymen;
+    },
+    allRoles(state) {
+        return state.roles;
+    },
     userObject(state) {
         return state.user;
     },
+
     isLoading(state) {
         return state.loading;
     },
@@ -37,9 +47,21 @@ const actions = {
             store.commit("setUsers", res.data.users);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
-            fireToast("danger", translate('front.errorMessage'));
+            fireToast("danger", translate("front.errorMessage"));
         }
         store.commit("clearLoading", "get");
+    },
+
+    async fetchRoles(store) {
+        try {
+            store.commit("setLoading", "roles");
+            const res = await axios.get("/api/users/roles");
+            store.commit("setRoles", res.data.roles);
+        } catch (err) {
+            redirectToErrorPageIfNeeded(err.response.status);
+            fireToast("danger", translate("front.errorMessage"));
+        }
+        store.commit("clearLoading", "roles");
     },
     deleteUser(store, id) {
         fireConfirm(async () => {
@@ -55,7 +77,7 @@ const actions = {
                 );
             } catch (err) {
                 redirectToErrorPageIfNeeded(err.response.status);
-                fireToast("danger", translate('front.errorMessage'));
+                fireToast("danger", translate("front.errorMessage"));
             }
             store.commit("clearLoading");
             nProgress.done();
@@ -130,7 +152,7 @@ const actions = {
                 resolve();
             } catch (err) {
                 redirectToErrorPageIfNeeded(err.response.status);
-                fireToast("danger", translate('front.errorMessage'));
+                fireToast("danger", translate("front.errorMessage"));
             }
             store.commit("clearLoading", "post");
         });
@@ -139,6 +161,9 @@ const actions = {
 const mutations = {
     setUsers(state, users) {
         state.users = users;
+    },
+    setRoles(state, roles) {
+        state.roles = roles;
     },
     removeUser(state, id) {
         state.users = state.users.filter(user => user.id !== id);

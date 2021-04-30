@@ -52,11 +52,14 @@
     <script>
         // get the count if we are not on the meals page
         window.initialCartCount = @json(Cart::count());
-
+        window.currentLocale = '{{ config('app.locale') }}';
+        window.availableLocales = @json(config('app.available_locales'));
         window.deliveryZoneBounds = @json(config('delivery.zone_bounds'));
         window.deliveryPrice = @json(config('delivery.price'));
         window.deliveryTime = @json(config('delivery.time'));
         window.minOrderPrice = @json(config('cart.min_order_price'));
+        window.authUser = @json(auth()->user());
+
 
     </script>
     <div id="app">

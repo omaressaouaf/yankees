@@ -51,8 +51,8 @@ class CheckoutService
                 }
                 $authUser->updateDefaultPaymentMethod($payment_method);
             }
-            Cart::destroy();
             DB::commit();
+            Cart::destroy();
             // Order Created Event
             OrderCreated::dispatch($order);
         } catch (\Exception $e) {

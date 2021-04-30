@@ -2556,20 +2556,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2645,7 +2638,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2654,15 +2650,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       appName: this.$store.state.appName,
       notifications: [],
       unreadNotificationsLength: [],
-      loading: false
+      loading: false,
+      authUser: window.authUser
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("auth", ["authUser"])),
   methods: {
-    bindIcon: function bindIcon(notificationMessage) {
-      switch (notificationMessage) {
+    revertToDefaultDocumentTitle: function revertToDefaultDocumentTitle() {
+      document.title = "".concat(this.$route.meta.title, " - ").concat(this.appName);
+    },
+    navigate: function navigate(url) {
+      if (this.$route.path.indexOf("/admin") != -1) {
+        this.$router.push(url)["catch"](function (err) {});
+      } else {
+        window.location.href = url;
+      }
+    },
+    determineIconAndBG: function determineIconAndBG(event_name) {
+      switch (event_name) {
         case "orderCreated":
-          return "fa-shopping-bag bg-success text-light";
+          return {
+            icon: "shopping_bag",
+            bg: "bg-success"
+          };
+
+        case "deliverymanSelected":
+          return {
+            icon: "delivery_dining",
+            bg: "bg-info"
+          };
       }
     },
     getNotifications: function getNotifications() {
@@ -2683,13 +2698,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.loading = false;
       });
     },
-    deleteNotifications: function deleteNotifications() {
+    deleteNotifications: function deleteNotifications(e) {
       var _this2 = this;
 
+      e.stopPropagation();
       this.loading = true;
       axios["delete"]("/api/notifications").then(function (res) {
         _this2.notifications = [];
         _this2.unreadNotificationsLength = 0;
+
+        _this2.revertToDefaultDocumentTitle();
       })["catch"](function (err) {
         console.log(err);
       })["finally"](function () {
@@ -2702,10 +2720,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.put("/api/notifications").then(function (res) {
         _this3.getNotifications();
 
-        document.title = _this3.$route.meta.title;
+        _this3.revertToDefaultDocumentTitle();
       })["catch"](function (err) {
         console.log(err);
       });
+    },
+    increaseDocumentTileCount: function increaseDocumentTileCount() {
+      var oldNotificationsTemplate = "(".concat(this.unreadNotificationsLength - 1, ")");
+
+      if (document.title.indexOf(oldNotificationsTemplate) != -1) {
+        document.title = document.title.replace(oldNotificationsTemplate, "");
+      }
+
+      document.title = "(".concat(this.unreadNotificationsLength, ") ").concat(document.title);
     },
     handleBroadcast: function handleBroadcast(notification) {
       var _this4 = this;
@@ -2720,7 +2747,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   id: notification.id,
                   data: {
                     order: notification.order,
-                    message: notification.message,
+                    event_name: notification.event_name,
                     url: notification.url
                   },
                   read_at: null
@@ -2729,9 +2756,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this4.notifications.unshift(newNotification);
 
                 _this4.unreadNotificationsLength++;
-                document.title = "(".concat(_this4.unreadNotificationsLength, ") ").concat(document.title);
 
-                if (notification.message == "orderCreated") {
+                _this4.increaseDocumentTileCount();
+
+                if (notification.event_name == "orderCreated") {
                   _this4.$store.commit("orders/addOrder", notification.order);
                 }
 
@@ -2754,14 +2782,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 }
 
                 new Notification(appName, {
-                  body: translate("admin." + notification.message),
+                  body: translate("admin." + notification.event_name),
                   icon: appLogo,
                   silent: true
                 });
                 return _context.abrupt("return");
 
               case 13:
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.fireToast)("info", translate("admin." + notification.message));
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_1__.fireToast)("info", translate("admin." + notification.event_name));
 
               case 14:
               case "end":
@@ -2870,6 +2898,73 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [vuelidate_error_extractor__WEBPACK_IMPORTED_MODULE_0__.singleErrorExtractorMixin]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      currentLocale: window.currentLocale,
+      availableLocales: window.availableLocales
+    };
+  }
 });
 
 /***/ }),
@@ -3039,49 +3134,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _notifications_NotificationsList_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../notifications/NotificationsList.vue */ "./resources/js/admin/components/notifications/NotificationsList.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _LocaleSwitcher_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocaleSwitcher.vue */ "./resources/js/admin/components/partials/LocaleSwitcher.vue");
 //
 //
 //
@@ -3186,9 +3239,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    NotificationsList: _notifications_NotificationsList_vue__WEBPACK_IMPORTED_MODULE_0__.default
+    NotificationsList: _notifications_NotificationsList_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+    LocaleSwitcher: _LocaleSwitcher_vue__WEBPACK_IMPORTED_MODULE_1__.default
   },
   data: function data() {
     return {
@@ -3539,6 +3594,11 @@ var Gate = /*#__PURE__*/function () {
       this.validateAbilityName(abilityName);
       return this.abilities[abilityName](payload);
     }
+  }, {
+    key: "hasRole",
+    value: function hasRole(role) {
+      return this.user.roles.includes(role) ? true : false;
+    }
   }]);
 
   return Gate;
@@ -3547,16 +3607,16 @@ var Gate = /*#__PURE__*/function () {
 var gate = new Gate(window.authUser); // For admins and deliverymen
 
 gate.define("charge", function (order) {
-  return gate.user.role == "admin" && !order.user_charged && !order.payment_confirmation_required && order.payment_mode == "stripe" && order.status != "cancelled" && order.status != "failed";
+  return gate.hasRole("admin") && !order.user_charged && !order.payment_confirmation_required && order.payment_mode == "stripe" && order.status != "cancelled" && order.status != "failed";
 });
 gate.define("refund", function (order) {
-  return gate.user.role == "admin" && order.payment_mode == "stripe" && order.user_charged && !order.user_refunded && order.status == "cancelled";
+  return gate.hasRole("admin") && order.payment_mode == "stripe" && order.user_charged && !order.user_refunded && order.status == "cancelled";
 });
 gate.define("update-order", function (order) {
   return order.status != "failed" && order.status != "cancelled";
 });
 gate.define("manage", function () {
-  return gate.user.role == "admin";
+  return gate.hasRole("admin");
 }); // For Clients
 
 gate.define("checkout", function (_ref) {
@@ -3889,15 +3949,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/users */ "./resources/js/admin/store/modules/users.js");
-/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/admin/store/modules/categories.js");
-/* harmony import */ var _modules_extras__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/extras */ "./resources/js/admin/store/modules/extras.js");
-/* harmony import */ var _modules_meals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/meals */ "./resources/js/admin/store/modules/meals.js");
-/* harmony import */ var _modules_orders__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/orders */ "./resources/js/admin/store/modules/orders.js");
-/* harmony import */ var _modules_sections__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/sections */ "./resources/js/admin/store/modules/sections.js");
-/* harmony import */ var _modules_auth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/auth */ "./resources/js/admin/store/modules/auth.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/users */ "./resources/js/admin/store/modules/users.js");
+/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/admin/store/modules/categories.js");
+/* harmony import */ var _modules_extras__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/extras */ "./resources/js/admin/store/modules/extras.js");
+/* harmony import */ var _modules_meals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/meals */ "./resources/js/admin/store/modules/meals.js");
+/* harmony import */ var _modules_orders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/orders */ "./resources/js/admin/store/modules/orders.js");
+/* harmony import */ var _modules_sections__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/sections */ "./resources/js/admin/store/modules/sections.js");
+/* harmony import */ var _modules_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/auth */ "./resources/js/admin/store/modules/auth.js");
 
 
 
@@ -3907,8 +3967,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_7__.default.use(vuex__WEBPACK_IMPORTED_MODULE_8__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_8__.default.Store({
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vuex__WEBPACK_IMPORTED_MODULE_0__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_0__.default.Store({
   state: {
     appName: window.appName,
     appLogo: window.appLogo,
@@ -3926,13 +3986,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_8__.default.Store({
     }
   },
   modules: {
-    users: _modules_users__WEBPACK_IMPORTED_MODULE_0__.default,
-    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_1__.default,
-    extras: _modules_extras__WEBPACK_IMPORTED_MODULE_2__.default,
-    meals: _modules_meals__WEBPACK_IMPORTED_MODULE_3__.default,
-    orders: _modules_orders__WEBPACK_IMPORTED_MODULE_4__.default,
-    sections: _modules_sections__WEBPACK_IMPORTED_MODULE_5__.default,
-    auth: _modules_auth__WEBPACK_IMPORTED_MODULE_6__.default
+    users: _modules_users__WEBPACK_IMPORTED_MODULE_1__.default,
+    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_2__.default,
+    extras: _modules_extras__WEBPACK_IMPORTED_MODULE_3__.default,
+    meals: _modules_meals__WEBPACK_IMPORTED_MODULE_4__.default,
+    orders: _modules_orders__WEBPACK_IMPORTED_MODULE_5__.default,
+    sections: _modules_sections__WEBPACK_IMPORTED_MODULE_6__.default,
+    auth: _modules_auth__WEBPACK_IMPORTED_MODULE_7__.default
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
@@ -5124,11 +5184,11 @@ var getters = {
   allOrders: function allOrders(state) {
     return state.orders;
   },
-  orderObject: function orderObject(state) {
-    return state.order;
-  },
   allDeliverymen: function allDeliverymen(state) {
     return state.deliverymen;
+  },
+  orderObject: function orderObject(state) {
+    return state.order;
   },
   isLoading: function isLoading(state) {
     return state.loading;
@@ -5325,52 +5385,17 @@ var actions = {
       }, _callee5, null, [[0, 9]]);
     }))();
   },
-  fetchDeliverymen: function fetchDeliverymen(store) {
+  chargeUser: function chargeUser(store) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
-      var res;
+      var status;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
               _context6.prev = 0;
-              store.commit("setLoading", "deliverymen");
-              _context6.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/deliverymen");
-
-            case 4:
-              res = _context6.sent;
-              store.commit("setDeliverymen", res.data.deliverymen);
-              _context6.next = 12;
-              break;
-
-            case 8:
-              _context6.prev = 8;
-              _context6.t0 = _context6["catch"](0);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
-
-            case 12:
-              store.commit("clearLoading", "deliverymen");
-
-            case 13:
-            case "end":
-              return _context6.stop();
-          }
-        }
-      }, _callee6, null, [[0, 8]]);
-    }))();
-  },
-  chargeUser: function chargeUser(store) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
-      var status;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
-        while (1) {
-          switch (_context7.prev = _context7.next) {
-            case 0:
-              _context7.prev = 0;
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               store.commit("setLoading", "charge");
-              _context7.next = 5;
+              _context6.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/charge/".concat(store.state.order.id));
 
             case 5:
@@ -5379,23 +5404,23 @@ var actions = {
               store.commit("updateOrder", {
                 user_charged: true
               });
-              _context7.next = 17;
+              _context6.next = 17;
               break;
 
             case 10:
-              _context7.prev = 10;
-              _context7.t0 = _context7["catch"](0);
-              status = _context7.t0.response.status;
+              _context6.prev = 10;
+              _context6.t0 = _context6["catch"](0);
+              status = _context6.t0.response.status;
 
               if (status == 400) {
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context7.t0.response.data.msg);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context6.t0.response.data.msg);
                 store.commit("updateOrder", {
                   status: "failed"
                 });
               }
 
               if (status == 406) {
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("warning", translate("admin.failure"), _context7.t0.response.data.msg);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("warning", translate("admin.failure"), _context6.t0.response.data.msg);
                 store.commit("updateOrder", {
                   payment_confirmation_required: true
                 });
@@ -5413,23 +5438,23 @@ var actions = {
 
             case 19:
             case "end":
-              return _context7.stop();
+              return _context6.stop();
           }
         }
-      }, _callee7, null, [[0, 10]]);
+      }, _callee6, null, [[0, 10]]);
     }))();
   },
   refundUser: function refundUser(store) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
       var status;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context7.prev = _context7.next) {
             case 0:
-              _context8.prev = 0;
+              _context7.prev = 0;
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               store.commit("setLoading", "refund");
-              _context8.next = 5;
+              _context7.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/refund/".concat(store.state.order.id));
 
             case 5:
@@ -5438,16 +5463,16 @@ var actions = {
               store.commit("updateOrder", {
                 user_refunded: true
               });
-              _context8.next = 16;
+              _context7.next = 16;
               break;
 
             case 10:
-              _context8.prev = 10;
-              _context8.t0 = _context8["catch"](0);
-              status = _context8.t0.response.status;
+              _context7.prev = 10;
+              _context7.t0 = _context7["catch"](0);
+              status = _context7.t0.response.status;
 
               if (status == 400) {
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context8.t0.response.data.msg);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context7.t0.response.data.msg);
               }
 
               if (status == 500) {
@@ -5462,10 +5487,45 @@ var actions = {
 
             case 18:
             case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7, null, [[0, 10]]);
+    }))();
+  },
+  fetchDeliverymen: function fetchDeliverymen(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              _context8.prev = 0;
+              store.commit("setLoading", "deliverymen");
+              _context8.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/deliverymen");
+
+            case 4:
+              res = _context8.sent;
+              store.commit("setDeliverymen", res.data.deliverymen);
+              _context8.next = 12;
+              break;
+
+            case 8:
+              _context8.prev = 8;
+              _context8.t0 = _context8["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context8.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+              store.commit("clearLoading", "deliverymen");
+
+            case 13:
+            case "end":
               return _context8.stop();
           }
         }
-      }, _callee8, null, [[0, 10]]);
+      }, _callee8, null, [[0, 8]]);
     }))();
   }
 };
@@ -5721,16 +5781,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   users: [],
+  deliverymen: [],
+  roles: [],
   user: {},
   loading: {
     get: false,
-    post: false
+    post: false,
+    roles: false
   },
   serverErrors: null
 };
 var getters = {
   allUsers: function allUsers(state) {
     return state.users;
+  },
+  allDeliverymen: function allDeliverymen(state) {
+    return state.deliverymen;
+  },
+  allRoles: function allRoles(state) {
+    return state.roles;
   },
   userObject: function userObject(state) {
     return state.user;
@@ -5765,7 +5834,7 @@ var actions = {
               _context.prev = 8;
               _context.t0 = _context["catch"](0);
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context.t0.response.status);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
 
             case 12:
               store.commit("clearLoading", "get");
@@ -5778,22 +5847,21 @@ var actions = {
       }, _callee, null, [[0, 8]]);
     }))();
   },
-  deleteUser: function deleteUser(store, id) {
-    (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+  fetchRoles: function fetchRoles(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
-              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              store.commit("setLoading", "roles");
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/roles");
 
             case 4:
-              store.commit("removeUser", id);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.deleted", {
-                item: translate("admin.user")
-              }));
+              res = _context2.sent;
+              store.commit("setRoles", res.data.roles);
               _context2.next = 12;
               break;
 
@@ -5801,7 +5869,43 @@ var actions = {
               _context2.prev = 8;
               _context2.t0 = _context2["catch"](0);
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context2.t0.response.status);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+              store.commit("clearLoading", "roles");
+
+            case 13:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 8]]);
+    }))();
+  },
+  deleteUser: function deleteUser(store, id) {
+    (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/".concat(id));
+
+            case 4:
+              store.commit("removeUser", id);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.deleted", {
+                item: translate("admin.user")
+              }));
+              _context3.next = 12;
+              break;
+
+            case 8:
+              _context3.prev = 8;
+              _context3.t0 = _context3["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
 
             case 12:
               store.commit("clearLoading");
@@ -5809,53 +5913,13 @@ var actions = {
 
             case 14:
             case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2, null, [[0, 8]]);
-    })));
-  },
-  addUser: function addUser(store, newUser) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.prev = 0;
-              store.commit("setLoading", "post");
-              _context3.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/users", newUser);
-
-            case 4:
-              res = _context3.sent;
-              store.commit("addUser", res.data.user);
-              store.commit("clearUser");
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.created", {
-                item: translate("admin.user")
-              }));
-              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/users");
-              _context3.next = 15;
-              break;
-
-            case 11:
-              _context3.prev = 11;
-              _context3.t0 = _context3["catch"](0);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
-              store.commit("setServerErrors", _context3.t0);
-
-            case 15:
-              store.commit("clearLoading", "post");
-
-            case 16:
-            case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[0, 11]]);
-    }))();
+      }, _callee3, null, [[0, 8]]);
+    })));
   },
-  fetchUser: function fetchUser(store, id) {
+  addUser: function addUser(store, newUser) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -5863,34 +5927,39 @@ var actions = {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.prev = 0;
-              store.commit("setLoading", "get");
+              store.commit("setLoading", "post");
               _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/users", newUser);
 
             case 4:
               res = _context4.sent;
-              store.commit("setUser", res.data.user);
-              _context4.next = 12;
+              store.commit("addUser", res.data.user);
+              store.commit("clearUser");
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.created", {
+                item: translate("admin.user")
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/users");
+              _context4.next = 15;
               break;
 
-            case 8:
-              _context4.prev = 8;
+            case 11:
+              _context4.prev = 11;
               _context4.t0 = _context4["catch"](0);
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context4.t0.response.status);
               store.commit("setServerErrors", _context4.t0);
 
-            case 12:
-              store.commit("clearLoading", "get");
+            case 15:
+              store.commit("clearLoading", "post");
 
-            case 13:
+            case 16:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[0, 8]]);
+      }, _callee4, null, [[0, 11]]);
     }))();
   },
-  updateUser: function updateUser(store, updatedUser) {
+  fetchUser: function fetchUser(store, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
       var res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
@@ -5898,12 +5967,47 @@ var actions = {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.prev = 0;
-              store.commit("setLoading", "post");
+              store.commit("setLoading", "get");
               _context5.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/users/".concat(updatedUser.id), updatedUser);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/".concat(id));
 
             case 4:
               res = _context5.sent;
+              store.commit("setUser", res.data.user);
+              _context5.next = 12;
+              break;
+
+            case 8:
+              _context5.prev = 8;
+              _context5.t0 = _context5["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context5.t0.response.status);
+              store.commit("setServerErrors", _context5.t0);
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 8]]);
+    }))();
+  },
+  updateUser: function updateUser(store, updatedUser) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.prev = 0;
+              store.commit("setLoading", "post");
+              _context6.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/users/".concat(updatedUser.id), updatedUser);
+
+            case 4:
+              res = _context6.sent;
               store.commit("updateUser", res.data.user); // if (res.data.user.id == store.rootState.auth.authUser.id) {
               //     store.commit("auth/setAuthUser", res.data.user, {
               //         root: true
@@ -5914,36 +6018,36 @@ var actions = {
                 item: translate("admin.user")
               }));
               _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/users");
-              _context5.next = 14;
+              _context6.next = 14;
               break;
 
             case 10:
-              _context5.prev = 10;
-              _context5.t0 = _context5["catch"](0);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context5.t0.response.status);
-              store.commit("setServerErrors", _context5.t0);
+              _context6.prev = 10;
+              _context6.t0 = _context6["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
+              store.commit("setServerErrors", _context6.t0);
 
             case 14:
               store.commit("clearLoading", "post");
 
             case 15:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, _callee5, null, [[0, 10]]);
+      }, _callee6, null, [[0, 10]]);
     }))();
   },
   bulkDeleteUsers: function bulkDeleteUsers(store, selectedItems) {
     return new Promise( /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(resolve) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(resolve) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
-                _context6.prev = 0;
+                _context7.prev = 0;
                 store.commit("setLoading", "post");
-                _context6.next = 4;
+                _context7.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/bulk/" + selectedItems);
 
               case 4:
@@ -5951,24 +6055,24 @@ var actions = {
                 (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.bulkDeleted"));
                 store.commit("clearLoading", "post");
                 resolve();
-                _context6.next = 14;
+                _context7.next = 14;
                 break;
 
               case 10:
-                _context6.prev = 10;
-                _context6.t0 = _context6["catch"](0);
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+                _context7.prev = 10;
+                _context7.t0 = _context7["catch"](0);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context7.t0.response.status);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
 
               case 14:
                 store.commit("clearLoading", "post");
 
               case 15:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6, null, [[0, 10]]);
+        }, _callee7, null, [[0, 10]]);
       }));
 
       return function (_x) {
@@ -5980,6 +6084,9 @@ var actions = {
 var mutations = {
   setUsers: function setUsers(state, users) {
     state.users = users;
+  },
+  setRoles: function setRoles(state, roles) {
+    state.roles = roles;
   },
   removeUser: function removeUser(state, id) {
     state.users = state.users.filter(function (user) {
@@ -6123,7 +6230,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.noti-wrapper[data-v-47d36d38] {\r\n  max-height: 450px !important;\r\n  overflow: auto !important;\n}\n.bg-grey[data-v-47d36d38] {\r\n  background-color: #eeeeee;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.noti-wrapper[data-v-47d36d38] {\r\n  max-height: 450px !important;\r\n  overflow: auto !important;\r\n  min-width: 449px;\n}\n.bg-grey[data-v-47d36d38] {\r\n  background-color: #eeeeee;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -50821,6 +50928,45 @@ component.options.__file = "resources/js/admin/components/partials/ClientErrorAl
 
 /***/ }),
 
+/***/ "./resources/js/admin/components/partials/LocaleSwitcher.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/admin/components/partials/LocaleSwitcher.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocaleSwitcher.vue?vue&type=template&id=769e0ddd& */ "./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd&");
+/* harmony import */ var _LocaleSwitcher_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocaleSwitcher.vue?vue&type=script&lang=js& */ "./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _LocaleSwitcher_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__.render,
+  _LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/admin/components/partials/LocaleSwitcher.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/admin/components/partials/MapBoxGl.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/admin/components/partials/MapBoxGl.vue ***!
@@ -51169,6 +51315,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LocaleSwitcher.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/admin/components/partials/MapBoxGl.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************!*\
   !*** ./resources/js/admin/components/partials/MapBoxGl.vue?vue&type=script&lang=js& ***!
@@ -51458,6 +51620,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClientErrorAlert_vue_vue_type_template_id_4df09461_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClientErrorAlert_vue_vue_type_template_id_4df09461_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ClientErrorAlert.vue?vue&type=template&id=4df09461&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/ClientErrorAlert.vue?vue&type=template&id=4df09461&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocaleSwitcher_vue_vue_type_template_id_769e0ddd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LocaleSwitcher.vue?vue&type=template&id=769e0ddd& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd&");
 
 
 /***/ }),
@@ -52051,6 +52230,7 @@ var render = function() {
         "div",
         {
           staticClass: "dropdown-menu dropdown-menu-right",
+          staticStyle: { "min-width": "449px" },
           attrs: { "aria-labelledby": "navbarDropdownMenuLink" }
         },
         [
@@ -52110,23 +52290,44 @@ var render = function() {
                       "div",
                       _vm._l(_vm.notifications, function(notification) {
                         return _c(
-                          "router-link",
+                          "div",
                           {
                             key: notification.id,
                             staticClass:
                               "dropdown-item py-3 d-flex align-items-center mb-2",
                             class: { "bg-grey": !notification.read_at },
-                            attrs: { to: notification.data.url }
+                            staticStyle: { cursor: "pointer" },
+                            on: {
+                              click: function($event) {
+                                return _vm.navigate(notification.data.url)
+                              }
+                            }
                           },
                           [
-                            _c("span", {
-                              staticClass: "fa fa-lg mr-2",
-                              class: _vm.bindIcon(notification.data.message),
-                              staticStyle: {
-                                "border-radius": "100%",
-                                padding: "14px 13px"
-                              }
-                            }),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "material-icons mr-2 text-light",
+                                class: _vm.determineIconAndBG(
+                                  notification.data.event_name
+                                )["bg"],
+                                staticStyle: {
+                                  "border-radius": "100%",
+                                  padding: "11px 11px"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n            " +
+                                    _vm._s(
+                                      _vm.determineIconAndBG(
+                                        notification.data.event_name
+                                      )["icon"]
+                                    ) +
+                                    "\n          "
+                                )
+                              ]
+                            ),
                             _vm._v(" "),
                             _c("span", [
                               _c(
@@ -52148,7 +52349,7 @@ var render = function() {
                                 "\n            " +
                                   _vm._s(
                                     _vm.translate(
-                                      "admin." + notification.data.message
+                                      "admin." + notification.data.event_name
                                     ) +
                                       " ID :" +
                                       notification.data.order.id
@@ -52159,7 +52360,7 @@ var render = function() {
                           ]
                         )
                       }),
-                      1
+                      0
                     )
                   : _c("div", { staticClass: "dropdown-item py-3" }, [
                       _vm._v(
@@ -52290,6 +52491,94 @@ var render = function() {
     ],
     2
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/admin/components/partials/LocaleSwitcher.vue?vue&type=template&id=769e0ddd& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("li", { staticClass: "nav-item dropdown" }, [
+    _c(
+      "a",
+      {
+        staticClass: "nav-link dropdown-toggle text-uppercase",
+        attrs: {
+          href: "#",
+          id: "navbarDropdown",
+          role: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [
+        _c("img", {
+          staticClass: "mr-2",
+          attrs: {
+            src: "/storage/images/design/" + _vm.currentLocale + ".png",
+            width: "30",
+            height: "20",
+            alt: ""
+          }
+        }),
+        _vm._v("\n    " + _vm._s(_vm.currentLocale) + "\n  ")
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "dropdown-menu dropdown-menu-right",
+        attrs: { "aria-labelledby": "navbarDropdown" }
+      },
+      _vm._l(_vm.availableLocales, function(locale, index) {
+        return _c(
+          "a",
+          {
+            key: index,
+            staticClass: "dropdown-item text-uppercase",
+            attrs: {
+              href:
+                locale == _vm.currentLocale
+                  ? _vm.$route.path + "#"
+                  : "/setLocale/" + locale
+            }
+          },
+          [
+            _c("img", {
+              staticClass: "mr-2",
+              attrs: {
+                src: "/storage/images/design/" + locale + ".png",
+                width: "30",
+                height: "20",
+                alt: ""
+              }
+            }),
+            _vm._v("\n      " + _vm._s(locale) + "\n    ")
+          ]
+        )
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52585,81 +52874,7 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("li", { staticClass: "nav-item dropdown" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link dropdown-toggle text-uppercase",
-                      attrs: {
-                        href: "#",
-                        id: "navbarDropdown",
-                        role: "button",
-                        "data-toggle": "dropdown",
-                        "aria-haspopup": "true",
-                        "aria-expanded": "false"
-                      }
-                    },
-                    [
-                      _c("img", {
-                        staticClass: "mr-2",
-                        attrs: {
-                          src:
-                            "/storage/images/design/" +
-                            _vm.currentLocale +
-                            ".png",
-                          width: "30",
-                          height: "20",
-                          alt: ""
-                        }
-                      }),
-                      _vm._v(
-                        "\n            " +
-                          _vm._s(_vm.currentLocale) +
-                          "\n          "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-menu dropdown-menu-right",
-                      attrs: { "aria-labelledby": "navbarDropdown" }
-                    },
-                    _vm._l(_vm.availableLocales, function(locale, index) {
-                      return _c(
-                        "a",
-                        {
-                          key: index,
-                          staticClass: "dropdown-item text-uppercase",
-                          attrs: {
-                            href:
-                              locale == _vm.currentLocale
-                                ? _vm.$route.path + "#"
-                                : "/setLocale/" + locale
-                          }
-                        },
-                        [
-                          _c("img", {
-                            staticClass: "mr-2",
-                            attrs: {
-                              src: "/storage/images/design/" + locale + ".png",
-                              width: "30",
-                              height: "20",
-                              alt: ""
-                            }
-                          }),
-                          _vm._v(
-                            "\n              " +
-                              _vm._s(locale) +
-                              "\n            "
-                          )
-                        ]
-                      )
-                    }),
-                    0
-                  )
-                ])
+                _c("locale-switcher")
               ],
               1
             )
@@ -72281,7 +72496,7 @@ g,0<d.length&&(d=za[d[0]])&&(a.c[e]=d))}a.c[e]||(d=za[e])&&(a.c[e]=d);for(d=0;d<
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"en":{"admin":{"adminPanel":"Admin Panel","overview":"Overview","dashboard":"Dashboard","management":"Management","users":"Users","categories":"Categories","extras":"Extras","options":"Options","menus":"Menus","account":"Account","profile":"Profile","logout":"Log Out","delete":"Delete","add":"Add","new":"New","save":"Save","edit":"Edit","discard":"Discard","enter":"Enter","select":"Select","the":"The","theFem":"The","user":"User","category":"Category","extra":"Extra","option":"Option","menu":"Menu","generalInfo":"General Info","canManage":"is able to manage the site data","optional":"Optional","optionalFem":"Optional","to":"To","for":"For","this":"This","thisFem":"This","name":"Name","phone":"Phone","address":"Address","joinedAt":"Joined at","createdAt":"Created at","title":"Title","price":"Price","active":"Active","selectToAdd":"Select to Add","noExtras":"There are no Extras .","next":"Next","previous":"Prev","newOptions":"NEW OPTIONS","oldOptions":"OLD OPTIONS","confirmationTitle":"are you sure ?","confirmationText":"You won\'t be able to revert this","confirmationConfirm":"Yes, do it","settings":"Settings","orders":"Orders","general":"General","cart":"Cart","appNameDesc":"used for branding and emails","time":"Estimated time","tax":"Tax Rate","created":":item created successfully","updated":":item updated successfully","deleted":":item deleted successfully","bulkDeleted":"Selected item(s) deleted successfully","openingHours":"Opening Hours","addOpeningHours":"Add your business hours","splitHours":"Split hours","closed":"Closed","setAsClosed":"Set as Closed","monday":"monday","tuesday":"tuesday","wednesday":"Wednesday","thursday":"thursday","friday":"friday","saturday":"saturday","sunday":"sunday","forcedClose":"Forced Close","forcedCloseText":"this option will override the schedule and force close the restaurant","selectPolygon":"Select a polygon","noCategoryForMeal":"There is no category for the menu . it might have been deleted","min_order_price":"Minimum order price","nameOnCard":"Name on card","paymentDetails":"Payment Details","cashOnDeliveryText":"You will pay cash once the products are delivered","paymentMode":"Payment Mode","status":"Status","passedAt":"Passed at","orderDetails":"Order details","order":"Order","noUserForOrder":"No user in the database for this order . he might have been deleted","filterBy":"Filter by","pending":"Pending","processing":"Processing","out_for_delivery":"Out for Delivery","delivered":"Delivered","cancelled":"Cancelled","failed":"Failed","charge":"Charge","userCharged":"User charged","failure":"Failure","paymentConfirmationRequired":"Payment confirmation required","role":"Role","admin":"Admin","deliveryman":"Delivery man","client":"Client","print":"Print","invoice":"Invoice","track":"Track Order","paymentSuccessful":"Payment was successful","refund":"Refund","userRefunded":"User Refunded","onlinePayment":"Online Payment","refundSuccessful":"Refund was successful","subtotal":"Subtotal","from":"From","quantity":"Quantity","deliverymanRequired":"A delivery man is required for out for delivery and delivered statuses","manageProfile":"Manage Your Profile","orderCreated":"New Order has been placed.","noNotifications":"You\'re all caught up","notificationsCenter":"Notifications center"},"auth":{"failed":"These credentials do not match our records.","password":"The provided password is incorrect.","throttle":"Too many login attempts. Please try again in :seconds seconds."},"front":{"searchTitle":"Customize the search","search":"Search","categories":"Categories","filters":"Filters","all":"All","allFem":"All","category":"Category","addToCart":"Add","noMeals":"Sorry! There are no menus available","noMealsText":"we suggest to modify the search","noDescription":"Description not Available","noOption":"No Thank you","unavailable":"Not Available","customize":"Customize Your","yourCart":"Your Cart","delete":"Remove","cartEmpty":"Your cart is empty","cartEmptyText":"Buy a delicious meal before it gets cold","weAccept":"We accept","total":"Total with taxes","delivery":"Delivery","checkout":"Go to Checkout","dontDelay":"Don\'t delay the purchase,\\r\\n    adding items to your cart does not mean\\r\\n    Reserving them","successMessage":"Menu added to your cart","errorMessage":"an Error ocurred . Try again","and":"and","chooseAddress":"Choose your Address","chooseAddressText":"Choose your Address from the map or detect browser location","addressDetails":"Details (ex : Floor , House)","geolocationNotSupported":"Your Browser does not support Geolocation .Please enter your address Manually","permissionDenied":"You denied the Permission . Please add your address manually","add":"Add","addressAdded":"Address added successfully","noAddress":"No address available","outOfDeliveryZone":"Our of delivery zone","addressDirections":"Address Directions","detectAddresses":"Detect Addresses Automatically","toggleInstructions":"Toggle Instructions"},"pagination":{"previous":"&laquo; Previous","next":"Next &raquo;"},"passwords":{"reset":"Your password has been reset!","sent":"We have emailed your password reset link!","throttled":"Please wait before retrying.","token":"This password reset token is invalid.","user":"We can\'t find a user with that email address."},"validation":{"accepted":" :attribute must be accepted.","active_url":" :attribute is not a valid URL.","after":" :attribute must be a date after :date.","after_or_equal":" :attribute must be a date after or equal to :date.","alpha":" :attribute must only contain letters.","alpha_dash":" :attribute must only contain letters, numbers, dashes and underscores.","alpha_num":" :attribute must only contain letters and numbers.","array":" :attribute must be an array.","before":" :attribute must be a date before :date.","before_or_equal":" :attribute must be a date before or equal to :date.","between":{"numeric":" :attribute must be between :min and :max.","file":" :attribute must be between :min and :max kilobytes.","string":" :attribute must be between :min and :max characters.","array":" :attribute must have between :min and :max items."},"boolean":" :attribute must be true or false.","confirmed":" :attribute confirmation does not match.","date":" :attribute is not a valid date.","date_equals":" :attribute must be a date equal to :date.","date_format":" :attribute does not match the format :format.","different":" :attribute and :other must be different.","digits":" :attribute must be :digits digits.","digits_between":" :attribute must be between :min and :max digits.","dimensions":" :attribute has invalid image dimensions.","distinct":" :attribute has a duplicate value.","email":" :attribute must be a valid email address.","ends_with":" :attribute must end with one of the following: :values.","exists":" selected :attribute is invalid.","file":" :attribute must be a file.","filled":" :attribute must have a value.","gt":{"numeric":" :attribute must be greater than :value.","file":" :attribute must be greater than :value kilobytes.","string":" :attribute must be greater than :value characters.","array":" :attribute must have more than :value items."},"gte":{"numeric":" :attribute must be greater than or equal :value.","file":" :attribute must be greater than or equal :value kilobytes.","string":" :attribute must be greater than or equal :value characters.","array":" :attribute must have :value items or more."},"image":" :attribute must be an image.","in":" selected :attribute is invalid.","in_array":" :attribute does not exist in :other.","integer":" :attribute must be an integer.","ip":" :attribute must be a valid IP address.","ipv4":" :attribute must be a valid IPv4 address.","ipv6":" :attribute must be a valid IPv6 address.","json":" :attribute must be a valid JSON string.","lt":{"numeric":" :attribute must be less than :value.","file":" :attribute must be less than :value kilobytes.","string":" :attribute must be less than :value characters.","array":" :attribute must have less than :value items."},"lte":{"numeric":" :attribute must be less than or equal :value.","file":" :attribute must be less than or equal :value kilobytes.","string":" :attribute must be less than or equal :value characters.","array":" :attribute must not have more than :value items."},"max":{"numeric":" :attribute must not be greater than :max.","file":" :attribute must not be greater than :max kilobytes.","string":" :attribute must not be greater than :max characters.","array":" :attribute must not have more than :max items."},"mimes":" :attribute must be a file of type: :values.","mimetypes":" :attribute must be a file of type: :values.","min":{"numeric":" :attribute must be at least :min.","file":" :attribute must be at least :min kilobytes.","string":" :attribute must be at least :min characters.","array":" :attribute must have at least :min items."},"multiple_of":" :attribute must be a multiple of :value.","not_in":" selected :attribute is invalid.","not_regex":" :attribute format is invalid.","numeric":" :attribute must be a number.","password":" password is incorrect.","present":" :attribute must be present.","regex":" :attribute format is invalid.","required":" :attribute is required.","required_if":" :attribute is required when :other is :value.","required_unless":" :attribute is required unless :other is in :values.","required_with":" :attribute is required when :values is present.","required_with_all":" :attribute is required when :values are present.","required_without":" :attribute is required when :values is not present.","required_without_all":" :attribute is required when none of :values are present.","prohibited_if":" :attribute is prohibited when :other is :value.","prohibited_unless":" :attribute is prohibited unless :other is in :values.","same":" :attribute and :other must match.","size":{"numeric":" :attribute must be :size.","file":" :attribute must be :size kilobytes.","string":" :attribute must be :size characters.","array":" :attribute must contain :size items."},"starts_with":" :attribute must start with one of the following: :values.","string":" :attribute must be a string.","timezone":" :attribute must be a valid zone.","unique":" :attribute has already been taken.","uploaded":" :attribute failed to upload.","url":" :attribute format is invalid.","uuid":" :attribute must be a valid UUID.","isBetweenTheMinAndAdminSelectedOptions":" :attribute must be between the min and selected options sum","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"The Name","email":"The Email","address":"The Address","phone":"The Phone number","password":"The Password","is_admin":"is Admin","slug":"The Slug","title":"The Title","price":"The Price","description":"The Description","image":"The Image","category_id":"The Category","min":"The Min","max":"The Max","time":"The Time","tax":"The Tax rate","start":"Start hour","end":"End Hour","label":"The Label","role":"The Role","content":"The Content"}}},"fr":{"0":1,"admin":{"adminPanel":"Panneau d\'Administration","overview":"Aperçu","dashboard":"Tableau de bord","management":"Gestion","users":"Utilisateurs","categories":"Catégories","extras":"Extras","options":"Options","menus":"Menus","account":"Compte","profile":"Profil","logout":"Se déconnecter","delete":"Suppression","add":"Ajouter","new":"Nouveau","save":"Sauvgarder","edit":"Modifier","discard":"Annuler","enter":"Entrer","select":"Sélectionner","the":"Le","theFem":"La","user":"Utilisateur","category":"Catégorie","extra":"Extra","option":"Option","menu":"Menu","generalInfo":"Info générales","canManage":"peut gérer les données du site","optional":"Optionnel","optionalFem":"Optionnelle","to":"À","for":"Pour","this":"Ce","thisFem":"Cette","name":"Nom","phone":"N.Téléphone","address":"Adresse","joinedAt":"Rejoint à","createdAt":"Créé à","title":"Titre","price":"Prix","active":"Actif","selectToAdd":"sélectionner pour ajouter","noExtras":"Il n\'y a pas de Extra .","next":"Suiv","previous":"Précéd","newOptions":"NOUVELLES OPTIONS","oldOptions":"ANCIENNES OPTIONS","confirmationTitle":"êtes-vous sûr ? ","confirmationText":"Vous ne pourrez pas récupérer  cela !","confirmationConfirm":"Oui, fais-le","settings":"Paramètres","orders":"Commandes","general":"Général","cart":"Panier","appNameDesc":"utilisé pour la marque et les e-mails","time":"Temps estimé","tax":"Taux d\'imposition","created":":item ajoutée avec succès","updated":":item modifiée avec succès","deleted":":item supprimées avec succès","bulkDeleted":"Éléments sélectionné(s) supprimés avec succès","openingHours":"Heures d\'ouverture","addOpeningHours":"Ajouter vos heures d\'ouverture","splitHours":"heures fractionnées","closed":"Fermé","setAsClosed":"Définir comme fermé","monday":"lundi","tuesday":"mardi","wednesday":"mercredi","thursday":"jeudi","friday":"vendredi","saturday":"samedi","sunday":"dimanche","forcedClose":"Fermeture forcée","forcedCloseText":"cette option remplacera l\'horaire et fermera le restaurant forcément","selectPolygon":"Sélectionnez un polygone","noCategoryForMeal":"Il n\'y a pas de catégorie pour le menu. il a peut-être été supprimé","min_order_price":"Prix ​​minimum de commande","nameOnCard":"Nom sur la carte","paymentDetails":"Détails de paiement","cashOnDeliveryText":"Vous paierez en espèces une fois les produits livrés","paymentMode":"Mode de paiement","status":"Statut","passedAt":"Passé à","orderDetails":"Détails de la commande","order":"Commande","noUserForOrder":"Aucun utilisateur dans la base de données pour cette commande. il aurait pu être supprimé","filterBy":"Filtrer par","pending":"En attente","processing":"En cours","out_for_delivery":"En route","delivered":"Livré","cancelled":"Annulé","failed":"Manquée","charge":"Facturez","userCharged":"Utilisateur facturé","failure":"Échec","paymentConfirmationRequired":"Confirmation de paiement requise","role":"Rôle","admin":"Admin","deliveryman":"Livreur","client":"Client","print":"Imprimer","invoice":"Facture","track":"Tracer Commande","paymentSuccessful":"Le paiement a réussi","refund":"Rembourser","userRefunded":"Utilisateur remboursé","onlinePayment":"Paiement en ligne","refundSuccessful":"Le remboursement a réussi","subtotal":"Sous-total","from":"De","quantity":"Quantité","deliverymanRequired":"Un livreur est requis pour les statuts En route et Livré","manageProfile":"Gérez votre profil","orderCreated":"Une nouvelle commande a été passée.","noNotifications":"Rien pour l\'instant","notificationsCenter":"Centre de notifications"},"auth":{"failed":"Ces identifiants ne correspondent pas à nos enregistrements.","password":"Le mot de passe fourni est incorrect.","throttle":"Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes."},"front":{"searchTitle":"Personnaliser la Recherche","search":"Rechercher","categories":"Catégories","filters":"Filtres","all":"Tous","allFem":"Toutes","category":"Catégorie","addToCart":"Ajouter","noMeals":"Pardon! Il n\'y a pas de menus disponibles","noMealsText":"nous suggérons de modifier la recherche","noDescription":"Description non disponible","noOption":"Non Merci","unavailable":"Non Disponible","customize":"Personnalisez votre","yourCart":"Votre Panier","delete":"Retirer","cartEmpty":"Votre Panier est Vide","cartEmptyText":"Achetez un délicieux repas avant qu\'il ne fasse froid","weAccept":"nous acceptons","total":"Total avec les taxes","delivery":"Livraison","checkout":"Valider La Commande","dontDelay":"Ne retardez pas l\'achat,\\r\\n    ajouter des articles à votre panier ne signifie pas les\\r\\n    réserver","successMessage":"Menu ajouté au panier","errorMessage":"Une erreur s\'est produite . Réessayer","and":"et","chooseAddress":"Choisissez votre adresse","chooseAddressText":"Choisissez votre adresse sur la carte ou détectez l\'emplacement du navigateur","addressDetails":"Détails (ex: étage, maison)","geolocationNotSupported":"Votre navigateur ne prend pas en charge la géolocalisation. Veuillez saisir votre adresse manuellement","permissionDenied":"Vous avez refusé l\'autorisation. Veuillez ajouter votre adresse manuellement","add":"Ajouter","addressAdded":"Adresse ajouté avec success","noAddress":"Aucune adresse disponible","outOfDeliveryZone":"Hors de zone de livraison","addressDirections":"Directions d\'Adresse","detectAddresses":"Détecter automatiquement les adresses","toggleInstructions":"Basculer Instructions"},"pagination":{"next":"Suivant &raquo;","previous":"&laquo; Précédent"},"passwords":{"reset":"Votre mot de passe a été réinitialisé !","sent":"Nous vous avons envoyé par email le lien de réinitialisation du mot de passe !","throttled":"Veuillez patienter avant de réessayer.","token":"Ce jeton de réinitialisation du mot de passe n\'est pas valide.","user":"Aucun utilisateur n\'a été trouvé avec cette adresse email."},"validation":{"accepted":":attribute doit être accepté.","active_url":":attribute n\'est pas une URL valide.","after":":attribute doit être une date postérieure au :date.","after_or_equal":":attribute doit être une date postérieure ou égale au :date.","alpha":":attribute doit contenir uniquement des lettres.","alpha_dash":":attribute doit contenir uniquement des lettres, des chiffres et des tirets.","alpha_num":":attribute doit contenir uniquement des chiffres et des lettres.","array":":attribute doit être un tableau.","attached":":attribute est déjà attaché(e).","before":":attribute doit être une date antérieure au :date.","before_or_equal":":attribute doit être une date antérieure ou égale au :date.","between":{"array":"tableau :attribute doit contenir entre :min et :max éléments.","file":"La taille du fichier de :attribute doit être comprise entre :min et :max kilo-octets.","numeric":"La valeur de :attribute doit être comprise entre :min et :max.","string":"texte :attribute doit contenir entre :min et :max caractères."},"boolean":":attribute doit être vrai ou faux.","confirmed":"de confirmation :attribute ne correspond pas.","date":":attribute n\'est pas une date valide.","date_equals":":attribute doit être une date égale à :date.","date_format":":attribute ne correspond pas au format :format.","different":" champs :attribute et :other doivent être différents.","digits":":attribute doit contenir :digits chiffres.","digits_between":":attribute doit contenir entre :min et :max chiffres.","dimensions":"La taille de l\'image :attribute n\'est pas conforme.","distinct":":attribute a une valeur en double.","email":":attribute doit être une adresse email valide.","ends_with":":attribute doit se terminer par une des valeurs suivantes : :values","exists":":attribute sélectionné est invalide.","file":":attribute doit être un fichier.","filled":":attribute doit avoir une valeur.","gt":{"array":"tableau :attribute doit contenir plus de :value éléments.","file":"La taille du fichier de :attribute doit être supérieure à :value kilo-octets.","numeric":"La valeur de :attribute doit être supérieure à :value.","string":"texte :attribute doit contenir plus de :value caractères."},"gte":{"array":"tableau :attribute doit contenir au moins :value éléments.","file":"La taille du fichier de :attribute doit être supérieure ou égale à :value kilo-octets.","numeric":"La valeur de :attribute doit être supérieure ou égale à :value.","string":"texte :attribute doit contenir au moins :value caractères."},"image":":attribute doit être une image.","in":":attribute est invalide.","in_array":":attribute n\'existe pas dans :other.","integer":":attribute doit être un entier.","ip":":attribute doit être une adresse IP valide.","ipv4":":attribute doit être une adresse IPv4 valide.","ipv6":":attribute doit être une adresse IPv6 valide.","json":":attribute doit être un document JSON valide.","lt":{"array":"tableau :attribute doit contenir moins de :value éléments.","file":"La taille du fichier de :attribute doit être inférieure à :value kilo-octets.","numeric":"La valeur de :attribute doit être inférieure à :value.","string":"texte :attribute doit contenir moins de :value caractères."},"lte":{"array":"tableau :attribute doit contenir au plus :value éléments.","file":"La taille du fichier de :attribute doit être inférieure ou égale à :value kilo-octets.","numeric":"La valeur de :attribute doit être inférieure ou égale à :value.","string":"texte :attribute doit contenir au plus :value caractères."},"max":{"array":"tableau :attribute ne peut contenir plus de :max éléments.","file":"La taille du fichier de :attribute ne peut pas dépasser :max kilo-octets.","numeric":"La valeur de :attribute ne peut être supérieure à :max.","string":"texte de :attribute ne peut contenir plus de :max caractères."},"mimes":":attribute doit être un fichier de type : :values.","mimetypes":":attribute doit être un fichier de type : :values.","min":{"array":"tableau :attribute doit contenir au moins :min éléments.","file":"La taille du fichier de :attribute doit être supérieure à :min kilo-octets.","numeric":"La valeur de :attribute doit être supérieure ou égale à :min.","string":"texte :attribute doit contenir au moins :min caractères."},"multiple_of":"La valeur de :attribute doit être un multiple de :value","not_in":":attribute sélectionné n\'est pas valide.","not_regex":"format du :attribute n\'est pas valide.","numeric":":attribute doit contenir un nombre.","password":"mot de passe est incorrect","present":":attribute doit être présent.","prohibited":":attribute est interdit.","prohibited_if":":attribute est interdit quand :other a la valeur :value.","prohibited_unless":":attribute est interdit à moins que :other est l\'une des valeurs :values.","regex":"format du :attribute est invalide.","relatable":":attribute n\'est sans doute pas associé(e) avec cette donnée.","required":":attribute est obligatoire.","required_if":":attribute est obligatoire quand la valeur de :other est :value.","required_unless":":attribute est obligatoire sauf si :other est :values.","required_with":":attribute est obligatoire quand :values est présent.","required_with_all":":attribute est obligatoire quand :values sont présents.","required_without":":attribute est obligatoire quand :values n\'est pas présent.","required_without_all":":attribute est requis quand aucun de :values n\'est présent.","same":" champs :attribute et :other doivent être identiques.","size":{"array":"tableau :attribute doit contenir :size éléments.","file":"La taille du fichier de :attribute doit être de :size kilo-octets.","numeric":"La valeur de :attribute doit être :size.","string":"texte de :attribute doit contenir :size caractères."},"starts_with":":attribute doit commencer avec une des valeurs suivantes : :values","string":":attribute doit être une chaîne de caractères.","timezone":":attribute doit être un fuseau horaire valide.","unique":"La valeur du :attribute est déjà utilisée.","uploaded":"fichier du :attribute n\'a pu être téléversé.","url":"format de l\'URL de :attribute n\'est pas valide.","uuid":":attribute doit être un UUID valide","isBetweenTheMinAndAdminSelectedOptions":":attribute doit être compris entre le min et la somme des options","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"Le Nom","email":"l\'Email","address":"l\'Adresse","phone":"Le Numéro de Téléphone","password":"Le Mot de passe","is_admin":"Est Admin","slug":"Le Slug","title":"Le Titre","price":"Le Prix","description":"La Description","image":"l\'Image","category_id":"La Catégorie","min":"Le Min","max":"Le Max","time":"Le Temps","tax":"Le Taux d\'imposition","start":"Heure de début","end":"Heure de fin","label":"Le Label","role":"Le Rôle","content":"Le Contenu"}}}}');
+module.exports = JSON.parse('{"en":{"admin":{"adminPanel":"Admin Panel","overview":"Overview","dashboard":"Dashboard","management":"Management","users":"Users","categories":"Categories","extras":"Extras","options":"Options","menus":"Menus","account":"Account","profile":"Profile","logout":"Log Out","delete":"Delete","add":"Add","new":"New","save":"Save","edit":"Edit","discard":"Discard","enter":"Enter","select":"Select","the":"The","theFem":"The","user":"User","category":"Category","extra":"Extra","option":"Option","menu":"Menu","generalInfo":"General Info","canManage":"is able to manage the site data","optional":"Optional","optionalFem":"Optional","to":"To","for":"For","this":"This","thisFem":"This","name":"Name","phone":"Phone","address":"Address","joinedAt":"Joined at","createdAt":"Created at","title":"Title","price":"Price","active":"Active","selectToAdd":"Select to Add","noExtras":"There are no Extras .","next":"Next","previous":"Prev","newOptions":"NEW OPTIONS","oldOptions":"OLD OPTIONS","confirmationTitle":"are you sure ?","confirmationText":"You won\'t be able to revert this","confirmationConfirm":"Yes, do it","settings":"Settings","orders":"Orders","general":"General","cart":"Cart","appNameDesc":"used for branding and emails","time":"Estimated time","tax":"Tax Rate","created":":item created successfully","updated":":item updated successfully","deleted":":item deleted successfully","bulkDeleted":"Selected item(s) deleted successfully","openingHours":"Opening Hours","addOpeningHours":"Add your business hours","splitHours":"Split hours","closed":"Closed","setAsClosed":"Set as Closed","monday":"monday","tuesday":"tuesday","wednesday":"Wednesday","thursday":"thursday","friday":"friday","saturday":"saturday","sunday":"sunday","forcedClose":"Forced Close","forcedCloseText":"this option will override the schedule and force close the restaurant","selectPolygon":"Select a polygon","noCategoryForMeal":"There is no category for the menu . it might have been deleted","min_order_price":"Minimum order price","nameOnCard":"Name on card","paymentDetails":"Payment Details","cashOnDeliveryText":"You will pay cash once the products are delivered","paymentMode":"Payment Mode","status":"Status","passedAt":"Passed at","orderDetails":"Order details","order":"Order","noUserForOrder":"No user in the database for this order . he might have been deleted","filterBy":"Filter by","pending":"Pending","processing":"Processing","out_for_delivery":"Out for Delivery","delivered":"Delivered","cancelled":"Cancelled","failed":"Failed","charge":"Charge","userCharged":"User charged","failure":"Failure","paymentConfirmationRequired":"Payment confirmation required","roles":"Roles","admin":"Admin","deliveryman":"Delivery man","client":"Client","print":"Print","invoice":"Invoice","track":"Track Order","paymentSuccessful":"Payment was successful","refund":"Refund","userRefunded":"User Refunded","onlinePayment":"Online Payment","refundSuccessful":"Refund was successful","subtotal":"Subtotal","from":"From","quantity":"Quantity","deliverymanRequired":"A delivery man is required for out for delivery and delivered statuses","manageProfile":"Manage Your Profile","orderCreated":"New Order has been placed.","deliverymanSelected":"You have been selected to deliver an order.","noNotifications":"You\'re all caught up","notificationsCenter":"Notifications center"},"auth":{"failed":"These credentials do not match our records.","password":"The provided password is incorrect.","throttle":"Too many login attempts. Please try again in :seconds seconds."},"front":{"searchTitle":"Customize the search","search":"Search","categories":"Categories","filters":"Filters","all":"All","allFem":"All","category":"Category","addToCart":"Add","noMeals":"Sorry! There are no menus available","noMealsText":"we suggest to modify the search","noDescription":"Description not Available","noOption":"No Thank you","unavailable":"Not Available","customize":"Customize Your","yourCart":"Your Cart","delete":"Remove","cartEmpty":"Your cart is empty","cartEmptyText":"Buy a delicious meal before it gets cold","weAccept":"We accept","total":"Total with taxes","delivery":"Delivery","checkout":"Go to Checkout","dontDelay":"Don\'t delay the purchase,\\r\\n    adding items to your cart does not mean\\r\\n    Reserving them","successMessage":"Menu added to your cart","errorMessage":"an Error ocurred . Try again","and":"and","chooseAddress":"Choose your Address","chooseAddressText":"Choose your Address from the map or detect browser location","addressDetails":"Details (ex : Floor , House)","geolocationNotSupported":"Your Browser does not support Geolocation .Please enter your address Manually","permissionDenied":"You denied the Permission . Please add your address manually","add":"Add","addressAdded":"Address added successfully","noAddress":"No address available","outOfDeliveryZone":"Our of delivery zone","addressDirections":"Address Directions","detectAddresses":"Detect Addresses Automatically","toggleInstructions":"Toggle Instructions"},"pagination":{"previous":"&laquo; Previous","next":"Next &raquo;"},"passwords":{"reset":"Your password has been reset!","sent":"We have emailed your password reset link!","throttled":"Please wait before retrying.","token":"This password reset token is invalid.","user":"We can\'t find a user with that email address."},"validation":{"accepted":" :attribute must be accepted.","active_url":" :attribute is not a valid URL.","after":" :attribute must be a date after :date.","after_or_equal":" :attribute must be a date after or equal to :date.","alpha":" :attribute must only contain letters.","alpha_dash":" :attribute must only contain letters, numbers, dashes and underscores.","alpha_num":" :attribute must only contain letters and numbers.","array":" :attribute must be an array.","before":" :attribute must be a date before :date.","before_or_equal":" :attribute must be a date before or equal to :date.","between":{"numeric":" :attribute must be between :min and :max.","file":" :attribute must be between :min and :max kilobytes.","string":" :attribute must be between :min and :max characters.","array":" :attribute must have between :min and :max items."},"boolean":" :attribute must be true or false.","confirmed":" :attribute confirmation does not match.","date":" :attribute is not a valid date.","date_equals":" :attribute must be a date equal to :date.","date_format":" :attribute does not match the format :format.","different":" :attribute and :other must be different.","digits":" :attribute must be :digits digits.","digits_between":" :attribute must be between :min and :max digits.","dimensions":" :attribute has invalid image dimensions.","distinct":" :attribute has a duplicate value.","email":" :attribute must be a valid email address.","ends_with":" :attribute must end with one of the following: :values.","exists":" selected :attribute is invalid.","file":" :attribute must be a file.","filled":" :attribute must have a value.","gt":{"numeric":" :attribute must be greater than :value.","file":" :attribute must be greater than :value kilobytes.","string":" :attribute must be greater than :value characters.","array":" :attribute must have more than :value items."},"gte":{"numeric":" :attribute must be greater than or equal :value.","file":" :attribute must be greater than or equal :value kilobytes.","string":" :attribute must be greater than or equal :value characters.","array":" :attribute must have :value items or more."},"image":" :attribute must be an image.","in":" selected :attribute is invalid.","in_array":" :attribute does not exist in :other.","integer":" :attribute must be an integer.","ip":" :attribute must be a valid IP address.","ipv4":" :attribute must be a valid IPv4 address.","ipv6":" :attribute must be a valid IPv6 address.","json":" :attribute must be a valid JSON string.","lt":{"numeric":" :attribute must be less than :value.","file":" :attribute must be less than :value kilobytes.","string":" :attribute must be less than :value characters.","array":" :attribute must have less than :value items."},"lte":{"numeric":" :attribute must be less than or equal :value.","file":" :attribute must be less than or equal :value kilobytes.","string":" :attribute must be less than or equal :value characters.","array":" :attribute must not have more than :value items."},"max":{"numeric":" :attribute must not be greater than :max.","file":" :attribute must not be greater than :max kilobytes.","string":" :attribute must not be greater than :max characters.","array":" :attribute must not have more than :max items."},"mimes":" :attribute must be a file of type: :values.","mimetypes":" :attribute must be a file of type: :values.","min":{"numeric":" :attribute must be at least :min.","file":" :attribute must be at least :min kilobytes.","string":" :attribute must be at least :min characters.","array":" :attribute must have at least :min items."},"multiple_of":" :attribute must be a multiple of :value.","not_in":" selected :attribute is invalid.","not_regex":" :attribute format is invalid.","numeric":" :attribute must be a number.","password":" password is incorrect.","present":" :attribute must be present.","regex":" :attribute format is invalid.","required":" :attribute is required.","required_if":" :attribute is required when :other is :value.","required_unless":" :attribute is required unless :other is in :values.","required_with":" :attribute is required when :values is present.","required_with_all":" :attribute is required when :values are present.","required_without":" :attribute is required when :values is not present.","required_without_all":" :attribute is required when none of :values are present.","prohibited_if":" :attribute is prohibited when :other is :value.","prohibited_unless":" :attribute is prohibited unless :other is in :values.","same":" :attribute and :other must match.","size":{"numeric":" :attribute must be :size.","file":" :attribute must be :size kilobytes.","string":" :attribute must be :size characters.","array":" :attribute must contain :size items."},"starts_with":" :attribute must start with one of the following: :values.","string":" :attribute must be a string.","timezone":" :attribute must be a valid zone.","unique":" :attribute has already been taken.","uploaded":" :attribute failed to upload.","url":" :attribute format is invalid.","uuid":" :attribute must be a valid UUID.","isBetweenTheMinAndAdminSelectedOptions":" :attribute must be between the min and selected options sum","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"The Name","email":"The Email","address":"The Address","phone":"The Phone number","password":"The Password","is_admin":"is Admin","slug":"The Slug","title":"The Title","price":"The Price","description":"The Description","image":"The Image","category_id":"The Category","min":"The Min","max":"The Max","time":"The Time","tax":"The Tax rate","start":"Start hour","end":"End Hour","label":"The Label","roles":"The Roles","content":"The Content"}}},"fr":{"0":1,"admin":{"adminPanel":"Panneau d\'Administration","overview":"Aperçu","dashboard":"Tableau de bord","management":"Gestion","users":"Utilisateurs","categories":"Catégories","extras":"Extras","options":"Options","menus":"Menus","account":"Compte","profile":"Profil","logout":"Se déconnecter","delete":"Suppression","add":"Ajouter","new":"Nouveau","save":"Sauvgarder","edit":"Modifier","discard":"Annuler","enter":"Entrer","select":"Sélectionner","the":"Le","theFem":"La","user":"Utilisateur","category":"Catégorie","extra":"Extra","option":"Option","menu":"Menu","generalInfo":"Info générales","canManage":"peut gérer les données du site","optional":"Optionnel","optionalFem":"Optionnelle","to":"À","for":"Pour","this":"Ce","thisFem":"Cette","name":"Nom","phone":"N.Téléphone","address":"Adresse","joinedAt":"Rejoint à","createdAt":"Créé à","title":"Titre","price":"Prix","active":"Actif","selectToAdd":"sélectionner pour ajouter","noExtras":"Il n\'y a pas de Extra .","next":"Suiv","previous":"Précéd","newOptions":"NOUVELLES OPTIONS","oldOptions":"ANCIENNES OPTIONS","confirmationTitle":"êtes-vous sûr ? ","confirmationText":"Vous ne pourrez pas récupérer  cela !","confirmationConfirm":"Oui, fais-le","settings":"Paramètres","orders":"Commandes","general":"Général","cart":"Panier","appNameDesc":"utilisé pour la marque et les e-mails","time":"Temps estimé","tax":"Taux d\'imposition","created":":item ajoutée avec succès","updated":":item modifiée avec succès","deleted":":item supprimées avec succès","bulkDeleted":"Éléments sélectionné(s) supprimés avec succès","openingHours":"Heures d\'ouverture","addOpeningHours":"Ajouter vos heures d\'ouverture","splitHours":"heures fractionnées","closed":"Fermé","setAsClosed":"Définir comme fermé","monday":"lundi","tuesday":"mardi","wednesday":"mercredi","thursday":"jeudi","friday":"vendredi","saturday":"samedi","sunday":"dimanche","forcedClose":"Fermeture forcée","forcedCloseText":"cette option remplacera l\'horaire et fermera le restaurant forcément","selectPolygon":"Sélectionnez un polygone","noCategoryForMeal":"Il n\'y a pas de catégorie pour le menu. il a peut-être été supprimé","min_order_price":"Prix ​​minimum de commande","nameOnCard":"Nom sur la carte","paymentDetails":"Détails de paiement","cashOnDeliveryText":"Vous paierez en espèces une fois les produits livrés","paymentMode":"Mode de paiement","status":"Statut","passedAt":"Passé à","orderDetails":"Détails de la commande","order":"Commande","noUserForOrder":"Aucun utilisateur dans la base de données pour cette commande. il aurait pu être supprimé","filterBy":"Filtrer par","pending":"En attente","processing":"En cours","out_for_delivery":"En route","delivered":"Livré","cancelled":"Annulé","failed":"Manquée","charge":"Facturez","userCharged":"Utilisateur facturé","failure":"Échec","paymentConfirmationRequired":"Confirmation de paiement requise","roles":"Rôles","admin":"Admin","deliveryman":"Livreur","client":"Client","print":"Imprimer","invoice":"Facture","track":"Tracer Commande","paymentSuccessful":"Le paiement a réussi","refund":"Rembourser","userRefunded":"Utilisateur remboursé","onlinePayment":"Paiement en ligne","refundSuccessful":"Le remboursement a réussi","subtotal":"Sous-total","from":"De","quantity":"Quantité","deliverymanRequired":"Un livreur est requis pour les statuts En route et Livré","manageProfile":"Gérez votre profil","orderCreated":"Une nouvelle commande a été passée.","deliverymanSelected":"Vous avez été sélectionné pour livrer une commande.","noNotifications":"Rien pour l\'instant","notificationsCenter":"Centre de notifications"},"auth":{"failed":"Ces identifiants ne correspondent pas à nos enregistrements.","password":"Le mot de passe fourni est incorrect.","throttle":"Tentatives de connexion trop nombreuses. Veuillez essayer de nouveau dans :seconds secondes."},"front":{"searchTitle":"Personnaliser la Recherche","search":"Rechercher","categories":"Catégories","filters":"Filtres","all":"Tous","allFem":"Toutes","category":"Catégorie","addToCart":"Ajouter","noMeals":"Pardon! Il n\'y a pas de menus disponibles","noMealsText":"nous suggérons de modifier la recherche","noDescription":"Description non disponible","noOption":"Non Merci","unavailable":"Non Disponible","customize":"Personnalisez votre","yourCart":"Votre Panier","delete":"Retirer","cartEmpty":"Votre Panier est Vide","cartEmptyText":"Achetez un délicieux repas avant qu\'il ne fasse froid","weAccept":"nous acceptons","total":"Total avec les taxes","delivery":"Livraison","checkout":"Valider La Commande","dontDelay":"Ne retardez pas l\'achat,\\r\\n    ajouter des articles à votre panier ne signifie pas les\\r\\n    réserver","successMessage":"Menu ajouté au panier","errorMessage":"Une erreur s\'est produite . Réessayer","and":"et","chooseAddress":"Choisissez votre adresse","chooseAddressText":"Choisissez votre adresse sur la carte ou détectez l\'emplacement du navigateur","addressDetails":"Détails (ex: étage, maison)","geolocationNotSupported":"Votre navigateur ne prend pas en charge la géolocalisation. Veuillez saisir votre adresse manuellement","permissionDenied":"Vous avez refusé l\'autorisation. Veuillez ajouter votre adresse manuellement","add":"Ajouter","addressAdded":"Adresse ajouté avec success","noAddress":"Aucune adresse disponible","outOfDeliveryZone":"Hors de zone de livraison","addressDirections":"Directions d\'Adresse","detectAddresses":"Détecter automatiquement les adresses","toggleInstructions":"Basculer Instructions"},"pagination":{"next":"Suivant &raquo;","previous":"&laquo; Précédent"},"passwords":{"reset":"Votre mot de passe a été réinitialisé !","sent":"Nous vous avons envoyé par email le lien de réinitialisation du mot de passe !","throttled":"Veuillez patienter avant de réessayer.","token":"Ce jeton de réinitialisation du mot de passe n\'est pas valide.","user":"Aucun utilisateur n\'a été trouvé avec cette adresse email."},"validation":{"accepted":":attribute doit être accepté.","active_url":":attribute n\'est pas une URL valide.","after":":attribute doit être une date postérieure au :date.","after_or_equal":":attribute doit être une date postérieure ou égale au :date.","alpha":":attribute doit contenir uniquement des lettres.","alpha_dash":":attribute doit contenir uniquement des lettres, des chiffres et des tirets.","alpha_num":":attribute doit contenir uniquement des chiffres et des lettres.","array":":attribute doit être un tableau.","attached":":attribute est déjà attaché(e).","before":":attribute doit être une date antérieure au :date.","before_or_equal":":attribute doit être une date antérieure ou égale au :date.","between":{"array":"tableau :attribute doit contenir entre :min et :max éléments.","file":"La taille du fichier de :attribute doit être comprise entre :min et :max kilo-octets.","numeric":"La valeur de :attribute doit être comprise entre :min et :max.","string":"texte :attribute doit contenir entre :min et :max caractères."},"boolean":":attribute doit être vrai ou faux.","confirmed":"de confirmation :attribute ne correspond pas.","date":":attribute n\'est pas une date valide.","date_equals":":attribute doit être une date égale à :date.","date_format":":attribute ne correspond pas au format :format.","different":" champs :attribute et :other doivent être différents.","digits":":attribute doit contenir :digits chiffres.","digits_between":":attribute doit contenir entre :min et :max chiffres.","dimensions":"La taille de l\'image :attribute n\'est pas conforme.","distinct":":attribute a une valeur en double.","email":":attribute doit être une adresse email valide.","ends_with":":attribute doit se terminer par une des valeurs suivantes : :values","exists":":attribute sélectionné est invalide.","file":":attribute doit être un fichier.","filled":":attribute doit avoir une valeur.","gt":{"array":"tableau :attribute doit contenir plus de :value éléments.","file":"La taille du fichier de :attribute doit être supérieure à :value kilo-octets.","numeric":"La valeur de :attribute doit être supérieure à :value.","string":"texte :attribute doit contenir plus de :value caractères."},"gte":{"array":"tableau :attribute doit contenir au moins :value éléments.","file":"La taille du fichier de :attribute doit être supérieure ou égale à :value kilo-octets.","numeric":"La valeur de :attribute doit être supérieure ou égale à :value.","string":"texte :attribute doit contenir au moins :value caractères."},"image":":attribute doit être une image.","in":":attribute est invalide.","in_array":":attribute n\'existe pas dans :other.","integer":":attribute doit être un entier.","ip":":attribute doit être une adresse IP valide.","ipv4":":attribute doit être une adresse IPv4 valide.","ipv6":":attribute doit être une adresse IPv6 valide.","json":":attribute doit être un document JSON valide.","lt":{"array":"tableau :attribute doit contenir moins de :value éléments.","file":"La taille du fichier de :attribute doit être inférieure à :value kilo-octets.","numeric":"La valeur de :attribute doit être inférieure à :value.","string":"texte :attribute doit contenir moins de :value caractères."},"lte":{"array":"tableau :attribute doit contenir au plus :value éléments.","file":"La taille du fichier de :attribute doit être inférieure ou égale à :value kilo-octets.","numeric":"La valeur de :attribute doit être inférieure ou égale à :value.","string":"texte :attribute doit contenir au plus :value caractères."},"max":{"array":"tableau :attribute ne peut contenir plus de :max éléments.","file":"La taille du fichier de :attribute ne peut pas dépasser :max kilo-octets.","numeric":"La valeur de :attribute ne peut être supérieure à :max.","string":"texte de :attribute ne peut contenir plus de :max caractères."},"mimes":":attribute doit être un fichier de type : :values.","mimetypes":":attribute doit être un fichier de type : :values.","min":{"array":"tableau :attribute doit contenir au moins :min éléments.","file":"La taille du fichier de :attribute doit être supérieure à :min kilo-octets.","numeric":"La valeur de :attribute doit être supérieure ou égale à :min.","string":"texte :attribute doit contenir au moins :min caractères."},"multiple_of":"La valeur de :attribute doit être un multiple de :value","not_in":":attribute sélectionné n\'est pas valide.","not_regex":"format du :attribute n\'est pas valide.","numeric":":attribute doit contenir un nombre.","password":"mot de passe est incorrect","present":":attribute doit être présent.","prohibited":":attribute est interdit.","prohibited_if":":attribute est interdit quand :other a la valeur :value.","prohibited_unless":":attribute est interdit à moins que :other est l\'une des valeurs :values.","regex":"format du :attribute est invalide.","relatable":":attribute n\'est sans doute pas associé(e) avec cette donnée.","required":":attribute est obligatoire.","required_if":":attribute est obligatoire quand la valeur de :other est :value.","required_unless":":attribute est obligatoire sauf si :other est :values.","required_with":":attribute est obligatoire quand :values est présent.","required_with_all":":attribute est obligatoire quand :values sont présents.","required_without":":attribute est obligatoire quand :values n\'est pas présent.","required_without_all":":attribute est requis quand aucun de :values n\'est présent.","same":" champs :attribute et :other doivent être identiques.","size":{"array":"tableau :attribute doit contenir :size éléments.","file":"La taille du fichier de :attribute doit être de :size kilo-octets.","numeric":"La valeur de :attribute doit être :size.","string":"texte de :attribute doit contenir :size caractères."},"starts_with":":attribute doit commencer avec une des valeurs suivantes : :values","string":":attribute doit être une chaîne de caractères.","timezone":":attribute doit être un fuseau horaire valide.","unique":"La valeur du :attribute est déjà utilisée.","uploaded":"fichier du :attribute n\'a pu être téléversé.","url":"format de l\'URL de :attribute n\'est pas valide.","uuid":":attribute doit être un UUID valide","isBetweenTheMinAndAdminSelectedOptions":":attribute doit être compris entre le min et la somme des options","custom":{"attribute-name":{"rule-name":"custom-message"}},"attributes":{"name":"Le Nom","email":"l\'Email","address":"l\'Adresse","phone":"Le Numéro de Téléphone","password":"Le Mot de passe","is_admin":"Est Admin","slug":"Le Slug","title":"Le Titre","price":"Le Prix","description":"La Description","image":"l\'Image","category_id":"La Catégorie","min":"Le Min","max":"Le Max","time":"Le Temps","tax":"Le Taux d\'imposition","start":"Heure de début","end":"Heure de fin","label":"Le Label","roles":"Les Rôles","content":"Le Contenu"}}}}');
 
 /***/ })
 
@@ -72574,15 +72789,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var dayjs_locale_fr__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! dayjs/locale/fr */ "./node_modules/dayjs/locale/fr.js");
 /* harmony import */ var dayjs_locale_fr__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(dayjs_locale_fr__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
-/* harmony import */ var vuelidate_error_extractor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuelidate-error-extractor */ "./node_modules/vuelidate-error-extractor/dist/vuelidate-error-extractor.esm.js");
-/* harmony import */ var _components_partials_ClientErrorAlert_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/partials/ClientErrorAlert.vue */ "./resources/js/admin/components/partials/ClientErrorAlert.vue");
-/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
-/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var webfontloader__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! webfontloader */ "./node_modules/webfontloader/webfontloader.js");
-/* harmony import */ var webfontloader__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(webfontloader__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var skeleton_loader_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! skeleton-loader-vue */ "./node_modules/skeleton-loader-vue/dist/skeleton-loader-vue.esm.js");
-/* harmony import */ var _gate__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./gate */ "./resources/js/admin/gate.js");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
+/* harmony import */ var vuelidate_error_extractor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuelidate-error-extractor */ "./node_modules/vuelidate-error-extractor/dist/vuelidate-error-extractor.esm.js");
+/* harmony import */ var _components_partials_ClientErrorAlert_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/partials/ClientErrorAlert.vue */ "./resources/js/admin/components/partials/ClientErrorAlert.vue");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var webfontloader__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! webfontloader */ "./node_modules/webfontloader/webfontloader.js");
+/* harmony import */ var webfontloader__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(webfontloader__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var skeleton_loader_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! skeleton-loader-vue */ "./node_modules/skeleton-loader-vue/dist/skeleton-loader-vue.esm.js");
+/* harmony import */ var _gate__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./gate */ "./resources/js/admin/gate.js");
 __webpack_require__(/*! ../bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
@@ -72609,10 +72824,10 @@ Vue.component("app", __webpack_require__(/*! ./components/App.vue */ "./resource
 Vue.component("the-breadcrumb", __webpack_require__(/*! ./components/partials/TheBreadcrumb.vue */ "./resources/js/admin/components/partials/TheBreadcrumb.vue").default);
 Vue.component("server-error-alert", __webpack_require__(/*! ./components/partials/ServerErrorAlert */ "./resources/js/admin/components/partials/ServerErrorAlert.vue").default);
 Vue.component("loading", (vue_loading_overlay__WEBPACK_IMPORTED_MODULE_4___default()));
-Vue.component("multiselect", (vue_multiselect__WEBPACK_IMPORTED_MODULE_11___default()));
+Vue.component("multiselect", (vue_multiselect__WEBPACK_IMPORTED_MODULE_10___default()));
 Vue.component("address-selector", __webpack_require__(/*! ./components/addresses/AddressSelector.vue */ "./resources/js/admin/components/addresses/AddressSelector.vue").default);
 Vue.component("address-list", __webpack_require__(/*! ./components/addresses/AddressList.vue */ "./resources/js/admin/components/addresses/AddressList.vue").default);
-Vue.component("vue-skeleton-loader", skeleton_loader_vue__WEBPACK_IMPORTED_MODULE_13__.default); // ______________________________________________Global mixins______________________________________________
+Vue.component("vue-skeleton-loader", skeleton_loader_vue__WEBPACK_IMPORTED_MODULE_12__.default); // ______________________________________________Global mixins______________________________________________
 
 Vue.mixin({
   methods: {
@@ -72642,13 +72857,13 @@ if (document.documentElement.lang == "fr") {
   dayjs__WEBPACK_IMPORTED_MODULE_5___default().locale("fr");
 }
 
-Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_8__.default); // translation package
+Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_14__.default); // translation package
 
 window.translate = __webpack_require__(/*! ../VueTranslation/Translation */ "./resources/js/VueTranslation/Translation.js").default.translate;
 Vue.prototype.translate = __webpack_require__(/*! ../VueTranslation/Translation */ "./resources/js/VueTranslation/Translation.js").default.translate; // vuelidate error extractor
 
-Vue.use(vuelidate_error_extractor__WEBPACK_IMPORTED_MODULE_9__.default, {
-  template: _components_partials_ClientErrorAlert_vue__WEBPACK_IMPORTED_MODULE_10__.default,
+Vue.use(vuelidate_error_extractor__WEBPACK_IMPORTED_MODULE_8__.default, {
+  template: _components_partials_ClientErrorAlert_vue__WEBPACK_IMPORTED_MODULE_9__.default,
 
   /**
    * the attributes property is used to map to the attribute given to the form-group.
@@ -72680,8 +72895,8 @@ Vue.use(vuelidate_error_extractor__WEBPACK_IMPORTED_MODULE_9__.default, {
     }))
   }
 });
-Vue.prototype.$gate = _gate__WEBPACK_IMPORTED_MODULE_14__.default;
-window.gate = _gate__WEBPACK_IMPORTED_MODULE_14__.default;
+Vue.prototype.$gate = _gate__WEBPACK_IMPORTED_MODULE_13__.default;
+window.gate = _gate__WEBPACK_IMPORTED_MODULE_13__.default;
 var app = new Vue({
   el: "#app",
   router: _router__WEBPACK_IMPORTED_MODULE_0__.default,
@@ -72700,7 +72915,7 @@ __webpack_require__(/*! material-dashboard/assets/js/material-dashboard.min.js *
 
 __webpack_require__(/*! ./custom */ "./resources/js/admin/custom.js");
 
-webfontloader__WEBPACK_IMPORTED_MODULE_12__.load({
+webfontloader__WEBPACK_IMPORTED_MODULE_11__.load({
   custom: {
     families: ["Material Icons", "Material Icons Outline"]
   }

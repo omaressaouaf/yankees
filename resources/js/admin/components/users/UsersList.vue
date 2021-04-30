@@ -70,7 +70,7 @@
                     <th>{{ translate("admin.name") }}</th>
                     <th>Email</th>
                     <th>{{ translate("admin.phone") }}</th>
-                    <th>{{ translate("admin.role") }}</th>
+                    <th>{{ translate("admin.roles") }}</th>
                     <th>{{ translate("admin.joinedAt") }}</th>
                     <th>Actions</th>
                   </tr>
@@ -105,11 +105,12 @@
                       </h4>
                     </td>
                     <td>
-                      <h4>
-                        <span class="badge badge-success">{{
-                          translate("admin." + user.role)
-                        }}</span>
-                      </h4>
+                      <span
+                        v-for="role in user.roles"
+                        :key="role.id"
+                        class="badge badge-success"
+                        >{{ translate("admin." + role.name) }}</span
+                      >
                     </td>
 
                     <td>{{ user.created_at | formatDate }}</td>
