@@ -11,8 +11,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -231,23 +231,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   validations: {
     form: {
       name: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.required
       },
       email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required,
-        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.email
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.required,
+        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.email
       },
       phone: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.required
       },
       password: {
-        required: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.requiredIf)(function () {
+        required: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.requiredIf)(function () {
           return this.isCreateMode;
         }),
-        minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(8)
+        minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.minLength)(8)
       },
       roles: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_1__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_0__.required
       }
     }
   },
@@ -269,7 +269,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     rolesAreLoading: function rolesAreLoading() {
       return this.isLoading['roles'];
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("users", ["userObject", 'allRoles', "isLoading", "serverErrors"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("users", ["userObject", 'allRoles', "isLoading", "serverErrors"])),
   methods: _objectSpread({
     customLabel: function customLabel(option) {
       return translate("admin." + option.name);
@@ -285,7 +285,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("users", ["addUser", "fetchUser", "updateUser", 'fetchRoles'])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("users", ["addUser", "fetchUser", "updateUser", 'fetchRoles'])),
   mounted: function mounted() {
     this.$store.commit("users/clearUser");
     this.$store.commit("users/clearServerErrors");

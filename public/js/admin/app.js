@@ -3721,16 +3721,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
-/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./resources/js/admin/store/index.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./resources/js/admin/store/index.js");
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_1__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_0__.default);
+vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_3__.default);
 var routes = [{
   path: "/admin/dashboard",
   name: "dashboard",
@@ -3907,28 +3907,28 @@ var routes = [{
     title: "Profile"
   }
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__.default({
   routes: routes,
   mode: "history"
 });
-nprogress__WEBPACK_IMPORTED_MODULE_2___default().configure({
+nprogress__WEBPACK_IMPORTED_MODULE_0___default().configure({
   easing: "ease",
   speed: 300
 });
 router.beforeEach(function (to, from, next) {
-  nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+  nprogress__WEBPACK_IMPORTED_MODULE_0___default().start();
   next();
 });
 router.afterEach(function (to, from) {
-  var newTitle = "".concat(to.meta.title, " - ").concat(_store__WEBPACK_IMPORTED_MODULE_3__.default.state.appName);
+  var newTitle = "".concat(to.meta.title, " - ").concat(_store__WEBPACK_IMPORTED_MODULE_1__.default.state.appName);
   document.title = newTitle;
-  nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+  nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
 });
 
 function checkManageGate(to, from, next) {
   if (!window.gate.can('manage')) {
     router.push("/admin/403")["catch"](function (err) {});
-    nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+    nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
   } else {
     next();
   }
