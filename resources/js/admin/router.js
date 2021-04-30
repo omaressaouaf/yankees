@@ -1,6 +1,7 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
 import nProgress from "nprogress";
+import store from './store'
 
 
 Vue.use(VueRouter);
@@ -27,7 +28,7 @@ const routes = [
         name: "users.create",
         component: () => import("./components/users/UsersForm.vue"),
         meta: {
-            title: "Users | Create"
+            title: "Create User"
         },
         beforeEnter: checkManageGate
     },
@@ -36,7 +37,7 @@ const routes = [
         name: "users.edit",
         component: () => import("./components/users/UsersForm.vue"),
         meta: {
-            title: "Users | Edit"
+            title: "Edit User"
         },
         beforeEnter: checkManageGate
     },
@@ -54,7 +55,7 @@ const routes = [
         name: "categories.create",
         component: () => import("./components/categories/CategoriesForm.vue"),
         meta: {
-            title: "Categories | Create"
+            title: "Create Category"
         },
         beforeEnter: checkManageGate
     },
@@ -63,7 +64,7 @@ const routes = [
         name: "categories.edit",
         component: () => import("./components/categories/CategoriesForm.vue"),
         meta: {
-            title: "Categories | Edit"
+            title: "Edit Category"
         },
         beforeEnter: checkManageGate
     },
@@ -81,7 +82,7 @@ const routes = [
         name: "extras.create",
         component: () => import("./components/extras/ExtrasForm.vue"),
         meta: {
-            title: "Extras | Create"
+            title: "Create Extra"
         },
         beforeEnter: checkManageGate
     },
@@ -90,7 +91,7 @@ const routes = [
         name: "extras.edit",
         component: () => import("./components/extras/ExtrasForm.vue"),
         meta: {
-            title: "Extras | Edit"
+            title: "Edit Extra"
         },
         beforeEnter: checkManageGate
     },
@@ -108,7 +109,7 @@ const routes = [
         name: "meals.create",
         component: () => import("./components/meals/MealsForm.vue"),
         meta: {
-            title: "Menus | Create"
+            title: "Create Menu"
         },
         beforeEnter: checkManageGate
     },
@@ -117,7 +118,7 @@ const routes = [
         name: "meals.edit",
         component: () => import("./components/meals/MealsForm.vue"),
         meta: {
-            title: "Menus | Edit"
+            title: "Edit Menu"
         },
         beforeEnter: checkManageGate
     },
@@ -134,7 +135,7 @@ const routes = [
         name: "orders.show",
         component: () => import("./components/orders/OrdersSingle.vue"),
         meta: {
-            title: "Orders | Show"
+            title: "Order Details"
         }
     },
     {
@@ -175,7 +176,8 @@ router.beforeEach((to, from, next) => {
     next();
 });
 router.afterEach((to, from) => {
-    // TODO : change the page meta data
+    const newTitle = `${to.meta.title} - ${store.state.appName}`;
+    document.title = newTitle;
     nProgress.done();
 });
 

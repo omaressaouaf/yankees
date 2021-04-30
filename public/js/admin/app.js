@@ -2650,8 +2650,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      appLogo: window.appLogo,
-      appName: window.appName,
+      appLogo: this.$store.state.appLogo,
+      appName: this.$store.state.appName,
       notifications: [],
       unreadNotificationsLength: [],
       loading: false
@@ -2701,6 +2701,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios.put("/api/notifications").then(function (res) {
         _this3.getNotifications();
+
+        document.title = _this3.$route.meta.title;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2714,7 +2716,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(notification);
                 newNotification = {
                   id: notification.id,
                   data: {
@@ -2728,6 +2729,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this4.notifications.unshift(newNotification);
 
                 _this4.unreadNotificationsLength++;
+                document.title = "(".concat(_this4.unreadNotificationsLength, ") ").concat(document.title);
 
                 if (notification.message == "orderCreated") {
                   _this4.$store.commit("orders/addOrder", notification.order);
@@ -3663,6 +3665,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./resources/js/admin/store/index.js");
+
 
 
 
@@ -3693,7 +3697,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_users_UsersForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/users/UsersForm.vue */ "./resources/js/admin/components/users/UsersForm.vue"));
   },
   meta: {
-    title: "Users | Create"
+    title: "Create User"
   },
   beforeEnter: checkManageGate
 }, {
@@ -3703,7 +3707,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_users_UsersForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/users/UsersForm.vue */ "./resources/js/admin/components/users/UsersForm.vue"));
   },
   meta: {
-    title: "Users | Edit"
+    title: "Edit User"
   },
   beforeEnter: checkManageGate
 }, {
@@ -3723,7 +3727,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_categories_CategoriesForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/categories/CategoriesForm.vue */ "./resources/js/admin/components/categories/CategoriesForm.vue"));
   },
   meta: {
-    title: "Categories | Create"
+    title: "Create Category"
   },
   beforeEnter: checkManageGate
 }, {
@@ -3733,7 +3737,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_categories_CategoriesForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/categories/CategoriesForm.vue */ "./resources/js/admin/components/categories/CategoriesForm.vue"));
   },
   meta: {
-    title: "Categories | Edit"
+    title: "Edit Category"
   },
   beforeEnter: checkManageGate
 }, {
@@ -3753,7 +3757,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_extras_ExtrasForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/extras/ExtrasForm.vue */ "./resources/js/admin/components/extras/ExtrasForm.vue"));
   },
   meta: {
-    title: "Extras | Create"
+    title: "Create Extra"
   },
   beforeEnter: checkManageGate
 }, {
@@ -3763,7 +3767,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_extras_ExtrasForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/extras/ExtrasForm.vue */ "./resources/js/admin/components/extras/ExtrasForm.vue"));
   },
   meta: {
-    title: "Extras | Edit"
+    title: "Edit Extra"
   },
   beforeEnter: checkManageGate
 }, {
@@ -3783,7 +3787,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_meals_MealsForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/meals/MealsForm.vue */ "./resources/js/admin/components/meals/MealsForm.vue"));
   },
   meta: {
-    title: "Menus | Create"
+    title: "Create Menu"
   },
   beforeEnter: checkManageGate
 }, {
@@ -3793,7 +3797,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_meals_MealsForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/meals/MealsForm.vue */ "./resources/js/admin/components/meals/MealsForm.vue"));
   },
   meta: {
-    title: "Menus | Edit"
+    title: "Edit Menu"
   },
   beforeEnter: checkManageGate
 }, {
@@ -3812,7 +3816,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_orders_OrdersSingle_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/orders/OrdersSingle.vue */ "./resources/js/admin/components/orders/OrdersSingle.vue"));
   },
   meta: {
-    title: "Orders | Show"
+    title: "Order Details"
   }
 }, {
   path: "/admin/sections",
@@ -3856,7 +3860,8 @@ router.beforeEach(function (to, from, next) {
   next();
 });
 router.afterEach(function (to, from) {
-  // TODO : change the page meta data
+  var newTitle = "".concat(to.meta.title, " - ").concat(_store__WEBPACK_IMPORTED_MODULE_3__.default.state.appName);
+  document.title = newTitle;
   nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
 });
 
@@ -5369,15 +5374,16 @@ var actions = {
               return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/charge/".concat(store.state.order.id));
 
             case 5:
+              new Audio("/storage/cashregister.mp3").play();
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.paymentSuccessful"));
               store.commit("updateOrder", {
                 user_charged: true
               });
-              _context7.next = 16;
+              _context7.next = 17;
               break;
 
-            case 9:
-              _context7.prev = 9;
+            case 10:
+              _context7.prev = 10;
               _context7.t0 = _context7["catch"](0);
               status = _context7.t0.response.status;
 
@@ -5401,16 +5407,16 @@ var actions = {
 
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(status);
 
-            case 16:
+            case 17:
               store.commit("clearLoading", "charge");
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
 
-            case 18:
+            case 19:
             case "end":
               return _context7.stop();
           }
         }
-      }, _callee7, null, [[0, 9]]);
+      }, _callee7, null, [[0, 10]]);
     }))();
   },
   refundUser: function refundUser(store) {
@@ -5427,15 +5433,16 @@ var actions = {
               return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/refund/".concat(store.state.order.id));
 
             case 5:
+              new Audio("/storage/cashregister.mp3").play();
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.refundSuccessful"));
               store.commit("updateOrder", {
                 user_refunded: true
               });
-              _context8.next = 15;
+              _context8.next = 16;
               break;
 
-            case 9:
-              _context8.prev = 9;
+            case 10:
+              _context8.prev = 10;
               _context8.t0 = _context8["catch"](0);
               status = _context8.t0.response.status;
 
@@ -5449,16 +5456,16 @@ var actions = {
 
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(status);
 
-            case 15:
+            case 16:
               store.commit("clearLoading", "refund");
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
 
-            case 17:
+            case 18:
             case "end":
               return _context8.stop();
           }
         }
-      }, _callee8, null, [[0, 9]]);
+      }, _callee8, null, [[0, 10]]);
     }))();
   }
 };

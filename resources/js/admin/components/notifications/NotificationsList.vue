@@ -80,8 +80,8 @@ import { fireToast } from "../../helpers";
 export default {
   data() {
     return {
-      appLogo: window.appLogo,
-      appName: window.appName,
+      appLogo: this.$store.state.appLogo,
+      appName: this.$store.state.appName,
       notifications: [],
       unreadNotificationsLength: [],
       loading: false,
@@ -137,13 +137,13 @@ export default {
         .put("/api/notifications")
         .then((res) => {
           this.getNotifications();
+          document.title = this.$route.meta.title;
         })
         .catch((err) => {
           console.log(err);
         });
     },
     async handleBroadcast(notification) {
-      console.log(notification);
       const newNotification = {
         id: notification.id,
         data: {
@@ -155,6 +155,7 @@ export default {
       };
       this.notifications.unshift(newNotification);
       this.unreadNotificationsLength++;
+      document.title = `(${this.unreadNotificationsLength}) ${document.title}`;
       if (notification.message == "orderCreated") {
         this.$store.commit("orders/addOrder", notification.order);
       }
@@ -185,7 +186,6 @@ export default {
       this.handleBroadcast
     );
     this.getNotifications();
-
   },
 };
 </script>

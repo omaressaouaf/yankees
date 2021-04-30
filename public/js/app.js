@@ -4153,6 +4153,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./resources/js/admin/store/index.js");
+
 
 
 
@@ -4183,7 +4185,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_users_UsersForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/users/UsersForm.vue */ "./resources/js/admin/components/users/UsersForm.vue"));
   },
   meta: {
-    title: "Users | Create"
+    title: "Create User"
   },
   beforeEnter: checkManageGate
 }, {
@@ -4193,7 +4195,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_users_UsersForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/users/UsersForm.vue */ "./resources/js/admin/components/users/UsersForm.vue"));
   },
   meta: {
-    title: "Users | Edit"
+    title: "Edit User"
   },
   beforeEnter: checkManageGate
 }, {
@@ -4213,7 +4215,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_categories_CategoriesForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/categories/CategoriesForm.vue */ "./resources/js/admin/components/categories/CategoriesForm.vue"));
   },
   meta: {
-    title: "Categories | Create"
+    title: "Create Category"
   },
   beforeEnter: checkManageGate
 }, {
@@ -4223,7 +4225,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_categories_CategoriesForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/categories/CategoriesForm.vue */ "./resources/js/admin/components/categories/CategoriesForm.vue"));
   },
   meta: {
-    title: "Categories | Edit"
+    title: "Edit Category"
   },
   beforeEnter: checkManageGate
 }, {
@@ -4243,7 +4245,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_extras_ExtrasForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/extras/ExtrasForm.vue */ "./resources/js/admin/components/extras/ExtrasForm.vue"));
   },
   meta: {
-    title: "Extras | Create"
+    title: "Create Extra"
   },
   beforeEnter: checkManageGate
 }, {
@@ -4253,7 +4255,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_extras_ExtrasForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/extras/ExtrasForm.vue */ "./resources/js/admin/components/extras/ExtrasForm.vue"));
   },
   meta: {
-    title: "Extras | Edit"
+    title: "Edit Extra"
   },
   beforeEnter: checkManageGate
 }, {
@@ -4273,7 +4275,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_meals_MealsForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/meals/MealsForm.vue */ "./resources/js/admin/components/meals/MealsForm.vue"));
   },
   meta: {
-    title: "Menus | Create"
+    title: "Create Menu"
   },
   beforeEnter: checkManageGate
 }, {
@@ -4283,7 +4285,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_meals_MealsForm_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/meals/MealsForm.vue */ "./resources/js/admin/components/meals/MealsForm.vue"));
   },
   meta: {
-    title: "Menus | Edit"
+    title: "Edit Menu"
   },
   beforeEnter: checkManageGate
 }, {
@@ -4302,7 +4304,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_admin_components_orders_OrdersSingle_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/orders/OrdersSingle.vue */ "./resources/js/admin/components/orders/OrdersSingle.vue"));
   },
   meta: {
-    title: "Orders | Show"
+    title: "Order Details"
   }
 }, {
   path: "/admin/sections",
@@ -4346,7 +4348,8 @@ router.beforeEach(function (to, from, next) {
   next();
 });
 router.afterEach(function (to, from) {
-  // TODO : change the page meta data
+  var newTitle = "".concat(to.meta.title, " - ").concat(_store__WEBPACK_IMPORTED_MODULE_3__.default.state.appName);
+  document.title = newTitle;
   nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
 });
 
@@ -4360,6 +4363,2164 @@ function checkManageGate(to, from, next) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
+
+/***/ }),
+
+/***/ "./resources/js/admin/store/index.js":
+/*!*******************************************!*\
+  !*** ./resources/js/admin/store/index.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_users__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/users */ "./resources/js/admin/store/modules/users.js");
+/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/admin/store/modules/categories.js");
+/* harmony import */ var _modules_extras__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/extras */ "./resources/js/admin/store/modules/extras.js");
+/* harmony import */ var _modules_meals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/meals */ "./resources/js/admin/store/modules/meals.js");
+/* harmony import */ var _modules_orders__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/orders */ "./resources/js/admin/store/modules/orders.js");
+/* harmony import */ var _modules_sections__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/sections */ "./resources/js/admin/store/modules/sections.js");
+/* harmony import */ var _modules_auth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/auth */ "./resources/js/admin/store/modules/auth.js");
+
+
+
+
+
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_7__.default.use(vuex__WEBPACK_IMPORTED_MODULE_8__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_8__.default.Store({
+  state: {
+    appName: window.appName,
+    appLogo: window.appLogo,
+    deliveryZoneBounds: window.deliveryZoneBounds
+  },
+  mutations: {
+    setAppName: function setAppName(state, newAppName) {
+      state.appName = newAppName;
+    },
+    setAppLogo: function setAppLogo(state, newAppLogo) {
+      state.appLogo = newAppLogo;
+    },
+    setDeliveryZoneBounds: function setDeliveryZoneBounds(state, newZoneBounds) {
+      state.deliveryZoneBounds = newZoneBounds;
+    }
+  },
+  modules: {
+    users: _modules_users__WEBPACK_IMPORTED_MODULE_0__.default,
+    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_1__.default,
+    extras: _modules_extras__WEBPACK_IMPORTED_MODULE_2__.default,
+    meals: _modules_meals__WEBPACK_IMPORTED_MODULE_3__.default,
+    orders: _modules_orders__WEBPACK_IMPORTED_MODULE_4__.default,
+    sections: _modules_sections__WEBPACK_IMPORTED_MODULE_5__.default,
+    auth: _modules_auth__WEBPACK_IMPORTED_MODULE_6__.default
+  }
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
+
+/***/ }),
+
+/***/ "./resources/js/admin/store/modules/auth.js":
+/*!**************************************************!*\
+  !*** ./resources/js/admin/store/modules/auth.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var state = {
+  authUser: null,
+  loading: {
+    get: false,
+    post: false
+  },
+  serverErrors: null
+};
+var getters = {
+  authUser: function authUser(state) {
+    return state.authUser;
+  },
+  isLoading: function isLoading(state) {
+    return state.loading;
+  },
+  serverErrors: function serverErrors(state) {
+    return state.serverErrors;
+  }
+};
+var actions = {};
+var mutations = {
+  setAuthUser: function setAuthUser(state, authUser) {
+    state.authUser = authUser;
+  },
+  setLoading: function setLoading(state, method) {
+    state.loading[method] = true;
+  },
+  clearLoading: function clearLoading(state, method) {
+    state.loading[method] = false;
+  },
+  setServerErrors: function setServerErrors(state, err) {
+    if (err.response.data.errors) {
+      state.serverErrors = Object.values(err.response.data.errors);
+    } else {
+      state.serverErrors = [];
+    }
+  },
+  clearServerErrors: function clearServerErrors(state) {
+    state.serverErrors = null;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/store/modules/categories.js":
+/*!********************************************************!*\
+  !*** ./resources/js/admin/store/modules/categories.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../router */ "./resources/js/admin/router.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+var state = {
+  categories: [],
+  category: {},
+  loading: {
+    get: false,
+    post: false
+  },
+  serverErrors: null
+};
+var getters = {
+  allCategories: function allCategories(state) {
+    return state.categories;
+  },
+  categoryObject: function categoryObject(state) {
+    return state.category;
+  },
+  isLoading: function isLoading(state) {
+    return state.loading;
+  },
+  serverErrors: function serverErrors(state) {
+    return state.serverErrors;
+  }
+};
+var actions = {
+  fetchCategories: function fetchCategories(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              store.commit("setLoading", "get");
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/categories");
+
+            case 4:
+              res = _context.sent;
+              store.commit("setCategories", res.data.categories);
+              _context.next = 12;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 8]]);
+    }))();
+  },
+  deleteCategory: function deleteCategory(store, id) {
+    (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/categories/".concat(id));
+
+            case 4:
+              store.commit("removeCategory", id);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.deleted", {
+                item: translate("admin.category")
+              }));
+              _context2.next = 12;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context2.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+              store.commit("clearLoading");
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 8]]);
+    })));
+  },
+  addCategory: function addCategory(store, newCategory) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              store.commit("setLoading", "post");
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/categories", newCategory);
+
+            case 4:
+              res = _context3.sent;
+              store.commit("addCategory", res.data.category);
+              store.commit("clearCategory");
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.created", {
+                item: translate("admin.category")
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/categories");
+              _context3.next = 15;
+              break;
+
+            case 11:
+              _context3.prev = 11;
+              _context3.t0 = _context3["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
+              store.commit("setServerErrors", _context3.t0);
+
+            case 15:
+              store.commit("clearLoading", "post");
+
+            case 16:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 11]]);
+    }))();
+  },
+  fetchCategory: function fetchCategory(store, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              store.commit("setLoading", "get");
+              _context4.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/categories/".concat(id));
+
+            case 4:
+              res = _context4.sent;
+              store.commit("setCategory", res.data.category);
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context4.t0.response.status);
+              store.commit("setServerErrors", _context4.t0);
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 8]]);
+    }))();
+  },
+  updateCategory: function updateCategory(store, updatedCategory) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              store.commit("setLoading", "post");
+              _context5.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/categories/".concat(updatedCategory.id), updatedCategory);
+
+            case 4:
+              res = _context5.sent;
+              store.commit("updateCategory", res.data.category);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.updated", {
+                item: translate("admin.category")
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/categories");
+              _context5.next = 14;
+              break;
+
+            case 10:
+              _context5.prev = 10;
+              _context5.t0 = _context5["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context5.t0.response.status);
+              store.commit("setServerErrors", _context5.t0);
+
+            case 14:
+              store.commit("clearLoading", "post");
+
+            case 15:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 10]]);
+    }))();
+  },
+  bulkDeleteCategories: function bulkDeleteCategories(store, selectedItems) {
+    return new Promise( /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(resolve) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                store.commit("setLoading", "post");
+                _context6.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/categories/bulk/" + selectedItems);
+
+              case 4:
+                store.commit("bulkRemoveCategories", selectedItems);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.bulkDeleted"));
+                store.commit("clearLoading", "post");
+                resolve();
+                _context6.next = 14;
+                break;
+
+              case 10:
+                _context6.prev = 10;
+                _context6.t0 = _context6["catch"](0);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+              case 14:
+                store.commit("clearLoading", "post");
+
+              case 15:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[0, 10]]);
+      }));
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+  }
+};
+var mutations = {
+  setCategories: function setCategories(state, categories) {
+    state.categories = categories;
+  },
+  removeCategory: function removeCategory(state, id) {
+    state.categories = state.categories.filter(function (category) {
+      return category.id !== id;
+    });
+  },
+  addCategory: function addCategory(state, newCategory) {
+    state.categories = [newCategory].concat(_toConsumableArray(state.categories));
+  },
+  setCategory: function setCategory(state, category) {
+    state.category = category;
+  },
+  clearCategory: function clearCategory(state) {
+    state.category = {};
+  },
+  updateCategory: function updateCategory(state, updatedCategory) {
+    state.categories = state.categories.map(function (category) {
+      return category.id === updatedCategory.id ? updatedCategory : category;
+    });
+  },
+  bulkRemoveCategories: function bulkRemoveCategories(state, selectedItems) {
+    selectedItems.forEach(function (id) {
+      state.categories = state.categories.filter(function (category) {
+        return category.id !== id;
+      });
+    });
+  },
+  setLoading: function setLoading(state, method) {
+    state.loading[method] = true;
+  },
+  clearLoading: function clearLoading(state, method) {
+    state.loading[method] = false;
+  },
+  setServerErrors: function setServerErrors(state, err) {
+    if (err.response.data.errors) {
+      state.serverErrors = Object.values(err.response.data.errors);
+    } else {
+      state.serverErrors = [];
+    }
+  },
+  clearServerErrors: function clearServerErrors(state) {
+    state.serverErrors = null;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/store/modules/extras.js":
+/*!****************************************************!*\
+  !*** ./resources/js/admin/store/modules/extras.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../router */ "./resources/js/admin/router.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+var state = {
+  extras: [],
+  extra: {},
+  loading: {
+    get: false,
+    post: false
+  },
+  serverErrors: null
+};
+var getters = {
+  allExtras: function allExtras(state) {
+    return state.extras;
+  },
+  extraObject: function extraObject(state) {
+    return state.extra;
+  },
+  isLoading: function isLoading(state) {
+    return state.loading;
+  },
+  serverErrors: function serverErrors(state) {
+    return state.serverErrors;
+  }
+};
+var actions = {
+  fetchExtras: function fetchExtras(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              store.commit("setLoading", "get");
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/extras");
+
+            case 4:
+              res = _context.sent;
+              store.commit("setExtras", res.data.extras);
+              _context.next = 12;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 8]]);
+    }))();
+  },
+  deleteExtra: function deleteExtra(store, id) {
+    (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/extras/".concat(id));
+
+            case 4:
+              store.commit("removeExtra", id);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.deleted", {
+                item: translate("admin.extra")
+              }));
+              _context2.next = 12;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context2.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+
+            case 12:
+              store.commit("clearLoading");
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 8]]);
+    })));
+  },
+  addExtra: function addExtra(store, newExtra) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              store.commit("setLoading", "post");
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/extras", newExtra);
+
+            case 4:
+              res = _context3.sent;
+              store.commit("addExtra", res.data.extra);
+              store.commit("clearExtra");
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.created", {
+                item: translate("admin.extra")
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/extras");
+              _context3.next = 15;
+              break;
+
+            case 11:
+              _context3.prev = 11;
+              _context3.t0 = _context3["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
+              store.commit("setServerErrors", _context3.t0);
+
+            case 15:
+              store.commit("clearLoading", "post");
+
+            case 16:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 11]]);
+    }))();
+  },
+  fetchExtra: function fetchExtra(store, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              store.commit("setLoading", "get");
+              _context4.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/extras/".concat(id));
+
+            case 4:
+              res = _context4.sent;
+              store.commit("setExtra", res.data.extra);
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context4.t0.response.status);
+              store.commit("setServerErrors", _context4.t0);
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 8]]);
+    }))();
+  },
+  updateExtra: function updateExtra(store, updatedExtra) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              store.commit("setLoading", "post");
+              _context5.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/extras/".concat(updatedExtra.id), updatedExtra);
+
+            case 4:
+              res = _context5.sent;
+              store.commit("updateExtra", res.data.extra);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.updated", {
+                item: translate("admin.extra")
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/extras");
+              _context5.next = 14;
+              break;
+
+            case 10:
+              _context5.prev = 10;
+              _context5.t0 = _context5["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context5.t0.response.status);
+              store.commit("setServerErrors", _context5.t0);
+
+            case 14:
+              store.commit("clearLoading", "post");
+
+            case 15:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 10]]);
+    }))();
+  },
+  bulkDeleteExtras: function bulkDeleteExtras(store, selectedItems) {
+    return new Promise( /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(resolve) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                store.commit("setLoading", "post");
+                _context6.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/extras/bulk/" + selectedItems);
+
+              case 4:
+                store.commit("bulkRemoveExtras", selectedItems);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate('admin.bulkDeleted'));
+                store.commit("clearLoading", "post");
+                resolve();
+                _context6.next = 14;
+                break;
+
+              case 10:
+                _context6.prev = 10;
+                _context6.t0 = _context6["catch"](0);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+
+              case 14:
+                store.commit("clearLoading", "post");
+
+              case 15:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[0, 10]]);
+      }));
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+  }
+};
+var mutations = {
+  setExtras: function setExtras(state, extras) {
+    state.extras = extras;
+  },
+  removeExtra: function removeExtra(state, id) {
+    state.extras = state.extras.filter(function (extra) {
+      return extra.id !== id;
+    });
+  },
+  addExtra: function addExtra(state, newExtra) {
+    state.extras = [newExtra].concat(_toConsumableArray(state.extras));
+  },
+  setExtra: function setExtra(state, extra) {
+    extra.multi = Boolean(extra.multi);
+    state.extra = extra;
+  },
+  clearExtra: function clearExtra(state) {
+    state.extra = {};
+  },
+  updateExtra: function updateExtra(state, updatedExtra) {
+    state.extras = state.extras.map(function (extra) {
+      return extra.id === updatedExtra.id ? updatedExtra : extra;
+    });
+  },
+  bulkRemoveExtras: function bulkRemoveExtras(state, selectedItems) {
+    selectedItems.forEach(function (id) {
+      state.extras = state.extras.filter(function (extra) {
+        return extra.id !== id;
+      });
+    });
+  },
+  setLoading: function setLoading(state, method) {
+    state.loading[method] = true;
+  },
+  clearLoading: function clearLoading(state, method) {
+    state.loading[method] = false;
+  },
+  setServerErrors: function setServerErrors(state, err) {
+    if (err.response.data.errors) {
+      state.serverErrors = Object.values(err.response.data.errors);
+    } else {
+      state.serverErrors = [];
+    }
+  },
+  clearServerErrors: function clearServerErrors(state) {
+    state.serverErrors = null;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/store/modules/meals.js":
+/*!***************************************************!*\
+  !*** ./resources/js/admin/store/modules/meals.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../router */ "./resources/js/admin/router.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+var state = {
+  meals: [],
+  meal: {},
+  loading: {
+    get: false,
+    post: false
+  },
+  serverErrors: null
+};
+var getters = {
+  allMeals: function allMeals(state) {
+    return state.meals;
+  },
+  mealObject: function mealObject(state) {
+    return state.meal;
+  },
+  isLoading: function isLoading(state) {
+    return state.loading;
+  },
+  serverErrors: function serverErrors(state) {
+    return state.serverErrors;
+  }
+};
+var actions = {
+  fetchMeals: function fetchMeals(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              store.commit("setLoading", "get");
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/meals");
+
+            case 4:
+              res = _context.sent;
+              store.commit("setMeals", res.data.meals);
+              _context.next = 12;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 8]]);
+    }))();
+  },
+  deleteMeal: function deleteMeal(store, id) {
+    (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/meals/".concat(id));
+
+            case 4:
+              store.commit("removeMeal", id);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.deleted", {
+                item: "Menu"
+              }));
+              _context2.next = 12;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context2.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+
+            case 12:
+              store.commit("clearLoading");
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 8]]);
+    })));
+  },
+  addMeal: function addMeal(store, newMeal) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var config, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              config = {
+                headers: {
+                  "Content-Type": "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
+                }
+              };
+              store.commit("setLoading", "post");
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/meals", newMeal, config);
+
+            case 5:
+              res = _context3.sent;
+              store.commit("addMeal", res.data.meal);
+              store.commit("clearMeal");
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.created", {
+                item: "Menu"
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/meals");
+              _context3.next = 16;
+              break;
+
+            case 12:
+              _context3.prev = 12;
+              _context3.t0 = _context3["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
+              store.commit("setServerErrors", _context3.t0);
+
+            case 16:
+              store.commit("clearLoading", "post");
+
+            case 17:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 12]]);
+    }))();
+  },
+  fetchMeal: function fetchMeal(store, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              store.commit("setLoading", "get");
+              _context4.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/meals/".concat(id));
+
+            case 4:
+              res = _context4.sent;
+              store.commit("setMeal", res.data.meal);
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context4.t0.response.status);
+              store.commit("setServerErrors", _context4.t0);
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 8]]);
+    }))();
+  },
+  updateMeal: function updateMeal(store, updatedMeal) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      var config, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              config = {
+                headers: {
+                  "Content-Type": "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
+                }
+              };
+              store.commit("setLoading", "post"); // even tho it's supposed to be a PUT method . we replaced it with POST in order for php to parse the form data and proccess it . but we need an additional
+              // we appended the put method in order for the route to catch it
+
+              updatedMeal.append("_method", "PUT");
+              _context5.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/meals/".concat(updatedMeal.get("id")), updatedMeal, config);
+
+            case 6:
+              res = _context5.sent;
+              store.commit("updateMeal", res.data.meal);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.updated", {
+                item: "Menu"
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/meals");
+              _context5.next = 16;
+              break;
+
+            case 12:
+              _context5.prev = 12;
+              _context5.t0 = _context5["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context5.t0.response.status);
+              store.commit("setServerErrors", _context5.t0);
+
+            case 16:
+              store.commit("clearLoading", "post");
+
+            case 17:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 12]]);
+    }))();
+  },
+  bulkDeleteMeals: function bulkDeleteMeals(store, selectedItems) {
+    return new Promise( /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(resolve) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                store.commit("setLoading", "post");
+                _context6.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/meals/bulk/" + selectedItems);
+
+              case 4:
+                store.commit("bulkRemoveMeals", selectedItems);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.bulkDeleted"));
+                store.commit("clearLoading", "post");
+                resolve();
+                _context6.next = 14;
+                break;
+
+              case 10:
+                _context6.prev = 10;
+                _context6.t0 = _context6["catch"](0);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+
+              case 14:
+                store.commit("clearLoading", "post");
+
+              case 15:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[0, 10]]);
+      }));
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+  }
+};
+var mutations = {
+  setMeals: function setMeals(state, meals) {
+    state.meals = meals;
+  },
+  removeMeal: function removeMeal(state, id) {
+    state.meals = state.meals.filter(function (meal) {
+      return meal.id !== id;
+    });
+  },
+  addMeal: function addMeal(state, newMeal) {
+    state.meals = [newMeal].concat(_toConsumableArray(state.meals));
+  },
+  setMeal: function setMeal(state, meal) {
+    meal.active = Boolean(meal.active);
+    state.meal = meal;
+  },
+  clearMeal: function clearMeal(state) {
+    state.meal = {};
+  },
+  updateMeal: function updateMeal(state, updatedMeal) {
+    state.meals = state.meals.map(function (meal) {
+      return meal.id === updatedMeal.id ? updatedMeal : meal;
+    });
+  },
+  bulkRemoveMeals: function bulkRemoveMeals(state, selectedItems) {
+    selectedItems.forEach(function (id) {
+      state.meals = state.meals.filter(function (meal) {
+        return meal.id !== id;
+      });
+    });
+  },
+  setLoading: function setLoading(state, method) {
+    state.loading[method] = true;
+  },
+  clearLoading: function clearLoading(state, method) {
+    state.loading[method] = false;
+  },
+  setServerErrors: function setServerErrors(state, err) {
+    if (err.response.data.errors) {
+      state.serverErrors = Object.values(err.response.data.errors);
+    } else {
+      state.serverErrors = [];
+    }
+  },
+  clearServerErrors: function clearServerErrors(state) {
+    state.serverErrors = null;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/store/modules/orders.js":
+/*!****************************************************!*\
+  !*** ./resources/js/admin/store/modules/orders.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../router */ "./resources/js/admin/router.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+var state = {
+  orders: [],
+  order: {
+    user: {}
+  },
+  deliverymen: [],
+  loading: {
+    get: false,
+    post: false,
+    status: false,
+    deliverymen: false,
+    charge: false,
+    refund: false
+  },
+  serverErrors: null
+};
+var getters = {
+  allOrders: function allOrders(state) {
+    return state.orders;
+  },
+  orderObject: function orderObject(state) {
+    return state.order;
+  },
+  allDeliverymen: function allDeliverymen(state) {
+    return state.deliverymen;
+  },
+  isLoading: function isLoading(state) {
+    return state.loading;
+  },
+  serverErrors: function serverErrors(state) {
+    return state.serverErrors;
+  }
+};
+var actions = {
+  fetchOrders: function fetchOrders(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              store.commit("setLoading", "get");
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/orders");
+
+            case 4:
+              res = _context.sent;
+              store.commit("setOrders", res.data.orders);
+              _context.next = 12;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 8]]);
+    }))();
+  },
+  deleteOrder: function deleteOrder(store, id) {
+    (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/orders/".concat(id));
+
+            case 4:
+              store.commit("removeOrder", id);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.deleted", {
+                item: translate("admin.order")
+              }));
+              _context2.next = 12;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context2.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+              store.commit("clearLoading");
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 8]]);
+    })));
+  },
+  bulkDeleteOrders: function bulkDeleteOrders(store, selectedItems) {
+    return new Promise( /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(resolve) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                store.commit("setLoading", "post");
+                _context3.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/orders/bulk/" + selectedItems);
+
+              case 4:
+                store.commit("bulkRemoveOrders", selectedItems);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.bulkDeleted"));
+                store.commit("clearLoading", "post");
+                resolve();
+                _context3.next = 14;
+                break;
+
+              case 10:
+                _context3.prev = 10;
+                _context3.t0 = _context3["catch"](0);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+              case 14:
+                store.commit("clearLoading", "post");
+
+              case 15:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 10]]);
+      }));
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+  },
+  fetchOrder: function fetchOrder(store, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              store.commit("setLoading", "get");
+              _context4.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/orders/".concat(id));
+
+            case 4:
+              res = _context4.sent;
+              store.commit("setOrder", res.data.order);
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context4.t0.response.status);
+              store.commit("setServerErrors", _context4.t0);
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 8]]);
+    }))();
+  },
+  updateOrder: function updateOrder(store, updatedOrder) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              store.commit("setLoading", updatedOrder.loading);
+              _context5.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/".concat(updatedOrder.id), updatedOrder);
+
+            case 4:
+              res = _context5.sent;
+              store.commit("updateOrder", res.data.order);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.updated", {
+                item: translate("admin.order")
+              }));
+              _context5.next = 13;
+              break;
+
+            case 9:
+              _context5.prev = 9;
+              _context5.t0 = _context5["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context5.t0.response.status);
+              store.commit("setServerErrors", _context5.t0);
+
+            case 13:
+              store.commit("clearLoading", updatedOrder.loading);
+
+            case 14:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 9]]);
+    }))();
+  },
+  fetchDeliverymen: function fetchDeliverymen(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              _context6.prev = 0;
+              store.commit("setLoading", "deliverymen");
+              _context6.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/deliverymen");
+
+            case 4:
+              res = _context6.sent;
+              store.commit("setDeliverymen", res.data.deliverymen);
+              _context6.next = 12;
+              break;
+
+            case 8:
+              _context6.prev = 8;
+              _context6.t0 = _context6["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+              store.commit("clearLoading", "deliverymen");
+
+            case 13:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6, null, [[0, 8]]);
+    }))();
+  },
+  chargeUser: function chargeUser(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
+      var status;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              store.commit("setLoading", "charge");
+              _context7.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/charge/".concat(store.state.order.id));
+
+            case 5:
+              new Audio("/storage/cashregister.mp3").play();
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.paymentSuccessful"));
+              store.commit("updateOrder", {
+                user_charged: true
+              });
+              _context7.next = 17;
+              break;
+
+            case 10:
+              _context7.prev = 10;
+              _context7.t0 = _context7["catch"](0);
+              status = _context7.t0.response.status;
+
+              if (status == 400) {
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context7.t0.response.data.msg);
+                store.commit("updateOrder", {
+                  status: "failed"
+                });
+              }
+
+              if (status == 406) {
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("warning", translate("admin.failure"), _context7.t0.response.data.msg);
+                store.commit("updateOrder", {
+                  payment_confirmation_required: true
+                });
+              }
+
+              if (status == 500) {
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+              }
+
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(status);
+
+            case 17:
+              store.commit("clearLoading", "charge");
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+
+            case 19:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7, null, [[0, 10]]);
+    }))();
+  },
+  refundUser: function refundUser(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+      var status;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+        while (1) {
+          switch (_context8.prev = _context8.next) {
+            case 0:
+              _context8.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              store.commit("setLoading", "refund");
+              _context8.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/refund/".concat(store.state.order.id));
+
+            case 5:
+              new Audio("/storage/cashregister.mp3").play();
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.refundSuccessful"));
+              store.commit("updateOrder", {
+                user_refunded: true
+              });
+              _context8.next = 16;
+              break;
+
+            case 10:
+              _context8.prev = 10;
+              _context8.t0 = _context8["catch"](0);
+              status = _context8.t0.response.status;
+
+              if (status == 400) {
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireAlert)("error", translate("admin.failure"), _context8.t0.response.data.msg);
+              }
+
+              if (status == 500) {
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+              }
+
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(status);
+
+            case 16:
+              store.commit("clearLoading", "refund");
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+
+            case 18:
+            case "end":
+              return _context8.stop();
+          }
+        }
+      }, _callee8, null, [[0, 10]]);
+    }))();
+  }
+};
+var mutations = {
+  setOrders: function setOrders(state, orders) {
+    state.orders = orders;
+  },
+  addOrder: function addOrder(state, newOrder) {
+    state.orders.unshift(newOrder);
+  },
+  removeOrder: function removeOrder(state, id) {
+    state.orders = state.orders.filter(function (order) {
+      return order.id !== id;
+    });
+  },
+  bulkRemoveOrders: function bulkRemoveOrders(state, selectedItems) {
+    selectedItems.forEach(function (id) {
+      state.orders = state.orders.filter(function (order) {
+        return order.id !== id;
+      });
+    });
+  },
+  setOrder: function setOrder(state, order) {
+    state.order = order;
+  },
+  clearOrder: function clearOrder(state) {
+    state.order = {};
+  },
+  updateOrder: function updateOrder(state, newValues) {
+    state.order = _objectSpread(_objectSpread({}, state.order), newValues);
+  },
+  setDeliverymen: function setDeliverymen(state, deliverymen) {
+    state.deliverymen = deliverymen;
+  },
+  setLoading: function setLoading(state, method) {
+    state.loading[method] = true;
+  },
+  clearLoading: function clearLoading(state, method) {
+    state.loading[method] = false;
+  },
+  setServerErrors: function setServerErrors(state, err) {
+    if (err.response.data.errors) {
+      state.serverErrors = Object.values(err.response.data.errors);
+    } else {
+      state.serverErrors = [];
+    }
+  },
+  clearServerErrors: function clearServerErrors(state) {
+    state.serverErrors = null;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/store/modules/sections.js":
+/*!******************************************************!*\
+  !*** ./resources/js/admin/store/modules/sections.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var state = {
+  sections: [],
+  loading: {
+    get: false,
+    post: false
+  },
+  serverErrors: null
+};
+var getters = {
+  allSections: function allSections(state) {
+    return state.sections;
+  },
+  isLoading: function isLoading(state) {
+    return state.loading;
+  },
+  serverErrors: function serverErrors(state) {
+    return state.serverErrors;
+  }
+};
+var actions = {
+  fetchSections: function fetchSections(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              store.commit("setLoading", "get");
+              _context.next = 4;
+              return axios.get("/api/sections");
+
+            case 4:
+              res = _context.sent;
+              store.commit("setSections", res.data.sections);
+              _context.next = 12;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_1__.redirectToErrorPageIfNeeded)(_context.t0.response.status);
+              store.commit("setServerErrors", _context.t0);
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 8]]);
+    }))();
+  },
+  updateSection: function updateSection(store, selectedSection) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              store.commit("setLoading", "post");
+              _context2.next = 4;
+              return axios.put("/api/sections/".concat(selectedSection.id), selectedSection);
+
+            case 4:
+              res = _context2.sent;
+              store.commit("updateSection", res.data.section);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_1__.fireToast)("success", translate("admin.updated", {
+                item: 'Section'
+              }));
+              _context2.next = 13;
+              break;
+
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_1__.redirectToErrorPageIfNeeded)(_context2.t0.response.status);
+              store.commit("setServerErrors", _context2.t0);
+
+            case 13:
+              store.commit("clearLoading", "post");
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 9]]);
+    }))();
+  }
+};
+var mutations = {
+  setSections: function setSections(state, sections) {
+    state.sections = sections;
+  },
+  updateSection: function updateSection(state, selectedSection) {
+    state.sections = state.sections.map(function (section) {
+      return section.id === selectedSection.id ? selectedSection : section;
+    });
+  },
+  setLoading: function setLoading(state, method) {
+    state.loading[method] = true;
+  },
+  clearLoading: function clearLoading(state, method) {
+    state.loading[method] = false;
+  },
+  setServerErrors: function setServerErrors(state, err) {
+    if (err.response.data.errors) {
+      state.serverErrors = Object.values(err.response.data.errors);
+    } else {
+      state.serverErrors = [];
+    }
+  },
+  clearServerErrors: function clearServerErrors(state) {
+    state.serverErrors = null;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
+
+/***/ }),
+
+/***/ "./resources/js/admin/store/modules/users.js":
+/*!***************************************************!*\
+  !*** ./resources/js/admin/store/modules/users.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogress.js");
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../router */ "./resources/js/admin/router.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+var state = {
+  users: [],
+  user: {},
+  loading: {
+    get: false,
+    post: false
+  },
+  serverErrors: null
+};
+var getters = {
+  allUsers: function allUsers(state) {
+    return state.users;
+  },
+  userObject: function userObject(state) {
+    return state.user;
+  },
+  isLoading: function isLoading(state) {
+    return state.loading;
+  },
+  serverErrors: function serverErrors(state) {
+    return state.serverErrors;
+  }
+};
+var actions = {
+  fetchUsers: function fetchUsers(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              store.commit("setLoading", "get");
+              _context.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users");
+
+            case 4:
+              res = _context.sent;
+              store.commit("setUsers", res.data.users);
+              _context.next = 12;
+              break;
+
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 8]]);
+    }))();
+  },
+  deleteUser: function deleteUser(store, id) {
+    (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              _context2.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/".concat(id));
+
+            case 4:
+              store.commit("removeUser", id);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.deleted", {
+                item: translate("admin.user")
+              }));
+              _context2.next = 12;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context2.t0.response.status);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+
+            case 12:
+              store.commit("clearLoading");
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 8]]);
+    })));
+  },
+  addUser: function addUser(store, newUser) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              store.commit("setLoading", "post");
+              _context3.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/users", newUser);
+
+            case 4:
+              res = _context3.sent;
+              store.commit("addUser", res.data.user);
+              store.commit("clearUser");
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.created", {
+                item: translate("admin.user")
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/users");
+              _context3.next = 15;
+              break;
+
+            case 11:
+              _context3.prev = 11;
+              _context3.t0 = _context3["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
+              store.commit("setServerErrors", _context3.t0);
+
+            case 15:
+              store.commit("clearLoading", "post");
+
+            case 16:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 11]]);
+    }))();
+  },
+  fetchUser: function fetchUser(store, id) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              store.commit("setLoading", "get");
+              _context4.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/".concat(id));
+
+            case 4:
+              res = _context4.sent;
+              store.commit("setUser", res.data.user);
+              _context4.next = 12;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context4.t0.response.status);
+              store.commit("setServerErrors", _context4.t0);
+
+            case 12:
+              store.commit("clearLoading", "get");
+
+            case 13:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 8]]);
+    }))();
+  },
+  updateUser: function updateUser(store, updatedUser) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.prev = 0;
+              store.commit("setLoading", "post");
+              _context5.next = 4;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/users/".concat(updatedUser.id), updatedUser);
+
+            case 4:
+              res = _context5.sent;
+              store.commit("updateUser", res.data.user); // if (res.data.user.id == store.rootState.auth.authUser.id) {
+              //     store.commit("auth/setAuthUser", res.data.user, {
+              //         root: true
+              //     });
+              // }
+
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.updated", {
+                item: translate("admin.user")
+              }));
+              _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/users");
+              _context5.next = 14;
+              break;
+
+            case 10:
+              _context5.prev = 10;
+              _context5.t0 = _context5["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context5.t0.response.status);
+              store.commit("setServerErrors", _context5.t0);
+
+            case 14:
+              store.commit("clearLoading", "post");
+
+            case 15:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, null, [[0, 10]]);
+    }))();
+  },
+  bulkDeleteUsers: function bulkDeleteUsers(store, selectedItems) {
+    return new Promise( /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(resolve) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.prev = 0;
+                store.commit("setLoading", "post");
+                _context6.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/bulk/" + selectedItems);
+
+              case 4:
+                store.commit("bulkRemoveUsers", selectedItems);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.bulkDeleted"));
+                store.commit("clearLoading", "post");
+                resolve();
+                _context6.next = 14;
+                break;
+
+              case 10:
+                _context6.prev = 10;
+                _context6.t0 = _context6["catch"](0);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+
+              case 14:
+                store.commit("clearLoading", "post");
+
+              case 15:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[0, 10]]);
+      }));
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+  }
+};
+var mutations = {
+  setUsers: function setUsers(state, users) {
+    state.users = users;
+  },
+  removeUser: function removeUser(state, id) {
+    state.users = state.users.filter(function (user) {
+      return user.id !== id;
+    });
+  },
+  addUser: function addUser(state, newUser) {
+    state.users = [newUser].concat(_toConsumableArray(state.users));
+  },
+  setUser: function setUser(state, user) {
+    //this change is intended to fit the  stupid toggle switcher
+    user.is_admin = Boolean(user.is_admin);
+    state.user = user;
+  },
+  clearUser: function clearUser(state) {
+    state.user = {};
+  },
+  updateUser: function updateUser(state, updatedUser) {
+    state.users = state.users.map(function (user) {
+      return user.id === updatedUser.id ? updatedUser : user;
+    });
+  },
+  bulkRemoveUsers: function bulkRemoveUsers(state, selectedItems) {
+    selectedItems.forEach(function (id) {
+      state.users = state.users.filter(function (user) {
+        return user.id !== id;
+      });
+    });
+  },
+  setLoading: function setLoading(state, method) {
+    state.loading[method] = true;
+  },
+  clearLoading: function clearLoading(state, method) {
+    state.loading[method] = false;
+  },
+  setServerErrors: function setServerErrors(state, err) {
+    if (err.response.data.errors) {
+      state.serverErrors = Object.values(err.response.data.errors);
+    } else {
+      state.serverErrors = [];
+    }
+  },
+  clearServerErrors: function clearServerErrors(state) {
+    state.serverErrors = null;
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  namespaced: true,
+  state: state,
+  getters: getters,
+  actions: actions,
+  mutations: mutations
+});
 
 /***/ }),
 
