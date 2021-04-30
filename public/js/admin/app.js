@@ -3847,10 +3847,6 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__.default({
   routes: routes,
   mode: "history"
 });
-var user = new User({
-  name: 'omamr',
-  age: 10
-});
 nprogress__WEBPACK_IMPORTED_MODULE_2___default().configure({
   easing: "ease",
   speed: 300

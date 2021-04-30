@@ -168,10 +168,6 @@ const router = new VueRouter({
     routes,
     mode: "history"
 });
-const user = new User( {
-    name : 'omamr',
-    age : 10,
-})
 
 nProgress.configure({ easing: "ease", speed: 300 });
 router.beforeEach((to, from, next) => {
