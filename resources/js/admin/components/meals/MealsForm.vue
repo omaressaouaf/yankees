@@ -40,15 +40,11 @@
               v-if="serverErrors"
             >
             </server-error-alert>
-            <div v-if="getIsLoading" class="text-center">
-              <loading
-                loader="dots"
+            <div v-if="getIsLoading" class="text-center py-5">
+              <vue-loaders-ball-scale-ripple-multiple
                 color="#2B51C4"
-                :active.sync="getIsLoading"
-                :is-full-page="false"
-                :width="80"
-                :height="200"
-              />
+                scale="1"
+              ></vue-loaders-ball-scale-ripple-multiple>
             </div>
 
             <form-wizard
@@ -196,9 +192,10 @@
                     <p
                       class="text-small text-small text-danger ml-5"
                       v-if="!isCreateMode && !form.category_id"
-                      ><i class="fa fa-info-circle"></i>
-                      {{ translate("admin.noCategoryForMeal") }}</p
                     >
+                      <i class="fa fa-info-circle"></i>
+                      {{ translate("admin.noCategoryForMeal") }}
+                    </p>
                   </div>
 
                   <div class="col-lg-3">
@@ -479,7 +476,7 @@ export default {
         integer,
       },
       category_id: {
-        required : false,
+        required: false,
       },
       active: {
         required,

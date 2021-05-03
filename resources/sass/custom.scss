@@ -122,9 +122,9 @@ button:disabled {
     display: none;
 }
 [v-cloak]::before {
-    content: url("/storage/images/design/spinner.gif");
-    position: relative; /*or absolute*/
-    left: 10%;
+    content:  "";
+    // position: relative; /*or absolute*/
+    // left: 10%;
 }
 // remove wait cursor from skeleton
 .loader {
@@ -304,5 +304,24 @@ button:disabled {
   .inputcontainer input:checked ~ .mark:after {
     display: block;
   }
+
+  #notificationsDropdown .notification {
+    position: absolute;
+    top: 5px;
+    border: 1px solid #FFF;
+    right: 5px;
+    font-size: 9px;
+    background: #f44336;
+    color: #FFFFFF;
+    min-width: 20px;
+    top: 0px;
+    padding: 0px 5px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 19px;
+    vertical-align: middle;
+    display: block;
+}
 
 

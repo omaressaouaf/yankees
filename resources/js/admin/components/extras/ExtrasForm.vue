@@ -35,15 +35,11 @@
             </div>
           </div>
           <div class="card-body">
-            <div v-if="getIsLoading" class="text-center">
-              <loading
-                loader="dots"
+            <div v-if="getIsLoading" class="text-center py-5">
+              <vue-loaders-ball-scale-ripple-multiple
                 color="#2B51C4"
-                :active.sync="getIsLoading"
-                :is-full-page="false"
-                :width="80"
-                :height="200"
-              />
+                scale="1"
+              ></vue-loaders-ball-scale-ripple-multiple>
             </div>
             <form @submit.prevent="handleSubmit" v-else>
               <server-error-alert
@@ -62,7 +58,9 @@
                   <input
                     type="text"
                     @input="$v.form.name.$touch()"
-                    :placeholder="printPlaceholder('name') + ' (ex : panini-sauces)'"
+                    :placeholder="
+                      printPlaceholder('name') + ' (ex : panini-sauces)'
+                    "
                     class="form-control"
                     v-model.trim="$v.form.name.$model"
                   />
@@ -79,7 +77,9 @@
                   <input
                     type="text"
                     @input="$v.form.label.$touch()"
-                    :placeholder="printPlaceholder('label') + ' (ex : Panini Sauces)'"
+                    :placeholder="
+                      printPlaceholder('label') + ' (ex : Panini Sauces)'
+                    "
                     class="form-control"
                     v-model.trim="$v.form.label.$model"
                   />
@@ -97,7 +97,8 @@
                     type="text"
                     @input="$v.form.title.$touch()"
                     :placeholder="
-                      printPlaceholder('title') + ' (ex : Choisissez vos sauces panini  )'
+                      printPlaceholder('title') +
+                      ' (ex : Choisissez vos sauces panini  )'
                     "
                     class="form-control"
                     v-model.trim="$v.form.title.$model"
@@ -265,7 +266,7 @@ export default {
     return {
       form: {
         name: "",
-        label : '',
+        label: "",
         title: "",
         options: [],
         deletedOptions: [],
@@ -283,8 +284,8 @@ export default {
       name: {
         required,
       },
-      label : {
-        required
+      label: {
+        required,
       },
       title: {
         required,

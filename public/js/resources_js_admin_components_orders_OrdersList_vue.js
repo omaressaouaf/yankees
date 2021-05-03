@@ -410,11 +410,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _mixins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins */ "./resources/js/admin/mixins.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
-/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css");
-/* harmony import */ var _OrdersInvoice_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./OrdersInvoice.vue */ "./resources/js/admin/components/orders/OrdersInvoice.vue");
-/* harmony import */ var _addresses_AddressDirections_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../addresses/AddressDirections.vue */ "./resources/js/admin/components/addresses/AddressDirections.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+/* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css");
+/* harmony import */ var _OrdersInvoice_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./OrdersInvoice.vue */ "./resources/js/admin/components/orders/OrdersInvoice.vue");
+/* harmony import */ var _addresses_AddressDirections_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../addresses/AddressDirections.vue */ "./resources/js/admin/components/addresses/AddressDirections.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -610,6 +610,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -618,8 +623,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    OrdersInvoice: _OrdersInvoice_vue__WEBPACK_IMPORTED_MODULE_5__.default,
-    AddressDirections: _addresses_AddressDirections_vue__WEBPACK_IMPORTED_MODULE_6__.default
+    OrdersInvoice: _OrdersInvoice_vue__WEBPACK_IMPORTED_MODULE_4__.default,
+    AddressDirections: _addresses_AddressDirections_vue__WEBPACK_IMPORTED_MODULE_5__.default
   },
   mixins: [_mixins__WEBPACK_IMPORTED_MODULE_1__.dataTableMixin, _mixins__WEBPACK_IMPORTED_MODULE_1__.orderStatusMixin],
   data: function data() {
@@ -654,7 +659,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     postIsLoading: function postIsLoading() {
       return this.isLoading["post"];
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("orders", ["allOrders", "isLoading"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)("orders", ["allOrders", "isLoading"])),
   methods: _objectSpread({
     selectOrUnSelectAll: function selectOrUnSelectAll() {
       var _this2 = this;
@@ -674,7 +679,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      (0,_helpers__WEBPACK_IMPORTED_MODULE_3__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -693,7 +698,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee);
       })));
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("orders", ["fetchOrders", "deleteOrder", "bulkDeleteOrders"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)("orders", ["fetchOrders", "deleteOrder", "bulkDeleteOrders"])),
   created: function created() {
     this.fetchOrders();
   }
@@ -713,6 +718,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "dataTableMixin": () => (/* binding */ dataTableMixin),
 /* harmony export */   "orderStatusMixin": () => (/* binding */ orderStatusMixin)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
 var dataTableMixin = {
   data: function data() {
@@ -827,7 +833,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.light-orange[data-v-22d987b2]  {\r\n  background-color:  rgb(252, 246, 233);\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.light-orange[data-v-22d987b2] {\r\n  background-color: rgb(252, 249, 244);\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1895,55 +1901,54 @@ var render = function() {
                 _c("div", { staticClass: "table-responsive d-print-none" }, [
                   _c(
                     "table",
-                    { staticClass: "table  ", attrs: { id: "dataTable" } },
+                    { staticClass: "table", attrs: { id: "dataTable" } },
                     [
                       _c("thead", [
                         _c("tr", [
-                          !_vm.getIsLoading
-                            ? _c("th", [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.allSelected,
-                                      expression: "allSelected"
+                          _c("th", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.allSelected,
+                                  expression: "allSelected"
+                                }
+                              ],
+                              attrs: {
+                                disabled: _vm.getIsLoading,
+                                type: "checkbox"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.allSelected)
+                                  ? _vm._i(_vm.allSelected, null) > -1
+                                  : _vm.allSelected
+                              },
+                              on: {
+                                click: _vm.selectOrUnSelectAll,
+                                change: function($event) {
+                                  var $$a = _vm.allSelected,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.allSelected = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.allSelected = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
                                     }
-                                  ],
-                                  attrs: { type: "checkbox" },
-                                  domProps: {
-                                    checked: Array.isArray(_vm.allSelected)
-                                      ? _vm._i(_vm.allSelected, null) > -1
-                                      : _vm.allSelected
-                                  },
-                                  on: {
-                                    click: _vm.selectOrUnSelectAll,
-                                    change: function($event) {
-                                      var $$a = _vm.allSelected,
-                                        $$el = $event.target,
-                                        $$c = $$el.checked ? true : false
-                                      if (Array.isArray($$a)) {
-                                        var $$v = null,
-                                          $$i = _vm._i($$a, $$v)
-                                        if ($$el.checked) {
-                                          $$i < 0 &&
-                                            (_vm.allSelected = $$a.concat([
-                                              $$v
-                                            ]))
-                                        } else {
-                                          $$i > -1 &&
-                                            (_vm.allSelected = $$a
-                                              .slice(0, $$i)
-                                              .concat($$a.slice($$i + 1)))
-                                        }
-                                      } else {
-                                        _vm.allSelected = $$c
-                                      }
-                                    }
+                                  } else {
+                                    _vm.allSelected = $$c
                                   }
-                                })
-                              ])
-                            : _vm._e(),
+                                }
+                              }
+                            })
+                          ]),
                           _vm._v(" "),
                           _c("th", [_vm._v("ID")]),
                           _vm._v(" "),
@@ -1983,25 +1988,16 @@ var render = function() {
                                 _c(
                                   "td",
                                   {
-                                    staticClass: "text-center",
-                                    attrs: { colspan: "9" }
+                                    staticClass: "text-center py-5 ",
+                                    attrs: { colspan: "10" }
                                   },
                                   [
-                                    _c("loading", {
-                                      attrs: {
-                                        loader: "dots",
-                                        color: "#2B51C4",
-                                        active: _vm.getIsLoading,
-                                        "is-full-page": false,
-                                        width: 80,
-                                        height: 200
-                                      },
-                                      on: {
-                                        "update:active": function($event) {
-                                          _vm.getIsLoading = $event
-                                        }
+                                    _c(
+                                      "vue-loaders-ball-scale-ripple-multiple",
+                                      {
+                                        attrs: { color: "#2B51C4", scale: "1" }
                                       }
-                                    })
+                                    )
                                   ],
                                   1
                                 )

@@ -14,8 +14,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _mixins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins */ "./resources/js/admin/mixins.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -204,7 +204,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     postIsLoading: function postIsLoading() {
       return this.isLoading["post"];
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)("meals", ["allMeals", "isLoading"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)("meals", ["allMeals", "isLoading"])),
   methods: _objectSpread({
     selectOrUnSelectAll: function selectOrUnSelectAll() {
       var _this = this;
@@ -224,7 +224,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      (0,_helpers__WEBPACK_IMPORTED_MODULE_3__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.fireConfirm)( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -243,7 +243,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee);
       })));
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)("meals", ["fetchMeals", "deleteMeal", "bulkDeleteMeals"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)("meals", ["fetchMeals", "deleteMeal", "bulkDeleteMeals"])),
   created: function created() {
     this.fetchMeals();
   }
@@ -263,6 +263,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "dataTableMixin": () => (/* binding */ dataTableMixin),
 /* harmony export */   "orderStatusMixin": () => (/* binding */ orderStatusMixin)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
 var dataTableMixin = {
   data: function data() {
@@ -501,49 +502,50 @@ var render = function() {
                   [
                     _c("thead", [
                       _c("tr", [
-                        !_vm.getIsLoading
-                          ? _c("th", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.allSelected,
-                                    expression: "allSelected"
+                        _c("th", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.allSelected,
+                                expression: "allSelected"
+                              }
+                            ],
+                            attrs: {
+                              disabled: _vm.getIsLoading,
+                              type: "checkbox"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.allSelected)
+                                ? _vm._i(_vm.allSelected, null) > -1
+                                : _vm.allSelected
+                            },
+                            on: {
+                              click: _vm.selectOrUnSelectAll,
+                              change: function($event) {
+                                var $$a = _vm.allSelected,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.allSelected = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.allSelected = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
                                   }
-                                ],
-                                attrs: { type: "checkbox" },
-                                domProps: {
-                                  checked: Array.isArray(_vm.allSelected)
-                                    ? _vm._i(_vm.allSelected, null) > -1
-                                    : _vm.allSelected
-                                },
-                                on: {
-                                  click: _vm.selectOrUnSelectAll,
-                                  change: function($event) {
-                                    var $$a = _vm.allSelected,
-                                      $$el = $event.target,
-                                      $$c = $$el.checked ? true : false
-                                    if (Array.isArray($$a)) {
-                                      var $$v = null,
-                                        $$i = _vm._i($$a, $$v)
-                                      if ($$el.checked) {
-                                        $$i < 0 &&
-                                          (_vm.allSelected = $$a.concat([$$v]))
-                                      } else {
-                                        $$i > -1 &&
-                                          (_vm.allSelected = $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1)))
-                                      }
-                                    } else {
-                                      _vm.allSelected = $$c
-                                    }
-                                  }
+                                } else {
+                                  _vm.allSelected = $$c
                                 }
-                              })
-                            ])
-                          : _vm._e(),
+                              }
+                            }
+                          })
+                        ]),
                         _vm._v(" "),
                         _c("th", [_vm._v("ID")]),
                         _vm._v(" "),
@@ -583,24 +585,12 @@ var render = function() {
                               _c(
                                 "td",
                                 {
-                                  staticClass: "text-center",
+                                  staticClass: "text-center py-5",
                                   attrs: { colspan: "10" }
                                 },
                                 [
-                                  _c("loading", {
-                                    attrs: {
-                                      loader: "dots",
-                                      color: "#2B51C4",
-                                      active: _vm.getIsLoading,
-                                      "is-full-page": false,
-                                      width: 80,
-                                      height: 200
-                                    },
-                                    on: {
-                                      "update:active": function($event) {
-                                        _vm.getIsLoading = $event
-                                      }
-                                    }
+                                  _c("vue-loaders-ball-scale-ripple-multiple", {
+                                    attrs: { color: "#2B51C4", scale: "1" }
                                   })
                                 ],
                                 1
@@ -680,7 +670,11 @@ var render = function() {
                                           staticClass: "fa fa-info-circle"
                                         })
                                       : _vm._e(),
-                                    _vm._v(" " + _vm._s(meal.category.name))
+                                    _vm._v(
+                                      "\n                    " +
+                                        _vm._s(meal.category.name) +
+                                        "\n                  "
+                                    )
                                   ]
                                 ),
                                 _vm._v(" "),

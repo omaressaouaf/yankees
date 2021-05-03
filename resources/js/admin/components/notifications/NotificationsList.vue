@@ -8,9 +8,11 @@
       aria-haspopup="true"
       aria-expanded="false"
     >
-      <i class="material-icons">notifications</i>
-      <span class="notification">{{ unreadNotificationsLength }}</span>
-      <p class="d-lg-none d-md-block">Notifications</p>
+      <i class="fa fa-bell fa-lg"></i>
+      <span class="notification" v-if="unreadNotificationsLength">{{
+        unreadNotificationsLength
+      }}</span>
+      <!-- <p class="d-lg-none d-md-block">Notifications</p> -->
     </a>
     <div
       class="dropdown-menu dropdown-menu-right"
@@ -30,15 +32,11 @@
           </u>
         </span>
       </h6>
-      <div class="text-center w-100" v-if="loading">
-        <loading
-          loader="dots"
+      <div class="text-center w-100 py-5" v-if="loading">
+        <vue-loaders-ball-scale-ripple-multiple
           color="#2B51C4"
-          :active.sync="loading"
-          :is-full-page="false"
-          :width="80"
-          :height="200"
-        />
+          scale="1"
+        ></vue-loaders-ball-scale-ripple-multiple>
       </div>
       <div v-else class="noti-wrapper has-cool-scrollbar">
         <div v-if="notifications.length">
@@ -48,24 +46,22 @@
             v-for="notification in notifications"
             :key="notification.id"
             class="dropdown-item py-3 d-flex align-items-center mb-2"
-            @click="navigate(notification.data.url)"
+            @click="
+              navigate(notification.data.url, notification.data.event_name)
+            "
           >
             <span
               class="material-icons mr-2 text-light"
-              :class="determineIconAndBG(notification.data.event_name)['bg']"
+              :class="getNotificationPresentation(notification.data)['bg']"
               style="border-radius: 100%; padding: 11px 11px"
             >
-              {{ determineIconAndBG(notification.data.event_name)["icon"] }}
+              {{ getNotificationPresentation(notification.data)["icon"] }}
             </span>
             <span>
               <p class="small text-muted mb-0 pb-0">
                 {{ notification.created_at | formateDateTimeago }}
               </p>
-              {{
-                translate("admin." + notification.data.event_name) +
-                " ID :" +
-                notification.data.order.id
-              }}
+              {{ getNotificationPresentation(notification.data)["msg"] }}
             </span>
           </div>
         </div>
@@ -86,7 +82,7 @@ export default {
       appLogo: this.$store.state.appLogo,
       appName: this.$store.state.appName,
       notifications: [],
-      unreadNotificationsLength: [],
+      unreadNotificationsLength: 0,
       loading: false,
       authUser: window.authUser,
     };
@@ -94,26 +90,83 @@ export default {
 
   methods: {
     revertToDefaultDocumentTitle() {
-      document.title = `${this.$route.meta.title} - ${this.appName}`;
+      const oldNotificationsTemplate = `(${this.unreadNotificationsLength})`;
+      if (document.title.indexOf(oldNotificationsTemplate) != -1) {
+        document.title = document.title.replace(oldNotificationsTemplate, "");
+      }
     },
-    navigate(url) {
+    increaseDocumentTileCount() {
+      this.revertToDefaultDocumentTitle();
+      document.title = `(${this.unreadNotificationsLength + 1}) ${
+        document.title
+      }`;
+    },
+    navigate(url, event_name) {
       if (this.$route.path.indexOf("/admin") != -1) {
+        if (
+          event_name == "orderStatusChanged" ||
+          event_name == "paymentConfirmationRequired"
+        ) {
+          window.location.href = url;
+        }
         this.$router.push(url).catch((err) => {});
       } else {
         window.location.href = url;
       }
     },
-    determineIconAndBG(event_name) {
+    getNotificationPresentation({ event_name, order }) {
+      const translateParams = { orderId: order.id };
       switch (event_name) {
         case "orderCreated":
           return {
             icon: "shopping_bag",
             bg: "bg-success",
+            msg: translate("admin." + event_name, translateParams),
           };
         case "deliverymanSelected":
           return {
             icon: "delivery_dining",
             bg: "bg-info",
+            msg: translate("admin." + event_name, translateParams),
+          };
+        case "orderStatusChanged":
+          return {
+            icon: "history",
+            bg: "bg-danger",
+            msg: translate("admin." + event_name, {
+              ...translateParams,
+              orderStatus: translate("admin." + order.status),
+            }),
+          };
+        case "paymentConfirmationRequired":
+          return {
+            icon: "help_center",
+            bg: "bg-danger",
+            msg: translate("admin." + event_name, translateParams),
+          };
+        case "userCharged":
+          return {
+            icon: "credit_card_off",
+            bg: "bg-success",
+            msg: translate("admin." + event_name, {
+              ...translateParams,
+              orderTotal: order.total,
+            }),
+          };
+        case "userRefunded":
+          return {
+            icon: "credit_score",
+            bg: "bg-info",
+            msg: translate("admin." + event_name, {
+              ...translateParams,
+              orderTotal: order.total,
+            }),
+          };
+        case "paymentConfirmationObtained":
+          return {
+            icon: "verified_user",
+            bg: "bg-primary",
+            msg: translate("admin." + event_name, translateParams),
           };
       }
     },
@@ -144,8 +197,8 @@ export default {
         .delete("/api/notifications")
         .then((res) => {
           this.notifications = [];
+          this.revertToDefaultDocumentTitle();
           this.unreadNotificationsLength = 0;
-          this.revertToDefaultDocumentTitle()
         })
         .catch((err) => {
           console.log(err);
@@ -159,20 +212,11 @@ export default {
         .put("/api/notifications")
         .then((res) => {
           this.getNotifications();
-          this.revertToDefaultDocumentTitle()
+          this.revertToDefaultDocumentTitle();
         })
         .catch((err) => {
           console.log(err);
         });
-    },
-    increaseDocumentTileCount() {
-      const oldNotificationsTemplate = `(${
-        this.unreadNotificationsLength - 1
-      })`;
-      if (document.title.indexOf(oldNotificationsTemplate) != -1) {
-        document.title = document.title.replace(oldNotificationsTemplate, "");
-      }
-      document.title = `(${this.unreadNotificationsLength}) ${document.title}`;
     },
     async handleBroadcast(notification) {
       const newNotification = {
@@ -185,8 +229,8 @@ export default {
         read_at: null,
       };
       this.notifications.unshift(newNotification);
-      this.unreadNotificationsLength++;
       this.increaseDocumentTileCount();
+      this.unreadNotificationsLength++;
       if (notification.event_name == "orderCreated") {
         this.$store.commit("orders/addOrder", notification.order);
       }
@@ -194,9 +238,9 @@ export default {
       if ("Notification" in window) {
         const permission = await Notification.requestPermission();
         if (permission === "granted") {
-          new Notification(appName, {
+          new Notification(this.appName, {
             body: translate("admin." + notification.event_name),
-            icon: appLogo,
+            icon: this.appLogo,
             silent: true,
           });
           return;

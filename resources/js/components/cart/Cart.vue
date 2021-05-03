@@ -10,12 +10,12 @@
           style="position: absolute; top: 20%; left: 45%; z-index: 10000"
           v-if="postIsLoading"
         >
-          <loading
-            color="#2B51C4"
-            :active.sync="postIsLoading"
-            :is-full-page="false"
-          >
-          </loading>
+
+            <vue-loaders-ball-scale-ripple-multiple
+              color="#2B51C4"
+              scale="1"
+            ></vue-loaders-ball-scale-ripple-multiple>
+
         </div>
         <div>
           <div

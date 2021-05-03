@@ -39,15 +39,11 @@
             </div>
           </div>
           <div class="card-body">
-            <div v-if="getIsLoading" class="text-center">
-              <loading
-                loader="dots"
+            <div v-if="getIsLoading" class="text-center py-5">
+              <vue-loaders-ball-scale-ripple-multiple
                 color="#2B51C4"
-                :active.sync="getIsLoading"
-                :is-full-page="false"
-                :width="80"
-                :height="200"
-              />
+                scale="1"
+              ></vue-loaders-ball-scale-ripple-multiple>
             </div>
             <form @submit.prevent="handleSubmit" v-else>
               <server-error-alert

@@ -786,7 +786,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
 
-      return ["delivered"];
+      return this.orderObject.status == "out_for_delivery" ? ["delivered"] : [];
     },
     getIsLoading: function getIsLoading() {
       return this.isLoading["get"];
@@ -1100,6 +1100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "dataTableMixin": () => (/* binding */ dataTableMixin),
 /* harmony export */   "orderStatusMixin": () => (/* binding */ orderStatusMixin)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
 var dataTableMixin = {
   data: function data() {
@@ -2581,7 +2582,9 @@ var render = function() {
                               _c("p", { staticClass: "text-muted mb-0 pb-0" }, [
                                 _vm._v(
                                   "\n                  " +
-                                    _vm._s(_vm.translate("admin.userCharged")) +
+                                    _vm._s(
+                                      _vm.translate("admin.clientCharged")
+                                    ) +
                                     " :\n                  "
                                 ),
                                 _c("i", {
@@ -2598,7 +2601,7 @@ var render = function() {
                                 _vm._v(
                                   "\n                  " +
                                     _vm._s(
-                                      _vm.translate("admin.userRefunded")
+                                      _vm.translate("admin.clientRefunded")
                                     ) +
                                     " :\n                  "
                                 ),

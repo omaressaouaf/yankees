@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Events\DeliverymanSelected;
+use App\Events\OrderStatusChanged;
 use Exception;
 use App\Models\User;
 use App\Models\Order;
@@ -55,8 +56,8 @@ class OrderController extends Controller
             "deliveryman_id" => $request->deliveryman_id
         ]);
         $changes = $order->getChanges();
-        if (array_key_exists('status', $changes)) {
-            // TODO : OrderStatusChanged event . broadcast notification to user
+        if (array_key_exists('status', $changes) &&  $order->user_id != null && auth()->id() !=  $order->user_id) {
+            OrderStatusChanged::dispatch($order);
         }
         if (array_key_exists('deliveryman_id', $changes) &&  $order->deliveryman_id != null && auth()->id() !=  $order->deliveryman_id) {
             DeliverymanSelected::dispatch($order);

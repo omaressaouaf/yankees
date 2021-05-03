@@ -82,9 +82,9 @@
                     :loading="statusIsLoading"
                     :disabled="statusIsLoading"
                   >
-                    <template slot="option" slot-scope="props" >
-                      <div class="option__desc" >
-                        <span class="option__title" >{{
+                    <template slot="option" slot-scope="props">
+                      <div class="option__desc">
+                        <span class="option__title">{{
                           translate("admin." + props.option)
                         }}</span>
                       </div>
@@ -142,7 +142,7 @@
                     {{ orderObject.name_on_card }}
                   </p>
                   <p class="text-muted mb-0 pb-0">
-                    {{ translate("admin.userCharged") }} :
+                    {{ translate("admin.clientCharged") }} :
                     <i
                       class="fa"
                       :class="[
@@ -153,7 +153,7 @@
                     ></i>
                   </p>
                   <p class="text-muted mb-0 pb-0">
-                    {{ translate("admin.userRefunded") }} :
+                    {{ translate("admin.clientRefunded") }} :
                     <i
                       class="fa"
                       :class="[
@@ -360,7 +360,7 @@ export default {
       if (this.$gate.can("manage")) {
         return this.statuses.filter((status) => status != "failed");
       }
-      return   ["delivered"]
+      return this.orderObject.status == "out_for_delivery" ? ["delivered"] : [];
     },
     getIsLoading() {
       return this.isLoading["get"];

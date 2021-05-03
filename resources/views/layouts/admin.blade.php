@@ -73,8 +73,7 @@ The above copyright notice and this permission notice shall be included in all c
             window.appLogo = '{{ config('app.logo') }}';
             const authUser = @json(auth()->user());
             authUser['roles'] = @json(auth()->user()->roles()->pluck('name'));
-            window.authUser = authUser
-            window.abilities = @json(Gate::abilities());
+            window.authUser = authUser;
             window.Laravel = {!! json_encode([
     'csrfToken' => csrf_token(),
 ]) !!}

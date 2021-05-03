@@ -1,8 +1,7 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
 import nProgress from "nprogress";
-import store from './store'
-
+import store from "./store";
 
 Vue.use(VueRouter);
 const routes = [
@@ -12,7 +11,7 @@ const routes = [
         component: () => import("./components/dashboard/Dashboard.vue"),
         meta: {
             title: "Dashboard"
-        },
+        }
     },
     {
         path: "/admin/users",
@@ -163,7 +162,6 @@ const routes = [
             title: "Profile"
         }
     }
-
 ];
 const router = new VueRouter({
     routes,
@@ -176,13 +174,15 @@ router.beforeEach((to, from, next) => {
     next();
 });
 router.afterEach((to, from) => {
-    const newTitle = `${to.meta.title} - ${store.state.appName}`;
-    document.title = newTitle;
+    if (to.meta.title) {
+        const newTitle = `${to.meta.title} - ${store.state.appName}`;
+        document.title = newTitle;
+    }
     nProgress.done();
 });
 
 function checkManageGate(to, from, next) {
-    if (!window.gate.can('manage')) {
+    if (!window.gate.can("manage")) {
         router.push("/admin/403").catch(err => {});
         nProgress.done();
     } else {

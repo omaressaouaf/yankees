@@ -68,11 +68,12 @@
 
           <div class="card-body">
             <div class="table-responsive d-print-none">
-              <table class="table  " id="dataTable">
+              <table class="table" id="dataTable">
                 <thead>
                   <tr>
-                    <th v-if="!getIsLoading">
+                    <th>
                       <input
+                        :disabled="getIsLoading"
                         type="checkbox"
                         v-model="allSelected"
                         @click="selectOrUnSelectAll"
@@ -91,18 +92,19 @@
                 </thead>
                 <tbody>
                   <tr v-if="getIsLoading">
-                    <td colspan="9" class="text-center">
-                      <loading
-                        loader="dots"
+                    <td colspan="10" class="text-center py-5 ">
+                      <vue-loaders-ball-scale-ripple-multiple
                         color="#2B51C4"
-                        :active.sync="getIsLoading"
-                        :is-full-page="false"
-                        :width="80"
-                        :height="200"
-                      />
+                        scale="1"
+                      ></vue-loaders-ball-scale-ripple-multiple>
                     </td>
                   </tr>
-                  <tr  :class="{'light-orange' : order.status == 'pending'}" v-for="order in filteredOrders" :key="order.id" v-else>
+                  <tr
+                    :class="{ 'light-orange': order.status == 'pending' }"
+                    v-for="order in filteredOrders"
+                    :key="order.id"
+                    v-else
+                  >
                     <td>
                       <input
                         type="checkbox"
@@ -161,7 +163,10 @@
                         ><i class="fa fa-print text-secondary mr-3"></i>
                       </a>
 
-                      <a href="#" v-if="$gate.can('manage')" @click.prevent="deleteOrder(order.id)"
+                      <a
+                        href="#"
+                        v-if="$gate.can('manage')"
+                        @click.prevent="deleteOrder(order.id)"
                         ><i class="fa fa-trash text-danger"></i
                       ></a>
                     </td>
@@ -169,11 +174,11 @@
                 </tbody>
               </table>
             </div>
-              <orders-invoice :order="clickedOrder" />
-              <address-directions
-                :end-address-line="clickedOrder.address_line"
-                :end-address-details="clickedOrder.address_details"
-              />
+            <orders-invoice :order="clickedOrder" />
+            <address-directions
+              :end-address-line="clickedOrder.address_line"
+              :end-address-details="clickedOrder.address_details"
+            />
           </div>
         </div>
       </div>
@@ -253,8 +258,7 @@ export default {
 </script>
 
 <style scoped>
-
-.light-orange  {
-  background-color:  rgb(252, 246, 233);
+.light-orange {
+  background-color: rgb(252, 249, 244);
 }
 </style>

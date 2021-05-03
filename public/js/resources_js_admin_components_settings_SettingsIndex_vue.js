@@ -1060,10 +1060,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -3106,24 +3102,12 @@ var render = function() {
                     _c(
                       "div",
                       {
-                        staticClass: "tab-pane active text-center",
+                        staticClass: "tab-pane active text-center py-5",
                         attrs: { id: "application" }
                       },
                       [
-                        _c("loading", {
-                          attrs: {
-                            loader: "dots",
-                            color: "#2B51C4",
-                            active: _vm.loading,
-                            "is-full-page": false,
-                            width: 80,
-                            height: 200
-                          },
-                          on: {
-                            "update:active": function($event) {
-                              _vm.loading = $event
-                            }
-                          }
+                        _c("vue-loaders-ball-scale-ripple-multiple", {
+                          attrs: { color: "#2B51C4", scale: "1" }
                         })
                       ],
                       1

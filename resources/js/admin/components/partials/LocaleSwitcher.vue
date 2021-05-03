@@ -51,6 +51,8 @@ export default {
       availableLocales: window.availableLocales,
     };
   },
+  mounted() {
+  }
 };
 </script>
 

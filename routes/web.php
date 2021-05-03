@@ -1,16 +1,16 @@
 <?php
 
-use App\Models\Order;
-use App\Events\OrderCreated;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Spatie\OpeningHours\OpeningHours;
+
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\WebhookController;
 
 // use Akaunting\Setting\Facade as Setting;
 
@@ -26,8 +26,8 @@ Route::group(['middleware' => "setLocale"], function () {
         return back();
     });
     // Public
-    Route::get('/', [PageController::class, 'landing'])->name('landing');
-    Route::get('/about', [PageController::class, 'about'])->name('about')->middleware('schedule');
+    Route::get('/', [PageController::class, 'home'])->name('home');
+    Route::get('/about', [PageController::class, 'about'])->name('about');
 
     // Meals
     Route::resource('meals', MealController::class)->only(['index']);
@@ -47,9 +47,13 @@ Route::group(['middleware' => "setLocale"], function () {
         Route::resource('checkout', CheckoutController::class)->only(['index', 'store']);
     });
 
+    // Webhook
+    Route::post(
+        '/stripe/webhook',
+        [WebhookController::class, 'handleWebhook']
+    );
     // Auth
     Auth::routes();
-
     // Admin
     Route::get(
         '/admin/{path}',

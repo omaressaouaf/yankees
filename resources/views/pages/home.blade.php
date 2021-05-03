@@ -8,8 +8,6 @@
         @include('includes.about-section')
         <!-- End About Section -->
 
-
-
         <!-- ======= Menu Section ======= -->
         <section id="menu" class="menu section-bg">
             <div class="container" data-aos="fade-up">

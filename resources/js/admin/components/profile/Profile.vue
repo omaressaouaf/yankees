@@ -58,12 +58,12 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">{{
-                      translate("admin.role")
+                      translate("admin.roles")
                     }}</label>
                     <div>
                       <h4>
-                        <span class="badge badge-success">
-                          {{ authUser.role }}
+                        <span v-for="role in authUser.roles" :key="role.id" class="badge badge-success mr-2">
+                          {{role }}
                         </span>
                       </h4>
                     </div>

@@ -34,4 +34,5 @@ class MealController extends Controller
             'meals' => $meals->with(['category', 'extras', 'extras.options'])->paginate(9)
         ]);
     }
+
 }

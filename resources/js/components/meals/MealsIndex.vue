@@ -5,6 +5,7 @@
         <div class="col-xl-4 order-xl-2 mt-3">
           <div id="cartWrapper">
             <cart />
+          
           </div>
         </div>
 
@@ -28,12 +29,11 @@ export default {
 
 
 <style scoped>
-  #cartWrapper {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 90px;
-
-  }
+#cartWrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 90px;
+}
 @media (min-width: 1024px) and (max-height: 657px) {
   #cartWrapper {
     overflow-y: auto;

@@ -44,6 +44,7 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
     @yield('head')
+
 </head>
 
 
@@ -59,7 +60,8 @@
         window.deliveryTime = @json(config('delivery.time'));
         window.minOrderPrice = @json(config('cart.min_order_price'));
         window.authUser = @json(auth()->user());
-
+        window.appName = '{{ config('app.name') }}';
+        window.appLogo = '{{ config('app.logo') }}';
 
     </script>
     <div id="app">

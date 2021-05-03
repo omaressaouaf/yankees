@@ -4,7 +4,6 @@ import router from "./router";
 import store from "./store";
 import ToggleButton from "vue-js-toggle-button";
 import swal from "sweetalert2";
-import Loading from "vue-loading-overlay";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
@@ -16,6 +15,8 @@ import Multiselect from "vue-multiselect";
 import * as WebFont from "webfontloader";
 import VueSkeletonLoader from "skeleton-loader-vue";
 import gate from "./gate";
+import VueLoaders from 'vue-loaders';
+import "vue-loaders/dist/vue-loaders.css";
 // ______________________________________________State Commit Mutations for The authenticated user______________________________________________
 store.commit("auth/setAuthUser", window.authUser);
 // ______________________________________________Component global registration______________________________
@@ -28,7 +29,6 @@ Vue.component(
     "server-error-alert",
     require("./components/partials/ServerErrorAlert").default
 );
-Vue.component("loading", Loading);
 Vue.component("multiselect", Multiselect);
 Vue.component(
     "address-selector",
@@ -39,6 +39,7 @@ Vue.component(
     require("./components/addresses/AddressList.vue").default
 );
 Vue.component("vue-skeleton-loader", VueSkeletonLoader);
+
 
 // ______________________________________________Global mixins______________________________________________
 
@@ -123,6 +124,8 @@ Vue.use(vuelidateErrorExtractor, {
 });
 Vue.prototype.$gate = gate;
 window.gate = gate;
+Vue.use(VueLoaders);
+
 const app = new Vue({
     el: "#app",
     router,

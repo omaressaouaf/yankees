@@ -295,19 +295,30 @@ var render = function() {
                   _c("div", { staticClass: "col-md-6" }, [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "bmd-label-floating" }, [
-                        _vm._v(_vm._s(_vm.translate("admin.role")))
+                        _vm._v(_vm._s(_vm.translate("admin.roles")))
                       ]),
                       _vm._v(" "),
                       _c("div", [
-                        _c("h4", [
-                          _c("span", { staticClass: "badge badge-success" }, [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.authUser.role) +
-                                "\n                      "
+                        _c(
+                          "h4",
+                          _vm._l(_vm.authUser.roles, function(role) {
+                            return _c(
+                              "span",
+                              {
+                                key: role.id,
+                                staticClass: "badge badge-success mr-2"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(role) +
+                                    "\n                      "
+                                )
+                              ]
                             )
-                          ])
-                        ])
+                          }),
+                          0
+                        )
                       ])
                     ])
                   ])

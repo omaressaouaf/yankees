@@ -56,15 +56,11 @@
           </div>
           <div class="card-body">
             <div class="tab-content" v-if="loading">
-              <div class="tab-pane active text-center" id="application">
-                <loading
-                  loader="dots"
+              <div class="tab-pane active text-center py-5" id="application">
+                <vue-loaders-ball-scale-ripple-multiple
                   color="#2B51C4"
-                  :active.sync="loading"
-                  :is-full-page="false"
-                  :width="80"
-                  :height="200"
-                />
+                  scale="1"
+                ></vue-loaders-ball-scale-ripple-multiple>
               </div>
             </div>
             <div class="tab-content" v-else>

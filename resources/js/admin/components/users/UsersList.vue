@@ -59,8 +59,9 @@
               <table class="table table-striped table-hover" id="dataTable">
                 <thead>
                   <tr>
-                    <th v-if="!getIsLoading">
+                    <th>
                       <input
+                        :disabled="getIsLoading"
                         type="checkbox"
                         v-model="allSelected"
                         @click="selectOrUnSelectAll"
@@ -77,15 +78,11 @@
                 </thead>
                 <tbody>
                   <tr v-if="getIsLoading">
-                    <td colspan="8" class="text-center">
-                      <loading
-                        loader="dots"
+                    <td colspan="8" class="text-center py-5">
+                      <vue-loaders-ball-scale-ripple-multiple
                         color="#2B51C4"
-                        :active.sync="getIsLoading"
-                        :is-full-page="false"
-                        :width="80"
-                        :height="200"
-                      />
+                        scale="1"
+                      ></vue-loaders-ball-scale-ripple-multiple>
                     </td>
                   </tr>
                   <tr v-for="user in allUsers" :key="user.id" v-else>
@@ -108,7 +105,7 @@
                       <span
                         v-for="role in user.roles"
                         :key="role.id"
-                        class="badge badge-success"
+                        class="badge badge-success mr-1"
                         >{{ translate("admin." + role.name) }}</span
                       >
                     </td>

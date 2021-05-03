@@ -175,9 +175,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 
@@ -268,6 +265,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "dataTableMixin": () => (/* binding */ dataTableMixin),
 /* harmony export */   "orderStatusMixin": () => (/* binding */ orderStatusMixin)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
 var dataTableMixin = {
   data: function data() {
@@ -512,49 +510,50 @@ var render = function() {
                   [
                     _c("thead", [
                       _c("tr", [
-                        !_vm.getIsLoading
-                          ? _c("th", [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.allSelected,
-                                    expression: "allSelected"
+                        _c("th", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.allSelected,
+                                expression: "allSelected"
+                              }
+                            ],
+                            attrs: {
+                              disabled: _vm.getIsLoading,
+                              type: "checkbox"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.allSelected)
+                                ? _vm._i(_vm.allSelected, null) > -1
+                                : _vm.allSelected
+                            },
+                            on: {
+                              click: _vm.selectOrUnSelectAll,
+                              change: function($event) {
+                                var $$a = _vm.allSelected,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.allSelected = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.allSelected = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
                                   }
-                                ],
-                                attrs: { type: "checkbox" },
-                                domProps: {
-                                  checked: Array.isArray(_vm.allSelected)
-                                    ? _vm._i(_vm.allSelected, null) > -1
-                                    : _vm.allSelected
-                                },
-                                on: {
-                                  click: _vm.selectOrUnSelectAll,
-                                  change: function($event) {
-                                    var $$a = _vm.allSelected,
-                                      $$el = $event.target,
-                                      $$c = $$el.checked ? true : false
-                                    if (Array.isArray($$a)) {
-                                      var $$v = null,
-                                        $$i = _vm._i($$a, $$v)
-                                      if ($$el.checked) {
-                                        $$i < 0 &&
-                                          (_vm.allSelected = $$a.concat([$$v]))
-                                      } else {
-                                        $$i > -1 &&
-                                          (_vm.allSelected = $$a
-                                            .slice(0, $$i)
-                                            .concat($$a.slice($$i + 1)))
-                                      }
-                                    } else {
-                                      _vm.allSelected = $$c
-                                    }
-                                  }
+                                } else {
+                                  _vm.allSelected = $$c
                                 }
-                              })
-                            ])
-                          : _vm._e(),
+                              }
+                            }
+                          })
+                        ]),
                         _vm._v(" "),
                         _c("th", [_vm._v("ID")]),
                         _vm._v(" "),
@@ -586,24 +585,12 @@ var render = function() {
                               _c(
                                 "td",
                                 {
-                                  staticClass: "text-center",
+                                  staticClass: "text-center py-5",
                                   attrs: { colspan: "8" }
                                 },
                                 [
-                                  _c("loading", {
-                                    attrs: {
-                                      loader: "dots",
-                                      color: "#2B51C4",
-                                      active: _vm.getIsLoading,
-                                      "is-full-page": false,
-                                      width: 80,
-                                      height: 200
-                                    },
-                                    on: {
-                                      "update:active": function($event) {
-                                        _vm.getIsLoading = $event
-                                      }
-                                    }
+                                  _c("vue-loaders-ball-scale-ripple-multiple", {
+                                    attrs: { color: "#2B51C4", scale: "1" }
                                   })
                                 ],
                                 1
@@ -679,7 +666,7 @@ var render = function() {
                                       "span",
                                       {
                                         key: role.id,
-                                        staticClass: "badge badge-success"
+                                        staticClass: "badge badge-success mr-1"
                                       },
                                       [
                                         _vm._v(

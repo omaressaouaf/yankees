@@ -209,10 +209,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -267,9 +263,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.isLoading["post"];
     },
     rolesAreLoading: function rolesAreLoading() {
-      return this.isLoading['roles'];
+      return this.isLoading["roles"];
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("users", ["userObject", 'allRoles', "isLoading", "serverErrors"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)("users", ["userObject", "allRoles", "isLoading", "serverErrors"])),
   methods: _objectSpread({
     customLabel: function customLabel(option) {
       return translate("admin." + option.name);
@@ -285,7 +281,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("users", ["addUser", "fetchUser", "updateUser", 'fetchRoles'])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)("users", ["addUser", "fetchUser", "updateUser", "fetchRoles"])),
   mounted: function mounted() {
     this.$store.commit("users/clearUser");
     this.$store.commit("users/clearServerErrors");
@@ -472,22 +468,10 @@ var render = function() {
               _vm.getIsLoading
                 ? _c(
                     "div",
-                    { staticClass: "text-center" },
+                    { staticClass: "text-center py-5" },
                     [
-                      _c("loading", {
-                        attrs: {
-                          loader: "dots",
-                          color: "#2B51C4",
-                          active: _vm.getIsLoading,
-                          "is-full-page": false,
-                          width: 80,
-                          height: 200
-                        },
-                        on: {
-                          "update:active": function($event) {
-                            _vm.getIsLoading = $event
-                          }
-                        }
+                      _c("vue-loaders-ball-scale-ripple-multiple", {
+                        attrs: { color: "#2B51C4", scale: "1" }
                       })
                     ],
                     1

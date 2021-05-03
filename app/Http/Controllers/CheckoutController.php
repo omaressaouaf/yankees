@@ -24,7 +24,7 @@ class CheckoutController extends Controller
 
         /** @var \App\Models\User */
         $authUser = auth()->user();
-        return view('pages.checkout')->with('intent', $authUser->createSetupIntent());
+        return view('pages.checkout')->with('intent', $authUser->createSetupIntent(['usage' => "off_session"]));
     }
 
     public function store(Request $request)

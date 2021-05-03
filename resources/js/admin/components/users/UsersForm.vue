@@ -35,15 +35,11 @@
             </div>
           </div>
           <div class="card-body">
-            <div v-if="getIsLoading" class="text-center">
-              <loading
-                loader="dots"
+            <div v-if="getIsLoading" class="text-center py-5">
+              <vue-loaders-ball-scale-ripple-multiple
                 color="#2B51C4"
-                :active.sync="getIsLoading"
-                :is-full-page="false"
-                :width="80"
-                :height="200"
-              />
+                scale="1"
+              ></vue-loaders-ball-scale-ripple-multiple>
             </div>
             <form @submit.prevent="handleSubmit" v-else>
               <server-error-alert
@@ -253,9 +249,14 @@ export default {
       return this.isLoading["post"];
     },
     rolesAreLoading() {
-      return this.isLoading['roles']
+      return this.isLoading["roles"];
     },
-    ...mapGetters("users", ["userObject" , 'allRoles',"isLoading", "serverErrors"  ]),
+    ...mapGetters("users", [
+      "userObject",
+      "allRoles",
+      "isLoading",
+      "serverErrors",
+    ]),
   },
   methods: {
     customLabel(option) {
@@ -272,8 +273,12 @@ export default {
       }
     },
 
-    ...mapActions("users", ["addUser", "fetchUser", "updateUser" , 'fetchRoles' ]),
-
+    ...mapActions("users", [
+      "addUser",
+      "fetchUser",
+      "updateUser",
+      "fetchRoles",
+    ]),
   },
 
   mounted() {
@@ -282,7 +287,7 @@ export default {
     if (!this.isCreateMode) {
       this.fetchUser(this.$route.params.id);
     }
-    this.fetchRoles()
+    this.fetchRoles();
   },
 };
 </script>

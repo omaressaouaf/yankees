@@ -256,22 +256,10 @@ var render = function() {
               _vm.getIsLoading
                 ? _c(
                     "div",
-                    { staticClass: "text-center" },
+                    { staticClass: "text-center py-5" },
                     [
-                      _c("loading", {
-                        attrs: {
-                          loader: "dots",
-                          color: "#2B51C4",
-                          active: _vm.getIsLoading,
-                          "is-full-page": false,
-                          width: 80,
-                          height: 200
-                        },
-                        on: {
-                          "update:active": function($event) {
-                            _vm.getIsLoading = $event
-                          }
-                        }
+                      _c("vue-loaders-ball-scale-ripple-multiple", {
+                        attrs: { color: "#2B51C4", scale: "1" }
                       })
                     ],
                     1
@@ -343,7 +331,7 @@ var render = function() {
                                   placeholder:
                                     _vm.printPlaceholder("title") +
                                     " (" +
-                                    locale +
+                                    locale.toUpperCase() +
                                     ")"
                                 },
                                 domProps: {
@@ -386,7 +374,7 @@ var render = function() {
                                   placeholder:
                                     _vm.printPlaceholder("title") +
                                     " (" +
-                                    locale +
+                                    locale.toUpperCase() +
                                     ")"
                                 },
                                 domProps: {

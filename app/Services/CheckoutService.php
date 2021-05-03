@@ -2,8 +2,12 @@
 
 namespace App\Services;
 
-use App\Events\OrderCreated;
 use App\Models\Order;
+use App\Events\OrderCreated;
+use App\Events\OrderStatusChanged;
+use App\Events\PaymentConfirmationRequired;
+use App\Events\UserCharged;
+use App\Events\UserRefunded;
 use Illuminate\Support\Facades\DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Laravel\Cashier\Exceptions\PaymentFailure;
@@ -53,7 +57,6 @@ class CheckoutService
             }
             DB::commit();
             Cart::destroy();
-            // Order Created Event
             OrderCreated::dispatch($order);
         } catch (\Exception $e) {
             DB::rollback();
@@ -67,6 +70,7 @@ class CheckoutService
     {
         $msg = 'user charged successfully';
         $status = 200;
+        $payment = "";
         try {
             DB::beginTransaction();
             $order->update([
@@ -77,12 +81,16 @@ class CheckoutService
                 throw new ModelNotFoundException();
             }
             $paymentMethod = $user->defaultPaymentMethod();
-            $payment =  $user->charge($order->total * 100, $paymentMethod->id);
-            $order->update([
-                'payment_id' => $payment->id
+            $payment =  $user->charge($order->total * 100, $paymentMethod->id, [
+                'metadata' => [
+                    'order_id' => $order->id
+                ]
             ]);
+
             DB::commit();
-            // TODO  : UserCharged event . sms notification to user and maybe email
+
+            UserCharged::dispatch($order);
+
         } catch (PaymentFailure | ModelNotFoundException  $e) {
             DB::rollback();
             $order->update([
@@ -90,20 +98,26 @@ class CheckoutService
             ]);
             $status = 400;
             $msg = $e instanceof PaymentFailure ?   "The payment did not pass successfully" : "The user was not found (deleted)";
-            // TODO : OrderStatusChanged event . broadcast notification to user
+            if ($order->user_id != null && auth()->id() !=  $order->user_id) {
+                OrderStatusChanged::dispatch($order);
+            }
         } catch (PaymentActionRequired  $e) {
             DB::rollback();
             $order->update([
                 'payment_confirmation_required' => true,
             ]);
+            $payment = $e->payment;
             $msg = "The payment requires additional confirmation. a notification will be sent to the client in order to confirm and pay . you will get notified when the payment is confirmed";
             $status = 406;
-            // TODO : PaymentConfirmationRequired($e->payment->id) event . broadast notification to user
+            PaymentConfirmationRequired::dispatch($order, $payment);
         } catch (\Exception $e) {
             DB::rollback();
             $msg = "Failed ." . $e->getMessage();
             $status = 500;
         } finally {
+            $order->update([
+                'payment_id' => $payment->id
+            ]);
             return ['msg' => $msg, 'status' => $status];
         }
     }
@@ -123,7 +137,7 @@ class CheckoutService
             }
             $user->refund($order->payment_id);
             DB::commit();
-            // TODO : UserRefunded event . broadcast notification to user maybe sms and email
+            UserRefunded::dispatch($order);
 
         } catch (ModelNotFoundException  $e) {
             DB::rollback();
