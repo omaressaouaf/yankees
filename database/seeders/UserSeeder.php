@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Order;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,16 +17,49 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        /**  Roles */
         $adminRole = Role::create(['name' => "admin", 'label' => "Admin"]);
-        Role::create(['name' => "deliveryman", 'label' => "Delivery man"]);
-        Role::create(['name' => "client", 'label' => "Client"]);
-        $user = User::create([
+        $deliverymanRole = Role::create(['name' => "deliveryman", 'label' => "Delivery man"]);
+        $clientRole =  Role::create(['name' => "client", 'label' => "Client"]);
+        /**  Main admin and deliveryman */
+        $admin = User::create([
             'name' => "Omar Essaouaf",
             "email" => "omar@gmail.com",
             "phone" => "+212 6 23 98 23 08",
             "password" => Hash::make('password')
         ]);
-        $user->roles()->attach($adminRole);
+        $deliveryman = User::create([
+            'name' => "Test",
+            "email" => "test@gmail.com",
+            "phone" => "+212 6 23 98 23 08",
+            "password" => Hash::make('password')
+        ]);
 
+        /**  attaching roles to main users */
+        $admin->roles()->attach($adminRole);
+        $deliveryman->roles()->attach($deliverymanRole);
+
+        /** Fake users with roles */
+        $adminRole->users()->attach(User::factory()
+            ->count(2)
+            ->create());
+        $deliverymanRole->users()->attach(User::factory()
+            ->count(10)
+            ->create());
+        $clientRole->users()->attach(User::factory()
+            ->count(50)
+            ->create());
+
+        /** Fake orders for main users */
+        Order::factory()
+            ->hasMeals(3)
+            ->for($admin)
+            ->count(40)
+            ->create();
+        Order::factory()
+            ->hasMeals(3)
+            ->for($deliveryman)
+            ->count(40)
+            ->create();
     }
 }

@@ -58,6 +58,7 @@ The above copyright notice and this permission notice shall be included in all c
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
         type="text/css">
 
+
 </head>
 
 <body class="has-cool-scrollbar">
@@ -94,6 +95,9 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="http://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
     </script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
 
 </body>
 

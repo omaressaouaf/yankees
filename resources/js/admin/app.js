@@ -68,8 +68,8 @@ Vue.filter("formatDate", function(dt) {
         ? dayjs(dt).format("MMMM D, YYYY H:mm ")
         : dayjs(dt).format("MMMM D, YYYY h:mm A ");
 });
-Vue.filter("formateDateTimeago", function(dt) {
-    return dayjs(dt).fromNow()
+Vue.filter("formateDateTimeago", function(dt , hideAgo = false) {
+    return dayjs(dt).fromNow(hideAgo)
 });
 
 // ______________________________________________Vue and packages Config___________
@@ -136,7 +136,6 @@ const app = new Vue({
 require("material-dashboard/assets/js/core/bootstrap-material-design.min.js");
 require("material-dashboard/assets/js/plugins/perfect-scrollbar.jquery.min.js");
 require("material-dashboard/assets/js/plugins/bootstrap-notify.js");
-require("material-dashboard/assets/js/plugins/chartist.min.js");
 require("material-dashboard/assets/js/material-dashboard.min.js");
 require("./custom");
 WebFont.load({

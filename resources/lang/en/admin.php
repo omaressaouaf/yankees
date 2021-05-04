@@ -129,6 +129,27 @@ return [
     "userRefunded" => ":orderTotal dhs has been refunded regarding order #:orderId",
     "paymentConfirmationObtained" => "Payment confirmation obtained for order #:orderId",
     "noNotifications" => "You're all caught up",
-    "notificationsCenter" => "Notifications center"
+    "notificationsCenter" => "Notifications center",
+    "management" => "Management",
+    "paymentRequiredConfirmation" => "This order payment required confirmation from the client's bank",
+    "monthlySales" => "Monthly Sales",
+    "monthlyUsers" => "Monthly Users",
+    "monthlySalesText" => "report of sales by month",
+    "monthlyUsersText" => "report of users registration by month",
+    "registrations" => "Registrations",
+    "revenue" => "Revenue",
+    "monthlyRevenue" => "Monthly Revenue",
+    "monthlyRevenueText" => "report of revenue by month",
+    "latestOrder" => "for the latest order",
+    "latestUser" => "for the latest registration",
+    "noRevenuHistory" => "does not include deleted history",
+    "promoteApp" => "consider promoting the app",
+    "addMoreMenus" => "add more menus",
+    "checkPendingOrders" => "check for pending orders",
+    "latestUsers" => "Latest Users",
+    "manageTheirData" => "Manage their data"
+
+
+
 
 ];

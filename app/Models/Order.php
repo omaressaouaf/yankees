@@ -6,19 +6,31 @@ use App\Models\Meal;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Order extends Model
+class Order extends Model implements Searchable
 {
     use HasFactory;
     protected $guarded = [];
 
+    public function getSearchResult(): SearchResult
+    {
+        $url = "/orders/" . $this->id;
+        return new SearchResult(
+            $this,
+            $this->id,
+            $url
+        );
+    }
+
     public function user()
     {
-        return $this->belongsTo(User::class , 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function deliveryman()
     {
-        return $this->belongsTo(User::class , 'deliveryman_id');
+        return $this->belongsTo(User::class, 'deliveryman_id');
     }
     public function meals()
     {

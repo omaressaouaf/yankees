@@ -14,7 +14,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* route transitions */
 .fade-enter-active,
 .fade-leave-active {

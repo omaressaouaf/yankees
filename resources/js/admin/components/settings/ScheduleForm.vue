@@ -9,18 +9,14 @@
 
         </div> -->
         <div
+          v-if="schedule.forcedClose"
           class="w-100"
           style="position: absolute; top: 45%; left: 44%; z-index: 1000"
         >
-          <loading
-            color="#2B51C4"
-            :active.sync="schedule.forcedClose"
-            :is-full-page="false"
-          >
-            <h4 class="text-dark">
-              <i class="fa fa-ban fa-4x text-danger"></i>
-            </h4>
-          </loading>
+          <h4 class="text-dark">
+            <i class="fa fa-ban fa-4x text-danger"></i>
+          </h4>
+  
         </div>
         <div :class="{ 'low-opacity': schedule.forcedClose }">
           <h2 class="title">{{ translate("admin.openingHours") }}</h2>

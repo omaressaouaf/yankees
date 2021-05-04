@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Meal;
+use App\Models\Order;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class MealSeeder extends Seeder
@@ -27,5 +28,6 @@ class MealSeeder extends Seeder
             ->count(2)
             ->for(Category::factory())
             ->create();
+
     }
 }

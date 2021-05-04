@@ -164,11 +164,12 @@
                     ></i>
                   </p>
                   <p
-                    class="text-muted mb-0 pb-0"
+                    class="text-muted mb-0 pb-0 text-info"
                     v-if="orderObject.payment_confirmation_required"
                   >
-                    {{ translate("admin.paymentConfirmationRequired") }} :
-                    <i class="fa fa-check text-success"></i>
+                  <i class="fa fa-info-circle"></i>
+                    {{ translate("admin.paymentRequiredConfirmation") }}
+
                   </p>
                 </div>
               </div>

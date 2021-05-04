@@ -41,20 +41,7 @@
         <span class="navbar-toggler-icon icon-bar"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end">
-        <form class="navbar-form">
-          <div class="input-group no-border">
-            <input
-              type="text"
-              value=""
-              class="form-control"
-              placeholder="Search..."
-            />
-            <button type="submit" class="btn btn-white btn-round btn-just-icon">
-              <i class="material-icons">search</i>
-              <div class="ripple-container"></div>
-            </button>
-          </div>
-        </form>
+        <global-search />
         <ul class="navbar-nav">
           <notifications-list />
           <li class="nav-item dropdown d-none d-lg-block">
@@ -75,14 +62,20 @@
               <router-link class="dropdown-item" :to="{ name: 'profile' }">{{
                 translate("admin.profile")
               }}</router-link>
-              <router-link v-if="$gate.can('manage')" class="dropdown-item" :to="{ name: 'settings' }">{{
-                translate("admin.settings")
-              }}</router-link>
+              <router-link
+                v-if="$gate.can('manage')"
+                class="dropdown-item"
+                :to="{ name: 'settings' }"
+                >{{ translate("admin.settings") }}</router-link
+              >
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#"        onclick="event.preventDefault();
-                                 document.querySelector('.logout-form').submit();">{{
-                translate("admin.logout")
-              }}</a>
+              <a
+                class="dropdown-item"
+                href="#"
+                onclick="event.preventDefault();
+                                 document.querySelector('.logout-form').submit();"
+                >{{ translate("admin.logout") }}</a
+              >
               <form
                 class="logout-form"
                 action="/logout"
@@ -93,7 +86,7 @@
               </form>
             </div>
           </li>
-           <locale-switcher />
+          <locale-switcher />
         </ul>
       </div>
     </div>
@@ -103,10 +96,11 @@
 
 <script>
 import NotificationsList from "../notifications/NotificationsList.vue";
-import LocaleSwitcher from './LocaleSwitcher.vue';
+import LocaleSwitcher from "./LocaleSwitcher.vue";
+import GlobalSearch from "./GlobalSearch.vue";
 
 export default {
-  components: { NotificationsList, LocaleSwitcher },
+  components: { NotificationsList, LocaleSwitcher  , GlobalSearch},
   data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').content,

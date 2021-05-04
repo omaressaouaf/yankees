@@ -129,7 +129,26 @@ return [
     "userRefunded" => ":orderTotal dhs a été remboursé de la commande #:orderId",
     "paymentConfirmationObtained" => "Confirmation de paiement obtenue pour la commande #:orderId",
     "noNotifications" => "Rien pour l'instant",
-    "notificationsCenter" => "Centre de notifications"
+    "notificationsCenter" => "Centre de notifications",
+    "ordersByMonth" => "Ventes mensuelles",
+    "management" => "Gestion",
+    "paymentRequiredConfirmation" => "Le paiement de cette commande nécessitait une confirmation de la banque du client",
+    "monthlySales" => "Ventes mensuelles",
+    "monthlyUsers" => "Utilisateurs mensuels",
+    "monthlySalesText" => "rapport de ventes par mois",
+    "monthlyUsersText" => "rapport d'inscription des utilisateurs par mois",
+    "registrations" => "Inscriptions",
+    "revenue" => "Revenu",
+    "monthlyRevenue" => "Revenu mensuel",
+    "monthlyRevenueText" => "rapport de revenus par mois",
+    "latestOrder" => "pour la dernière commande",
+    "latestUser" => "pour la dernière inscription",
+    "noRevenuHistory" => "n'inclut pas l'historique supprimé" ,
+    "promoteApp" => "envisagez de promouvoir l'application" ,
+    "addMoreMenus" => "ajouter plus de menus",
+    "checkPendingOrders" => "vérifier les commandes en attente",
+    "latestUsers" => "Derniers utilisateurs",
+    "manageTheirData" => "Gérer leurs données"
 
 
 

@@ -10,13 +10,23 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Searchable
 {
     use HasFactory, Notifiable;
     use Billable;
 
-
+    public function getSearchResult(): SearchResult
+    {
+       $url = "/users/" . $this->id;
+        return new SearchResult(
+           $this,
+           $this->name,
+           $url
+        );
+    }
     /**
      * The attributes that are mass assignable.
      *

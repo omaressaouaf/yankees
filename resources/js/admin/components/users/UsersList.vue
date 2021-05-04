@@ -102,12 +102,14 @@
                       </h4>
                     </td>
                     <td>
-                      <span
-                        v-for="role in user.roles"
-                        :key="role.id"
-                        class="badge badge-success mr-1"
-                        >{{ translate("admin." + role.name) }}</span
-                      >
+                      <h5>
+                        <span
+                          v-for="role in user.roles"
+                          :key="role.id"
+                          class="badge badge-success mr-1"
+                          >{{ translate("admin." + role.name) }}</span
+                        >
+                      </h5>
                     </td>
 
                     <td>{{ user.created_at | formatDate }}</td>
@@ -208,6 +210,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

@@ -259,6 +259,6 @@ export default {
 
 <style scoped>
 .light-orange {
-  background-color: rgb(252, 249, 244);
+  background-color: rgb(252, 244, 232);
 }
 </style>

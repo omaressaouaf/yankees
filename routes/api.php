@@ -11,6 +11,7 @@ use App\Http\Controllers\API\AddressController;
 use App\Http\Controllers\API\SectionController;
 use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\NotificationController;
 
 Route::group(['middleware' => "setLocale"], function () {
@@ -35,6 +36,11 @@ Route::group(['middleware' => "setLocale"], function () {
             Route::put('orders/{order}', [OrderController::class, 'update']);
         });
         Route::group(['middleware' =>  'roles:admin'], function () {
+            // Dashboard
+            Route::get('/dashboard/search',  [DashboardController::class, 'globalSearch']);
+            Route::get('/dashboard/count',  [DashboardController::class, 'count']);
+            Route::get('/dashboard/charts',   [DashboardController::class, 'charts']);
+
             // users
             Route::get('/users/roles', [UserController::class, 'getRoles']);
             Route::get('/users/deliverymen', [UserController::class, 'getDeliverymen']);

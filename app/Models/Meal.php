@@ -8,8 +8,10 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Meal extends Model
+class Meal extends Model implements Searchable
 {
     use HasFactory;
     protected $casts = [
@@ -18,7 +20,15 @@ class Meal extends Model
 
     protected $fillable = ['title', 'desc', 'image', 'price', 'active', 'category_id'];
 
-
+    public function getSearchResult(): SearchResult
+    {
+       $url = "/meals/" . $this->id;
+        return new SearchResult(
+           $this,
+           $this->title,
+           $url
+        );
+    }
     public function category()
     {
         return $this->belongsTo(Category::class)->withDefault([
