@@ -20,6 +20,8 @@ class Meal extends Model implements Searchable
 
     protected $fillable = ['title', 'desc', 'image', 'price', 'active', 'category_id'];
 
+    public $searchableType = 'menus';
+
     public function getSearchResult(): SearchResult
     {
        $url = "/meals/" . $this->id;

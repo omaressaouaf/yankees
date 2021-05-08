@@ -113,6 +113,10 @@
                   {{ translate("admin.paymentMode") }} :
                   {{ orderObject.payment_mode }}
                 </p>
+                <p class="text-muted mb-0 text-capitalize">
+                  {{ translate("admin.passedAt") }} :
+                  {{ orderObject.created_at | formatDate }}
+                </p>
                 <p
                   class="text-muted mb-0 text-capitalize"
                   v-if="orderObject.deliveryman"
@@ -167,9 +171,8 @@
                     class="text-muted mb-0 pb-0 text-info"
                     v-if="orderObject.payment_confirmation_required"
                   >
-                  <i class="fa fa-info-circle"></i>
+                    <i class="fa fa-info-circle"></i>
                     {{ translate("admin.paymentRequiredConfirmation") }}
-
                   </p>
                 </div>
               </div>

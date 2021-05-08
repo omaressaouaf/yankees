@@ -6,49 +6,60 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-info">
-                            <h3>Restaurantly</h3>
+                            <h3>{{ config('app.name') }}</h3>
                             <p>
-                                A108 Adam Street <br>
-                                NY 535022, USA<br><br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@example.com<br>
+                                {{ config('app.contact.address') }} <br>
+                                <strong>Phone:</strong> {{ config('app.contact.phone') }}<br>
+                                <strong>Email:</strong>{{ config('app.contact.email') }}<br>
                             </p>
                             <div class="social-links mt-3">
-                                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                                @if (strlen(config('app.contact.social_media.facebook')))
+                                    <a href="{{ config('app.contact.social_media.facebook') }}" class="facebook"><i
+                                            class="bx bxl-facebook"></i></a>
+                                @endif
+                                @if (strlen(config('app.contact.social_media.instagram')))
+                                    <a href="{{ config('app.contact.social_media.instagram') }}" class="instagram"><i
+                                            class="bx bxl-instagram"></i></a>
+                                @endif
+
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
+                        <h4>{{ __('Quick Links') }}</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a
+                                    href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a
+                                    href="{{ route('meals.index') }}">{{ __('Our menus') }}</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a
+                                    href="{{ route('about') }}">{{ __('About') }}</a></li>
+
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
+                        <h4>{{ __('admin.openingHours') }}</h4>
+
+                        @foreach ($openingHours as $firstDay => $schedule)
+                            <p class="text-capitalize">
+                                <span class="">
+                                    {{-- First Day is the actual key in each element in the array --}}
+                                    {{ __('admin.' . $firstDay) }} -
+                                    {{-- Last Day is the last element in the days array --}}
+                                    {{ __('admin.' . $schedule['days'][count($schedule['days']) - 1]) }} :
+                                </span>
+                                {{-- The Actual opening Hours --}}
+                                {{ strlen($schedule['opening_hours'])  ? $schedule['opening_hours'] :  __('admin.closed')}}
+                            </p>
+                        @endforeach
                     </div>
 
                     <div class="col-lg-4 col-md-6 footer-newsletter">
                         <h4>Our Newsletter</h4>
                         <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                        <form action="" method="post">
+                        <form>
                             <input type="email" name="email"><input type="submit" value="Subscribe">
                         </form>
 

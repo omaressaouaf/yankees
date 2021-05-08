@@ -128,6 +128,7 @@ return [
     "userCharged" => "Vous avez été facturé :orderTotal dhs pour la commande #:orderId",
     "userRefunded" => ":orderTotal dhs a été remboursé de la commande #:orderId",
     "paymentConfirmationObtained" => "Confirmation de paiement obtenue pour la commande #:orderId",
+    "clientCancelledOrder" => "Commande #:orderId a été annulé par le client pour des raisons de retard",
     "noNotifications" => "Rien pour l'instant",
     "notificationsCenter" => "Centre de notifications",
     "ordersByMonth" => "Ventes mensuelles",
@@ -143,12 +144,29 @@ return [
     "monthlyRevenueText" => "rapport de revenus par mois",
     "latestOrder" => "pour la dernière commande",
     "latestUser" => "pour la dernière inscription",
-    "noRevenuHistory" => "n'inclut pas l'historique supprimé" ,
-    "promoteApp" => "envisagez de promouvoir l'application" ,
+    "noRevenuHistory" => "n'inclut pas l'historique supprimé",
+    "promoteApp" => "promouvoir l'application",
     "addMoreMenus" => "ajouter plus de menus",
     "checkPendingOrders" => "vérifier les commandes en attente",
     "latestUsers" => "Derniers utilisateurs",
-    "manageTheirData" => "Gérer leurs données"
+    "manageTheirData" => "Gérer leurs données",
+    "search" => "Recherche ...",
+    "notFound" => "Ressource Introuvable",
+    "forbidden" => "L'action est Interdite",
+    "lostText" => "Il semble que tu es perdu...",
+    "goHome" => "Retour au tableau de bord",
+    "noInternet" => "Pas de Connexion Internet",
+    "notConnected" => "Tu n'es pas Connecté",
+    "notConnectedText" => "Et :appName n'est tout simplement pas la même chose sans vous.
+    Nous allons vous ramener en ligne!",
+    "try" => "Essayer",
+    "checkCables" => "Vérification de vos câbles réseau, modem et routeurs",
+    "checkNetwork" => "Reconnexion à votre réseau sans fil",
+    "refreshPage" => "Rafraîchir la page",
+    "cancelOrder" => "Annuler la commande",
+    "cancelledSuccessfully" => "Commande annulée avec succès",
+    "cancelOrderGuide" => "Vous pouvez annuler si le statut est toujours en attente après 5 minutes depuis que vous avez passé la commande"
+
 
 
 

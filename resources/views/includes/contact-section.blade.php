@@ -22,28 +22,28 @@
                     <div class="address">
                         <i class="icofont-google-map"></i>
                         <h4>{{__('Location')}}:</h4>
-                        <p>A108 Adam Street, New York, NY 535022</p>
+                        <p>{{config('app.contact.address')}}</p>
                     </div>
 
-                    <div class="open-hours">
+                    {{-- <div class="open-hours">
                         <i class="icofont-clock-time icofont-rotate-90"></i>
                         <h4>{{__('Open Hours')}}:</h4>
                         <p>
                             Monday-Saturday:<br>
                             11:00 AM - 2300 PM
                         </p>
-                    </div>
+                    </div> --}}
 
                     <div class="email">
                         <i class="icofont-envelope"></i>
                         <h4>{{__('Email')}}:</h4>
-                        <p>info@example.com</p>
+                        <p>{{config('app.contact.email')}}</p>
                     </div>
 
                     <div class="phone">
                         <i class="icofont-phone"></i>
                         <h4>{{__('Phone')}}:</h4>
-                        <p>+1 5589 55488 55s</p>
+                        <p>{{config('app.contact.phone')}}</p>
                     </div>
 
                 </div>

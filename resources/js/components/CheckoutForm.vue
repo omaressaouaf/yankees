@@ -176,12 +176,9 @@ export default {
     "form.paymentMode": function (newVal, oldVal) {
       if (newVal == "stripe") {
         this.$nextTick(() => {
-          this.submitBtnDisabled = true;
           this.cardElement.mount("#card-element");
         });
-      } else {
-        this.submitBtnDisabled = false;
-      }
+      } 
     },
   },
   methods: {

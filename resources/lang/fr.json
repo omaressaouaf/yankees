@@ -652,8 +652,20 @@
     "The payment did not pass successfully": "Le paiement n'a pas réussi",
     "Order Failed . Because ": "La commande a échoué. Parce que ",
     "The payment requires additional confirmation. a notification will be sent to the client in order to confirm and pay . you will get notified when the payment is confirmed": "Le paiement nécessite une confirmation supplémentaire. une notification sera envoyée au client afin de confirmer et payer. vous serez averti lorsque le paiement sera confirmé",
-    "New Order has been placed.": "Une nouvelle commande a été passée."
-
-
+    "New Order has been placed.": "Une nouvelle commande a été passée.",
+    "Profile Updated successfully": "Mise à jour du profil réussie",
+    "Confirm New Password": "Confirmer le nouveau mot de passe",
+    "Your Password": "Votre mot de passe",
+    "Edit Your Password": "Modifier votre mot de passe",
+    "Password Updated successfully": "Mise à jour du mot de passe réussie",
+    "Your Latest Orders" : "Vos dernières commandes",
+    "Consult your Orders" : "Consultez vos commandes",
+    "Track your Order" : "suivez votre commande",
+    "Order Tracker" : "Suivi des Commandes",
+    "Track" : "Suivi",
+     "We are closed now . we will open at " : "Nous sommes fermés maintenant. nous ouvrirons à ",
+     "Quick Links" : "Liens rapides",
+     "Home" : "Accueil",
+     "Check Our Latest Menus" : "Consultez nos derniers menus"
 
 }

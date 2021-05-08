@@ -8,8 +8,7 @@ export const redirectToErrorPageIfNeeded = status => {
         router.push("/admin/403");
 
     } else if (status === 401) {
-        // window.location = "/";
-
+        window.location = "/";
     }
 };
 

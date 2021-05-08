@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+
 use App\Models\Meal;
+use App\Models\Category;
 use Illuminate\Http\Request;
+
 
 class MealController extends Controller
 {
@@ -16,6 +18,7 @@ class MealController extends Controller
     public function index()
     {
         if (!request()->ajax()) {
+
             return view('pages.meals.index');
         }
         $meals = Meal::latest();
@@ -34,5 +37,4 @@ class MealController extends Controller
             'meals' => $meals->with(['category', 'extras', 'extras.options'])->paginate(9)
         ]);
     }
-
 }

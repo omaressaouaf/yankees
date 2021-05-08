@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Meal;
+use App\Models\Section;
 use Illuminate\Support\Facades\Gate;
+use Spatie\OpeningHours\OpeningHours;
 
 
 
@@ -11,8 +13,8 @@ class PageController extends Controller
 {
     public function home()
     {
-
-        return view('pages.home');
+        $latestMeals = Meal::latest()->with('category')->take(12)->get();
+        return view('pages.home' , compact('latestMeals'));
     }
     public function about()
     {

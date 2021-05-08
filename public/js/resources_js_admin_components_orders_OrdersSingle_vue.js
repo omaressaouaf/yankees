@@ -756,6 +756,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2399,6 +2402,24 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
+                        _c(
+                          "p",
+                          { staticClass: "text-muted mb-0 text-capitalize" },
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(_vm.translate("admin.passedAt")) +
+                                " :\n                " +
+                                _vm._s(
+                                  _vm._f("formatDate")(
+                                    _vm.orderObject.created_at
+                                  )
+                                ) +
+                                "\n              "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
                         _vm.orderObject.deliveryman
                           ? _c(
                               "p",
@@ -2526,7 +2547,7 @@ var render = function() {
                                               "admin.paymentRequiredConfirmation"
                                             )
                                           ) +
-                                          "\n\n                "
+                                          "\n                "
                                       )
                                     ]
                                   )

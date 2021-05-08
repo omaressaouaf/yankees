@@ -128,6 +128,7 @@ return [
     "userCharged" => "You were charged :orderTotal dhs for order #:orderId",
     "userRefunded" => ":orderTotal dhs has been refunded regarding order #:orderId",
     "paymentConfirmationObtained" => "Payment confirmation obtained for order #:orderId",
+    "clientCancelledOrder" => "Order #:orderId has been cancelled by the client for delay reasons",
     "noNotifications" => "You're all caught up",
     "notificationsCenter" => "Notifications center",
     "management" => "Management",
@@ -143,11 +144,26 @@ return [
     "latestOrder" => "for the latest order",
     "latestUser" => "for the latest registration",
     "noRevenuHistory" => "does not include deleted history",
-    "promoteApp" => "consider promoting the app",
+    "promoteApp" => "promote the app",
     "addMoreMenus" => "add more menus",
     "checkPendingOrders" => "check for pending orders",
     "latestUsers" => "Latest Users",
-    "manageTheirData" => "Manage their data"
+    "manageTheirData" => "Manage their data",
+    "search" => "Search ...",
+    "notFound" => "Resource not found",
+    "forbidden" => "Action is unauthorized",
+    "lostText" => "It looks like you're lost ...",
+    "goHome" => "Go home",
+    "noInternet" => "No Internet connection",
+    "notConnected" => "Your are offline",
+    "notConnectedText" => "And :appName isn't the same without you . let's get you back online!",
+    "try" => "Try",
+    "checkCables" => "Checking your network cables, modems and routers",
+    "checkNetwork" => "Reconnecting to your wireless network",
+    "refreshPage" => "Refresh the page",
+    "cancelOrder" => "Cancel the order",
+    "cancelledSuccessfully" => "Order cancelled successfully",
+    "cancelOrderGuide" => "You can cancel if the status is still pending after 5 minutes since you placed the order"
 
 
 

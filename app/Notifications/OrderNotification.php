@@ -72,6 +72,7 @@ class OrderNotification extends Notification
             case "orderCreated":
             case "deliverymanSelected":
             case "paymentConfirmationObtained":
+            case "clientCancelledOrder":
                 return '/admin/orders/' . $this->order->id;
         }
     }

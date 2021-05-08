@@ -19,6 +19,7 @@ The above copyright notice and this permission notice shall be included in all c
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Manage application data">
 
     <title>{{ config('app.name') }}</title>
 
@@ -62,7 +63,7 @@ The above copyright notice and this permission notice shall be included in all c
 </head>
 
 <body class="has-cool-scrollbar">
-    {{-- <div id="preloader"></div> --}}
+    {{-- <div id="preloader" ></div> --}}
 
     @auth
         <script>

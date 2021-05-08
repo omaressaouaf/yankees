@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\Gate;
+use Spatie\OpeningHours\OpeningHours;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -31,6 +33,17 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('checkout', function (User $user) {
             return Cart::total()  >= config('cart.min_order_price') && Cart::count() > 0;
         });
+        Gate::define('track_order', function (User $user, $status) {
+            return $status != "cancelled" && $status != "failed";
+        });
+        Gate::define('cancel_order', function (User $user, Order $order) {
+            return $order->status == "pending" && $order->created_at->diffInMinutes(Carbon::now()) > 5;
+        });
+        Gate::define('shop', function (User $user) {
+            $openingHours = OpeningHours::create(config('schedule.openingHours'));
+            $forcedClose = config('schedule.forcedClose');
+            return $openingHours->isOpen() &&  !$forcedClose;
+        });
         // For admins and delivery men
         Gate::define('charge', function (User $user, Order $order) {
             return ($user->hasRole('admin') && $order->payment_mode == "stripe"  &&
@@ -50,8 +63,7 @@ class AuthServiceProvider extends ServiceProvider
                 return false;
             }
             if (!$user->hasRole("admin")) {
-                return $order->status=="out_for_delivery" ?($order->deliveryman_id == $request_deliveryman_id) && $request_status == "delivered" : false;
-                
+                return $order->status == "out_for_delivery" ? ($order->deliveryman_id == $request_deliveryman_id) && $request_status == "delivered" : false;
             }
             return (!$request_deliveryman_id) && ($request_status == "out_for_delivery" || $request_status == "delivered") ? false : true;
         });

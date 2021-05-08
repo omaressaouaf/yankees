@@ -23,8 +23,8 @@ return [
         "phone" => "+880123456789",
         'address' => "Restaurant Address, 123",
         "social_media" =>  [
-            "facebook" => "facebook.com/restaurant",
-            "instagram" => "instagram.com/restaurant",
+            "facebook" => "https://facebook.com/restaurant",
+            "instagram" => "https://instagram.com/restaurant",
         ],
     ],
     /*

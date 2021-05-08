@@ -14,6 +14,8 @@ import gate from "./admin/gate";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
+import "dayjs/locale/fr";
+
 import VueLoaders from 'vue-loaders';
 import "vue-loaders/dist/vue-loaders.css";
 
@@ -42,13 +44,26 @@ Vue.component(
     require("./admin/components/partials/LocaleSwitcher.vue").default
 );
 
+Vue.component(
+    "order-tracker",
+    require("./components/OrderTracker.vue").default
+);
+
+
 // ______________________________________________Filters______________________________________________
 
 Vue.filter("formateDateTimeago", function(dt) {
     return dayjs(dt).fromNow();
 });
+Vue.filter("formatDate", function(dt) {
+    return document.documentElement.lang == "fr"
+        ? dayjs(dt).format("MMMM D, YYYY H:mm ")
+        : dayjs(dt).format("MMMM D, YYYY h:mm A ");
+});
 // ______________________________________________Vue and packages Config___________
-
+if (document.documentElement.lang == "fr") {
+    dayjs.locale("fr");
+}
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
 Vue.use(InfiniteLoading, {

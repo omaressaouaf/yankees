@@ -27,8 +27,7 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $this->user->id,
-            'address' => "nullable",
-            'phone' => "nullable",
+            'phone' => "required",
             'roles' => 'required|array'
         ];
     }

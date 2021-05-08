@@ -3,7 +3,7 @@
     <a
       class="nav-link"
       href="#"
-      id="navbarDropdownMenuLink"
+      id="notificationsDropdownLink"
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
@@ -16,8 +16,7 @@
     </a>
     <div
       class="dropdown-menu dropdown-menu-right"
-      style="min-width: 449px"
-      aria-labelledby="navbarDropdownMenuLink"
+      aria-labelledby="notificationsDropdownLink"
     >
       <h6 class="dropdown-header py-3 w-100">
         {{ translate("admin.notificationsCenter") }}
@@ -39,7 +38,7 @@
         ></vue-loaders-ball-scale-ripple-multiple>
       </div>
       <div v-else class="noti-wrapper has-cool-scrollbar">
-        <div v-if="notifications.length">
+        <div v-if="notifications.length" style="overflow-x: scroll">
           <div
             style="cursor: pointer"
             :class="{ 'bg-grey': !notification.read_at }"
@@ -168,6 +167,12 @@ export default {
             bg: "bg-primary",
             msg: translate("admin." + event_name, translateParams),
           };
+        case "clientCancelledOrder":
+          return {
+            icon: "close",
+            bg: "bg-danger",
+            msg: translate("admin." + event_name, translateParams),
+          };
       }
     },
     getNotifications() {
@@ -239,14 +244,14 @@ export default {
         const permission = await Notification.requestPermission();
         if (permission === "granted") {
           new Notification(this.appName, {
-            body: translate("admin." + notification.event_name),
+            body: this.getNotificationPresentation(notification)["msg"],
             icon: this.appLogo,
             silent: true,
           });
           return;
         }
       }
-      fireToast("info", translate("admin." + notification.event_name));
+      fireToast("info", this.getNotificationPresentation(notification)["msg"]);
     },
   },
   mounted() {
@@ -268,10 +273,28 @@ export default {
 <style scoped>
 .noti-wrapper {
   max-height: 450px !important;
-  overflow: auto !important;
-  min-width: 449px;
+  overflow-y: auto !important;
+  min-width: 100% !important;
 }
 .bg-grey {
   background-color: #eeeeee;
+}
+.dropdown-item {
+  white-space: normal !important;
+}
+.dropdown-menu {
+  position: absolute;
+  margin-left: -10px;
+  background-color: white !important ;
+}
+@media (min-width: 1124px) {
+  .dropdown-menu {
+    min-width: 449px;
+  }
+}
+@media (max-width: 500px) {
+  .dropdown-menu {
+    min-width: 300px;
+  }
 }
 </style>

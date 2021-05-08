@@ -1,7 +1,7 @@
 <template>
   <form
-    class="navbar-form d-flex flex-column justify-content-end"
-    id="search-form"
+    v-on-clickaway="away"
+    class="search-form d-flex flex-column justify-content-end"
   >
     <div class="input-group no-border">
       <input
@@ -9,27 +9,31 @@
         v-model="query"
         @input="search"
         class="form-control px-1"
-        placeholder="Search..."
+        :placeholder="translate('admin.search')"
+        @focus="closed = false"
       />
-      <button type="button" class="btn btn-white btn-round btn-just-icon">
+      <span
+        style="cursor: unset"
+        class="d-none d-lg-block btn btn-white btn-round btn-just-icon"
+      >
         <i class="fa fa-spinner fa-spin" v-if="loading"></i>
         <i class="material-icons" v-else>search</i>
         <div class="ripple-container"></div>
-      </button>
+      </span>
     </div>
     <div
       class="dropdown w-100 has-cool-scrollbar"
       v-if="resultsNotEmpty && query.length && !closed"
     >
       <div v-for="(value, key) in results" :key="key">
-        <h6 class="px-2 py-3 bg-grey">{{ key }}</h6>
+        <h6 class="px-3 py-3 bg-grey">{{ translate("admin." + key) }}</h6>
         <router-link
           style="color: inherit"
           v-for="item in value"
           :key="item.searchable.id"
-          :to="getNewUrl(key ,item.url)"
+          :to="getNewUrl(key, item.url)"
         >
-          <div class="w-100 px-2 py-3" @click="closed = true">
+          <div class="w-100 px-3 py-3" @click="closed = true">
             {{ item.title }}
           </div>
         </router-link>
@@ -40,7 +44,9 @@
 
 <script>
 import axios from "axios";
+import { mixin as clickaway } from "vue-clickaway";
 export default {
+  mixins: [clickaway],
   data() {
     return {
       results: {},
@@ -54,8 +60,12 @@ export default {
       return Object.keys(this.results).length;
     },
   },
+
   methods: {
-    getNewUrl(type , url) {
+    away() {
+      this.closed = true;
+    },
+    getNewUrl(type, url) {
       const end = type != "orders" ? "/edit" : "/";
       return "/admin" + url + end;
     },
@@ -95,8 +105,19 @@ export default {
   max-height: 500px;
   overflow: auto;
 }
-#search-form {
+.search-form {
   position: relative;
-  min-width: 300px !important;
+  min-width: 30% !important;
+}
+
+@media (min-width: 1124px) {
+  .search-form {
+    min-width: 30% !important;
+  }
+}
+@media (max-width: 500px) {
+  .search-form {
+    max-width: 100px !important;
+  }
 }
 </style>

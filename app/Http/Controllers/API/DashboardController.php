@@ -94,10 +94,10 @@ class DashboardController extends Controller
             ->registerModel(Order::class, 'email', 'phone', 'address_line', 'address_details', 'name_on_card', 'payment_mode', 'status')
             ->search(request('query'));
         $resultsByType = $results->groupByType();
+        /** custom pagination (the package does not include it by default) */
         foreach ($resultsByType as $key => $value) {
-            $resultsByType[$key] =array_slice($value->toArray(), 0, 3);
+            $resultsByType[$key] = array_slice($value->toArray(), 0, 3);
         }
-        //  dd($resultsByType);
         return response()->json([
             'results' => $resultsByType
         ]);

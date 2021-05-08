@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <the-breadcrumb />
-    <carts />
+    <cards />
     <charts />
 
 
@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import Carts from "./Carts.vue";
+import Cards from "./Cards.vue";
 import Charts from "./Charts.vue";
 
 export default {
-  components: { Carts, Charts },
+  components: { Cards, Charts },
 };
 </script>
 <style >
@@ -24,9 +24,5 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-.ball-clip-rotate > div {
-  margin: -0.5px !important;
 
-  display: block !important;
-}
 </style>

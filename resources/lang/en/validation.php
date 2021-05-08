@@ -171,7 +171,10 @@ return [
         "end"=> "End Hour",
         "label"=> "The Label",
         "roles" => "The Roles",
-        "content" => "The Content"
+        "content" => "The Content",
+        "current_password" => "Current Password",
+        "new_password" => "New Password" ,
+        "new_password_confirm" => "New Password Confirmation"
 
     ],
 

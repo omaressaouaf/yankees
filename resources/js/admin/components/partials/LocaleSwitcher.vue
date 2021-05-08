@@ -21,6 +21,7 @@
     <div
       class="dropdown-menu dropdown-menu-right"
       aria-labelledby="navbarDropdown"
+      style="position: absolute ; background-color  :white ; height  :100px  "
     >
       <a
         v-for="(locale, index) in availableLocales"

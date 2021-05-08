@@ -551,6 +551,9 @@ a:hover {
     left: 0;
     right: 0;
 }
+.dark-hero:before {
+    background: rgba(0, 0, 0, 0.76) !important;
+}
 
 #hero .container {
     padding-top: 110px;

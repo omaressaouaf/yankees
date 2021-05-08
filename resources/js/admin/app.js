@@ -17,6 +17,8 @@ import VueSkeletonLoader from "skeleton-loader-vue";
 import gate from "./gate";
 import VueLoaders from 'vue-loaders';
 import "vue-loaders/dist/vue-loaders.css";
+import VueOnlineProp from "vue-online-prop";
+
 // ______________________________________________State Commit Mutations for The authenticated user______________________________________________
 store.commit("auth/setAuthUser", window.authUser);
 // ______________________________________________Component global registration______________________________
@@ -74,11 +76,11 @@ Vue.filter("formateDateTimeago", function(dt , hideAgo = false) {
 
 // ______________________________________________Vue and packages Config___________
 
-Vue.use(ToggleButton);
-window.swal = swal;
 if (document.documentElement.lang == "fr") {
     dayjs.locale("fr");
 }
+Vue.use(ToggleButton);
+window.swal = swal;
 Vue.use(Vuelidate);
 
 // translation package
@@ -125,6 +127,7 @@ Vue.use(vuelidateErrorExtractor, {
 Vue.prototype.$gate = gate;
 window.gate = gate;
 Vue.use(VueLoaders);
+Vue.use(VueOnlineProp);
 
 const app = new Vue({
     el: "#app",

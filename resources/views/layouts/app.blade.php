@@ -62,6 +62,7 @@
         window.authUser = @json(auth()->user());
         window.appName = '{{ config('app.name') }}';
         window.appLogo = '{{ config('app.logo') }}';
+        window.canShop = @json(Gate::allows('shop'))
 
     </script>
     <div id="app">

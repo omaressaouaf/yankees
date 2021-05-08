@@ -3,22 +3,30 @@
     <div v-if="getIsLoading">
       <cart-skeleton />
     </div>
-    <div v-else class="card" :class="[postIsLoading ? 'div-disabled' : '']">
+    <div v-else class="card" :class="[postIsLoading || !$gate.can('shop') ? 'div-disabled' : '']">
       <div class="card-body">
+        <div
+        v-if="!$gate.can('shop')"
+          class="w-100"
+          style="position: absolute; top: 35%; left: 42%; z-index: 1000"
+        >
+          <h4 class="text-dark">
+            <i class="fa fa-ban fa-4x text-danger"></i>
+          </h4>
+        </div>
         <div
           class="w-100"
           style="position: absolute; top: 20%; left: 45%; z-index: 10000"
           v-if="postIsLoading"
         >
-
-            <vue-loaders-ball-scale-ripple-multiple
-              color="#2B51C4"
-              scale="1"
-            ></vue-loaders-ball-scale-ripple-multiple>
-
+          <vue-loaders-ball-scale-ripple-multiple
+            color="#2B51C4"
+            scale="1"
+          ></vue-loaders-ball-scale-ripple-multiple>
         </div>
         <div>
           <div
+          
             class="pt-4 wish-list has-cool-scrollbar"
             id="cartContentWrapper"
           >
@@ -223,7 +231,9 @@ export default {
     ...mapActions("cart", ["fetchCart", "deleteFromCart", "updateCart"]),
   },
   mounted() {
-    this.fetchCart();
+    if (this.$gate.can("shop")) {
+      this.fetchCart();
+    }
   },
 };
 </script>

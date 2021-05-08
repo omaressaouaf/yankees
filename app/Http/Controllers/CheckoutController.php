@@ -18,6 +18,7 @@ class CheckoutController extends Controller
     }
     public function index()
     {
+        
         if (Gate::denies('checkout')) {
             return redirect()->route('meals.index');
         }

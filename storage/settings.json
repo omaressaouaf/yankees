@@ -1,1 +1,42 @@
-{"app":{"name":"Larestaurant","logo":"\/storage\/images\/design\/logo_ZsuoH9EqmU.jpg","contact":{"email":"restaurant@gmail.com","phone":"+88012345678","address":"Restaurant Address, 123","social_media":{"facebook":"facebook.com\/restaurantt","instagram":"instagram.com\/restaurant"}}},"delivery":{"price":"10","time":"30","zone_bounds":{"south_west":{"longitude":-8.750417765890717,"latitude":32.847355959431354},"north_east":{"longitude":-6.454275187765319,"latitude":33.7960340076891}}},"cart":{"tax":"10","min_order_price":"20"},"schedule":{"openingHours":{"monday":[],"tuesday":[],"wednesday":["08:00-17:00"],"thursday":["08:00-17:00"],"friday":["08:00-17:00"],"saturday":[],"sunday":[]},"forcedClose":false}}
+{
+    "app": {
+        "name": "Larestaurant",
+        "logo": "/storage/images/design/logo_ZsuoH9EqmU.jpg",
+        "contact": {
+            "email": "restaurant@gmail.com",
+            "phone": "+88012345678",
+            "address": "Restaurant Address, 123",
+            "social_media": {
+                "facebook": "https://facebook.com/restaurantt",
+                "instagram": "https://instagram.com/restaurant"
+            }
+        }
+    },
+    "delivery": {
+        "price": "10",
+        "time": "30",
+        "zone_bounds": {
+            "south_west": {
+                "longitude": -8.750417765890717,
+                "latitude": 32.847355959431354
+            },
+            "north_east": {
+                "longitude": -6.454275187765319,
+                "latitude": 33.7960340076891
+            }
+        }
+    },
+    "cart": { "tax": "10", "min_order_price": "20" },
+    "schedule": {
+        "openingHours": {
+            "monday": [],
+            "tuesday": [],
+            "wednesday": ["08:00-17:00"],
+            "thursday": ["08:00-17:00"],
+            "friday": ["08:00-17:00"],
+            "saturday": [],
+            "sunday": []
+        },
+        "forcedClose": false
+    }
+}

@@ -39,7 +39,7 @@
         <button
           class="btn-orange"
           @click="handleClickMeal(meal)"
-          v-if="meal.active"
+          v-if="meal.active && $gate.can('shop')"
           :disabled="cartLoading"
         >
           <i class="fa fa-spin fa-spinner" v-if="cartLoading"></i>

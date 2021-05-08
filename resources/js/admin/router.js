@@ -10,15 +10,17 @@ const routes = [
         name: "dashboard",
         component: () => import("./components/dashboard/Dashboard.vue"),
         meta: {
-            title: "Dashboard"
-        }
+            title: "Dashboard",
+        },
+
+
     },
     {
         path: "/admin/users",
         name: "users",
         component: () => import("./components/users/UsersList.vue"),
         meta: {
-            title: "Users"
+            title: "Users",
         },
         beforeEnter: checkManageGate
     },
@@ -161,6 +163,22 @@ const routes = [
         meta: {
             title: "Profile"
         }
+    },
+    {
+        path : '/admin/403',
+        component: () => import("./components/errors/Forbidden.vue"),
+        meta: {
+            title: "403"
+        }
+
+    },
+    {
+        path : '/admin/*',
+        component: () => import("./components/errors/NotFound.vue"),
+        meta: {
+            title: "404"
+        }
+
     }
 ];
 const router = new VueRouter({
@@ -178,6 +196,7 @@ router.afterEach((to, from) => {
         const newTitle = `${to.meta.title} - ${store.state.appName}`;
         document.title = newTitle;
     }
+
     nProgress.done();
 });
 

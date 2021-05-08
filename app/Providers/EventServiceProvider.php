@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\ClientCancelledOrder;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use App\Events\OrderCreated;
@@ -16,6 +17,7 @@ use App\Events\UserCharged;
 use App\Listeners\SendUserChargedNotification;
 use App\Events\UserRefunded;
 use App\Events\PaymentConfirmationObtained;
+use App\Listeners\SendClientCancelledOrderNotification;
 use App\Listeners\SendPaymentConfirmationObtainedNotification;
 use App\Listeners\SendUserRefundedNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -51,6 +53,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         PaymentConfirmationObtained::class =>  [
             SendPaymentConfirmationObtainedNotification::class,
+        ],
+        ClientCancelledOrder::class =>  [
+            SendClientCancelledOrderNotification::class,
         ]
     ];
 

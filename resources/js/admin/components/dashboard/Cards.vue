@@ -136,4 +136,10 @@ export default {
 </script>
 
 <style>
+
+  .ball-clip-rotate > div {
+    margin: -4% !important;
+    display: block !important;
+  }
+
 </style>

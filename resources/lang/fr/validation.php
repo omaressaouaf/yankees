@@ -171,7 +171,10 @@ return [
         "end"=> "Heure de fin",
         "label"=> "Le Label",
         "roles" => "Les Rôles",
-        "content" => "Le Contenu"
+        "content" => "Le Contenu",
+        "current_password" => "Mot de passe actuel",
+        "new_password" => "nouveau mot de passe",
+        "new_password_confirm" => "Confirmation nouveau mot de passe"
 
     ],
 ];

@@ -126,7 +126,6 @@ const actions = {
             nProgress.start();
             store.commit("setLoading", "charge");
             await axios.put(`/api/orders/charge/${store.state.order.id}`);
-            new Audio("/storage/cashregister.mp3").play();
             fireToast("success", translate("admin.paymentSuccessful"));
             store.commit("updateOrder", { user_charged: true });
         } catch (err) {
@@ -162,7 +161,6 @@ const actions = {
             nProgress.start();
             store.commit("setLoading", "refund");
             await axios.put(`/api/orders/refund/${store.state.order.id}`);
-            new Audio("/storage/cashregister.mp3").play();
             fireToast("success", translate("admin.refundSuccessful"));
             store.commit("updateOrder", { user_refunded: true });
         } catch (err) {

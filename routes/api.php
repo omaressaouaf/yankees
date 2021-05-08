@@ -30,16 +30,16 @@ Route::group(['middleware' => "setLocale"], function () {
 
 
         Route::group(['middelware' => 'roles:admin,deliveryman'], function () {
-            // Accessible for admin and deliveryman
+            //Some order routes are Accessible for admin and deliveryman
             Route::get('orders', [OrderController::class, 'index']);
             Route::get('orders/{order}', [OrderController::class, 'show']);
             Route::put('orders/{order}', [OrderController::class, 'update']);
-        });
-        Route::group(['middleware' =>  'roles:admin'], function () {
             // Dashboard
             Route::get('/dashboard/search',  [DashboardController::class, 'globalSearch']);
             Route::get('/dashboard/count',  [DashboardController::class, 'count']);
             Route::get('/dashboard/charts',   [DashboardController::class, 'charts']);
+        });
+        Route::group(['middleware' =>  'roles:admin'], function () {
 
             // users
             Route::get('/users/roles', [UserController::class, 'getRoles']);

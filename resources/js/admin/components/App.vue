@@ -1,16 +1,18 @@
 <template>
   <layout>
     <transition name="fade" mode="out-in">
-      <router-view :key="$route.fullPath"></router-view>
+      <router-view v-if="$online" :key="$route.fullPath"></router-view>
+      <offline v-else></offline>
     </transition>
   </layout>
 </template>
 
 <script>
 import Layout from "./layouts/Layout.vue";
+import Offline from './errors/Offline'
 
 export default {
-  components: { Layout },
+  components: { Layout  , Offline},
 };
 </script>
 

@@ -125,7 +125,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="$gate.can('manage')">
       <div class="col-lg-6 col-md-12">
         <div class="card">
           <div class="card-header card-header-tabs card-header-primary">
@@ -532,7 +532,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6 col-md-12">
+      <div class="col-lg-6 col-md-12" >
         <div class="card">
           <div class="card-header card-header-warning">
             <h4 class="card-title">{{ translate("admin.latestUsers") }}</h4>

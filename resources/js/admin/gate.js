@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 class Gate {
     constructor(user) {
         this.user = user;
@@ -60,4 +62,12 @@ gate.define("manage", () => {
 gate.define("checkout", ({ cartObject, minOrderPrice }) => {
     return cartObject.total >= parseInt(minOrderPrice) && cartObject.count > 0;
 });
+gate.define("cancel_order", order => {
+    const todayDate = dayjs();
+    const orderDate = dayjs(order.created_at);
+    return order.status == "pending" && todayDate.diff(orderDate, "m") > 5;
+});
+gate.define('shop' , () => {
+    return window.canShop
+})
 export default gate;

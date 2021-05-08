@@ -4,8 +4,8 @@
     id="search-bar"
     style="position: -webkit-sticky; position: sticky; top: 50px; z-index: 100"
   >
-      <form @submit.prevent="handleSearch" >
-    <div class="d-flex flex-sm-row flex-column align-items-start wrapper">
+    <form @submit.prevent="handleSearch">
+      <div class="d-flex flex-sm-row flex-column align-items-start wrapper">
         <h4 style="flex-basis: 40%" class="mb-4 d-none d-lg-block">
           {{ translate("front.searchTitle") }}
         </h4>
@@ -63,6 +63,7 @@
                     {{ translate("front.all") }} Budgets</label
                   >
                 </div>
+                
                 <div class="form-check">
                   <input
                     class="form-check-input"
@@ -94,11 +95,11 @@
             </div>
           </div>
         </div>
-        <button class="btn-orange btn-square" >
+        <button class="btn-orange btn-square">
           <i class="fa fa-search"></i>
         </button>
-    </div>
-      </form>
+      </div>
+    </form>
   </div>
 </template>
 

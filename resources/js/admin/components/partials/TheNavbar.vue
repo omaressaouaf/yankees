@@ -20,13 +20,15 @@
           </button>
         </div>
 
-        <a class="navbar-brand" href="javascript:;">Admin Dashboard</a>
+        <a class="navbar-brand d-none d-xl-block" href="javascript:;"
+          >Admin Dashboard</a
+        >
       </div>
-      <!-- <div class="navbar-wrapper">
-        <a href="#"><span class="material-icons">menu</span></a>
-        <a class="navbar-brand" href="javascript:;">Admin Dashboard</a>
-      </div> -->
-
+      <ul class="d-flex flex-row d-lg-none navbar-nav align-items-center">
+        <notifications-list />
+        <locale-switcher />
+        <global-search v-if="$gate.can('manage')" />
+      </ul>
       <button
         class="navbar-toggler"
         type="button"
@@ -41,7 +43,8 @@
         <span class="navbar-toggler-icon icon-bar"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end">
-        <global-search />
+        <global-search v-if="$gate.can('manage')" />
+
         <ul class="navbar-nav">
           <notifications-list />
           <li class="nav-item dropdown d-none d-lg-block">
@@ -100,7 +103,7 @@ import LocaleSwitcher from "./LocaleSwitcher.vue";
 import GlobalSearch from "./GlobalSearch.vue";
 
 export default {
-  components: { NotificationsList, LocaleSwitcher  , GlobalSearch},
+  components: { NotificationsList, LocaleSwitcher, GlobalSearch },
   data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').content,

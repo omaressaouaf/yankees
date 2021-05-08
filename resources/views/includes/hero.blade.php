@@ -3,8 +3,8 @@
         <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
             <div class="row">
                 <div class="col-lg-8">
-                    <h1>{{__('Welcome to')}} <span>{{ config('app.name') }}</span></h1>
-                    <h2>Offrir de la bonne nourriture depuis plus de 18 ans!</h2>
+                    <h1>{{$header['title_'.App::getLocale()]}} <span>{{ config('app.name') }}</span></h1>
+                    <h2>{{$header['content_'.App::getLocale()]}}</h2>
 
                     <div class="btns">
                         <a href="{{ route('meals.index') }}" class="btn-menu animated fadeInUp scrollto">{{__('Our menus')}}</a>

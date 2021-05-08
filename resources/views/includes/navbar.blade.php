@@ -4,9 +4,8 @@
         <div class="container d-flex">
             <div class="contact-info  d-none d-sm-block">
 
-                <i class="fa fa-phone-alt"></i> +1 5589 55488 55
-                <span class="d-none d-lg-inline-block"><i class=" ml-3 fa fa-calendar-check"></i> Mon-Sat:
-                    11:00 AM - 23:00 PM</span>
+                <i class="fa fa-phone-alt"></i> {{config('app.contact.phone')}}
+                <span class="d-none d-lg-inline-block"><i class=" ml-3 fa fa-envelope"></i> {{config('app.contact.email')}}</span>
             </div>
             <ul class="nav ml-auto ">
                 @auth
