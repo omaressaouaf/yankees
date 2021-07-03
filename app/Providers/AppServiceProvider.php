@@ -42,7 +42,8 @@ class AppServiceProvider extends ServiceProvider
         View::composer('includes.hero-meals', function ($view) {
             $nextOpen = OpeningHours::create(config('schedule.openingHours'))->nextOpen(Carbon::now())->translatedFormat('l H:i');
             $view->with([
-                'nextOpen' => $nextOpen
+                'nextOpen' => $nextOpen,
+                "forcedClose" => config('schedule.forcedClose')
             ]);
         });
         View::composer('includes.footer', function ($view) {

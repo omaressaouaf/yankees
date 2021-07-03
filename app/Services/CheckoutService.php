@@ -3,16 +3,19 @@
 namespace App\Services;
 
 use App\Models\Order;
-use App\Events\OrderCreated;
-use App\Events\OrderStatusChanged;
-use App\Events\PaymentConfirmationRequired;
 use App\Events\UserCharged;
+use App\Events\OrderCreated;
 use App\Events\UserRefunded;
+use App\Events\OrderStatusChanged;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Events\PaymentConfirmationRequired;
 use Laravel\Cashier\Exceptions\PaymentFailure;
+use Illuminate\Validation\UnauthorizedException;
 use Laravel\Cashier\Exceptions\PaymentActionRequired;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 class CheckoutService
 {
@@ -24,6 +27,7 @@ class CheckoutService
         /** @var \App\Models\User */
         $authUser = auth()->user();
         $authUserAddress = $authUser->addresses()->findOrFail($address_id);
+
         try {
             DB::beginTransaction();
             $order = $authUser->orders()->create([
@@ -48,7 +52,11 @@ class CheckoutService
                     "user_selected_options" => $item->options->user_selected_options
                 ]);
             }
+
             if ($payment_mode == "stripe") {
+                if (Gate::denies('checkout-with-stripe')) {
+                    throw new UnauthorizedException("Stripe Payment is not allowed");
+                }
                 $authUser->createOrGetStripeCustomer();
                 if ($authUser->hasDefaultPaymentMethod()) {
                     $authUser->deletePaymentMethods();
@@ -58,6 +66,10 @@ class CheckoutService
             DB::commit();
             Cart::destroy();
             OrderCreated::dispatch($order);
+        } catch (UnauthorizedException $e) {
+            DB::rollback();
+            $msg = "Failed ." . $e->getMessage();
+            $status = 401;
         } catch (\Exception $e) {
             DB::rollback();
             $msg = "Failed ." . $e->getMessage();
@@ -90,7 +102,6 @@ class CheckoutService
             DB::commit();
 
             UserCharged::dispatch($order);
-
         } catch (PaymentFailure | ModelNotFoundException  $e) {
             DB::rollback();
             $order->update([
@@ -98,7 +109,7 @@ class CheckoutService
             ]);
             $status = 400;
             $msg = $e instanceof PaymentFailure ?   "The payment did not pass successfully" : "The user was not found (deleted)";
-            if ($order->user_id != null && auth()->id() !=  $order->user_id) {
+            if ($order->user_id  != null && auth()->id() !=  $order->user_id) {
                 OrderStatusChanged::dispatch($order);
             }
         } catch (PaymentActionRequired  $e) {
@@ -138,7 +149,6 @@ class CheckoutService
             $user->refund($order->payment_id);
             DB::commit();
             UserRefunded::dispatch($order);
-
         } catch (ModelNotFoundException  $e) {
             DB::rollback();
             $status = 400;

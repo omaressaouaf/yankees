@@ -44,6 +44,9 @@ class AuthServiceProvider extends ServiceProvider
             $forcedClose = config('schedule.forcedClose');
             return $openingHours->isOpen() &&  !$forcedClose;
         });
+        Gate::define('checkout-with-stripe', function (User $user) {
+            return config('payment.stripeEnabled')  === true;
+        });
         // For admins and delivery men
         Gate::define('charge', function (User $user, Order $order) {
             return ($user->hasRole('admin') && $order->payment_mode == "stripe"  &&

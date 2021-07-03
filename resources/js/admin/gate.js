@@ -67,7 +67,12 @@ gate.define("cancel_order", order => {
     const orderDate = dayjs(order.created_at);
     return order.status == "pending" && todayDate.diff(orderDate, "m") > 5;
 });
-gate.define('shop' , () => {
-    return window.canShop
-})
+gate.define("shop", () => {
+    return window.canShop;
+});
+
+gate.define("checkout-with-stripe", () => {
+    return window.canCheckoutWithStripe;
+});
+
 export default gate;

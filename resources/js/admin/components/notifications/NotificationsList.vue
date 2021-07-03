@@ -38,7 +38,7 @@
         ></vue-loaders-ball-scale-ripple-multiple>
       </div>
       <div v-else class="noti-wrapper has-cool-scrollbar">
-        <div v-if="notifications.length" style="overflow-x: scroll">
+        <div v-if="notifications.length">
           <div
             style="cursor: pointer"
             :class="{ 'bg-grey': !notification.read_at }"
@@ -104,7 +104,9 @@ export default {
       if (this.$route.path.indexOf("/admin") != -1) {
         if (
           event_name == "orderStatusChanged" ||
-          event_name == "paymentConfirmationRequired"
+          event_name == "paymentConfirmationRequired" ||
+          event_name == "userRefunded" ||
+          event_name == "userCharged"
         ) {
           window.location.href = url;
         }

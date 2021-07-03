@@ -606,7 +606,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return this.$v.$invalid ? false : true;
     },
-    // check users checked out all options. if so remove the extra from the array
+    // check if the user checked out all options. if so remove the extra from the array
     checkOptionsLeft: function checkOptionsLeft(extraId) {
       if (!this.singleExtraPath(extraId).pivot.admin_selected_options.length) {
         this.form.extras = this.form.extras.filter(function (extra) {

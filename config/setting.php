@@ -90,7 +90,9 @@ return [
         "cart.tax" => "cart.tax",
         "cart.min_order_price" => "cart.min_order_price",
         "schedule.openingHours" => "schedule.openingHours",
-        "schedule.forcedClose" => "schedule.forcedClose"
+        "schedule.forcedClose" => "schedule.forcedClose",
+        "payment.stripeEnabled" => "payment.stripeEnabled",
+
     ],
 
     /*

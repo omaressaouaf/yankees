@@ -62,7 +62,8 @@
         window.authUser = @json(auth()->user());
         window.appName = '{{ config('app.name') }}';
         window.appLogo = '{{ config('app.logo') }}';
-        window.canShop = @json(Gate::allows('shop'))
+        window.canShop = @json(Gate::allows('shop'));
+        window.canCheckoutWithStripe = @json(Gate::allows('checkout-with-stripe'))
 
     </script>
     <div id="app">

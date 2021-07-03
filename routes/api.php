@@ -77,6 +77,7 @@ Route::group(['middleware' => "setLocale"], function () {
             Route::post('/settings/delivery', [SettingController::class, 'delivery']);
             Route::post('/settings/cart', [SettingController::class, 'cart']);
             Route::post('/settings/schedule', [SettingController::class, 'schedule']);
+            Route::post('/settings/payment', [SettingController::class, 'payment']);
         });
     });
 });

@@ -165,9 +165,8 @@ return [
     "refreshPage" => "Rafraîchir la page",
     "cancelOrder" => "Annuler la commande",
     "cancelledSuccessfully" => "Commande annulée avec succès",
-    "cancelOrderGuide" => "Vous pouvez annuler si le statut est toujours en attente après 5 minutes depuis que vous avez passé la commande"
-
-
-
-
+    "cancelOrderGuide" => "Vous pouvez annuler si le statut est toujours en attente après 5 minutes depuis que vous avez passé la commande",
+    "setHours" => "Définir Les heures",
+    "payment" => "Paiement",
+    "stripeEnabled" => "Stripe activée"
 ];

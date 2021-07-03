@@ -4,9 +4,11 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
-use Intervention\Image\Facades\Image;
 use Spatie\OpeningHours\OpeningHours;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Akaunting\Setting\Facade as Setting;
 use Spatie\OpeningHours\Exceptions\OverlappingTimeRanges;
@@ -22,10 +24,17 @@ class SettingController extends Controller
     }
     public function app(Request $request)
     {
-
-        $contact = json_decode($request->contact);
-        $request->validate(['name' => "required", 'newLogo' => "nullable|image|dimensions:max_width=300,max_height=200"]);
-        Setting::set(['app.name' => $request->name, 'app.contact' => $contact]);
+        $request->merge([
+            'contact' =>  json_decode($request->contact, true),
+        ]);
+        $request->validate([
+            'name' => "required",
+            'newLogo' => "nullable|image|dimensions:max_width=300,max_height=200",
+            "contact.email" => "nullable|email",
+            "contact.social_media.facebook" => "required|url",
+            "contact.social_media.instagram" => "required|url"
+        ]);
+        Setting::set(['app.name' => $request->name, 'app.contact' => $request->contact]);
         $res = ['msg' => "general settings updated successfully"];
         if ($request->hasFile('newLogo')) {
             $path = $this->uploadLogo($request->file('newLogo'));
@@ -79,6 +88,17 @@ class SettingController extends Controller
             ], 400);
         }
     }
+    public function payment(Request $request)
+    {
+        $request->validate(['stripeEnabled' => "required|boolean"]);
+        Setting::set(['payment.stripeEnabled' => $request->stripeEnabled]);
+
+
+        return response()->json([
+            'msg' => "payment settings updated successfully"
+        ]);
+    }
+
     private function uploadLogo($file)
     {
         // upload

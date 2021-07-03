@@ -16,7 +16,7 @@
           <h4 class="text-dark">
             <i class="fa fa-ban fa-4x text-danger"></i>
           </h4>
-  
+
         </div>
         <div :class="{ 'low-opacity': schedule.forcedClose }">
           <h2 class="title">{{ translate("admin.openingHours") }}</h2>
@@ -127,7 +127,7 @@
         </div>
 
         <a class="text-success mr-4" href="#" @click.prevent="handleSave"
-          ><u> <i class="fa fa-plus"></i> {{ translate("admin.save") }}</u></a
+          ><u> <i class="fa fa-plus"></i> {{ translate("admin.setHours") }}</u></a
         >
         <a class="text-danger" href="#" @click.prevent="handleSetAsClosed"
           ><u>

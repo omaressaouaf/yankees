@@ -658,14 +658,14 @@
     "Your Password": "Votre mot de passe",
     "Edit Your Password": "Modifier votre mot de passe",
     "Password Updated successfully": "Mise à jour du mot de passe réussie",
-    "Your Latest Orders" : "Vos dernières commandes",
-    "Consult your Orders" : "Consultez vos commandes",
-    "Track your Order" : "suivez votre commande",
-    "Order Tracker" : "Suivi des Commandes",
-    "Track" : "Suivi",
-     "We are closed now . we will open at " : "Nous sommes fermés maintenant. nous ouvrirons à ",
-     "Quick Links" : "Liens rapides",
-     "Home" : "Accueil",
-     "Check Our Latest Menus" : "Consultez nos derniers menus"
-
+    "Your Latest Orders": "Vos dernières commandes",
+    "Consult your Orders": "Consultez vos commandes",
+    "Track your Order": "suivez votre commande",
+    "Order Tracker": "Suivi des Commandes",
+    "Track": "Suivi",
+    "We are closed now.": "Nous sommes fermés maintenant.",
+    "we will open at ": "nous ouvrirons à ",
+    "Quick Links": "Liens rapides",
+    "Home": "Accueil",
+    "Check Our Latest Menus": "Consultez nos derniers menus"
 }

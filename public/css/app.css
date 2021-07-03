@@ -28388,4 +28388,8 @@ button:disabled {
   display: block;
 }
 
+.profile-dropdown-item {
+  color: black !important;
+}
+
 

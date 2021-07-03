@@ -78,7 +78,9 @@
     <hr class="mb-4" />
     <h4 class="mb-3">{{ translate("admin.paymentDetails") }}</h4>
     <div class="d-block mt-4 mb-3 d-flex">
-      <label class="inputcontainer mr-4"
+      <label
+        v-if="$gate.can('checkout-with-stripe')"
+        class="inputcontainer mr-4"
         >Credit Card
         <input
           class="form-check-input"
@@ -167,7 +169,7 @@ export default {
       serverErrors: null,
       form: {
         address_id: this.authUserAddresses[0]?.id || null,
-        paymentMode: "stripe",
+        paymentMode: this.$gate.can("checkout-with-stripe") ? "stripe" : "cash",
         nameOnCard: "",
       },
     };
@@ -178,7 +180,7 @@ export default {
         this.$nextTick(() => {
           this.cardElement.mount("#card-element");
         });
-      } 
+      }
     },
   },
   methods: {
@@ -198,12 +200,12 @@ export default {
         this.paymentProcessing = true;
         // create a stripe token and set it into the form if the payment method is stripe
         if (this.form.paymentMode == "stripe") {
-          const options = {
-            name: this.form.nameOnCard,
-            address_line1: this.addresses.find(
-              (address) => address.id === this.form.address_id
-            ).line,
-          };
+          // const options = {
+          //   name: this.form.nameOnCard,
+          //   address_line1: this.addresses.find(
+          //     (address) => address.id === this.form.address_id
+          //   ).line,
+          // };
           const { setupIntent, error } = await this.stripe.confirmCardSetup(
             this.clientSecret,
             {
@@ -214,16 +216,15 @@ export default {
             }
           );
           if (error) {
-
             this.cardError = error.message;
             this.paymentProcessing = false;
             return;
           }
-          this.form.paymentMethod = setupIntent.payment_method ;
+          this.form.paymentMethod = setupIntent.payment_method;
         }
         // then checkout
         const res = await axios.post("/checkout", this.form);
-        window.location.href= "/account/orders";
+        window.location.href = "/account/orders";
       } catch (err) {
         switch (err.response.status) {
           case 422:
@@ -270,7 +271,9 @@ export default {
     },
   },
   mounted() {
-    this.initCardElement();
+    if (this.$gate.can("checkout-with-stripe")) {
+      this.initCardElement();
+    }
   },
 };
 </script>

@@ -163,7 +163,10 @@ return [
     "refreshPage" => "Refresh the page",
     "cancelOrder" => "Cancel the order",
     "cancelledSuccessfully" => "Order cancelled successfully",
-    "cancelOrderGuide" => "You can cancel if the status is still pending after 5 minutes since you placed the order"
+    "cancelOrderGuide" => "You can cancel if the status is still pending after 5 minutes since you placed the order",
+    "setHours" => "Set the Hours",
+    "payment" => "Payment",
+    "stripeEnabled" => "Stripe Enabled"
 
 
 

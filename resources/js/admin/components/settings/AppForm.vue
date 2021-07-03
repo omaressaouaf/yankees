@@ -184,7 +184,7 @@
 
 <script>
 import axios from "axios";
-import { required, email } from "vuelidate/lib/validators";
+import { required, email, url } from "vuelidate/lib/validators";
 import { fireToast } from "../../helpers";
 
 export default {
@@ -219,9 +219,11 @@ export default {
         social_media: {
           facebook: {
             required: false,
+            url,
           },
           instagram: {
             required: false,
+            url,
           },
         },
       },

@@ -50,6 +50,13 @@
                       <div class="ripple-container"></div
                     ></a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#payment" data-toggle="tab">
+                      <i class="material-icons">credit_score</i>
+                      {{ translate("admin.payment") }}
+                      <div class="ripple-container"></div
+                    ></a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -76,6 +83,9 @@
               <div class="tab-pane" id="cart">
                 <cart-form :cart-settings="settings.cart" />
               </div>
+              <div class="tab-pane" id="payment">
+                <payment-form :payment-settings="settings.payment" />
+              </div>
             </div>
           </div>
         </div>
@@ -89,9 +99,10 @@ import AppForm from "./AppForm.vue";
 import DeliveryForm from "./DeliveryForm.vue";
 import CartForm from "./CartForm.vue";
 import ScheduleForm from "./ScheduleForm.vue";
+import PaymentForm from "./PaymentForm.vue";
 
 export default {
-  components: { AppForm, DeliveryForm, CartForm, ScheduleForm },
+  components: { AppForm, DeliveryForm, CartForm, ScheduleForm , PaymentForm },
   data() {
     return {
       settings: [],

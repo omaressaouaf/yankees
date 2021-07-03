@@ -68,7 +68,7 @@ class OrderNotification extends Notification
             case "userCharged":
             case "userRefunded" :
             case "orderStatusChanged":
-                return '/account/orders/' . $this->order->id;
+                return '/account/orders/' . $this->order->id . "/track";
             case "orderCreated":
             case "deliverymanSelected":
             case "paymentConfirmationObtained":

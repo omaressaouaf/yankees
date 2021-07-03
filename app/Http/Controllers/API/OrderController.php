@@ -89,6 +89,7 @@ class OrderController extends Controller
     public function chargeUser(Request $request, Order $order)
     {
         $this->authorize('charge', $order);
+
         ['msg' => $msg, 'status' => $status] = $this->checkoutService->chargeUser($order);
         return response()->json([
             'msg' => __($msg)
@@ -97,6 +98,7 @@ class OrderController extends Controller
     public function refundUser(Request $request, Order $order)
     {
         $this->authorize('refund', $order);
+
         ['msg' => $msg, 'status' => $status] = $this->checkoutService->refundUser($order);
         return response()->json([
             'msg' => __($msg)

@@ -5,8 +5,8 @@ import store from "./store";
 import ToggleButton from "vue-js-toggle-button";
 import swal from "sweetalert2";
 import dayjs from "dayjs";
-import relativeTime from 'dayjs/plugin/relativeTime'
-dayjs.extend(relativeTime)
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 import "dayjs/locale/fr";
 import Vuelidate from "vuelidate";
 import vuelidateErrorExtractor from "vuelidate-error-extractor";
@@ -15,7 +15,7 @@ import Multiselect from "vue-multiselect";
 import * as WebFont from "webfontloader";
 import VueSkeletonLoader from "skeleton-loader-vue";
 import gate from "./gate";
-import VueLoaders from 'vue-loaders';
+import VueLoaders from "vue-loaders";
 import "vue-loaders/dist/vue-loaders.css";
 import VueOnlineProp from "vue-online-prop";
 
@@ -41,7 +41,6 @@ Vue.component(
     require("./components/addresses/AddressList.vue").default
 );
 Vue.component("vue-skeleton-loader", VueSkeletonLoader);
-
 
 // ______________________________________________Global mixins______________________________________________
 
@@ -70,8 +69,8 @@ Vue.filter("formatDate", function(dt) {
         ? dayjs(dt).format("MMMM D, YYYY H:mm ")
         : dayjs(dt).format("MMMM D, YYYY h:mm A ");
 });
-Vue.filter("formateDateTimeago", function(dt , hideAgo = false) {
-    return dayjs(dt).fromNow(hideAgo)
+Vue.filter("formateDateTimeago", function(dt, hideAgo = false) {
+    return dayjs(dt).fromNow(hideAgo);
 });
 
 // ______________________________________________Vue and packages Config___________
@@ -115,6 +114,9 @@ Vue.use(vuelidateErrorExtractor, {
         minValue: `${translate("validation.min.numeric", {
             attribute: "{attribute}",
             min: "{min}"
+        })}`,
+        url: `${translate("validation.url", {
+            attribute: "{attribute}"
         })}`,
         isBetweenTheMinAndAdminSelectedOptions: `${translate(
             "validation.isBetweenTheMinAndAdminSelectedOptions",

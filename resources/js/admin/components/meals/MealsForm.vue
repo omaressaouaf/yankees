@@ -583,7 +583,7 @@ export default {
       }
       return this.$v.$invalid ? false : true;
     },
-    // check users checked out all options. if so remove the extra from the array
+    // check if the user checked out all options. if so remove the extra from the array
     checkOptionsLeft(extraId) {
       if (!this.singleExtraPath(extraId).pivot.admin_selected_options.length) {
         this.form.extras = this.form.extras.filter(

@@ -26,7 +26,7 @@
         </div>
         <div>
           <div
-          
+
             class="pt-4 wish-list has-cool-scrollbar"
             id="cartContentWrapper"
           >
@@ -136,7 +136,8 @@
             box-shadow: 0 -5px 5px -5px rgba(32, 32, 32, 0.568);
           "
         >
-          <div class="mb-3">
+
+          <div v-if="$gate.can('checkout-with-stripe')" class="mb-3">
             <div class="pt-4">
               <img
                 class="mr-2"
