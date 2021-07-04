@@ -195,7 +195,8 @@
               <a
                 v-if="$gate.can('checkout', { cartObject, minOrderPrice })"
                 href="/checkout"
-                class="btn btn-success btn-square btn-block btn-lg mt-2"
+                class="btn-orange text-center btn-square btn-block  mt-2"
+            
               >
                 {{ translate("front.checkout") }}
               </a>

@@ -27,14 +27,15 @@ body {
     // font-family: "Open Sans", sans-serif;
     font-family: 'Roboto', sans-serif;
 }
-$primary_color : #cda45e;
-$primary_color_light : #d9ba85;
+$primary_color : #3F83C0;
+$primary_color_dark : #1D4060;
+$dark_color : #1D1D1B;
 a {
     color: white;
 }
 
 a:hover {
-    color: $primary_color_light;
+    color: $primary_color;
     text-decoration: none;
 }
 
@@ -59,7 +60,7 @@ a:hover {
     bottom: 0;
     z-index: 9999;
     overflow: hidden;
-    background: #1a1814;
+    background: $dark_color;
 }
 
 #preloader:before {
@@ -67,7 +68,7 @@ a:hover {
     position: fixed;
     top: calc(50% - 30px);
     left: calc(50% - 30px);
-    border: 6px solid #1a1814;
+    border: 6px solid $dark_color;
     border-top-color: $primary_color;
     border-bottom-color: $primary_color;
     border-radius: 50%;
@@ -152,7 +153,7 @@ a:hover {
 }
 
 #topbar .contact-info i {
-    color: $primary_color_light;
+    color: $primary_color;
     padding-right: 4px;
 }
 
@@ -276,7 +277,7 @@ a:hover {
 .nav-menu a:hover,
 .nav-menu .active > a,
 .nav-menu li:hover > a {
-    color: $primary_color_light;
+    color: $primary_color;
 }
 
 .nav-menu .book-a-table  {
@@ -326,7 +327,7 @@ a:hover {
     font-size: 14px;
     font-weight: 500;
     text-transform: none;
-    color: #1a1814;
+    color: $dark_color;
 }
 
 .nav-menu .drop-down ul a:hover,
@@ -403,7 +404,7 @@ a:hover {
     left: 15px;
     z-index: 9999;
     overflow-y: auto;
-    background: #1a1814;
+    background: $dark_color;
     border: 2px solid rgba(255, 255, 255, 0.1);
     transition: ease-in-out 0.2s;
     opacity: 0;
@@ -748,7 +749,7 @@ section {
 }
 
 .section-bg {
-    background-color: #1a1814;
+    background-color: $dark_color;
 }
 
 .section-title {
@@ -943,7 +944,7 @@ section {
     padding: 50px 30px;
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
     transition: all ease-in-out 0.3s;
-    background: #1a1814;
+    background: $dark_color;
 }
 
 .why-us .box span {
@@ -1063,7 +1064,7 @@ section {
 
 .menu .menu-content a {
     padding-right: 10px;
-    background: #1a1814;
+    background: $dark_color;
     position: relative;
     z-index: 3;
     font-weight: 700;
@@ -1076,7 +1077,7 @@ section {
 }
 
 .menu .menu-content span {
-    background: #1a1814;
+    background: $dark_color;
     position: relative;
     z-index: 3;
     padding: 0 10px;
@@ -1119,7 +1120,7 @@ section {
 }
 
 .specials .nav-link.active {
-    color: #1a1814;
+    color: $dark_color;
     background: $primary_color;
     border-color: $primary_color;
 }
@@ -1314,7 +1315,7 @@ section {
     height: 24px;
     margin: 0 10px -6px 0;
     border: 3px solid $primary_color;
-    border-top-color: #1a1814;
+    border-top-color: $dark_color;
     -webkit-animation: animate-loading 1s linear infinite;
     animation: animate-loading 1s linear infinite;
 }
@@ -1661,7 +1662,7 @@ section {
     height: 24px;
     margin: 0 10px -6px 0;
     border: 3px solid $primary_color;
-    border-top-color: #1a1814;
+    border-top-color: $dark_color;
     -webkit-animation: animate-loading 1s linear infinite;
     animation: animate-loading 1s linear infinite;
 }

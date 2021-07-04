@@ -10,19 +10,13 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-    <div class="logo d-flex  my-3 align-items-center">
+    <div class="logo d-flex my-3 align-items-center">
       <a href="/" class="ml-3">
-        <img
-          :src="appLogo"
-          width="50"
-          height="50"
-          alt=""
-        />
+        <img :src="appLogo" width="50" height="50" alt="" />
       </a>
       <a href="/" class="simple-text logo-normal">
         {{ appName }}
       </a>
-
     </div>
     <div class="sidebar-wrapper ps">
       <ul class="nav">
@@ -198,11 +192,10 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style scoped >
 .sidebar[data-color="orange"] li.active > a {
-  background-color: #fb8e02 !important;
+  background-color: #3f83c0 !important;
+  box-shadow: 0 4px 20px 0px rgb(50 92 168 / 14%),
+    0 7px 10px -5px rgb(50 92 168 / 40%);
 }
-
-
 </style>

@@ -14,7 +14,10 @@
 }
 
 .btn-orange:hover {
-    background: #d3af71;
+    background: $primary_color_dark;
+    border-color : $primary_color_dark;
+    color: #fff !important;
+
 }
 
 .btn-outline-orange {
@@ -34,6 +37,7 @@
 .btn-outline-orange:hover {
     background: $primary_color;
     color: #fff;
+    border-color : $primary_color;
 }
 .btn-square {
     border-radius: 0 !important;
@@ -72,7 +76,7 @@ button:disabled {
     .wrapper {
         padding: 20px;
         width: 100%;
-        background: #0c0b09;
+        background: $dark_color;
         opacity: 0.9;
         color: white;
         border-radius: 5px;
@@ -87,8 +91,8 @@ button:disabled {
         padding: 9px 30px !important;
     }
     .form-control {
-        background: #0c0b09;
-        border-color: #625b4b;
+        background: $dark_color;
+        border-color: $primary_color_dark;
         color: white;
     }
     .dropdown-toggle::after {

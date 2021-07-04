@@ -1,4 +1,9 @@
 // ______________________________Theme Customization__________________________-
+
+$primary_color: #3f83c0;
+$primary_color_dark: #1d4060;
+$dark_color: #1d1d1b;
+
 .sidebar-divider {
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     margin: 0 1rem 1rem;
@@ -12,13 +17,13 @@
     text-transform: uppercase !important;
 }
 @media (min-width: 991px) {
-
-    .sidebar-mini .sidebar, .sidebar-mini .sidebar .sidebar-wrapper {
+    .sidebar-mini .sidebar,
+    .sidebar-mini .sidebar .sidebar-wrapper {
         width: 91px;
     }
 }
 .dropdown .dropdown-item:hover {
-    background-color: #fb8e02 !important;
+    background-color: $primary_color !important;
 }
 .card-icon-custom {
     padding: 20px !important;
@@ -30,11 +35,11 @@
     z-index: 9999999;
 }
 #nprogress .bar {
-    background: #fb8e02 !important;
+    background: $primary_color !important;
 }
 
 #nprogress .peg {
-    box-shadow: 0 0 10px #fb8e02, 0 0 5px #fb8e02;
+    box-shadow: 0 0 10px $primary_color, 0 0 5px $primary_color;
 }
 
 #nprogress .spinner-icon {
@@ -63,7 +68,6 @@ button:disabled {
 # Preloader
 --------------------------------------------------------------*/
 #preloader {
-    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -71,7 +75,7 @@ button:disabled {
     bottom: 0;
     z-index: 9999;
     overflow: hidden;
-    background: #050607;
+    background: $dark_color;
 }
 
 #preloader:before {
@@ -79,16 +83,15 @@ button:disabled {
     position: fixed;
     top: calc(50% - 30px);
     left: calc(50% - 30px);
-    border: 6px solid #050607;
-    border-top-color: #fe9c17;
-    border-bottom-color: #fe9c17;
+    border: 6px solid $dark_color;
+    border-top-color: $primary_color;
+    border-bottom-color: $primary_color;
     border-radius: 50%;
     width: 60px;
     height: 60px;
     -webkit-animation: animate-preloader 1s linear infinite;
     animation: animate-preloader 1s linear infinite;
 }
-
 @-webkit-keyframes animate-preloader {
     0% {
         transform: rotate(0deg);
@@ -125,4 +128,61 @@ button:disabled {
 .multiselect__placeholder {
     display: inline !important;
 }
+
+.btn-warning {
+    border: 2px solid $primary_color !important;
+    background: $primary_color !important;
+    color: #fff !important;
+    box-shadow: 0 4px 20px 0px rgb(50 92 168 / 14%), 0 7px 10px -5px rgb(50 92 168 / 40%) !important;
+
+}
+.btn-warning:hover {
+    box-shadow: 0 14px 26px -12px #a5c8e7, 0 4px 23px 0px #a5c8e7,
+        0 8px 10px -5px #a5c8e7 !important;
+}
+.bg-primary {
+    background: $primary_color !important;
+}
+
+.card .card-header-warning .card-icon,
+.card .card-header-warning .card-text,
+.card .card-header-warning:not(.card-header-icon):not(.card-header-text),
+.card.bg-warning,
+.card.card-rotate.bg-warning .front,
+.card.card-rotate.bg-warning .back {
+    background: linear-gradient(
+        60deg,
+        $primary_color,
+        #347dbd,
+        #2d79bb,
+    ) !important;
+    box-shadow: 0 4px 20px 0px rgb(50 92 168 / 14%), 0 7px 10px -5px rgb(50 92 168 / 40%);
+
+}
+.card .card-header-dark .card-icon,
+.card .card-header-dark .card-text,
+.card .card-header-dark:not(.card-header-icon):not(.card-header-text),
+.card.bg-dark,
+.card.card-rotate.bg-dark .front,
+.card.card-rotate.bg-dark .back {
+    background: linear-gradient(
+        60deg,
+        #464642,
+        #3b3b38,
+        $dark_color,
+    ) !important;
+    box-shadow: 0 4px 20px 0px rgb(50 92 168 / 14%), 0 7px 10px -5px rgb(50 92 168 / 40%);
+
+}
+
+.alert.alert-warning {
+    background-color: $primary_color !important;
+    color: #ffffff;
+    box-shadow: 0 4px 20px 0px rgb(50 92 168 / 14%), 0 7px 10px -5px rgb(50 92 168 / 40%);
+
+}
+.text-warning {
+    color : $primary_color !important;
+}
+
 

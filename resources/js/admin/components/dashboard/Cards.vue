@@ -79,7 +79,7 @@
     </div>
     <div class="col-sm-12 col-md-6 col-xl-3">
       <div class="card card-stats">
-        <div class="card-header card-header-info card-header-icon">
+        <div class="card-header card-header-dark card-header-icon">
           <div class="card-icon">
             <i class="material-icons">shopping_bag</i>
           </div>

@@ -17,9 +17,29 @@
       </button>
 
       <div v-if="loading" class="text-center mt-4">
-        <vue-skeleton-loader animation="fade" type="rect" :rounded="true" width="60%" height="15px" /> <br>
-        <vue-skeleton-loader animation="fade" type="rect" :rounded="true" width="100%" height="15px" /> <br>
-        <vue-skeleton-loader animation="fade" type="rect" :rounded="true" width="30%" height="15px" />
+        <vue-skeleton-loader
+          animation="fade"
+          type="rect"
+          :rounded="true"
+          width="60%"
+          height="15px"
+        />
+        <br />
+        <vue-skeleton-loader
+          animation="fade"
+          type="rect"
+          :rounded="true"
+          width="100%"
+          height="15px"
+        />
+        <br />
+        <vue-skeleton-loader
+          animation="fade"
+          type="rect"
+          :rounded="true"
+          width="30%"
+          height="15px"
+        />
       </div>
       <div v-else>
         <div v-if="!addresses.length">
@@ -30,8 +50,7 @@
         <div
           v-for="address in addresses"
           :key="address.id"
-          class="d-flex mt-4 p-3"
-          style="border: 1px #cda45e solid; border-radius: 10px"
+          class="d-flex mt-4 p-3 address-box"
         >
           <i
             class="fa fa-location-arrow fa-lg mr-3 mt-2"
@@ -46,8 +65,7 @@
           </div>
           <a href="#">
             <i
-              class="fa fa-trash"
-              style="color: #cda45e"
+              class="fa fa-trash address-delete-btn"
               @click.prevent="deleteAddress(address.id)"
             ></i>
           </a>
@@ -121,4 +139,11 @@ export default {
 </script>
 
 <style scoped>
+.address-box {
+  border: 1px #3f83c0 solid;
+  border-radius: 10px !important;
+}
+.address-delete-btn {
+  color: #3f83c0 !important;
+}
 </style>

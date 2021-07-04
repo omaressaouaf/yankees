@@ -141,6 +141,15 @@
       </div>
     </div>
 
+    <div class="row" v-if="!$gate.can('checkout-with-stripe')">
+      <div class="col-md-12 mb-3">
+        <p class="text-info">
+          <i class="fa fa-info-circle"></i>
+          {{ translate("admin.stripeCheckoutNotice") }}
+        </p>
+      </div>
+    </div>
+
     <button
       id="checkout-btn"
       :disabled="paymentProcessing"

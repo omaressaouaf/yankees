@@ -293,7 +293,7 @@ export default {
   color: #bbb;
   text-transform: uppercase;
   padding-left: 5px;
-  border-left: 4px solid #ffac0c;
+  border-left: 4px solid #3f83c0;
 }
 .business-hours li {
   color: #888;
@@ -304,6 +304,6 @@ export default {
   border-bottom: none;
 }
 .business-hours .opening-hours li.today {
-  color: #ffac0c;
+  color: #3f83c0;
 }
 </style>

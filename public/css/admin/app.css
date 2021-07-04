@@ -24103,7 +24103,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dropdown .dropdown-item:hover {
-  background-color: #fb8e02 !important;
+  background-color: #3f83c0 !important;
 }
 
 .card-icon-custom {
@@ -24118,11 +24118,11 @@ Copyright (c) 2015 Daniel Eden
 }
 
 #nprogress .bar {
-  background: #fb8e02 !important;
+  background: #3f83c0 !important;
 }
 
 #nprogress .peg {
-  box-shadow: 0 0 10px #fb8e02, 0 0 5px #fb8e02;
+  box-shadow: 0 0 10px #3f83c0, 0 0 5px #3f83c0;
 }
 
 #nprogress .spinner-icon {
@@ -24147,7 +24147,6 @@ button:disabled {
 --------------------------------------------------------------*/
 
 #preloader {
-  display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -24155,7 +24154,7 @@ button:disabled {
   bottom: 0;
   z-index: 9999;
   overflow: hidden;
-  background: #050607;
+  background: #1d1d1b;
 }
 
 #preloader:before {
@@ -24163,9 +24162,9 @@ button:disabled {
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid #050607;
-  border-top-color: #fe9c17;
-  border-bottom-color: #fe9c17;
+  border: 6px solid #1d1d1b;
+  border-top-color: #3f83c0;
+  border-bottom-color: #3f83c0;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -24210,6 +24209,51 @@ button:disabled {
 
 .multiselect__placeholder {
   display: inline !important;
+}
+
+.btn-warning {
+  border: 2px solid #3f83c0 !important;
+  background: #3f83c0 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 20px 0px rgba(50, 92, 168, 0.14), 0 7px 10px -5px rgba(50, 92, 168, 0.4) !important;
+}
+
+.btn-warning:hover {
+  box-shadow: 0 14px 26px -12px #a5c8e7, 0 4px 23px 0px #a5c8e7, 0 8px 10px -5px #a5c8e7 !important;
+}
+
+.bg-primary {
+  background: #3f83c0 !important;
+}
+
+.card .card-header-warning .card-icon,
+.card .card-header-warning .card-text,
+.card .card-header-warning:not(.card-header-icon):not(.card-header-text),
+.card.bg-warning,
+.card.card-rotate.bg-warning .front,
+.card.card-rotate.bg-warning .back {
+  background: linear-gradient(60deg, #3f83c0, #347dbd, #2d79bb) !important;
+  box-shadow: 0 4px 20px 0px rgba(50, 92, 168, 0.14), 0 7px 10px -5px rgba(50, 92, 168, 0.4);
+}
+
+.card .card-header-dark .card-icon,
+.card .card-header-dark .card-text,
+.card .card-header-dark:not(.card-header-icon):not(.card-header-text),
+.card.bg-dark,
+.card.card-rotate.bg-dark .front,
+.card.card-rotate.bg-dark .back {
+  background: linear-gradient(60deg, #464642, #3b3b38, #1d1d1b) !important;
+  box-shadow: 0 4px 20px 0px rgba(50, 92, 168, 0.14), 0 7px 10px -5px rgba(50, 92, 168, 0.4);
+}
+
+.alert.alert-warning {
+  background-color: #3f83c0 !important;
+  color: #ffffff;
+  box-shadow: 0 4px 20px 0px rgba(50, 92, 168, 0.14), 0 7px 10px -5px rgba(50, 92, 168, 0.4);
+}
+
+.text-warning {
+  color: #3f83c0 !important;
 }
 
 
