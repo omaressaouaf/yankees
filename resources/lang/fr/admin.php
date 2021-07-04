@@ -168,5 +168,8 @@ return [
     "cancelOrderGuide" => "Vous pouvez annuler si le statut est toujours en attente après 5 minutes depuis que vous avez passé la commande",
     "setHours" => "Définir Les heures",
     "payment" => "Paiement",
-    "stripeEnabled" => "Stripe activée"
+    "stripeEnabled" => "Stripe activée",
+    "warning" => "Attention",
+    "stripeWarning" => "Si ces clés ne sont pas des clés de stripe valides. chaque interaction avec Stripe échouerait. et l'utilisateur obtiendrait une erreur de serveur 500. nous vous suggérons de mettre les bonnes clés"
+
 ];

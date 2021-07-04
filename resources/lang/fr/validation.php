@@ -135,7 +135,7 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-    'custom'=> [
+    'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
@@ -157,24 +157,26 @@ return [
         "phone" => "Le Numéro de Téléphone",
         "password" => "Le Mot de passe",
         "is_admin" => "Est Admin",
-        'slug'=> "Le Slug",
-        'title'=> 'Le Titre',
-        'price'=> "Le Prix",
-        "description"=> "La Description",
-        "image"=> "l'Image",
-        'category_id'=> "La Catégorie",
-        "min"=> "Le Min",
-        "max"=> "Le Max",
-        "time"=> "Le Temps",
-        "tax"=> "Le Taux d'imposition",
-        "start"=> "Heure de début",
-        "end"=> "Heure de fin",
-        "label"=> "Le Label",
+        'slug' => "Le Slug",
+        'title' => 'Le Titre',
+        'price' => "Le Prix",
+        "description" => "La Description",
+        "image" => "l'Image",
+        'category_id' => "La Catégorie",
+        "min" => "Le Min",
+        "max" => "Le Max",
+        "time" => "Le Temps",
+        "tax" => "Le Taux d'imposition",
+        "start" => "Heure de début",
+        "end" => "Heure de fin",
+        "label" => "Le Label",
         "roles" => "Les Rôles",
         "content" => "Le Contenu",
         "current_password" => "Mot de passe actuel",
         "new_password" => "nouveau mot de passe",
-        "new_password_confirm" => "Confirmation nouveau mot de passe"
+        "new_password_confirm" => "Confirmation nouveau mot de passe",
+        "stripeKey" => "Stripe Key",
+        "stripeSecret" => "Stripe Secret"
 
     ],
 ];

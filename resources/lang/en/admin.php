@@ -166,9 +166,8 @@ return [
     "cancelOrderGuide" => "You can cancel if the status is still pending after 5 minutes since you placed the order",
     "setHours" => "Set the Hours",
     "payment" => "Payment",
-    "stripeEnabled" => "Stripe Enabled"
-
-
-
+    "stripeEnabled" => "Stripe Enabled",
+    "warning" => "Warning",
+    "stripeWarning" => "If those keys are not valid stripe keys. every interaction with stripe would fail .and the user would get a 500 server error . we suggest you put the right keys"
 
 ];

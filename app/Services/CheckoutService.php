@@ -72,7 +72,7 @@ class CheckoutService
             $status = 401;
         } catch (\Exception $e) {
             DB::rollback();
-            $msg = "Failed ." . $e->getMessage();
+            $msg = "Checkout Failed .";
             $status = 500;
         } finally {
             return ['msg' => $msg, 'status' => $status];
@@ -123,7 +123,7 @@ class CheckoutService
             PaymentConfirmationRequired::dispatch($order, $payment);
         } catch (\Exception $e) {
             DB::rollback();
-            $msg = "Failed ." . $e->getMessage();
+            $msg = "Charge Failed .";
             $status = 500;
         } finally {
             $order->update([
@@ -155,7 +155,7 @@ class CheckoutService
             $msg = "The user was not found (deleted)";
         } catch (\Exception $e) {
             DB::rollback();
-            $msg = "Failed ." . $e->getMessage();
+            $msg = "Refund Failed .";
             $status = 500;
         } finally {
             return ['msg' => $msg, 'status' => $status];

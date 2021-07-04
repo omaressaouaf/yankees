@@ -18,7 +18,7 @@ class CheckSchedule
      */
     public function handle(Request $request, Closure $next)
     {
-        $openingHours = OpeningHours::create(config('schedule.openingHours'));
+        $openingHours = OpeningHours::create(array_merge(['overflow' => true],  config('schedule.openingHours')));
         $forecedClose = config('schedule.forcedClose');
         if ($openingHours->isClosed() || $forecedClose) {
             return redirect('/');

@@ -174,7 +174,9 @@ return [
         "content" => "The Content",
         "current_password" => "Current Password",
         "new_password" => "New Password",
-        "new_password_confirm" => "New Password Confirmation"
+        "new_password_confirm" => "New Password Confirmation",
+        "stripeKey" => "Stripe Key",
+        "stripeSecret" => "Stripe Secret"
 
     ],
 

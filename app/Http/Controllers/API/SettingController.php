@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Support\Str;
+use msztorc\LaravelEnv\Env;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Spatie\OpeningHours\OpeningHours;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Akaunting\Setting\Facade as Setting;
+use Stripe\Exception\AuthenticationException;
 use Spatie\OpeningHours\Exceptions\OverlappingTimeRanges;
 
 class SettingController extends Controller
@@ -18,8 +18,12 @@ class SettingController extends Controller
 
     public function index()
     {
+
+        $settings = Setting::all();
+        $settings['payment']['stripeKey'] = config('services.stripe.key');
+        $settings['payment']['stripeSecret'] = config('services.stripe.secret');
         return response()->json([
-            "settings" => Setting::all()
+            "settings" => $settings
         ]);
     }
     public function app(Request $request)
@@ -90,13 +94,28 @@ class SettingController extends Controller
     }
     public function payment(Request $request)
     {
-        $request->validate(['stripeEnabled' => "required|boolean"]);
-        Setting::set(['payment.stripeEnabled' => $request->stripeEnabled]);
+        try {
+            $request->validate([
+                'stripeEnabled' => "required|boolean",
+                "stripeKey" => Rule::requiredIf($request->stripeEnabled),
+                "stripeSecret" => Rule::requiredIf($request->stripeEnabled),
+            ]);
+
+            Setting::set(['payment.stripeEnabled' => $request->stripeEnabled]);
+
+            $env = new Env();
+            $env->setValue('STRIPE_KEY', '"' . $request->stripeKey . '"');
+            $env->setValue('STRIPE_SECRET', '"' . $request->stripeSecret . '"');
 
 
-        return response()->json([
-            'msg' => "payment settings updated successfully"
-        ]);
+            return response()->json([
+                'msg' => "payment settings updated successfully"
+            ]);
+        } catch (AuthenticationException $e) {
+            return response()->json([
+                'msg' => $e->getMessage()
+            ], 400);
+        }
     }
 
     private function uploadLogo($file)

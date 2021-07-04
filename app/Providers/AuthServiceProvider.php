@@ -40,7 +40,8 @@ class AuthServiceProvider extends ServiceProvider
             return $order->status == "pending" && $order->created_at->diffInMinutes(Carbon::now()) > 5;
         });
         Gate::define('shop', function (User $user) {
-            $openingHours = OpeningHours::create(config('schedule.openingHours'));
+
+            $openingHours = OpeningHours::create(array_merge(['overflow' => true],  config('schedule.openingHours')));
             $forcedClose = config('schedule.forcedClose');
             return $openingHours->isOpen() &&  !$forcedClose;
         });
