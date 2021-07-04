@@ -18,14 +18,17 @@ class CheckoutController extends Controller
     }
     public function index()
     {
-        
+
         if (Gate::denies('checkout')) {
             return redirect()->route('meals.index');
         }
 
         /** @var \App\Models\User */
         $authUser = auth()->user();
-        return view('pages.checkout')->with('intent', $authUser->createSetupIntent(['usage' => "off_session"]));
+        if (config('payment.stripeEnabled')) {
+            return view('pages.checkout')->with('intent', $authUser->createSetupIntent(['usage' => "off_session"]));
+        }
+        return view('pages.checkout');
     }
 
     public function store(Request $request)
@@ -37,7 +40,7 @@ class CheckoutController extends Controller
             "nameOnCard" => "required_if:paymentMode,stripe",
             "paymentMethod" => "required_if:paymentMode,stripe"
         ]);
-        ['msg' => $msg, 'status' => $status] =$this->checkoutService->checkout($request->address_id, $request->nameOnCard, $request->paymentMode, $request->paymentMethod);
+        ['msg' => $msg, 'status' => $status] = $this->checkoutService->checkout($request->address_id, $request->nameOnCard, $request->paymentMode, $request->paymentMethod);
         return response()->json([
             'msg' => __($msg)
         ], $status);
