@@ -13,7 +13,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        $latestMeals = Meal::latest()->with('category')->take(12)->get();
+        $latestMeals = Meal::latest()->with('category' , 'extras' , 'extras.options')->take(12)->get();
         return view('pages.home' , compact('latestMeals'));
     }
     public function about()

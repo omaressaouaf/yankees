@@ -26,7 +26,8 @@ class CartStoreRequest extends FormRequest
         return [
             'id' => 'required',
             'qty' => 'required|integer|min:1|max:20',
-            'price'=> 'required|integer|min:0'
+            'price'=> 'required|integer|min:0',
+            "extras" => 'nullable|array'
         ];
     }
 

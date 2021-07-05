@@ -16,7 +16,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 import "dayjs/locale/fr";
 
-import VueLoaders from 'vue-loaders';
+import VueLoaders from "vue-loaders";
 import "vue-loaders/dist/vue-loaders.css";
 
 // ______________________________________________Component global registration______________________________
@@ -38,7 +38,10 @@ Vue.component(
     "checkout-form",
     require("./components/CheckoutForm.vue").default
 );
-Vue.component('notifications-list' , require('./admin/components/notifications/NotificationsList.vue').default);
+Vue.component(
+    "notifications-list",
+    require("./admin/components/notifications/NotificationsList.vue").default
+);
 Vue.component(
     "locale-switcher",
     require("./admin/components/partials/LocaleSwitcher.vue").default
@@ -49,6 +52,20 @@ Vue.component(
     require("./components/OrderTracker.vue").default
 );
 
+Vue.component(
+    "meals-item",
+    require("./components/meals/MealsItem.vue").default
+);
+
+Vue.component(
+    "meals-single",
+    require("./components/meals/MealsSingle.vue").default
+);
+
+Vue.component(
+    "meals-slider",
+    require("./components/meals/MealsSlider.vue").default
+);
 
 // ______________________________________________Filters______________________________________________
 
@@ -59,6 +76,10 @@ Vue.filter("formatDate", function(dt) {
     return document.documentElement.lang == "fr"
         ? dayjs(dt).format("MMMM D, YYYY H:mm ")
         : dayjs(dt).format("MMMM D, YYYY h:mm A ");
+});
+Vue.filter("truncate", function(str) {
+    if (str.length < 100) return str;
+    return str.substring(0, 100) + "...";
 });
 // ______________________________________________Vue and packages Config___________
 if (document.documentElement.lang == "fr") {

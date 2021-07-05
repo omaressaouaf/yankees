@@ -46,6 +46,7 @@
         "vue-loaders": "^4.1.4",
         "vue-multiselect": "^2.1.6",
         "vue-online-prop": "^1.0.1",
+        "vue-owl-carousel": "^2.0.3",
         "vue-router": "^3.5.1",
         "vue-spinner": "^1.0.4",
         "vuelidate": "^0.7.6",

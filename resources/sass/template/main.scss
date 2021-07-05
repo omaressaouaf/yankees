@@ -25,11 +25,12 @@
 --------------------------------------------------------------*/
 body {
     // font-family: "Open Sans", sans-serif;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
-$primary_color : #3F83C0;
-$primary_color_dark : #1D4060;
-$dark_color : #1D1D1B;
+$primary_color: #3f83c0;
+$primary_color_dark: #1d4060;
+$dark_color: #1d1d1b;
+
 a {
     color: white;
 }
@@ -47,7 +48,6 @@ a:hover {
 // h6 {
 //     font-family: "Playfair Display", serif;
 // }
-
 
 /*--------------------------------------------------------------
 # Preloader
@@ -140,7 +140,7 @@ a:hover {
 #topbar {
     height: 40px;
     font-size: 14px;
-    background: #0C0B09;
+    background: #0c0b09;
     transition: all 0.5s;
 }
 
@@ -185,9 +185,8 @@ a:hover {
     content: "/";
 }
 
-.active a{
+.active a {
     color: $primary_color !important;
-
 }
 
 /*--------------------------------------------------------------
@@ -201,16 +200,15 @@ a:hover {
     padding: 13px 0;
     top: 40px;
     width: 100%;
-  }
+}
 
-
-  #header.header-scrolled {
+#header.header-scrolled {
     top: 0;
     background: rgba(0, 0, 0, 0.85);
     border-bottom: 1px solid #37332a;
-  }
+}
 
-  #header .logo {
+#header .logo {
     font-size: 28px;
     margin: 0;
     padding: 0;
@@ -219,29 +217,28 @@ a:hover {
     letter-spacing: 1px;
     text-transform: uppercase;
     font-family: "Poppins", sans-serif;
-  }
+}
 
-  #header .logo a {
+#header .logo a {
     color: #fff;
-  }
+}
 
-  #header .logo img {
+#header .logo img {
     max-height: 40px;
-  }
-  .darkheader {
+}
+.darkheader {
     background: rgba(0, 0, 0, 0.918) !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.918) !important;
-
-  }
-  #header .dropdown-menu a {
-        color : rgb(32, 32, 32);
-  }
-  #header .normal-nav-link {
+}
+#header .dropdown-menu a {
+    color: rgb(32, 32, 32);
+}
+#header .normal-nav-link {
     padding: 0.5rem 0px;
-  }
-  #header .container {
-      padding-top : 5px;
-  }
+}
+#header .container {
+    padding-top: 5px;
+}
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -280,7 +277,7 @@ a:hover {
     color: $primary_color;
 }
 
-.nav-menu .book-a-table  {
+.nav-menu .book-a-table {
     border: 2px solid $primary_color;
     color: #fff;
     border-radius: 50px;
@@ -537,7 +534,8 @@ a:hover {
 }
 .hero-meals {
     height: 60vh !important;
-    background: url("/storage/images/design/template/hero-meals-bg.jpg") top center !important;
+    background: url("/storage/images/design/template/hero-meals-bg.jpg") top
+        center !important;
     background-position: center !important; /* Center the image */
     background-repeat: no-repeat !important; /* Do not repeat the image */
     background-size: cover !important; /* Resize the background image to cover the entire container */
@@ -617,7 +615,10 @@ a:hover {
 #hero .play-btn {
     width: 94px;
     height: 94px;
-    background: radial-gradient($primary_color 50%, rgba(205, 164, 94, 0.4) 52%);
+    background: radial-gradient(
+        $primary_color 50%,
+        rgba(205, 164, 94, 0.4) 52%
+    );
     border-radius: 50%;
     display: block;
     position: relative;
@@ -776,7 +777,6 @@ section {
     background: rgba(255, 255, 255, 0.2);
     margin: 4px 10px;
 }
-
 
 .section-title p {
     margin: 0;
@@ -1389,62 +1389,16 @@ section {
     min-height: 320px;
 }
 
-.testimonials .testimonial-item .testimonial-img {
-    width: 90px;
-    border-radius: 50%;
-    margin: -40px 0 0 40px;
-    position: relative;
-    z-index: 2;
-    border: 6px solid rgba(255, 255, 255, 0.2);
-}
-
-.testimonials .testimonial-item h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 10px 0 5px 45px;
-    color: white;
-}
-
-.testimonials .testimonial-item h4 {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0 0 0 45px;
-}
-
-.testimonials .testimonial-item .quote-icon-left,
-.testimonials .testimonial-item .quote-icon-right {
-    color: #d3af71;
-    font-size: 26px;
-}
-
-.testimonials .testimonial-item .quote-icon-left {
-    display: inline-block;
-    left: -5px;
-    position: relative;
-}
-
-.testimonials .testimonial-item .quote-icon-right {
-    display: inline-block;
-    right: -5px;
-    position: relative;
-    top: 10px;
-}
-
-.testimonials .testimonial-item p {
-    font-style: italic;
-    margin: 0 15px 0 15px;
-    padding: 20px 20px 60px 20px;
-    background: #26231d;
-    position: relative;
-    border-radius: 6px;
-    position: relative;
-    z-index: 1;
-}
-
 .testimonials .owl-nav,
 .testimonials .owl-dots {
     margin-top: 5px;
     text-align: center;
+}
+
+@media (min-width: 1024px)  {
+    .testimonials .owl-dots {
+        margin-top: -140px !important ;
+    }
 }
 
 .testimonials .owl-dot {
@@ -1453,7 +1407,7 @@ section {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #ddd !important;
+    background-color: rgb(7, 6, 6) !important;
 }
 
 .testimonials .owl-dot.active {

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <vue-skeleton-loader
-      v-if="imageLoading"
+      v-if="imageLoading && showImagePlaceholder"
       type="rect"
       width="100%"
       height="247px"
@@ -11,6 +11,7 @@
       class="card-img"
       :class="[!meal.active ? 'dark-bg' : '']"
       :src="meal.resizedImage"
+      style="min-height: 200px"
       alt="Vans"
     />
 
@@ -31,7 +32,7 @@
       <h6 class="card-subtitle mb-2 text-muted">
         {{ translate("front.category") }}: {{ meal.category.name }}
       </h6>
-      <p class="card-text">{{ meal.desc }}</p>
+      <p class="card-text">{{ meal.desc | truncate }}</p>
       <div class="buy d-flex justify-content-between align-items-center">
         <div class="price text-success">
           <h5 class="mt-4">{{ meal.price }} dhs</h5>
@@ -62,13 +63,18 @@ export default {
   },
   props: {
     meal: Object,
+    showImagePlaceholder: {
+      required: false,
+      type: Boolean,
+      default: true,
+    },
   },
   methods: {
     setImageLoading() {
       this.imageLoading = false;
     },
     handleClickMeal(meal) {
-      if (meal.extras.length) {
+      if (meal.extras && meal.extras.length) {
         this.$store.commit("meals/setMeal", meal);
         $("#mealModal").modal("show");
       } else {

@@ -119,7 +119,7 @@
             <div
               v-else
               class="text-center mt-4 mb-4 alert alert-warning"
-              style="background: #cda45e"
+              
             >
               <i class="fa fa-utensils fa-2x text-white mb-3"></i>
               <h4>{{ translate("front.cartEmpty") }}.</h4>
@@ -196,7 +196,7 @@
                 v-if="$gate.can('checkout', { cartObject, minOrderPrice })"
                 href="/checkout"
                 class="btn-orange text-center btn-square btn-block  mt-2"
-            
+
               >
                 {{ translate("front.checkout") }}
               </a>
