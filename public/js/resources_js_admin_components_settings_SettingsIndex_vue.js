@@ -1999,8 +1999,12 @@ var render = function() {
               _c("small", { staticClass: "form-text text-muted ml-5" }, [
                 _vm._v(
                   "\n          " +
-                    _vm._s(_vm.translate("validation.attributes.max")) +
-                    ": 300 * 200."
+                    _vm._s(
+                      _vm.translate("admin.logoAdvice") +
+                        " " +
+                        _vm.translate("validation.attributes.max")
+                    ) +
+                    ": 1062 * 235."
                 )
               ])
             ]

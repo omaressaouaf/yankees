@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Connexion -
+@endsection
 @section('content')
     @include('includes.breadcrumb' , ['pageName'=> 'Login'])
 

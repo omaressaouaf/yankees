@@ -11,7 +11,7 @@
       class="card-img"
       :class="[!meal.active ? 'dark-bg' : '']"
       :src="meal.resizedImage"
-      style="min-height: 200px"
+      style="min-height: 247px"
       alt="Vans"
     />
 

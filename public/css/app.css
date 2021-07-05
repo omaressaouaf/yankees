@@ -26668,12 +26668,33 @@ a:hover {
 --------------------------------------------------------------*/
 
 #hero {
-  width: 100%;
+  width: 100% !important;
   height: 90vh;
-  background: url("/storage/images/design/template/hero-bg.jpg") top center;
+  background: linear-gradient(to bottom, #353530, #31312e, #1d1d1b) top center;
   background-size: cover;
   position: relative;
   padding: 0;
+}
+
+@media (max-width: 768px) {
+  .hero-image {
+    max-height: 100px;
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-image {
+    max-height: 700px;
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-image {
+    max-height: 800px;
+    max-width: 600px;
+  }
 }
 
 .hero-meals {
@@ -26722,6 +26743,7 @@ a:hover {
 
 #hero h1 span {
   color: #3f83c0;
+  font-family: monospace;
 }
 
 #hero h2 {
@@ -26749,14 +26771,20 @@ a:hover {
   border: 2px solid #3f83c0;
 }
 
+#hero .btn-book {
+  background: #3f83c0 !important;
+}
+
 #hero .btn-menu:hover,
 #hero .btn-book:hover {
   background: #3f83c0;
   color: #fff;
 }
 
-#hero .btn-book {
-  margin-left: 15px;
+@media (min-width: 768px) {
+  #hero .btn-book {
+    margin-left: 15px;
+  }
 }
 
 #hero .play-btn {

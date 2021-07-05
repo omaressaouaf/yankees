@@ -1,4 +1,7 @@
 @extends('layouts.account')
+@section('title')
+Profil -
+@endsection
 @section('account-content')
     <div class="mt-4">
         <h4 class="font-weight-bold"># {{ __('Your Profile') }}</h4>

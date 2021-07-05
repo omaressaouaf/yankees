@@ -525,13 +525,35 @@ a:hover {
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-    width: 100%;
+    width: 100% !important;
     height: 90vh;
-    background: url("/storage/images/design/template/hero-bg.jpg") top center;
+    background: linear-gradient(to bottom, #353530, #31312e, $dark_color) top
+        center;
     background-size: cover;
     position: relative;
     padding: 0;
 }
+@media (max-width: 768px) {
+    .hero-image {
+        max-height: 100px;
+        max-width: 300px;
+    }
+}
+@media (min-width: 768px) {
+    .hero-image {
+        max-height: 700px;
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-image {
+        max-height: 800px;
+        max-width: 600px;
+    }
+}
+
+
 .hero-meals {
     height: 60vh !important;
     background: url("/storage/images/design/template/hero-meals-bg.jpg") top
@@ -575,6 +597,7 @@ a:hover {
 
 #hero h1 span {
     color: $primary_color;
+    font-family: monospace;
 }
 
 #hero h2 {
@@ -601,6 +624,10 @@ a:hover {
     color: white;
     border: 2px solid $primary_color;
 }
+#hero .btn-book {
+    background: $primary_color !important;
+
+}
 
 #hero .btn-menu:hover,
 #hero .btn-book:hover {
@@ -608,8 +635,10 @@ a:hover {
     color: #fff;
 }
 
-#hero .btn-book {
-    margin-left: 15px;
+@media (min-width : 768px) {
+    #hero .btn-book {
+        margin-left: 15px;
+    }
 }
 
 #hero .play-btn {
@@ -1395,7 +1424,7 @@ section {
     text-align: center;
 }
 
-@media (min-width: 1024px)  {
+@media (min-width: 1024px) {
     .testimonials .owl-dots {
         margin-top: -140px !important ;
     }

@@ -56,7 +56,7 @@
             </span>
           </div>
           <small class="form-text text-muted ml-5">
-            {{ translate("validation.attributes.max") }}: 300 * 200.</small
+            {{ translate("admin.logoAdvice") + " " +  translate("validation.attributes.max") }}: 1062 * 235.</small
           >
         </div>
       </div>

@@ -172,6 +172,7 @@ return [
     "stripeEnabled" => "Stripe activée",
     "warning" => "Attention",
     "stripeWarning" => "Si ces clés ne sont pas des clés de stripe valides. chaque interaction avec Stripe échouerait. et l'utilisateur obtiendrait une erreur de serveur 500. nous vous suggérons de mettre les bonnes clés",
-    "stripeCheckoutNotice" => "Nous prenons en charge le paiement par carte de crédit/débit. c'est juste désactivé pour l'instant"
+    "stripeCheckoutNotice" => "Nous prenons en charge le paiement par carte de crédit/débit. c'est juste désactivé pour l'instant",
+    "logoAdvice" => "Pour mieux voir."
 
 ];

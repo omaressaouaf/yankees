@@ -10,12 +10,9 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-    <div class="logo d-flex my-3 align-items-center">
-      <a href="/" class="ml-3">
-        <img :src="appLogo" width="50" height="50" alt="" />
-      </a>
-      <a href="/" class="simple-text logo-normal">
-        {{ appName }}
+    <div class="logo d-flex my-3 align-items-center ">
+      <a href="/" class="ml-4" >
+        <img class="" :src="appLogo" alt="logo" />
       </a>
     </div>
     <div class="sidebar-wrapper ps">
@@ -200,5 +197,8 @@ export default {
   background-color: #3f83c0 !important;
   box-shadow: 0 4px 20px 0px rgb(50 92 168 / 14%),
     0 7px 10px -5px rgb(50 92 168 / 40%);
+}
+.logo img {
+    max-height: 40px;
 }
 </style>

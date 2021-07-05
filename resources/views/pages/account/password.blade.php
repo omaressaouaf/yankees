@@ -1,4 +1,7 @@
 @extends('layouts.account')
+@section('title')
+Changement de mot de passe -
+@endsection
 @section('account-content')
     <div class="mt-4">
         <h4 class="font-weight-bold"># {{ __('Your Password') }}</h4>

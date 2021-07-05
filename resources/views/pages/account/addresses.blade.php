@@ -1,16 +1,19 @@
 @extends('layouts.account')
+@section('title')
+Carnet d'adresses -
+@endsection
 @section('account-content')
-    <div class="mt-4">
-        <h4 class="font-weight-bold"># {{ __('Your Address Book') }}</h4>
-        <p class="text-muted mb-4">
-            {{ __('Here you can register your addresses') }}
-        </p>
-        <address-list :user-id="{{ auth()->id() }}" :apply-front-theme="{{true}}" />
-    </div>
+<div class="mt-4">
+    <h4 class="font-weight-bold"># {{ __('Your Address Book') }}</h4>
+    <p class="text-muted mb-4">
+        {{ __('Here you can register your addresses') }}
+    </p>
+    <address-list :user-id="{{ auth()->id() }}" :apply-front-theme="{{true}}" />
+</div>
 @endsection
 @section('scripts')
-    @parent
-    <script>
+@parent
+<script>
 
-    </script>
+</script>
 @endsection

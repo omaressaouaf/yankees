@@ -33,7 +33,7 @@ class SettingController extends Controller
         ]);
         $request->validate([
             'name' => "required",
-            'newLogo' => "nullable|image|dimensions:max_width=300,max_height=200",
+            'newLogo' => "nullable|image",
             "contact.email" => "nullable|email",
             "contact.social_media.facebook" => "required|url",
             "contact.social_media.instagram" => "required|url"

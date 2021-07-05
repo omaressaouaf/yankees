@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+S'inscrire -
+@endsection
 @section('content')
     @include('includes.breadcrumb' , ['pageName'=> "Register"])
 

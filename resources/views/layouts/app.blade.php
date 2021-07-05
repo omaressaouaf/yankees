@@ -10,11 +10,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name') }}</title>
+    <title>@yield('title') {{ config('app.name') }} </title>
 
-    {{-- fav icon --}}
-    <link href="/storage/images/design/favicon.png" rel="icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="/storage/images/design/favicon.png">
+    {{-- fav icons --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="/storage/images/design/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/storage/images/design/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/storage/images/design/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/storage/images/design/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/storage/images/design/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <!--     Fonts      -->
     {{-- <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -59,7 +64,12 @@
         window.deliveryPrice = @json(config('delivery.price'));
         window.deliveryTime = @json(config('delivery.time'));
         window.minOrderPrice = @json(config('cart.min_order_price'));
-        window.authUser = @json(auth()->user());
+        const authUser = @json(auth()->user());
+        if(authUser) {
+
+            authUser['roles'] = @json(auth()->check() ? auth()->user()->roles()->pluck('name') : []) ;
+        }
+        window.authUser = authUser;
         window.appName = '{{ config('app.name') }}';
         window.appLogo = '{{ config('app.logo') }}';
         window.canShop = @json(Gate::allows('shop'));

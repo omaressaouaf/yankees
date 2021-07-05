@@ -1,4 +1,7 @@
 @extends('layouts.account')
+@section('title')
+Tableau de bord -
+@endsection
 @section('account-content')
 
     <div class="row py-4">

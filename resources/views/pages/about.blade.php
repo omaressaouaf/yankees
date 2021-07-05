@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+     À propos de nous -
+@endsection
 @section('content')
     @include('includes.breadcrumb' , ['pageName'=> 'About'])
     <main id="main">

@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+     Nos Menus -
+@endsection
 @section('content')
     @include('includes.hero-meals' )
     <main id="main" v-cloak>

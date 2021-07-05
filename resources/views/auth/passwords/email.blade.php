@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Réinitialisation du mot de passe -
+@endsection
 @section('content')
     @include('includes.breadcrumb' , ['pageName'=> 'Reset Password'])
     <main id="main">
