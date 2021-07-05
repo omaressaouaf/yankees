@@ -68,7 +68,7 @@ Route::group(['middleware' => "setLocale"], function () {
         function () {
             return view('layouts.admin');
         }
-    )->name('admin')->middleware(['auth', 'roles:deliveryman,admin'])->where('path', '([A-z\d\-\/_.]+)?');
+    )->name('admin')->middleware(['auth', 'roles:admin,manager,deliveryman'])->where('path', '([A-z\d\-\/_.]+)?');
     // Route::redirect('/admin', '/admin/dashboard');
 
 

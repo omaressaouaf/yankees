@@ -20,24 +20,27 @@
     </div>
     <div class="sidebar-wrapper ps">
       <ul class="nav">
-        <div class="sidebar-heading mb-1">
-          {{ translate("admin.overview") }}
-        </div>
-        <router-link
-          :to="{ name: 'dashboard' }"
-          v-slot="{ href, navigate, isActive }"
-          custom
-        >
-          <li class="nav-item" :class="[isActive && 'active']">
-            <a class="nav-link" :href="href" @click="navigate">
-              <i class="material-icons">dashboard</i>
-              <p>{{ translate("admin.dashboard") }}</p>
-            </a>
-          </li>
-        </router-link>
+        <div v-if="$gate.can('manage-partially')">
+          <div class="sidebar-heading mb-1">
+            {{ translate("admin.overview") }}
+          </div>
+          <router-link
+            :to="{ name: 'dashboard' }"
+            v-slot="{ href, navigate, isActive }"
+            custom
+          >
+            <li class="nav-item" :class="[isActive && 'active']">
+              <a class="nav-link" :href="href" @click="navigate">
+                <i class="material-icons">dashboard</i>
+                <p>{{ translate("admin.dashboard") }}</p>
+              </a>
+            </li> </router-link
+          >
         <!-- Divider -->
         <hr class="sidebar-divider" />
-        <div v-if="$gate.can('manage')">
+        </div>
+
+        <div v-if="$gate.can('manage-partially')">
           <!-- Heading -->
           <div class="sidebar-heading mb-1">
             {{ translate("admin.management") }}
@@ -105,7 +108,7 @@
             </a>
           </li>
         </router-link>
-        <div v-if="$gate.can('manage')">
+        <div v-if="$gate.can('manage-partially')">
           <router-link
             :to="{ name: 'sections' }"
             v-slot="{ href, navigate, isActive }"

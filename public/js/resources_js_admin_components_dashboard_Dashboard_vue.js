@@ -1633,81 +1633,79 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm.$gate.can("manage")
-      ? _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-lg-12 col-md-12" }, [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "card-header card-header-warning" }, [
-                _c("h4", { staticClass: "card-title" }, [
-                  _vm._v(_vm._s(_vm.translate("admin.latestUsers")))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  { staticClass: "card-category" },
-                  [
-                    _c("router-link", { attrs: { to: { name: "users" } } }, [
-                      _vm._v(
-                        _vm._s(_vm.translate("admin.manageTheirData")) +
-                          "\n            "
-                      )
-                    ])
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body table-responsive" }, [
-                _c("table", { staticClass: "table table-hover" }, [
-                  _c("thead", { staticClass: "text-warning" }, [
-                    _c("th", [_vm._v("ID")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v(_vm._s(_vm.translate("admin.name")))]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Email")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v(_vm._s(_vm.translate("admin.phone")))])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    [
-                      _vm.usersChartLoading
-                        ? _c("tr", [
-                            _c(
-                              "td",
-                              {
-                                staticClass: "text-center py-5",
-                                attrs: { colspan: "4" }
-                              },
-                              [
-                                _c("vue-loaders-ball-scale-ripple-multiple", {
-                                  attrs: { color: "#2B51C4", scale: "1" }
-                                })
-                              ],
-                              1
-                            )
-                          ])
-                        : _vm._l(_vm.latestUsers, function(user) {
-                            return _c("tr", { key: user.id }, [
-                              _c("td", [_vm._v(_vm._s(user.id))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(user.name))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(user.email))]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(user.phone))])
-                            ])
-                          })
-                    ],
-                    2
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-lg-12 col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header card-header-warning" }, [
+            _c("h4", { staticClass: "card-title" }, [
+              _vm._v(_vm._s(_vm.translate("admin.latestUsers")))
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              { staticClass: "card-category" },
+              [
+                _c("router-link", { attrs: { to: { name: "users" } } }, [
+                  _vm._v(
+                    _vm._s(_vm.translate("admin.manageTheirData")) +
+                      "\n            "
                   )
                 ])
-              ])
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body table-responsive" }, [
+            _c("table", { staticClass: "table table-hover" }, [
+              _c("thead", { staticClass: "text-warning" }, [
+                _c("th", [_vm._v("ID")]),
+                _vm._v(" "),
+                _c("th", [_vm._v(_vm._s(_vm.translate("admin.name")))]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Email")]),
+                _vm._v(" "),
+                _c("th", [_vm._v(_vm._s(_vm.translate("admin.phone")))])
+              ]),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                [
+                  _vm.usersChartLoading
+                    ? _c("tr", [
+                        _c(
+                          "td",
+                          {
+                            staticClass: "text-center py-5",
+                            attrs: { colspan: "4" }
+                          },
+                          [
+                            _c("vue-loaders-ball-scale-ripple-multiple", {
+                              attrs: { color: "#2B51C4", scale: "1" }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    : _vm._l(_vm.latestUsers, function(user) {
+                        return _c("tr", { key: user.id }, [
+                          _c("td", [_vm._v(_vm._s(user.id))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(user.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(user.email))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(user.phone))])
+                        ])
+                      })
+                ],
+                2
+              )
             ])
           ])
         ])
-      : _vm._e()
+      ])
+    ])
   ])
 }
 var staticRenderFns = []

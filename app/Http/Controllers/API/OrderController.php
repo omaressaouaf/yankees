@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Events\DeliverymanSelected;
-use App\Events\OrderStatusChanged;
 use Exception;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-
 use App\Services\CheckoutService;
+use App\Events\OrderStatusChanged;
+
 use Illuminate\Support\Facades\DB;
+use App\Events\DeliverymanSelected;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Laravel\Cashier\Exceptions\PaymentFailure;
 use Laravel\Cashier\Exceptions\PaymentActionRequired;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -29,7 +30,7 @@ class OrderController extends Controller
     {
         /** @var \App\Models\User */
         $authUser = auth()->user();
-        $orders = $authUser->hasRole('admin')  ? Order::latest()->with('user')->get() : $authUser->deliveryorders;
+        $orders = Gate::allows('manage-partially')  ? Order::latest()->with('user')->get() : $authUser->deliveryorders;
         return response()->json([
             'orders' => $orders
         ], 200);
@@ -51,9 +52,10 @@ class OrderController extends Controller
             'status' => ['required', Rule::in(['pending', 'processing', 'out_for_delivery', 'delivered', 'cancelled'])],
         ]);
 
+
         $order->update([
             'status' => $request->status,
-            "deliveryman_id" => $request->deliveryman_id
+            "deliveryman_id" =>  $request->deliveryman_id,
         ]);
         $changes = $order->getChanges();
         if (array_key_exists('status', $changes) &&  $order->user_id != null && auth()->id() !=  $order->user_id) {
@@ -70,6 +72,7 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
+        $this->authorize('manage-fully');
         $order->delete();
         return response()->json([
             'message' => 'extra deleted succefully'
@@ -77,6 +80,7 @@ class OrderController extends Controller
     }
     public function bulk_destroy($ids)
     {
+        $this->authorize('manage-fully');
         $idsExploded = explode(',', $ids);
         foreach ($idsExploded as $id) {
             $order =  Order::findOrFail($id);

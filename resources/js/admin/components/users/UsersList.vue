@@ -28,6 +28,7 @@
             <div class="mt-2">
               <!-- <button class="btn btn-secondary"> <i class="fa fa-sync-alt"></i> </button> -->
               <button
+                v-if="$gate.can('manage-fully')"
                 class="btn btn-danger"
                 @click="prepareBulkDeleteUsers"
                 :disabled="postIsLoading"
@@ -61,6 +62,7 @@
                   <tr>
                     <th>
                       <input
+                        v-if="$gate.can('manage-fully')"
                         :disabled="getIsLoading"
                         type="checkbox"
                         v-model="allSelected"
@@ -88,6 +90,7 @@
                   <tr v-for="user in allUsers" :key="user.id" v-else>
                     <td>
                       <input
+                        v-if="$gate.can('manage-fully')"
                         type="checkbox"
                         v-model="selectedItems"
                         :value="user.id"
@@ -124,6 +127,7 @@
                         ><i class="fa fa-map-marker-alt text-info"></i
                       ></a>
                       <router-link
+                        v-if="$gate.can('manage-fully')"
                         class="mr-4"
                         :to="{
                           name: 'users.edit',
@@ -131,7 +135,7 @@
                         }"
                         ><i class="fa fa-pen text-success"></i
                       ></router-link>
-                      <a href="#" @click.prevent="deleteUser(user.id)"
+                      <a v-if="$gate.can('manage-fully')" href="#" @click.prevent="deleteUser(user.id)"
                         ><i class="fa fa-trash text-danger"></i
                       ></a>
                     </td>

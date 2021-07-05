@@ -94,6 +94,7 @@ class SettingController extends Controller
     }
     public function payment(Request $request)
     {
+        $this->authorize('manage-fully');
         try {
             $request->validate([
                 'stripeEnabled' => "required|boolean",

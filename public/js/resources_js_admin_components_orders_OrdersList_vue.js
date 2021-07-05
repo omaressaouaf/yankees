@@ -616,6 +616,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -1759,7 +1761,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "mt-1" }, [
-                _vm.$gate.can("manage")
+                _vm.$gate.can("manage-fully")
                   ? _c(
                       "button",
                       {
@@ -1798,48 +1800,52 @@ var render = function() {
                       _c("thead", [
                         _c("tr", [
                           _c("th", [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.allSelected,
-                                  expression: "allSelected"
-                                }
-                              ],
-                              attrs: {
-                                disabled: _vm.getIsLoading,
-                                type: "checkbox"
-                              },
-                              domProps: {
-                                checked: Array.isArray(_vm.allSelected)
-                                  ? _vm._i(_vm.allSelected, null) > -1
-                                  : _vm.allSelected
-                              },
-                              on: {
-                                click: _vm.selectOrUnSelectAll,
-                                change: function($event) {
-                                  var $$a = _vm.allSelected,
-                                    $$el = $event.target,
-                                    $$c = $$el.checked ? true : false
-                                  if (Array.isArray($$a)) {
-                                    var $$v = null,
-                                      $$i = _vm._i($$a, $$v)
-                                    if ($$el.checked) {
-                                      $$i < 0 &&
-                                        (_vm.allSelected = $$a.concat([$$v]))
-                                    } else {
-                                      $$i > -1 &&
-                                        (_vm.allSelected = $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1)))
+                            _vm.$gate.can("manage-fully")
+                              ? _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.allSelected,
+                                      expression: "allSelected"
                                     }
-                                  } else {
-                                    _vm.allSelected = $$c
+                                  ],
+                                  attrs: {
+                                    disabled: _vm.getIsLoading,
+                                    type: "checkbox"
+                                  },
+                                  domProps: {
+                                    checked: Array.isArray(_vm.allSelected)
+                                      ? _vm._i(_vm.allSelected, null) > -1
+                                      : _vm.allSelected
+                                  },
+                                  on: {
+                                    click: _vm.selectOrUnSelectAll,
+                                    change: function($event) {
+                                      var $$a = _vm.allSelected,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.allSelected = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.allSelected = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.allSelected = $$c
+                                      }
+                                    }
                                   }
-                                }
-                              }
-                            })
+                                })
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("th", [_vm._v("ID")]),
@@ -1880,7 +1886,7 @@ var render = function() {
                                 _c(
                                   "td",
                                   {
-                                    staticClass: "text-center py-5 ",
+                                    staticClass: "text-center py-5",
                                     attrs: { colspan: "10" }
                                   },
                                   [
@@ -1905,52 +1911,58 @@ var render = function() {
                                   },
                                   [
                                     _c("td", [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.selectedItems,
-                                            expression: "selectedItems"
-                                          }
-                                        ],
-                                        attrs: { type: "checkbox" },
-                                        domProps: {
-                                          value: order.id,
-                                          checked: Array.isArray(
-                                            _vm.selectedItems
-                                          )
-                                            ? _vm._i(
-                                                _vm.selectedItems,
-                                                order.id
-                                              ) > -1
-                                            : _vm.selectedItems
-                                        },
-                                        on: {
-                                          change: function($event) {
-                                            var $$a = _vm.selectedItems,
-                                              $$el = $event.target,
-                                              $$c = $$el.checked ? true : false
-                                            if (Array.isArray($$a)) {
-                                              var $$v = order.id,
-                                                $$i = _vm._i($$a, $$v)
-                                              if ($$el.checked) {
-                                                $$i < 0 &&
-                                                  (_vm.selectedItems = $$a.concat(
-                                                    [$$v]
-                                                  ))
-                                              } else {
-                                                $$i > -1 &&
-                                                  (_vm.selectedItems = $$a
-                                                    .slice(0, $$i)
-                                                    .concat($$a.slice($$i + 1)))
+                                      _vm.$gate.can("manage-fully")
+                                        ? _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.selectedItems,
+                                                expression: "selectedItems"
                                               }
-                                            } else {
-                                              _vm.selectedItems = $$c
+                                            ],
+                                            attrs: { type: "checkbox" },
+                                            domProps: {
+                                              value: order.id,
+                                              checked: Array.isArray(
+                                                _vm.selectedItems
+                                              )
+                                                ? _vm._i(
+                                                    _vm.selectedItems,
+                                                    order.id
+                                                  ) > -1
+                                                : _vm.selectedItems
+                                            },
+                                            on: {
+                                              change: function($event) {
+                                                var $$a = _vm.selectedItems,
+                                                  $$el = $event.target,
+                                                  $$c = $$el.checked
+                                                    ? true
+                                                    : false
+                                                if (Array.isArray($$a)) {
+                                                  var $$v = order.id,
+                                                    $$i = _vm._i($$a, $$v)
+                                                  if ($$el.checked) {
+                                                    $$i < 0 &&
+                                                      (_vm.selectedItems = $$a.concat(
+                                                        [$$v]
+                                                      ))
+                                                  } else {
+                                                    $$i > -1 &&
+                                                      (_vm.selectedItems = $$a
+                                                        .slice(0, $$i)
+                                                        .concat(
+                                                          $$a.slice($$i + 1)
+                                                        ))
+                                                  }
+                                                } else {
+                                                  _vm.selectedItems = $$c
+                                                }
+                                              }
                                             }
-                                          }
-                                        }
-                                      })
+                                          })
+                                        : _vm._e()
                                     ]),
                                     _vm._v(" "),
                                     _c("td", [_vm._v(_vm._s(order.id))]),
@@ -2106,7 +2118,7 @@ var render = function() {
                                           ]
                                         ),
                                         _vm._v(" "),
-                                        _vm.$gate.can("manage")
+                                        _vm.$gate.can("manage-fully")
                                           ? _c(
                                               "a",
                                               {

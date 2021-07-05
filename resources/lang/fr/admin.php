@@ -105,6 +105,7 @@ return [
     "failure" => 'Échec',
     "roles" => "Rôles",
     "admin" => "Admin",
+    "manager" => "Gérant",
     "deliveryman" => "Livreur",
     "client" => "Client",
     "print" => "Imprimer",

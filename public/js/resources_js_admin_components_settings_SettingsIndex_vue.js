@@ -3608,26 +3608,31 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("li", { staticClass: "nav-item" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { href: "#payment", "data-toggle": "tab" }
-                            },
-                            [
-                              _c("i", { staticClass: "material-icons" }, [
-                                _vm._v("credit_score")
-                              ]),
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(_vm.translate("admin.payment")) +
-                                  "\n                    "
-                              ),
-                              _c("div", { staticClass: "ripple-container" })
-                            ]
-                          )
-                        ])
+                        _vm.$gate.can("manage-fully")
+                          ? _c("li", { staticClass: "nav-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link",
+                                  attrs: {
+                                    href: "#payment",
+                                    "data-toggle": "tab"
+                                  }
+                                },
+                                [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("credit_score")
+                                  ]),
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(_vm.translate("admin.payment")) +
+                                      "\n                    "
+                                  ),
+                                  _c("div", { staticClass: "ripple-container" })
+                                ]
+                              )
+                            ])
+                          : _vm._e()
                       ]
                     )
                   ])
@@ -3700,16 +3705,20 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "tab-pane", attrs: { id: "payment" } },
-                      [
-                        _c("payment-form", {
-                          attrs: { "payment-settings": _vm.settings.payment }
-                        })
-                      ],
-                      1
-                    )
+                    _vm.$gate.can("manage-fully")
+                      ? _c(
+                          "div",
+                          { staticClass: "tab-pane", attrs: { id: "payment" } },
+                          [
+                            _c("payment-form", {
+                              attrs: {
+                                "payment-settings": _vm.settings.payment
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
                   ])
             ])
           ])

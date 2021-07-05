@@ -50,7 +50,7 @@
                       <div class="ripple-container"></div
                     ></a>
                   </li>
-                  <li class="nav-item">
+                  <li v-if="$gate.can('manage-fully')" class="nav-item">
                     <a class="nav-link" href="#payment" data-toggle="tab">
                       <i class="material-icons">credit_score</i>
                       {{ translate("admin.payment") }}
@@ -83,7 +83,7 @@
               <div class="tab-pane" id="cart">
                 <cart-form :cart-settings="settings.cart" />
               </div>
-              <div class="tab-pane" id="payment">
+              <div v-if="$gate.can('manage-fully')" class="tab-pane" id="payment">
                 <payment-form :payment-settings="settings.payment" />
               </div>
             </div>

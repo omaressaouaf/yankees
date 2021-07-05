@@ -62,8 +62,12 @@
                     }}</label>
                     <div>
                       <h4>
-                        <span v-for="role in authUser.roles" :key="role.id" class="badge badge-success mr-2">
-                          {{role }}
+                        <span
+                          v-for="role in authUser.roles"
+                          :key="role.id"
+                          class="badge badge-success mr-2"
+                        >
+                          {{ translate("admin." + role) }}
                         </span>
                       </h4>
                     </div>
@@ -72,7 +76,7 @@
               </div>
 
               <a class="btn btn-link p-0 mx-0" href="/account/profile">
-               <u>{{translate('admin.manageProfile')}}</u>
+                <u>{{ translate("admin.manageProfile") }}</u>
               </a>
               <div class="clearfix"></div>
             </div>
@@ -90,8 +94,8 @@
             </a>
           </div>
           <div class="card-body">
-            <h4 class="card-title">{{authUser.name}}</h4>
-            <h6 class="card-category text-gray">{{authUser.email}}</h6>
+            <h4 class="card-title">{{ authUser.name }}</h4>
+            <h6 class="card-category text-gray">{{ authUser.email }}</h6>
             <p class="card-description">
               Don't be scared of the truth because we need to restart the human
               foundation in truth And I love you like Kanye loves Kanye I love

@@ -79,6 +79,8 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
+        $this->authorize('manage-fully');
+
         try {
             DB::beginTransaction();
             $user->update($request->only(['name', 'email', 'phone']));
@@ -104,6 +106,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $this->authorize('manage-fully');
         $user->delete();
         return response()->json([
             'message' => 'user deleted succefully'
@@ -111,6 +114,7 @@ class UserController extends Controller
     }
     public function bulk_destroy($ids)
     {
+        $this->authorize('manage-fully');
         $idsExploded = explode(',', $ids);
         foreach ($idsExploded as $id) {
             User::findOrFail($id)->delete();

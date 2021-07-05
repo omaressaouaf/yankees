@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\AddressStoreRequest;
-use App\Models\Address;
 use App\Models\User;
+use App\Models\Address;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\AddressStoreRequest;
 
 class AddressController extends Controller
 {
@@ -22,6 +23,8 @@ class AddressController extends Controller
 
     public function store(AddressStoreRequest $request)
     {
+        abort_if(($request->userId != auth()->id()) && Gate::denies('manage-fully'), 401, 'Unauthorized');
+
         $user = User::findOrFail($request->userId);
         $address = $user->addresses()->create([
             'line' => $request->line,
@@ -37,7 +40,7 @@ class AddressController extends Controller
 
     public function destroy(Address $address)
     {
-        abort_unless($address->user_id == auth()->id() || auth()->user(), 401, 'Unauthorized');
+        abort_if(($address->user_id != auth()->id()) && Gate::denies('manage-fully'), 401, 'Unauthorized');
         $address->delete();
         return response()->json([
             'msg' => "address deleted successfully"

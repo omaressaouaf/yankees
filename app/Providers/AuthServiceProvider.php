@@ -40,7 +40,6 @@ class AuthServiceProvider extends ServiceProvider
             return $order->status == "pending" && $order->created_at->diffInMinutes(Carbon::now()) > 5;
         });
         Gate::define('shop', function (User $user) {
-
             $openingHours = OpeningHours::create(array_merge(['overflow' => true],  config('schedule.openingHours')));
             $forcedClose = config('schedule.forcedClose');
             return $openingHours->isOpen() &&  !$forcedClose;
@@ -48,16 +47,22 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('checkout-with-stripe', function (User $user) {
             return config('payment.stripeEnabled')  === true;
         });
-        // For admins and delivery men
+        // For admins/managers/delivery men
+        Gate::define("manage-partially", function (User $user) {
+            return $user->hasAnyRole(['admin', 'manager']);
+        });
+        Gate::define("manage-fully", function (User $user) {
+            return $user->hasRole('admin');
+        });
         Gate::define('charge', function (User $user, Order $order) {
-            return ($user->hasRole('admin') && $order->payment_mode == "stripe"  &&
+            return ($user->hasAnyRole(['admin', 'manager']) && $order->payment_mode == "stripe"  &&
                 !$order->user_charged &&
                 !$order->payment_confirmation_required &&
                 $order->status != "cancelled" &&
                 $order->status != "failed");
         });
         Gate::define('refund', function (User $user, Order $order) {
-            return ($user->hasRole('admin') && $order->payment_mode == "stripe"  &&
+            return ($user->hasAnyRole(['admin', 'manager']) && $order->payment_mode == "stripe"  &&
                 $order->user_charged &&
                 !$order->user_refunded &&
                 $order->status == "cancelled");
@@ -66,13 +71,16 @@ class AuthServiceProvider extends ServiceProvider
             if ($order->status == 'failed' || $order->status == "cancelled") {
                 return false;
             }
-            if (!$user->hasRole("admin")) {
-                return $order->status == "out_for_delivery" ? ($order->deliveryman_id == $request_deliveryman_id) && $request_status == "delivered" : false;
+            if (!$user->hasAnyRole(['admin', 'manager'])) {
+                return $order->status == "out_for_delivery"
+                ? ($order->deliveryman_id == $request_deliveryman_id)
+                && $request_status == "delivered"
+                 : false;
             }
             return (!$request_deliveryman_id) && ($request_status == "out_for_delivery" || $request_status == "delivered") ? false : true;
         });
         Gate::define('read-order', function (User $user, $order) {
-            return $user->hasRole('admin') || $user->id == $order->deliveryman_id;
+            return $user->hasAnyRole(['admin', 'manager']) || $user->id == $order->deliveryman_id;
         });
     }
 }

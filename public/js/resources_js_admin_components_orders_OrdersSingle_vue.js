@@ -759,6 +759,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -785,7 +789,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({
     availableStatuses: function availableStatuses() {
-      if (this.$gate.can("manage")) {
+      if (this.$gate.can("manage-partially")) {
         return this.statuses.filter(function (status) {
           return status != "failed";
         });
@@ -867,7 +871,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.commit("orders/clearOrder");
     this.$store.commit("orders/clearServerErrors");
 
-    if (this.$gate.can("manage")) {
+    if (this.$gate.can("manage-partially")) {
       this.fetchDeliverymen();
     }
 
@@ -2203,7 +2207,7 @@ var render = function() {
                             { staticClass: "mr-2 ml-auto" },
                             [
                               _vm.$gate.can("update-order", _vm.orderObject) &&
-                              _vm.$gate.can("manage")
+                              _vm.$gate.can("manage-partially")
                                 ? _c("multiselect", {
                                     attrs: {
                                       options: _vm.allDeliverymen,
@@ -2433,7 +2437,7 @@ var render = function() {
                                     " :\n                "
                                 ),
                                 _c(
-                                  _vm.$gate.can("manage")
+                                  _vm.$gate.can("manage-partially")
                                     ? "router-link"
                                     : "div",
                                   {
@@ -2579,7 +2583,7 @@ var render = function() {
                                 },
                                 [
                                   _c(
-                                    meal.id && _vm.$gate.can("manage")
+                                    meal.id && _vm.$gate.can("manage-partially")
                                       ? "router-link"
                                       : "div",
                                     {
@@ -2686,7 +2690,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm.$gate.can("manage")
+                          _vm.$gate.can("manage-partially")
                             ? _c("div", [
                                 _vm.$gate.can("charge", _vm.orderObject)
                                   ? _c(
@@ -2807,7 +2811,7 @@ var render = function() {
                                 { staticClass: "mb-0 text-dark" },
                                 [
                                   _c(
-                                    _vm.$gate.can("manage")
+                                    _vm.$gate.can("manage-partially")
                                       ? "router-link"
                                       : "div",
                                     {

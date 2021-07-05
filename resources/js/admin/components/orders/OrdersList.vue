@@ -52,7 +52,7 @@
                 class="btn btn-danger mr-2 ml-2"
                 @click="prepareBulkDeleteOrders"
                 :disabled="postIsLoading"
-                v-if="$gate.can('manage')"
+                v-if="$gate.can('manage-fully')"
               >
                 <span>
                   <i
@@ -73,6 +73,7 @@
                   <tr>
                     <th>
                       <input
+                        v-if="$gate.can('manage-fully')"
                         :disabled="getIsLoading"
                         type="checkbox"
                         v-model="allSelected"
@@ -92,7 +93,7 @@
                 </thead>
                 <tbody>
                   <tr v-if="getIsLoading">
-                    <td colspan="10" class="text-center py-5 ">
+                    <td colspan="10" class="text-center py-5">
                       <vue-loaders-ball-scale-ripple-multiple
                         color="#2B51C4"
                         scale="1"
@@ -107,6 +108,7 @@
                   >
                     <td>
                       <input
+                        v-if="$gate.can('manage-fully')"
                         type="checkbox"
                         v-model="selectedItems"
                         :value="order.id"
@@ -165,7 +167,7 @@
 
                       <a
                         href="#"
-                        v-if="$gate.can('manage')"
+                        v-if="$gate.can('manage-fully')"
                         @click.prevent="deleteOrder(order.id)"
                         ><i class="fa fa-trash text-danger"></i
                       ></a>

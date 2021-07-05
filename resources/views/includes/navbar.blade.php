@@ -10,7 +10,7 @@
         </div>
         <ul class="nav ml-auto ">
             @auth
-            @if (auth()->user()->hasAnyRole(['admin', 'deliveryman']))
+            @if (auth()->user()->hasAnyRole(['admin', 'manager', 'deliveryman']))
             <li class="nav-item ">
                 <a href="/admin/dashboard" class="nav-link "> <i class="fa fa-lock fa-lg"></i>
                 </a>
@@ -48,7 +48,8 @@
                         <i class="fa fa-user-circle mr-2"></i> {{ auth()->user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item profile-dropdown-item" href="{{ route('account.dashboard') }}">{{ __('Dashboard') }}</a>
+                        <a class="dropdown-item profile-dropdown-item"
+                            href="{{ route('account.dashboard') }}">{{ __('Dashboard') }}</a>
                         <a class="dropdown-item profile-dropdown-item" href="#">Profil</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item profile-dropdown-item" href="#"

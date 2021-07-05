@@ -10,19 +10,18 @@ const routes = [
         name: "dashboard",
         component: () => import("./components/dashboard/Dashboard.vue"),
         meta: {
-            title: "Dashboard",
+            title: "Dashboard"
         },
-
-
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/users",
         name: "users",
         component: () => import("./components/users/UsersList.vue"),
         meta: {
-            title: "Users",
+            title: "Users"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/users/create",
@@ -31,7 +30,7 @@ const routes = [
         meta: {
             title: "Create User"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/users/:id/edit",
@@ -40,7 +39,7 @@ const routes = [
         meta: {
             title: "Edit User"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/categories",
@@ -49,7 +48,7 @@ const routes = [
         meta: {
             title: "Categories"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/categories/create",
@@ -58,7 +57,7 @@ const routes = [
         meta: {
             title: "Create Category"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/categories/:id/edit",
@@ -67,7 +66,7 @@ const routes = [
         meta: {
             title: "Edit Category"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/extras",
@@ -76,7 +75,7 @@ const routes = [
         meta: {
             title: "Extras"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/extras/create",
@@ -85,7 +84,7 @@ const routes = [
         meta: {
             title: "Create Extra"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/extras/:id/edit",
@@ -94,7 +93,7 @@ const routes = [
         meta: {
             title: "Edit Extra"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/meals",
@@ -103,7 +102,7 @@ const routes = [
         meta: {
             title: "Menus"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/meals/create",
@@ -112,7 +111,7 @@ const routes = [
         meta: {
             title: "Create Menu"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/meals/:id/edit",
@@ -121,7 +120,7 @@ const routes = [
         meta: {
             title: "Edit Menu"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/orders",
@@ -154,7 +153,7 @@ const routes = [
         meta: {
             title: "Settings"
         },
-        beforeEnter: checkManageGate
+        beforeEnter: checkRoles
     },
     {
         path: "/admin/profile",
@@ -165,20 +164,18 @@ const routes = [
         }
     },
     {
-        path : '/admin/403',
+        path: "/admin/403",
         component: () => import("./components/errors/Forbidden.vue"),
         meta: {
             title: "403"
         }
-
     },
     {
-        path : '/admin/*',
+        path: "/admin/*",
         component: () => import("./components/errors/NotFound.vue"),
         meta: {
             title: "404"
         }
-
     }
 ];
 const router = new VueRouter({
@@ -200,9 +197,9 @@ router.afterEach((to, from) => {
     nProgress.done();
 });
 
-function checkManageGate(to, from, next) {
-    if (!window.gate.can("manage")) {
-        router.push("/admin/403").catch(err => {});
+function checkRoles(to, from, next) {
+    if (!window.gate.hasAnyRole(["admin", "manager"])) {
+        router.push("/admin/orders").catch(err => {});
         nProgress.done();
     } else {
         next();

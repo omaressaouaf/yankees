@@ -29,13 +29,34 @@ class Gate {
     hasRole(role) {
         return this.user.roles.includes(role) ? true : false;
     }
+    hasAnyRole(roles) {
+        if (Array.isArray(roles)) {
+            for (const role of roles) {
+                if (this.hasRole(role)) {
+                    return true;
+                }
+            }
+        } else {
+            if (this.hasRole($roles)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
 const gate = new Gate(window.authUser);
-// For admins and deliverymen
+// For admins/managers/deliverymen
+gate.define("manage-partially", () => {
+    return gate.hasAnyRole(["admin", "manager"]);
+});
+gate.define("manage-fully", () => {
+    return gate.hasRole("admin");
+});
 gate.define("charge", order => {
     return (
-        gate.hasRole("admin") &&
+        gate.can("manage-partially") &&
         !order.user_charged &&
         !order.payment_confirmation_required &&
         order.payment_mode == "stripe" &&
@@ -45,7 +66,7 @@ gate.define("charge", order => {
 });
 gate.define("refund", order => {
     return (
-        gate.hasRole("admin") &&
+        gate.can("manage-partially") &&
         order.payment_mode == "stripe" &&
         order.user_charged &&
         !order.user_refunded &&
@@ -55,9 +76,7 @@ gate.define("refund", order => {
 gate.define("update-order", order => {
     return order.status != "failed" && order.status != "cancelled";
 });
-gate.define("manage", () => {
-    return gate.hasRole("admin");
-});
+
 // For Clients
 gate.define("checkout", ({ cartObject, minOrderPrice }) => {
     return cartObject.total >= parseInt(minOrderPrice) && cartObject.count > 0;

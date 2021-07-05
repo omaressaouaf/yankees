@@ -19,29 +19,40 @@ class UserSeeder extends Seeder
     {
         /**  Roles */
         $adminRole = Role::create(['name' => "admin", 'label' => "Admin"]);
+        $managerRole = Role::create(['name' => "manager", 'label' => "Manager"]);
         $deliverymanRole = Role::create(['name' => "deliveryman", 'label' => "Delivery man"]);
         $clientRole =  Role::create(['name' => "client", 'label' => "Client"]);
-        /**  Main admin and deliveryman */
+        /**  Main Users */
         $admin = User::create([
-            'name' => "Omar Essaouaf",
-            "email" => "omar@gmail.com",
+            'name' => "Admin",
+            "email" => "admin@gmail.com",
+            "phone" => "+212 6 23 98 23 08",
+            "password" => Hash::make('password')
+        ]);
+        $manager = User::create([
+            'name' => "Manager",
+            "email" => "manager@gmail.com",
             "phone" => "+212 6 23 98 23 08",
             "password" => Hash::make('password')
         ]);
         $deliveryman = User::create([
-            'name' => "Test",
-            "email" => "test@gmail.com",
+            'name' => "Deliveryman",
+            "email" => "deliveryman@gmail.com",
             "phone" => "+212 6 23 98 23 08",
             "password" => Hash::make('password')
         ]);
 
         /**  attaching roles to main users */
         $admin->roles()->attach($adminRole);
+        $manager->roles()->attach($managerRole);
         $deliveryman->roles()->attach($deliverymanRole);
 
         /** Fake users with roles */
         $adminRole->users()->attach(User::factory()
             ->count(2)
+            ->create());
+        $managerRole->users()->attach(User::factory()
+            ->count(4)
             ->create());
         $deliverymanRole->users()->attach(User::factory()
             ->count(10)

@@ -41,7 +41,7 @@
                   <multiselect
                     v-if="
                       $gate.can('update-order', orderObject) &&
-                      $gate.can('manage')
+                      $gate.can('manage-partially')
                     "
                     :options="allDeliverymen"
                     :value="orderObject.deliveryman"
@@ -123,7 +123,7 @@
                 >
                   {{ translate("admin.deliveryman") }} :
                   <component
-                    :is="$gate.can('manage') ? 'router-link' : 'div'"
+                    :is="$gate.can('manage-partially') ? 'router-link' : 'div'"
                     :to="{
                       name: 'users.edit',
                       params: { id: orderObject.deliveryman.id },
@@ -189,7 +189,9 @@
                   <h4 class="mb-0 pb-0" :class="{ 'text-danger': !meal.id }">
                     <component
                       :is="
-                        meal.id && $gate.can('manage') ? 'router-link' : 'div'
+                        meal.id && $gate.can('manage-partially')
+                          ? 'router-link'
+                          : 'div'
                       "
                       :to="{ name: 'meals.edit', params: { id: meal.id } }"
                     >
@@ -244,7 +246,7 @@
                     <span class="font-weight-bold">Total</span>
                     <span class="float-right">{{ orderObject.total }} dhs</span>
                   </p>
-                  <div v-if="$gate.can('manage')">
+                  <div v-if="$gate.can('manage-partially')">
                     <button
                       class="btn btn-success btn-block"
                       v-if="$gate.can('charge', orderObject)"
@@ -299,7 +301,9 @@
                   <div>
                     <u class="mb-0 text-dark">
                       <component
-                        :is="$gate.can('manage') ? 'router-link' : 'div'"
+                        :is="
+                          $gate.can('manage-partially') ? 'router-link' : 'div'
+                        "
                         :to="{
                           name: 'users.edit',
                           params: { id: orderObject.user.id },
@@ -361,7 +365,7 @@ export default {
   },
   computed: {
     availableStatuses() {
-      if (this.$gate.can("manage")) {
+      if (this.$gate.can("manage-partially")) {
         return this.statuses.filter((status) => status != "failed");
       }
       return this.orderObject.status == "out_for_delivery" ? ["delivered"] : [];
@@ -460,7 +464,7 @@ export default {
   mounted() {
     this.$store.commit("orders/clearOrder");
     this.$store.commit("orders/clearServerErrors");
-    if (this.$gate.can("manage")) {
+    if (this.$gate.can("manage-partially")) {
       this.fetchDeliverymen();
     }
     this.fetchOrder(this.$route.params.id);

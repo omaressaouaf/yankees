@@ -9,6 +9,7 @@
 
     <component :is="component" modal-id="addressListModal">
       <button
+        v-if="$gate.can('manage-fully') || $gate.user.id === userId"
         :class="[applyFrontTheme ? 'btn-outline-orange' : 'btn btn-warning']"
         data-toggle="modal"
         data-target="#addressSelectorModal"
@@ -65,6 +66,7 @@
           </div>
           <a href="#">
             <i
+              v-if="$gate.can('manage-fully') || $gate.user.id === userId"
               class="fa fa-trash address-delete-btn"
               @click.prevent="deleteAddress(address.id)"
             ></i>

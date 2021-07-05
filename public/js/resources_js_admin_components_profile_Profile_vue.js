@@ -124,6 +124,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("auth", ["authUser"]))
@@ -311,7 +315,7 @@ var render = function() {
                               [
                                 _vm._v(
                                   "\n                        " +
-                                    _vm._s(role) +
+                                    _vm._s(_vm.translate("admin." + role)) +
                                     "\n                      "
                                 )
                               ]
