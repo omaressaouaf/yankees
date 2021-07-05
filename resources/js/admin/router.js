@@ -202,6 +202,14 @@ function checkRoles(to, from, next) {
         router.push("/admin/orders").catch(err => {});
         nProgress.done();
     } else {
+        if (
+            to.name === "users.edit" &&
+            to.params.id !== window.gate.user.id &&
+            !window.gate.hasRole("admin")
+        ) {
+            router.push("/admin/dashboard").catch(err => {});
+            nProgress.done();
+        }
         next();
     }
 }

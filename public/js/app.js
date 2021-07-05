@@ -5087,6 +5087,11 @@ function checkRoles(to, from, next) {
     router.push("/admin/orders")["catch"](function (err) {});
     nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
   } else {
+    if (to.name === "users.edit" && to.params.id !== window.gate.user.id && !window.gate.hasRole("admin")) {
+      router.push("/admin/dashboard")["catch"](function (err) {});
+      nprogress__WEBPACK_IMPORTED_MODULE_0___default().done();
+    }
+
     next();
   }
 }

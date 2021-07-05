@@ -66,6 +66,7 @@ export default {
       this.closed = true;
     },
     getNewUrl(type, url) {
+      if (!this.$gate.can("manage-fully") && type === "users") return "#";
       const end = type != "orders" ? "/edit" : "/";
       return "/admin" + url + end;
     },
