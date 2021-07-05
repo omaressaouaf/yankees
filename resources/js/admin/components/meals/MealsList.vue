@@ -110,7 +110,7 @@
                         width="80"
                         height="80"
                         class="img-fluid rounded"
-                        :src="meal.resizedImage"
+                        :src="meal.resized_image"
                       />
                     </td>
                     <td class="text-center">

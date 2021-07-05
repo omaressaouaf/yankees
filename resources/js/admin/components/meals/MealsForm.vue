@@ -216,7 +216,7 @@
                     v-if="!isCreateMode"
                   >
                     <img
-                      :src="form.resizedImage"
+                      :src="form.resized_imagee"
                       width="100"
                       height="100"
                       class="img-fluid rounded"

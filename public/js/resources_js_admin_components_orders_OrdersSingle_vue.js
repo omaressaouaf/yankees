@@ -2570,7 +2570,7 @@ var render = function() {
                             _c("div", { staticClass: "col-md-3" }, [
                               _c("img", {
                                 staticClass: "img-fluid",
-                                attrs: { src: meal.resizedImage, alt: "" }
+                                attrs: { src: meal.resized_image, alt: "" }
                               })
                             ]),
                             _vm._v(" "),

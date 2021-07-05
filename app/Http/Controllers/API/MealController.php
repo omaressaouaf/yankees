@@ -46,7 +46,7 @@ class MealController extends Controller
                 // file upload
                 $fileNameToDB = $this->uploadFile($request, $meal->id);
                 $meal->image = $fileNameToDB[0];
-                $meal->resizedImage = $fileNameToDB[1];
+                $meal->resized_image = $fileNameToDB[1];
                 $meal->save();
             }
             if ($request->extras) {
@@ -127,7 +127,7 @@ class MealController extends Controller
                 }
                 $fileNameToDB = $this->uploadFile($request, $meal->id);
                 $meal->image = $fileNameToDB[0];
-                $meal->resizedImage = $fileNameToDB[1];
+                $meal->resized_image = $fileNameToDB[1];
                 $meal->save();
             }
             DB::commit();

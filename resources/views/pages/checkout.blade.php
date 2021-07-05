@@ -20,7 +20,7 @@
                 <div class=" z-depth-1 px-2 py-2">
                     @foreach (Cart::content() as $item)
                     <div class="d-flex py-2">
-                        <img width="50" height="50" class="mr-3" src="{{ $item->model->resizedImage }}" alt="">
+                        <img width="50" height="50" class="mr-3" src="{{ $item->model->resized_image }}" alt="">
                         <div class="" style="flex-basis: 80%">
 
                             <h6 class="my-0">

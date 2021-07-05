@@ -47,7 +47,7 @@
                   <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                     <img
                       class="img-fluid w-100"
-                      :src="item.model.resizedImage"
+                      :src="item.model.resized_image"
                       style="max-height: 100px; max-width: 100px"
                       alt="Sample"
                     />

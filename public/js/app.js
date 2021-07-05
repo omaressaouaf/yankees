@@ -64340,7 +64340,7 @@ var render = function() {
                                             "max-width": "100px"
                                           },
                                           attrs: {
-                                            src: item.model.resizedImage,
+                                            src: item.model.resized_image,
                                             alt: "Sample"
                                           }
                                         })
@@ -64915,7 +64915,7 @@ var render = function() {
         staticClass: "card-img",
         class: [!_vm.meal.active ? "dark-bg" : ""],
         staticStyle: { "min-height": "247px" },
-        attrs: { src: _vm.meal.resizedImage, alt: "Vans" },
+        attrs: { src: _vm.meal.resized_image, alt: "Vans" },
         on: { load: _vm.setImageLoading }
       }),
       _vm._v(" "),

@@ -50,7 +50,7 @@ class Order extends Model implements Searchable
             if ($item->meal_id == null) {
                 $orderMeals->push((object)array(
                     'id' => null,
-                    'resizedImage' => "/storage/images/meals/noimage.jpg",
+                    'resized_image' => "/storage/images/meals/noimage.jpg",
                     'pivot' => (object)array(
                         'qty' => $item->qty,
                         'meal_subtotal' => $item->meal_subtotal,

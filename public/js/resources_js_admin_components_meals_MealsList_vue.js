@@ -683,7 +683,7 @@ var render = function() {
                                     attrs: {
                                       width: "80",
                                       height: "80",
-                                      src: meal.resizedImage
+                                      src: meal.resized_image
                                     }
                                   })
                                 ]),
