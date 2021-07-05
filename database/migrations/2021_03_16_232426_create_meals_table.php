@@ -17,8 +17,8 @@ class CreateMealsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc')->nullable();
-            $table->longText('image')->default('/storage/images/meals/noimage.jpg');
-            $table->longText('resizedImage')->default('/storage/images/meals/noimage.jpg');
+            $table->longText('image')->nullable();
+            $table->longText('resizedImage')->nullable();
             $table->integer('price');
             $table->boolean('active');
             $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null')->onUpdate('cascade');

@@ -24,11 +24,11 @@ class Meal extends Model implements Searchable
 
     public function getSearchResult(): SearchResult
     {
-       $url = "/meals/" . $this->id;
+        $url = "/meals/" . $this->id;
         return new SearchResult(
-           $this,
-           $this->title,
-           $url
+            $this,
+            $this->title,
+            $url
         );
     }
     public function category()
@@ -50,5 +50,19 @@ class Meal extends Model implements Searchable
     {
         $path =  "/public/images/meals/" . $this->id;
         Storage::deleteDirectory($path);
+    }
+    public function setImageAttribute($value = null)
+    {
+        if (null === $value) {
+            $this->attributes['image'] = '/storage/images/meals/noimage.jpg';
+        }
+        $this->attributes['image'] = $value;
+    }
+    public function setResizedImageAttribute($value = null)
+    {
+        if (null === $value) {
+            $this->attributes['image'] = '/storage/images/meals/noimage.jpg';
+        }
+        $this->attributes['image'] = $value;
     }
 }
