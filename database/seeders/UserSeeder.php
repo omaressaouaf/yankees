@@ -48,29 +48,29 @@ class UserSeeder extends Seeder
         $deliveryman->roles()->attach($deliverymanRole);
 
         /** Fake users with roles */
-        $adminRole->users()->attach(User::factory()
-            ->count(2)
-            ->create());
-        $managerRole->users()->attach(User::factory()
-            ->count(4)
-            ->create());
-        $deliverymanRole->users()->attach(User::factory()
-            ->count(10)
-            ->create());
-        $clientRole->users()->attach(User::factory()
-            ->count(50)
-            ->create());
+        // $adminRole->users()->attach(User::factory()
+        //     ->count(2)
+        //     ->create());
+        // $managerRole->users()->attach(User::factory()
+        //     ->count(4)
+        //     ->create());
+        // $deliverymanRole->users()->attach(User::factory()
+        //     ->count(10)
+        //     ->create());
+        // $clientRole->users()->attach(User::factory()
+        //     ->count(50)
+        //     ->create());
 
-        /** Fake orders for main users */
-        Order::factory()
-            ->hasMeals(3)
-            ->for($admin)
-            ->count(40)
-            ->create();
-        Order::factory()
-            ->hasMeals(3)
-            ->for($deliveryman)
-            ->count(40)
-            ->create();
+        // /** Fake orders for main users */
+        // Order::factory()
+        //     ->hasMeals(3)
+        //     ->for($admin)
+        //     ->count(40)
+        //     ->create();
+        // Order::factory()
+        //     ->hasMeals(3)
+        //     ->for($deliveryman)
+        //     ->count(40)
+        //     ->create();
     }
 }
