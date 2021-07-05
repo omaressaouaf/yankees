@@ -49,7 +49,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item profile-dropdown-item"
                             href="{{ route('account.dashboard') }}">{{ __('Dashboard') }}</a>
-                        <a class="dropdown-item profile-dropdown-item" href="#">Profil</a>
+                        <a class="dropdown-item profile-dropdown-item" href="{{ route('account.profile') }}">Profil</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item profile-dropdown-item" href="#"
                             onclick="event.preventDefault(); document.querySelector('.logout-form').submit();">Se
