@@ -3,10 +3,14 @@
     <div v-if="getIsLoading">
       <cart-skeleton />
     </div>
-    <div v-else class="card" :class="[postIsLoading || !$gate.can('shop') ? 'div-disabled' : '']">
+    <div
+      v-else
+      class="card"
+      :class="[postIsLoading || !$gate.can('shop') ? 'div-disabled' : '']"
+    >
       <div class="card-body">
         <div
-        v-if="!$gate.can('shop')"
+          v-if="!$gate.can('shop')"
           class="w-100"
           style="position: absolute; top: 35%; left: 42%; z-index: 1000"
         >
@@ -26,7 +30,6 @@
         </div>
         <div>
           <div
-
             class="pt-4 wish-list has-cool-scrollbar"
             id="cartContentWrapper"
           >
@@ -116,11 +119,7 @@
               </p>
             </div>
 
-            <div
-              v-else
-              class="text-center mt-4 mb-4 alert alert-warning"
-              
-            >
+            <div v-else class="text-center mt-4 mb-4 alert alert-warning">
               <i class="fa fa-utensils fa-2x text-white mb-3"></i>
               <h4>{{ translate("front.cartEmpty") }}.</h4>
               <h6 class="text-small">
@@ -136,7 +135,6 @@
             box-shadow: 0 -5px 5px -5px rgba(32, 32, 32, 0.568);
           "
         >
-
           <div v-if="$gate.can('checkout-with-stripe')" class="mb-3">
             <div class="pt-4">
               <img
@@ -164,19 +162,43 @@
             <div class="pt-1">
               <ul class="list-group list-group-flush">
                 <li
-                  class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
+                  class="
+                    list-group-item
+                    d-flex
+                    justify-content-between
+                    align-items-center
+                    border-0
+                    px-0
+                    pb-0
+                  "
                 >
                   {{ translate("front.total") }}
                   <span>{{ cartObject.total }} dhs</span>
                 </li>
                 <li
-                  class="list-group-item d-flex justify-content-between align-items-center px-0 border-0 pb-0"
+                  class="
+                    list-group-item
+                    d-flex
+                    justify-content-between
+                    align-items-center
+                    px-0
+                    border-0
+                    pb-0
+                  "
                 >
                   {{ translate("front.delivery") }}
                   <span>{{ deliveryPrice }} dhs</span>
                 </li>
                 <li
-                  class="list-group-item d-flex justify-content-between align-items-center px-0 border-0 pb-0"
+                  class="
+                    list-group-item
+                    d-flex
+                    justify-content-between
+                    align-items-center
+                    px-0
+                    border-0
+                    pb-0
+                  "
                 >
                   {{ translate("front.delivery") }}
                   {{ translate("admin.time") }}
@@ -184,7 +206,15 @@
                 </li>
                 <li
                   v-if="!$gate.can('checkout', { cartObject, minOrderPrice })"
-                  class="list-group-item text-danger font-weight-bold d-flex justify-content-between align-items-center px-0"
+                  class="
+                    list-group-item
+                    text-danger
+                    font-weight-bold
+                    d-flex
+                    justify-content-between
+                    align-items-center
+                    px-0
+                  "
                 >
                   {{ translate("admin.min_order_price") }}
 
@@ -195,8 +225,7 @@
               <a
                 v-if="$gate.can('checkout', { cartObject, minOrderPrice })"
                 href="/checkout"
-                class="btn-orange text-center btn-square btn-block  mt-2"
-
+                class="btn-orange text-center btn-square btn-block mt-2"
               >
                 {{ translate("front.checkout") }}
               </a>

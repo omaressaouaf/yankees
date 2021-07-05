@@ -3621,6 +3621,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -64550,7 +64579,7 @@ var render = function() {
                           "li",
                           {
                             staticClass:
-                              "list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
+                              "\n                  list-group-item\n                  d-flex\n                  justify-content-between\n                  align-items-center\n                  border-0\n                  px-0\n                  pb-0\n                "
                           },
                           [
                             _vm._v(
@@ -64568,7 +64597,7 @@ var render = function() {
                           "li",
                           {
                             staticClass:
-                              "list-group-item d-flex justify-content-between align-items-center px-0 border-0 pb-0"
+                              "\n                  list-group-item\n                  d-flex\n                  justify-content-between\n                  align-items-center\n                  px-0\n                  border-0\n                  pb-0\n                "
                           },
                           [
                             _vm._v(
@@ -64586,7 +64615,7 @@ var render = function() {
                           "li",
                           {
                             staticClass:
-                              "list-group-item d-flex justify-content-between align-items-center px-0 border-0 pb-0"
+                              "\n                  list-group-item\n                  d-flex\n                  justify-content-between\n                  align-items-center\n                  px-0\n                  border-0\n                  pb-0\n                "
                           },
                           [
                             _vm._v(
@@ -64610,7 +64639,7 @@ var render = function() {
                               "li",
                               {
                                 staticClass:
-                                  "list-group-item text-danger font-weight-bold d-flex justify-content-between align-items-center px-0"
+                                  "\n                  list-group-item\n                  text-danger\n                  font-weight-bold\n                  d-flex\n                  justify-content-between\n                  align-items-center\n                  px-0\n                "
                               },
                               [
                                 _vm._v(
@@ -64636,7 +64665,7 @@ var render = function() {
                             "a",
                             {
                               staticClass:
-                                "btn-orange text-center btn-square btn-block  mt-2",
+                                "btn-orange text-center btn-square btn-block mt-2",
                               attrs: { href: "/checkout" }
                             },
                             [
@@ -66119,7 +66148,7 @@ var render = function() {
                 items: 3
               }
             },
-            autoplay: false,
+            autoplay: true,
             nav: false
           }
         },

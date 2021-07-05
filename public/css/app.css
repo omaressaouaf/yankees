@@ -26744,6 +26744,7 @@ a:hover {
 #hero h1 span {
   color: #3f83c0;
   font-family: monospace;
+  font-size: 1.4em !important;
 }
 
 #hero h2 {

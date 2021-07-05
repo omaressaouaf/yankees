@@ -34,6 +34,15 @@ class LoginController extends Controller
      * @return void
      */
 
+    public function redirectTo()
+    {
+        /** @var \App\Models\User */
+        $authUser =  auth()->user();
+        if ($authUser->hasAnyRole(['deliveryman', 'manager', 'admin'])) {
+            return "/admin/dashboard";
+        }
+        return  "/account/dashboard";
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

@@ -14,7 +14,7 @@
           items: 3,
         },
       }"
-      :autoplay="false"
+      :autoplay="true"
       :nav="false"
     >
       <div class="mb-5" v-for="meal in meals" :key="meal.id">

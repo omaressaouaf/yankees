@@ -8,7 +8,7 @@
             </div>
             <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2" data-aos="fade-up"
                 data-aos-delay="200">
-                    <h1>{{$header['title_'.App::getLocale()]}} <span>{{ config('app.name') }}</span></h1>
+                    <h1> <span>{{ config('app.name') }}</span> smash burger</h1>
                     <h2>{{$header['content_'.App::getLocale()]}}</h2>
                 <div class="btns d-flex flex-wrap justify-content-start">
                     <a href="{{ route('meals.index') }}"
