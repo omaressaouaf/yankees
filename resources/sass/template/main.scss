@@ -526,30 +526,18 @@ a:hover {
 --------------------------------------------------------------*/
 #hero {
     width: 100% !important;
-    height: 90vh;
-    background: linear-gradient(to bottom, #353530, #31312e, $dark_color) top
-        center;
+    height: 94vh;
+    background: #1D1D1B;
     background-size: cover;
     position: relative;
     padding: 0;
 }
-@media (max-width: 768px) {
-    .hero-image {
-        max-height: 100px;
-        max-width: 300px;
-    }
-}
-@media (min-width: 768px) {
-    .hero-image {
-        max-height: 700px;
-        max-width: 500px;
-    }
-}
 
-@media (min-width: 1024px) {
+
+@media (min-width: 1300px) and (max-width :1600px ) {
     .hero-image {
-        max-height: 800px;
-        max-width: 600px;
+        max-width: 340px !important;
+        max-height: 400px !important;
     }
 }
 
@@ -562,10 +550,18 @@ a:hover {
     background-repeat: no-repeat !important; /* Do not repeat the image */
     background-size: cover !important; /* Resize the background image to cover the entire container */
 }
+.hero-meals:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
 
 #hero:before {
     content: "";
-    background: rgba(0, 0, 0, 0.5);
     position: absolute;
     bottom: 0;
     top: 0;
@@ -588,7 +584,7 @@ a:hover {
 
 #hero h1 {
     margin: 0;
-    font-size: 48px;
+    font-size: 68px;
     font-weight: 700;
     line-height: 56px;
     color: #fff;
@@ -600,16 +596,22 @@ a:hover {
     font-family: monospace;
     font-size:1.4em !important;
 }
-
 #hero h2 {
+    color: #eee;
+    margin-bottom: 10px 0 0 0;
+    font-size: 30px;
+}
+
+
+#hero h3 {
     color: #eee;
     margin-bottom: 10px 0 0 0;
     font-size: 22px;
 }
 
-#hero .btns {
-    margin-top: 30px;
-}
+// #hero .btns {
+//     margin-top: 30px;
+// }
 
 #hero .btn-menu,
 #hero .btn-book {
@@ -635,12 +637,16 @@ a:hover {
     background: $primary_color;
     color: #fff;
 }
+// #hero .btn-book {
+//     margin-left: 15px;
+// }
 
-@media (min-width : 768px) {
-    #hero .btn-book {
-        margin-left: 15px;
-    }
-}
+// @media (max-width : 768px) {
+//     #hero .btn-book {
+//         margin-left: 8px !important;
+//     }
+// }
+
 
 #hero .play-btn {
     width: 94px;

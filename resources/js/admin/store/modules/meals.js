@@ -14,6 +14,7 @@ const state = {
         get: false,
         post: false
     },
+    progresses: [],
     serverErrors: null
 };
 const getters = {
@@ -38,7 +39,7 @@ const actions = {
             store.commit("setMeals", res.data.meals);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
-            fireToast("danger", translate('front.errorMessage'));
+            fireToast("danger", translate("front.errorMessage"));
         }
         store.commit("clearLoading", "get");
     },
@@ -56,7 +57,7 @@ const actions = {
                 );
             } catch (err) {
                 redirectToErrorPageIfNeeded(err.response.status);
-                fireToast("danger", translate('front.errorMessage'));
+                fireToast("danger", translate("front.errorMessage"));
             }
             store.commit("clearLoading");
             nProgress.done();
@@ -64,6 +65,7 @@ const actions = {
     },
     async addMeal(store, newMeal) {
         try {
+            const uploadProgressIdentifier = Date.now()
             const config = {
                 headers: {
                     "Content-Type":
@@ -71,9 +73,26 @@ const actions = {
                         Math.random()
                             .toString()
                             .substr(2)
+                },
+                onUploadProgress: ({ loaded, total }) => {
+                    const percentage = parseInt(
+                        Math.round((loaded * 100) / total)
+                    );
+                    const uploadProgress = {
+                        identifier: uploadProgressIdentifier,
+                        title: newMeal.get("title"),
+                        percentage,
+                        source
+                    };
+                    dispatch(setUploadProgress(uploadProgress));
+                    store.commit("setProgress", {
+                        identifier: Date.now(),
+                        percentage: 0
+                    });
                 }
             };
             store.commit("setLoading", "post");
+
             const res = await axios.post("/api/meals", newMeal, config);
             store.commit("addMeal", res.data.meal);
             store.commit("clearMeal");
@@ -147,7 +166,7 @@ const actions = {
                 resolve();
             } catch (err) {
                 redirectToErrorPageIfNeeded(err.response.status);
-                fireToast("danger", translate('front.errorMessage'));
+                fireToast("danger", translate("front.errorMessage"));
             }
             store.commit("clearLoading", "post");
         });
@@ -181,6 +200,14 @@ const mutations = {
                 return meal.id !== id;
             });
         });
+    },
+    setProgress(state, progress) {
+        state.progresses = [progress, state.progresses];
+    },
+    clearProgress(state, identifier) {
+        state.progresses = state.progresses.filter(
+            prog => prog.identifier === identifier
+        );
     },
     setLoading(state, method) {
         state.loading[method] = true;

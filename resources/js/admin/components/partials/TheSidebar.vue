@@ -10,7 +10,7 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-    <div class="logo d-flex my-3 align-items-center ">
+    <div class="logo d-flex my-3 align-items-center " style="overflow : hidden">
       <a href="/" class="ml-4" >
         <img class="" :src="appLogo" alt="logo" />
       </a>

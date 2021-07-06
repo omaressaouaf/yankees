@@ -2,21 +2,18 @@
 <section id="hero" class="d-flex align-items-center ">
 
     <div class="container-fluid">
-        <div class="row mt-5 ">
-            <div class="d-flex justify-content-center pl-5 col-lg-6  order-1  hero-img" data-aos="zoom-in" data-aos-delay="200">
-                    <img height="500" width="500" src="/storage/images/design/hero-image.png" class="img-fluid animated" alt="">
-            </div>
-            <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2" data-aos="fade-up"
-                data-aos-delay="200">
-                    <h1> <span>{{ config('app.name') }}</span> smash burger</h1>
-                    <h2>{{$header['content_'.App::getLocale()]}}</h2>
-                <div class="btns d-flex flex-wrap justify-content-start">
+        <div class="row mt-5">
+            <div class="d-flex flex-column justify-content-center align-items-center pl-5 col-lg-12  order-1  hero-img"
+                data-aos="zoom-in" data-aos-delay="200">
+                <img width="500" height="500" style=""
+                    src="/storage/images/design/logo-original.jpg" class="img-fluid animated hero-image" alt="">
+                <div class="btns d-flex flex-wrap justify-content-start mt-3">
                     <a href="{{ route('meals.index') }}"
-                        class="btn-menu animated fadeInUp scrollto">{{__('Our menus')}}</a>
-                    <a href="{{ route('about') }}" class="btn-book animated fadeInUp scrollto">{{__('About Us')}}</a>
+                        class="btn-menu animated fadeInUp scrollto mb-2 mr-2">{{__('Our menus')}}</a>
+                    <a href="{{ route('about') }}"
+                        class="btn-book animated fadeInUp scrollto mb-2">{{__('About Us')}}</a>
                 </div>
             </div>
-
         </div>
     </div>
 

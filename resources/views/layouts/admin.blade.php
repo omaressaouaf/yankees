@@ -71,8 +71,8 @@ The above copyright notice and this permission notice shall be included in all c
     {{-- <div id="preloader" ></div> --}}
 
     @auth
-        <script>
-            window.deliveryZoneBounds = @json(config('delivery.zone_bounds'))
+    <script>
+        window.deliveryZoneBounds = @json(config('delivery.zone_bounds'))
 
             window.currentLocale = '{{ config('app.locale') }}';
             window.availableLocales = @json(config('app.available_locales'));
@@ -85,7 +85,7 @@ The above copyright notice and this permission notice shall be included in all c
     'csrfToken' => csrf_token(),
 ]) !!}
 
-        </script>
+    </script>
     @endauth
 
     <div id="app">
@@ -98,8 +98,7 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- Scripts -->
 
     <script src="{{ asset('js/admin/app.js') }}"></script>
-    <script src="http://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
-    </script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"> </script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>

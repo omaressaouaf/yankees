@@ -6003,6 +6003,7 @@ var state = {
     get: false,
     post: false
   },
+  progresses: [],
   serverErrors: null
 };
 var getters = {
@@ -6042,7 +6043,7 @@ var actions = {
               _context.prev = 8;
               _context.t0 = _context["catch"](0);
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context.t0.response.status);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
 
             case 12:
               store.commit("clearLoading", "get");
@@ -6078,7 +6079,7 @@ var actions = {
               _context2.prev = 8;
               _context2.t0 = _context2["catch"](0);
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context2.t0.response.status);
-              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
 
             case 12:
               store.commit("clearLoading");
@@ -6094,22 +6095,39 @@ var actions = {
   },
   addMeal: function addMeal(store, newMeal) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var config, res;
+      var uploadProgressIdentifier, config, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.prev = 0;
+              uploadProgressIdentifier = Date.now();
               config = {
                 headers: {
                   "Content-Type": "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
+                },
+                onUploadProgress: function onUploadProgress(_ref2) {
+                  var loaded = _ref2.loaded,
+                      total = _ref2.total;
+                  var percentage = parseInt(Math.round(loaded * 100 / total));
+                  var uploadProgress = {
+                    identifier: uploadProgressIdentifier,
+                    title: newMeal.get("title"),
+                    percentage: percentage,
+                    source: source
+                  };
+                  dispatch(setUploadProgress(uploadProgress));
+                  store.commit("setProgress", {
+                    identifier: Date.now(),
+                    percentage: 0
+                  });
                 }
               };
               store.commit("setLoading", "post");
-              _context3.next = 5;
+              _context3.next = 6;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/meals", newMeal, config);
 
-            case 5:
+            case 6:
               res = _context3.sent;
               store.commit("addMeal", res.data.meal);
               store.commit("clearMeal");
@@ -6117,24 +6135,24 @@ var actions = {
                 item: "Menu"
               }));
               _router__WEBPACK_IMPORTED_MODULE_3__.default.push("/admin/meals");
-              _context3.next = 16;
+              _context3.next = 17;
               break;
 
-            case 12:
-              _context3.prev = 12;
+            case 13:
+              _context3.prev = 13;
               _context3.t0 = _context3["catch"](0);
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context3.t0.response.status);
               store.commit("setServerErrors", _context3.t0);
 
-            case 16:
+            case 17:
               store.commit("clearLoading", "post");
 
-            case 17:
+            case 18:
             case "end":
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[0, 12]]);
+      }, _callee3, null, [[0, 13]]);
     }))();
   },
   fetchMeal: function fetchMeal(store, id) {
@@ -6221,7 +6239,7 @@ var actions = {
   },
   bulkDeleteMeals: function bulkDeleteMeals(store, selectedItems) {
     return new Promise( /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(resolve) {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(resolve) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
@@ -6243,7 +6261,7 @@ var actions = {
                 _context6.prev = 10;
                 _context6.t0 = _context6["catch"](0);
                 (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.redirectToErrorPageIfNeeded)(_context6.t0.response.status);
-                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate('front.errorMessage'));
+                (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
 
               case 14:
                 store.commit("clearLoading", "post");
@@ -6257,7 +6275,7 @@ var actions = {
       }));
 
       return function (_x) {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     }());
   }
@@ -6291,6 +6309,14 @@ var mutations = {
       state.meals = state.meals.filter(function (meal) {
         return meal.id !== id;
       });
+    });
+  },
+  setProgress: function setProgress(state, progress) {
+    state.progresses = [progress, state.progresses];
+  },
+  clearProgress: function clearProgress(state, identifier) {
+    state.progresses = state.progresses.filter(function (prog) {
+      return prog.identifier === identifier;
     });
   },
   setLoading: function setLoading(state, method) {
