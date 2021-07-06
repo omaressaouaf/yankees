@@ -3,7 +3,7 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta content="{{@yield('description')}}" name="description">
+    <meta content="@yield('description')" name="description">
     <meta content="" name="keywords">
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
