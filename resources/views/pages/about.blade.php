@@ -2,6 +2,9 @@
 @section('title')
      À propos de nous -
 @endsection
+@section('description')
+Apprenez à connaître Yankees
+@endsection
 @section('content')
     @include('includes.breadcrumb' , ['pageName'=> 'About'])
     <main id="main">

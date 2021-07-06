@@ -2,6 +2,9 @@
 @section('title')
 Connexion -
 @endsection
+@section('description')
+Rejoignez-nous pour le dîner
+@endsection
 @section('content')
     @include('includes.breadcrumb' , ['pageName'=> 'Login'])
 

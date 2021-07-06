@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title')
-S'inscrire -
+@section('description')
+Rejoignez-nous pour le dîner
 @endsection
 @section('content')
     @include('includes.breadcrumb' , ['pageName'=> "Register"])

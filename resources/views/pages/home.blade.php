@@ -40,6 +40,9 @@
 </style>
 
 @endsection
+@section('description')
+Commandez le meilleur smash burger
+@endsection
 @section('content')
 @include('includes.hero')
 <main id="main">
@@ -49,7 +52,7 @@
 
     <!--  Menu Section -->
     <section>
-        <div class="container"   data-aos="fade-up">
+        <div class="container" data-aos="fade-up">
             <div class="section-title">
                 <h2>Menu</h2>
                 <p>{{__('Check Our Menus')}}</p>

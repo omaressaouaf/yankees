@@ -3,7 +3,7 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta content="" name="description">
+    <meta content="{{@yield('description')}}" name="description">
     <meta content="" name="keywords">
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title') {{ config('app.name') }} </title>
+
 
     {{-- fav icons --}}
     <link rel="apple-touch-icon" sizes="180x180" href="/storage/images/design/favicons/apple-touch-icon.png">
