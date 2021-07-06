@@ -1489,7 +1489,7 @@ var render = function() {
                                       _c("img", {
                                         staticClass: "img-fluid rounded",
                                         attrs: {
-                                          src: _vm.form.resized_imagee,
+                                          src: _vm.form.resized_image,
                                           width: "100",
                                           height: "100",
                                           alt: ""

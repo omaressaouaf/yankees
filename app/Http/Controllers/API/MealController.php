@@ -70,7 +70,7 @@ class MealController extends Controller
             ], 201);
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['error' => "Error Occured ! meal wasn't created"], 500);
+            return response()->json(['error' => "Error Occured ! meal wasn't created" + $e->getMessage()], 500);
         }
     }
 
