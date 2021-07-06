@@ -43,5 +43,6 @@ return [
     "outOfDeliveryZone"=> "Hors de zone de livraison",
     "addressDirections" => "Directions d'Adresse",
     "detectAddresses" => "Détecter automatiquement les adresses",
-    "toggleInstructions" => "Basculer Instructions"
+    "toggleInstructions" => "Basculer Instructions",
+    "closedNow" => "Fermé pour le moment"
 ];

@@ -44,7 +44,8 @@ return [
     "outOfDeliveryZone"=> "Our of delivery zone",
     "addressDirections" => "Address Directions",
     "detectAddresses" => "Detect Addresses Automatically",
-    "toggleInstructions" => "Toggle Instructions"
+    "toggleInstructions" => "Toggle Instructions",
+    "closedNow" => "Closed For Now"
 
 
 

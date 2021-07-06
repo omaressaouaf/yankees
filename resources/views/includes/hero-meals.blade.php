@@ -7,7 +7,7 @@
                 <h4>{{ __('Desire and we are here to Serve') }}</h4>
                 @else
                 <h4 class="text-dark">
-                    <h2><span class="badge badge-danger"> <i class="fa fa-ban"></i> {{__('Closed')}} </span></h2>
+                 <span class="badge badge-danger"> <i class="fa fa-ban"></i> {{__('Closed')}} </span>
                     {{-- <i class="fa fa-ban fa-4x text-danger"></i> --}}
                 </h4>
 

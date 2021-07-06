@@ -3,21 +3,8 @@
     <div v-if="getIsLoading">
       <cart-skeleton />
     </div>
-    <div
-      v-else
-      class="card"
-      :class="[postIsLoading || !$gate.can('shop') ? 'div-disabled' : '']"
-    >
-      <div class="card-body">
-        <div
-          v-if="!$gate.can('shop')"
-          class="w-100"
-          style="position: absolute; top: 35%; left: 42%; z-index: 1000"
-        >
-          <h4 class="text-dark">
-            <i class="fa fa-ban fa-4x text-danger"></i>
-          </h4>
-        </div>
+    <div v-else class="card" :class="[postIsLoading ? 'div-disabled' : '']">
+      <div v-if="$gate.can('shop')" class="card-body">
         <div
           class="w-100"
           style="position: absolute; top: 20%; left: 45%; z-index: 10000"
@@ -231,6 +218,19 @@
               </a>
             </div>
           </div>
+        </div>
+      </div>
+      <div v-else class="card-body">
+        <h5 class="mb-4">
+          {{ translate("front.yourCart") }}
+        </h5>
+        <div class="text-center" style="position : relative">
+          <img
+            src="/storage/images/design/hamburger.svg"
+            alt="Fermé temporairement"
+            class="img-fluid"
+          />
+        <h2>{{translate('front.closedNow')}}</h2>
         </div>
       </div>
     </div>

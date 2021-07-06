@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Events\PaymentConfirmationRequired;
+use Exception;
 use Laravel\Cashier\Exceptions\PaymentFailure;
 use Illuminate\Validation\UnauthorizedException;
 use Laravel\Cashier\Exceptions\PaymentActionRequired;
@@ -55,7 +56,7 @@ class CheckoutService
 
             if ($payment_mode == "stripe") {
                 if (Gate::denies('checkout-with-stripe')) {
-                    throw new UnauthorizedException("Stripe Payment is not allowed");
+                    throw new Exception('', 403);
                 }
                 $authUser->createOrGetStripeCustomer();
                 if ($authUser->hasDefaultPaymentMethod()) {
@@ -66,14 +67,10 @@ class CheckoutService
             DB::commit();
             Cart::destroy();
             OrderCreated::dispatch($order);
-        } catch (UnauthorizedException $e) {
-            DB::rollback();
-            $msg = "Failed ." . $e->getMessage();
-            $status = 401;
         } catch (\Exception $e) {
             DB::rollback();
-            $msg = "Checkout Failed .";
-            $status = 500;
+            $msg = $e->getCode() == 403 ? "Stripe Payment not allowed at the moment" : "Checkout Failed .";
+            $status = $e->getCode() == 403 ? 403 : 500;
         } finally {
             return ['msg' => $msg, 'status' => $status];
         }
