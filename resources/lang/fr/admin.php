@@ -155,7 +155,7 @@ return [
     "notFound" => "Ressource Introuvable",
     "forbidden" => "L'action est Interdite",
     "lostText" => "Il semble que tu es perdu...",
-    "goHome" => "Retour au tableau de bord",
+    "goHome" => "Retour à l'accueil",
     "noInternet" => "Pas de Connexion Internet",
     "notConnected" => "Tu n'es pas Connecté",
     "notConnectedText" => "Et :appName n'est tout simplement pas la même chose sans vous.

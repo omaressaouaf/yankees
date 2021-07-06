@@ -10,7 +10,7 @@ const routes = [
         name: "dashboard",
         component: () => import("./components/dashboard/Dashboard.vue"),
         meta: {
-            title: "Dashboard"
+            title: "Administration"
         },
         beforeEnter: checkRoles
     },
@@ -19,7 +19,7 @@ const routes = [
         name: "users",
         component: () => import("./components/users/UsersList.vue"),
         meta: {
-            title: "Users"
+            title: "Utilisateurs"
         },
         beforeEnter: checkRoles
     },
@@ -28,7 +28,7 @@ const routes = [
         name: "users.create",
         component: () => import("./components/users/UsersForm.vue"),
         meta: {
-            title: "Create User"
+            title: "Créer un utilisateur"
         },
         beforeEnter: checkRoles
     },
@@ -37,7 +37,7 @@ const routes = [
         name: "users.edit",
         component: () => import("./components/users/UsersForm.vue"),
         meta: {
-            title: "Edit User"
+            title: "Modifier l'utilisateur"
         },
         beforeEnter: checkRoles
     },
@@ -46,7 +46,7 @@ const routes = [
         name: "categories",
         component: () => import("./components/categories/CategoriesList.vue"),
         meta: {
-            title: "Categories"
+            title: "Catégories"
         },
         beforeEnter: checkRoles
     },
@@ -55,7 +55,7 @@ const routes = [
         name: "categories.create",
         component: () => import("./components/categories/CategoriesForm.vue"),
         meta: {
-            title: "Create Category"
+            title: "Créer une catégorie"
         },
         beforeEnter: checkRoles
     },
@@ -64,7 +64,7 @@ const routes = [
         name: "categories.edit",
         component: () => import("./components/categories/CategoriesForm.vue"),
         meta: {
-            title: "Edit Category"
+            title: "Modifier la catégorie"
         },
         beforeEnter: checkRoles
     },
@@ -82,7 +82,7 @@ const routes = [
         name: "extras.create",
         component: () => import("./components/extras/ExtrasForm.vue"),
         meta: {
-            title: "Create Extra"
+            title: "Créer un extra"
         },
         beforeEnter: checkRoles
     },
@@ -91,7 +91,7 @@ const routes = [
         name: "extras.edit",
         component: () => import("./components/extras/ExtrasForm.vue"),
         meta: {
-            title: "Edit Extra"
+            title: "Modifier l'extra"
         },
         beforeEnter: checkRoles
     },
@@ -109,7 +109,7 @@ const routes = [
         name: "meals.create",
         component: () => import("./components/meals/MealsForm.vue"),
         meta: {
-            title: "Create Menu"
+            title: "Créer un menu"
         },
         beforeEnter: checkRoles
     },
@@ -118,7 +118,7 @@ const routes = [
         name: "meals.edit",
         component: () => import("./components/meals/MealsForm.vue"),
         meta: {
-            title: "Edit Menu"
+            title: "Modifier le menu"
         },
         beforeEnter: checkRoles
     },
@@ -127,7 +127,7 @@ const routes = [
         name: "orders",
         component: () => import("./components/orders/OrdersList.vue"),
         meta: {
-            title: "Orders"
+            title: "Commandes"
         }
     },
     {
@@ -135,7 +135,7 @@ const routes = [
         name: "orders.show",
         component: () => import("./components/orders/OrdersSingle.vue"),
         meta: {
-            title: "Order Details"
+            title: "Détails de la commande"
         }
     },
     {
@@ -151,7 +151,7 @@ const routes = [
         name: "settings",
         component: () => import("./components/settings/SettingsIndex.vue"),
         meta: {
-            title: "Settings"
+            title: "Paramètres"
         },
         beforeEnter: checkRoles
     },
@@ -160,7 +160,7 @@ const routes = [
         name: "profile",
         component: () => import("./components/profile/Profile.vue"),
         meta: {
-            title: "Profile"
+            title: "Profil"
         }
     },
     {

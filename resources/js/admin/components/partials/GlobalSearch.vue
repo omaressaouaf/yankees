@@ -106,6 +106,12 @@ export default {
   max-height: 500px;
   overflow: auto;
 }
+@media only screen and (max-width: 768px) {
+   .dropdown {
+     width : 200px !important;
+     left : -50px !important;
+   }
+}
 .search-form {
   position: relative;
   min-width: 30% !important;
