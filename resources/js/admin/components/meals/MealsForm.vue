@@ -351,7 +351,12 @@
                             class="form-check"
                           >
                             <label
-                              class="form-check-label d-flex align-items-center flex-row"
+                              class="
+                                form-check-label
+                                d-flex
+                                align-items-center
+                                flex-row
+                              "
                             >
                               <input
                                 class="form-check-input"
@@ -429,6 +434,7 @@
                 }}
               </button>
             </form-wizard>
+            <progresses-list />
           </div>
         </div>
       </div>
@@ -443,8 +449,10 @@ import { FormWizard, TabContent } from "vue-form-wizard";
 import { required, integer, minValue } from "vuelidate/lib/validators";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import "vue-multiselect/dist/vue-multiselect.min.css";
+import ProgressesList from "./ProgressesList.vue";
 
 export default {
+
   data() {
     return {
       selectedCategory: "",
@@ -513,6 +521,7 @@ export default {
   components: {
     FormWizard,
     TabContent,
+    ProgressesList
   },
   watch: {
     mealObject() {

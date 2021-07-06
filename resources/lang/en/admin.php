@@ -19,7 +19,7 @@ return [
     "new" => "New",
     "save" => "Save",
     "edit" => "Edit",
-    "discard" => "Discard",
+    "discard" => "Back",
     "enter" => "Enter",
     "select" => "Select",
     "the" => "The",
@@ -171,6 +171,9 @@ return [
     "warning" => "Warning",
     "stripeWarning" => "If those keys are not valid stripe keys. every interaction with stripe would fail .and the user would get a 500 server error . we suggest you put the right keys",
     "stripeCheckoutNotice" => "We support credit/debit card payment . it's just disabled for now",
-    "logoAdvice" => "For better look ."
+    "logoAdvice" => "For better look .",
+    "cancel" => "Cancel",
+    "uploading" => "Uploading / Creating",
+    "uploadWasCancelled" => "You have cancelled the upload"
 
 ];
