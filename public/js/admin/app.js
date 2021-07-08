@@ -3947,7 +3947,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "redirectToErrorPageIfNeeded": () => (/* binding */ redirectToErrorPageIfNeeded),
 /* harmony export */   "fireConfirm": () => (/* binding */ fireConfirm),
 /* harmony export */   "fireAlert": () => (/* binding */ fireAlert),
-/* harmony export */   "fireToast": () => (/* binding */ fireToast)
+/* harmony export */   "fireToast": () => (/* binding */ fireToast),
+/* harmony export */   "imageIsValid": () => (/* binding */ imageIsValid)
 /* harmony export */ });
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router */ "./resources/js/admin/router.js");
 
@@ -3962,14 +3963,14 @@ var redirectToErrorPageIfNeeded = function redirectToErrorPageIfNeeded(status) {
 };
 var fireConfirm = function fireConfirm(callbackfn) {
   swal.fire({
-    title: translate('admin.confirmationTitle'),
-    text: translate('admin.confirmationText'),
+    title: translate("admin.confirmationTitle"),
+    text: translate("admin.confirmationText"),
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#F13527",
     cancelButtonColor: "#55AE59",
-    confirmButtonText: translate('admin.confirmationConfirm'),
-    cancelButtonText: translate('admin.discard')
+    confirmButtonText: translate("admin.confirmationConfirm"),
+    cancelButtonText: translate("admin.discard")
   }).then(function (result) {
     if (result.isConfirmed) {
       callbackfn();
@@ -4010,10 +4011,13 @@ var fireToast = function fireToast(type, message) {
     delay: delay,
     newest_on_top: true,
     placement: {
-      from: 'bottom',
+      from: "bottom",
       align: inAdminPanel ? "right" : "left"
     }
   });
+};
+var imageIsValid = function imageIsValid(file) {
+  return file && (file.type == "image/png" || file.type == "image/gif" || file.type == "image/jpeg" || file.type == "image/gif" || file.type == "image/svg+xml");
 };
 
 /***/ }),

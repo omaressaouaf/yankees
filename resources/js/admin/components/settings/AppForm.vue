@@ -56,7 +56,11 @@
             </span>
           </div>
           <small class="form-text text-muted ml-5">
-            {{ translate("admin.logoAdvice") + " " +  translate("validation.attributes.max") }}: 1062 * 235.</small
+            {{
+              translate("admin.logoAdvice") +
+              " " +
+              translate("validation.attributes.max")
+            }}: 1062 * 235.</small
           >
         </div>
       </div>
@@ -185,7 +189,7 @@
 <script>
 import axios from "axios";
 import { required, email, url } from "vuelidate/lib/validators";
-import { fireToast } from "../../helpers";
+import { fireToast, imageIsValid } from "../../helpers";
 
 export default {
   props: ["appSettings"],
@@ -245,6 +249,8 @@ export default {
     },
     handleFileChange(e) {
       const file = e.target.files[0];
+      if (!imageIsValid(file)) return fireToast("danger", "Invalid Image");
+
       $(".inputFileVisible").val(file.name);
       this.form.newLogo = file;
     },

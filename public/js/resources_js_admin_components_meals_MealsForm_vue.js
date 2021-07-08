@@ -11,15 +11,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-form-wizard */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.js");
 /* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 /* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
 /* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css");
 /* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect_dist_vue_multiselect_min_css__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _ProgressesList_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProgressesList.vue */ "./resources/js/admin/components/meals/ProgressesList.vue");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -477,6 +478,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -494,25 +496,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   validations: {
     selectedCategory: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required
+      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required
     },
     newImage: {
       required: false
     },
     form: {
       title: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required
       },
       price: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required,
-        minValue: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.minValue)(0),
-        integer: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.integer
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+        minValue: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.minValue)(0),
+        integer: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.integer
       },
       category_id: {
         required: false
       },
       active: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required
       },
       desc: {
         required: false
@@ -522,14 +524,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         $each: {
           pivot: {
             min: {
-              required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required,
-              integer: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.integer,
-              minValue: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.minValue)(0)
+              required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+              integer: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.integer,
+              minValue: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.minValue)(0)
             },
             max: {
-              required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required,
-              integer: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.integer,
-              minValue: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.minValue)(1),
+              required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+              integer: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.integer,
+              minValue: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.minValue)(1),
               isBetweenTheMinAndAdminSelectedOptions: function isBetweenTheMinAndAdminSelectedOptions(maxValue, pivot) {
                 return maxValue >= pivot.min && maxValue <= pivot.admin_selected_options.length;
               }
@@ -559,7 +561,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     postIsLoading: function postIsLoading() {
       return this.isLoading["post"];
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("meals", ["mealObject", "isLoading", "serverErrors"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("categories", ["allCategories"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)("extras", ["allExtras"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)("meals", ["mealObject", "isLoading", "serverErrors"])), (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)("categories", ["allCategories"])), (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)("extras", ["allExtras"])),
   methods: _objectSpread(_objectSpread(_objectSpread({
     cancelImage: function cancelImage() {
       $("#inputFileHidden").val("");
@@ -568,6 +570,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     handleFileChange: function handleFileChange(e) {
       var file = e.target.files[0];
+      if (!(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.imageIsValid)(file)) return (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)('danger', "Invalid Image");
       $(".inputFileVisible").val(file.name);
       this.newImage = file;
     },
@@ -653,7 +656,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return extra.id === id;
       });
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("meals", ["addMeal", "updateMeal", "fetchMeal"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("categories", ["fetchCategories"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("extras", ["fetchExtras"])),
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)("meals", ["addMeal", "updateMeal", "fetchMeal"])), (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)("categories", ["fetchCategories"])), (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)("extras", ["fetchExtras"])),
   mounted: function mounted() {
     var _this = this;
 

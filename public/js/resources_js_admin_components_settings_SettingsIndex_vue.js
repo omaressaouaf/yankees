@@ -205,6 +205,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -268,6 +272,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     handleFileChange: function handleFileChange(e) {
       var file = e.target.files[0];
+      if (!(0,_helpers__WEBPACK_IMPORTED_MODULE_1__.imageIsValid)(file)) return (0,_helpers__WEBPACK_IMPORTED_MODULE_1__.fireToast)("danger", "Invalid Image");
       $(".inputFileVisible").val(file.name);
       this.form.newLogo = file;
     },
