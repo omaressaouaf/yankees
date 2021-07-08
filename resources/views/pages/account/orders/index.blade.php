@@ -17,12 +17,12 @@ Vos commandes -
                 <div class="card p-3 mb-4 ">
                     <div class="row">
                         <div class="col-md-2 pr-0">
-                            <img class="w-100" src="{{ $order->meals[0]->resized_image }}" alt="Order Items Image">
+                            <img class="w-100" src="{{ $order->detailsWithRemovedMeals()[0]->resized_image }}" alt="Order Items Image">
                         </div>
                         <div class="col-md-6">
                             <h3>
                                 <h1 class="lead ">
-                                    {{ $order->meals[0]->title }} ....</h1>
+                                    {{ $order->detailsWithRemovedMeals()[0]->title }} ....</h1>
                                 <p class="lead text-muted mb-2">{{ __('admin.order') }} #{{ $order->id }}</p>
                                 <a class="btn-link mr-3" data-toggle="collapse" href="#orderDetails{{ $order->id }}"
                                     role="button" aria-expanded="false"
