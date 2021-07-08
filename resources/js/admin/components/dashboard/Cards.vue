@@ -39,7 +39,7 @@
               color="#2B51C4"
               scale="1"
             ></vue-loaders-ball-clip-rotate>
-            <h3 class="card-title" v-else>${{ countData.revenueCount }}</h3>
+            <h3 class="card-title" v-else>DHS {{ countData.revenueCount }}</h3>
           </transition>
         </div>
         <div class="card-footer">

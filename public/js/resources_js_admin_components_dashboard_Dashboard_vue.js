@@ -1182,7 +1182,7 @@ var render = function() {
                       attrs: { color: "#2B51C4", scale: "1" }
                     })
                   : _c("h3", { staticClass: "card-title" }, [
-                      _vm._v("$" + _vm._s(_vm.countData.revenueCount))
+                      _vm._v("DHS " + _vm._s(_vm.countData.revenueCount))
                     ])
               ],
               1
