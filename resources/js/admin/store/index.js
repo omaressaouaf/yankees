@@ -14,6 +14,7 @@ const store = new Vuex.Store({
     state: {
         appName: window.appName,
         appLogo: window.appLogo,
+        appUrl : window.appUrl,
         deliveryZoneBounds: window.deliveryZoneBounds
     },
     mutations: {

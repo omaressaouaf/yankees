@@ -78,6 +78,7 @@ The above copyright notice and this permission notice shall be included in all c
             window.availableLocales = @json(config('app.available_locales'));
             window.appName = '{{ config('app.name') }}';
             window.appLogo = '{{ config('app.logo') }}';
+            window.appUrl = '{{config('app.url')}}'
             const authUser = @json(auth()->user());
             authUser['roles'] = @json(auth()->user()->roles()->pluck('name'));
             window.authUser = authUser;

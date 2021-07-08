@@ -42,7 +42,7 @@
                             </td>
                             <td class="font-weight-bold">
                               {{ appName }} <br />
-                              https://{{ appName }}.com
+                             {{appUrl}}
                             </td>
                           </tr>
                         </tbody>
@@ -144,6 +144,7 @@ export default {
     return {
       appName: this.$store.state.appName,
       appLogo: this.$store.state.appLogo,
+      appUrl : this.$store.state.appUrl,
     };
   },
   watch: {

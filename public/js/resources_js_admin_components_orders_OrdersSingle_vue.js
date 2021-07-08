@@ -378,7 +378,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       appName: this.$store.state.appName,
-      appLogo: this.$store.state.appLogo
+      appLogo: this.$store.state.appLogo,
+      appUrl: this.$store.state.appUrl
     };
   },
   watch: {
@@ -1861,9 +1862,9 @@ var render = function() {
                                       ),
                                       _c("br"),
                                       _vm._v(
-                                        "\n                            https://" +
-                                          _vm._s(_vm.appName) +
-                                          ".com\n                          "
+                                        "\n                           " +
+                                          _vm._s(_vm.appUrl) +
+                                          "\n                          "
                                       )
                                     ]
                                   )
