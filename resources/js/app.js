@@ -66,6 +66,10 @@ Vue.component(
     "meals-slider",
     require("./components/meals/MealsSlider.vue").default
 );
+Vue.component(
+    "meals-latest",
+    require("./components/meals/MealsLatest.vue").default
+);
 
 // ______________________________________________Filters______________________________________________
 

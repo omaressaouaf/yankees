@@ -1,6 +1,6 @@
 <template>
   <div>
-    <meals-search />
+    <!-- <meals-search /> -->
     <div class="row" v-if="getIsLoading">
       <meals-skeleton v-for="item in [1, 2, 3, 4, 5, 6]" :key="item" />
     </div>
@@ -14,7 +14,8 @@
         <div
           v-for="meal in allMeals"
           :key="meal.id"
-          class="col-12 col-sm-8 col-md-6 col-lg-4 mt-2"
+          class="col-12 col-sm-8 col-md-6 mt-2"
+          :class="[cartObject.count ===0  ? 'col-lg-3' : 'col-lg-4']"
         >
           <meals-item :meal="meal" />
         </div>
@@ -45,6 +46,7 @@ export default {
     },
 
     ...mapGetters("meals", ["allMeals", "isLoading"]),
+    ...mapGetters("cart", ["cartObject"]),
   },
   watch: {
     // $route watcher will execute immediately after the component creation and when the route params/query changes

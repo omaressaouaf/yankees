@@ -51,17 +51,13 @@ Commandez le meilleur smash burger
 
 
     <!--  Menu Section -->
-    <section>
-        <div class="container" data-aos="fade-up">
+    <section id="menu" class="menu">
+        <div class="container" style="padding: 0px 30px" data-aos="fade-up">
             <div class="section-title">
                 <h2>Menu</h2>
-                <p>{{__('Check Our Menus')}}</p>
             </div>
 
-            <div data-aos="zoom-in" data-aos-delay="100">
-                <meals-slider :meals="{{$latestMeals}}"></meals-slider>
-                <a class="btn-dark btn-square  btn-block mt-5 text-center " href="/meals">{{__('See More')}}</a>
-            </div>
+          <meals-latest :latest-meals="{{$latestMeals}}" :categories="{{$categories}}"></meals-latest>
 
         </div>
     </section>

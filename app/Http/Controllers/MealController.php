@@ -21,7 +21,7 @@ class MealController extends Controller
 
             return view('pages.meals.index');
         }
-        $meals = Meal::latest();
+        $meals = Meal::latest()->where('active', 1);
 
         if (request()->search_query) {
             $meals = $meals->where('title', 'like', '%' . request()->search_query . '%')->orWhere('desc', 'like', '%' . request()->search_query . '%');

@@ -1,24 +1,38 @@
-<section id="about" class="about">
+<section id="about">
 
-    <div class="container" data-aos="fade-up">
-        <div class="section-title">
-            <h2>{{__('About')}}</h2>
-            <p>{{__('Find our More About us')}}</p>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
-                <div class="about-img">
-                    <img src="/storage/images/design/template/about.jpg" alt="">
-                </div>
+
+    <div class="about-container">
+        <div id="aboutCarousel" class="carousel slide carousel-fade" data-interval="8000" data-ride="carousel">
+
+            <ol class="carousel-indicators" id="about-carousel-indicators"></ol>
+
+            <div class="carousel-inner" role="listbox">
+
+                @for ($i = 1; $i <= 3; $i++) <div class="carousel-item @if($i ===1) active @endif"
+                    style="background: url(/storage/images/design/sliders/slide{{$i}}.jpg);">
+                    <div class="carousel-container">
+
+                        <div class="carousel-content pl-5">
+                            <h2 class="animate__animated animate__fadeInDown">{{$about['title_'.App::getLocale()]}}
+                            </h2>
+                            <p class="animate__animated animate__fadeInUp">{{$about['content_'.App::getLocale()]}}
+                            </p>
+                        </div>
+                    </div>
+
             </div>
-            <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                <h3>{{$about['title_'.App::getLocale()]}}</h3>
-                <p>
-                    {{$about['content_'.App::getLocale()]}}
+            @endfor
 
-                </p>
-            </div>
+            <a class="carousel-control-prev" href="#aboutCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon icofont-simple-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="carousel-control-next" href="#aboutCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon icofont-simple-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
         </div>
-
     </div>
-</section>
+</section><!-- End about -->

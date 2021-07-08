@@ -8,10 +8,8 @@
                 <img width="500" height="500" style=""
                     src="/storage/images/design/logo-original.jpg" class="img-fluid animated hero-image" alt="">
                 <div class="btns d-flex flex-wrap justify-content-start mt-3">
-                    <a href="{{ route('meals.index') }}"
+                    <a href="#menu"
                         class="btn-menu animated fadeInUp scrollto mb-2 mr-2">{{__('Our menus')}}</a>
-                    <a href="{{ route('about') }}"
-                        class="btn-book animated fadeInUp scrollto mb-2">{{__('About Us')}}</a>
                 </div>
             </div>
         </div>

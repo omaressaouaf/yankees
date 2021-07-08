@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('includes.about-section', function ($view) {
             $view->with([
                 'about' => Section::where('name', 'about')->first(),
+
             ]);
         });
         View::composer('includes.hero-meals', function ($view) {

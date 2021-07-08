@@ -1,15 +1,17 @@
 <template>
   <section>
-    <div class="px-5" style="margin-top: -130px">
+    <div class="px-5">
       <div class="row">
-        <div class="col-xl-4 order-xl-2 mt-3">
+        <div v-if="cartObject.count || cartIsLoading" class="col-xl-4 order-xl-2 mt-3">
           <div id="cartWrapper">
             <cart />
-          
           </div>
         </div>
 
-        <div class="col-xl-8 order-xl-1">
+        <div
+          :class="[cartObject.count || cartIsLoading ? 'col-xl-8' : 'col-xl-12']"
+          class="order-xl-1"
+        >
           <meals-list />
           <meals-single />
         </div>
@@ -19,11 +21,26 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import Cart from "../cart/Cart.vue";
 import MealsList from "./MealsList.vue";
 import MealsSingle from "./MealsSingle.vue";
 export default {
   components: { Cart, MealsList, MealsSingle },
+  computed: {
+    cartIsLoading() {
+      return this.isLoading["get"];
+    },
+    ...mapGetters("cart", ["cartObject", "isLoading"]),
+  },
+  methods: {
+    ...mapActions("cart", ["fetchCart"]),
+  },
+  mounted() {
+    if (this.$gate.can("shop")) {
+      this.fetchCart();
+    }
+  },
 };
 </script>
 

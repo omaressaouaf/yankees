@@ -259,13 +259,9 @@ export default {
     ...mapGetters("cart", ["cartObject", "isLoading"]),
   },
   methods: {
-    ...mapActions("cart", ["fetchCart", "deleteFromCart", "updateCart"]),
+    ...mapActions("cart", ["deleteFromCart", "updateCart"]),
   },
-  mounted() {
-    if (this.$gate.can("shop")) {
-      this.fetchCart();
-    }
-  },
+
 };
 </script>
 
