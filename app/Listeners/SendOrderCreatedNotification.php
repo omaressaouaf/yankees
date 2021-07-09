@@ -30,7 +30,7 @@ class SendOrderCreatedNotification
      */
     public function handle(OrderCreated $event)
     {
-        $admins =Role::where('name' , 'admin')->first()->users;
-        Notification::send($admins , new OrderNotification($event->order ,  'orderCreated'));
+        $adminsAndManagers = Role::whereIn('name', ['admin', 'manager'])->first()->users;
+        Notification::send($adminsAndManagers, new OrderNotification($event->order,  'orderCreated'));
     }
 }

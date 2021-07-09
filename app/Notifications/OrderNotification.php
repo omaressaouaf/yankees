@@ -36,9 +36,14 @@ class OrderNotification extends Notification
      */
     public function via($notifiable)
     {
-        return  ['database', 'broadcast'];
-
-
+        $via = [
+            'database',
+            'broadcast'
+        ];
+        if ($this->event_name !== "orderStatusChanged") {
+            $via[] = "mail";
+        }
+        return $via;
     }
     /**
      * Get the array representation of the notification.
@@ -55,6 +60,22 @@ class OrderNotification extends Notification
         ];
     }
 
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+            ->subject(__('Order Notification'))
+            ->markdown('mail.order', [
+                "order" => $this->order,
+                'url' => $this->getUrl(),
+                'event_name' => $this->event_name
+            ]);
+    }
     private function getUrl()
     {
 
@@ -66,7 +87,7 @@ class OrderNotification extends Notification
                     false
                 );
             case "userCharged":
-            case "userRefunded" :
+            case "userRefunded":
             case "orderStatusChanged":
                 return '/account/orders/' . $this->order->id . "/track";
             case "orderCreated":
