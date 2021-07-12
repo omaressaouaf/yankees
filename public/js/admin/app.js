@@ -4417,6 +4417,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../router */ "./resources/js/admin/router.js");
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers */ "./resources/js/admin/helpers.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4690,6 +4696,41 @@ var actions = {
         return _ref2.apply(this, arguments);
       };
     }());
+  },
+  updateCategoriesOrders: function updateCategoriesOrders(store) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+        while (1) {
+          switch (_context7.prev = _context7.next) {
+            case 0:
+              _context7.prev = 0;
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
+              store.commit("updateCategoriesOrders");
+              _context7.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/categories/updateOrders", {
+                categories: store.state.categories
+              });
+
+            case 5:
+              nprogress__WEBPACK_IMPORTED_MODULE_2___default().done();
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.updated", {
+                item: translate("admin.categories")
+              }));
+              _context7.next = 12;
+              break;
+
+            case 9:
+              _context7.prev = 9;
+              _context7.t0 = _context7["catch"](0);
+              (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", translate("front.errorMessage"));
+
+            case 12:
+            case "end":
+              return _context7.stop();
+          }
+        }
+      }, _callee7, null, [[0, 9]]);
+    }))();
   }
 };
 var mutations = {
@@ -4719,6 +4760,13 @@ var mutations = {
     selectedItems.forEach(function (id) {
       state.categories = state.categories.filter(function (category) {
         return category.id !== id;
+      });
+    });
+  },
+  updateCategoriesOrders: function updateCategoriesOrders(state) {
+    state.categories = state.categories.map(function (category, index) {
+      return _objectSpread(_objectSpread({}, category), {}, {
+        order: index + 1
       });
     });
   },

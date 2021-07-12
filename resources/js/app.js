@@ -69,6 +69,10 @@ Vue.component(
     require("./components/meals/MealsList.vue").default
 );
 Vue.component(
+    "meals-skeleton",
+    require("./components/meals/MealsSkeleton.vue").default
+);
+Vue.component(
     "address-list",
     require("./admin/components/addresses/AddressList.vue").default
 );

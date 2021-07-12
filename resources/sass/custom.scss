@@ -389,7 +389,7 @@ button:disabled {
 
 #about {
     width: 100%;
-    height: 88vh;
+    height: 100vh;
     background-color: rgba(39, 37, 34, 0.8);
     overflow: hidden;
     padding: 0;
@@ -397,7 +397,7 @@ button:disabled {
 
 #about .carousel-item {
     width: 100% !important;
-    height: 88vh !important;
+    height: 100vh !important;
     background-size: cover !important;
     // background-position: center bottom !important;
     background-repeat: no-repeat !important;
@@ -431,7 +431,7 @@ button:disabled {
 
 @media (max-width: 800px) {
     #about .carousel-content {
-        width: 75% !important;
+        width: 90% !important;
     }
 }
 

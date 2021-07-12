@@ -11,7 +11,7 @@ use Spatie\Searchable\SearchResult;
 class Category extends Model implements Searchable
 {
     use HasFactory;
-    protected $fillable = ['name' , 'slug'];
+    protected $guarded = [];
 
     public function getSearchResult(): SearchResult
     {
@@ -25,5 +25,12 @@ class Category extends Model implements Searchable
     public function meals()
     {
         return $this->hasMany(Meal::class);
+    }
+    protected static function booted()
+    {
+        static::created(function ($category) {
+            $category->order = $category->id;
+            $category->save();
+        });
     }
 }

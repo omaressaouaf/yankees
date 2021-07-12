@@ -1,7 +1,7 @@
 <template>
   <div class="w-100">
     <div class="row w-100" data-aos="fade-up" data-aos-delay="100">
-      <div class="col-md-12 d-flex justify-content-center mb-3">
+      <div class="col-md-12 d-flex justify-content-start mb-3">
         <ul id="menu-flters">
           <li
             @click="handleClick()"
@@ -22,7 +22,14 @@
         </ul>
       </div>
     </div>
-    <div class="row" data-aos="zoom-in" data-aos-delay="100">
+    <div class="row" v-if="getIsLoading">
+      <meals-skeleton
+        :cols-four="colsFour"
+        v-for="item in Array(12).keys()"
+        :key="item"
+      />
+    </div>
+    <div class="row">
       <transition-group name="categories" tag="div" class="categories">
         <div
           class="category"
@@ -34,8 +41,8 @@
             <div
               v-for="meal in category.meals"
               :key="meal.id"
-              class="col-md-6  mb-4 meal"
-              :class="[fourCols ? 'col-lg-4 col-xl-4' : 'col-lg-3 col-xl-3']"
+              class="col-md-6 mb-4 meal"
+              :class="[colsFour ? 'col-lg-4 col-xl-4' : 'col-lg-3 col-xl-3']"
             >
               <meals-item :meal="meal"></meals-item>
             </div>
@@ -48,16 +55,17 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   props: {
     categories: {
       type: Array,
       required: true,
     },
-    fourCols: {
+    colsFour: {
       type: Boolean,
       required: false,
-      default : true
+      default: true,
     },
   },
   data() {
@@ -72,6 +80,10 @@ export default {
         (category) => category.id === this.selectedCategoryId
       );
     },
+    getIsLoading() {
+      return this.isLoading["get"];
+    },
+    ...mapGetters("meals", ["isLoading"]),
   },
   methods: {
     handleClick(id) {

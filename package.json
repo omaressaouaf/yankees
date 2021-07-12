@@ -49,6 +49,7 @@
         "vue-owl-carousel": "^2.0.3",
         "vue-router": "^3.5.1",
         "vue-spinner": "^1.0.4",
+        "vuedraggable": "^2.24.3",
         "vuelidate": "^0.7.6",
         "vuelidate-error-extractor": "^2.4.1",
         "vuex": "^3.6.2",

@@ -50,7 +50,7 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-striped table-hover" id="dataTable">
+              <table class="table table-striped table-hover" id="">
                 <thead>
                   <tr>
                     <th>
@@ -64,13 +64,13 @@
                     <th>ID</th>
                     <th>{{ translate("admin.name") }}</th>
                     <th>Slug</th>
-
+                    <th>Menus</th>
                     <th>{{ translate("admin.createdAt") }}</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr v-if="getIsLoading">
+                <tbody v-if="getIsLoading">
+                  <tr>
                     <td colspan="6" class="text-center py-5">
                       <vue-loaders-ball-scale-ripple-multiple
                         color="#2B51C4"
@@ -78,11 +78,15 @@
                       ></vue-loaders-ball-scale-ripple-multiple>
                     </td>
                   </tr>
-                  <tr
-                    v-for="category in allCategories"
-                    :key="category.id"
-                    v-else
-                  >
+                </tbody>
+                <draggable
+                  @change="updateCategoriesOrders"
+                  element="tbody"
+                  :list="allCategories"
+                  :options="{ animation: 400, handle: '.btn-drag' }"
+                  v-else
+                >
+                  <tr v-for="category in allCategories" :key="category.id">
                     <td>
                       <input
                         type="checkbox"
@@ -93,9 +97,30 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.name }}</td>
                     <td>{{ category.slug }}</td>
+                    <td>
+                      <h5>
+                        <span
+                          class="badge"
+                          :class="[
+                            !category.meals_count
+                              ? 'badge-danger'
+                              : 'badge-primary',
+                          ]"
+                          >{{ category.meals_count }}</span
+                        >
+                      </h5>
+                    </td>
                     <td>{{ category.created_at | formatDate }}</td>
 
                     <td>
+                      <i
+                        class="
+                          fa fa-arrows-alt fa-lg
+                          text-secondary
+                          btn-drag
+                          mr-4
+                        "
+                      ></i>
                       <router-link
                         class="mr-4"
                         :to="{
@@ -109,7 +134,7 @@
                       ></a>
                     </td>
                   </tr>
-                </tbody>
+                </draggable>
               </table>
             </div>
           </div>
@@ -123,8 +148,12 @@
 import { dataTableMixin } from "../../mixins";
 import { mapGetters, mapActions } from "vuex";
 import { fireConfirm } from "../../helpers";
+import draggable from "vuedraggable";
 
 export default {
+  components: {
+    draggable,
+  },
   mixins: [dataTableMixin],
   data() {
     return {
@@ -171,6 +200,7 @@ export default {
       "fetchCategories",
       "deleteCategory",
       "bulkDeleteCategories",
+      "updateCategoriesOrders",
     ]),
   },
 
@@ -180,5 +210,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.btn-drag {
+  cursor: pointer;
+}
 </style>

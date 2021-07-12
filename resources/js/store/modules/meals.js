@@ -24,11 +24,13 @@ const actions = {
 
     async fetchCategories(store) {
         try {
+            store.commit('setLoading' , 'get')
             const res = await axios.get("/meals");
             store.commit("setCategories", res.data.categories);
         } catch (err) {
             fireToast("danger", translate('front.successMessage'));
         }
+        store.commit('clearLoading' , 'get')
     }
 };
 const mutations = {

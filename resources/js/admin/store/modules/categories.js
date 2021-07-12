@@ -131,6 +131,25 @@ const actions = {
             }
             store.commit("clearLoading", "post");
         });
+    },
+    async updateCategoriesOrders(store) {
+        try {
+            nProgress.start();
+            store.commit("updateCategoriesOrders");
+            await axios.put("/api/categories/updateOrders", {
+                categories: store.state.categories
+            });
+            nProgress.done();
+            fireToast(
+                "success",
+                translate("admin.updated", {
+                    item: translate("admin.categories")
+                })
+            );
+
+        }catch(err) {
+            fireToast("danger", translate("front.errorMessage"));
+        }
     }
 };
 const mutations = {
@@ -163,6 +182,11 @@ const mutations = {
             state.categories = state.categories.filter(category => {
                 return category.id !== id;
             });
+        });
+    },
+    updateCategoriesOrders(state) {
+        state.categories = state.categories.map((category, index) => {
+            return { ...category, order: index + 1 };
         });
     },
     setLoading(state, method) {

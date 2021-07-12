@@ -49,6 +49,7 @@ Route::group(['middleware' => "setLocale"], function () {
 
             // categories
             Route::delete('/categories/bulk/{ids}', [CategoryController::class, 'bulk_destroy']);
+            Route::put('/categories/updateOrders' , [CategoryController::class , 'updateOrders']);
             Route::apiResource('categories', CategoryController::class)->except(['index']);
 
             // extras

@@ -4,12 +4,13 @@
       <div class="row">
         <div
           v-if="cartObject.count || cartIsLoading"
-          class="col-xl-4 order-xl-2 mt-3"
+          class="col-xl-4 order-xl-2 mt-3 mb-4"
         >
           <div id="cartWrapper">
             <cart />
           </div>
         </div>
+
 
         <div
           :class="[
@@ -18,7 +19,7 @@
           class="order-xl-1 menu"
         >
           <meals-list
-            :fourCols="cartObject.count > 0"
+            :cols-four="cartObject.count || cartIsLoading"
             :categories="allCategories"
           />
           <meals-single />
@@ -31,14 +32,14 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import Cart from "../cart/Cart.vue";
-import MealsList from "./MealsList.vue";
-import MealsSingle from "./MealsSingle.vue";
+
 export default {
-  components: { Cart, MealsList, MealsSingle },
+  components: { Cart},
   computed: {
     cartIsLoading() {
       return this.isLoading["get"];
     },
+
     ...mapGetters("cart", ["cartObject", "isLoading"]),
     ...mapGetters("meals", ["allCategories"]),
   },

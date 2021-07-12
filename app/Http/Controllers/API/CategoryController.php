@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Category;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
@@ -16,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories =  Category::latest()->withCount('meals')->get();
+        $categories =  Category::latest()->withCount('meals')->orderBy('order')->get();
         return response()->json([
             'categories' => $categories
         ], 200);
@@ -96,6 +97,15 @@ class CategoryController extends Controller
         }
         return response()->json([
             'message' => "categorie(s) have been deleted",
+        ], 200);
+    }
+    public function updateOrders(Request $request)
+    {
+        foreach ($request->categories as $category) {
+            Category::find($category['id'])->update(['order' => $category['order']]);
+        }
+        return response()->json([
+            'message' => "orders updated"
         ], 200);
     }
 }
