@@ -1,96 +1,101 @@
 <template>
-  <div>
-    <!-- <meals-search /> -->
-    <div class="row" v-if="getIsLoading">
-      <meals-skeleton v-for="item in [1, 2, 3, 4, 5, 6]" :key="item" />
-    </div>
-    <transition name="fade">
-      <div class="row" v-if="!getIsLoading">
-        <div v-if="!allMeals.length" class="col-12 text-center mt-4">
-          <i class="fa fa-utensils text-muted fa-3x mb-3"></i>
-          <h3>{{ translate("front.noMeals") }}.</h3>
-          <h5 class="text-muted">{{ translate("front.noMealsText") }}</h5>
-        </div>
-        <div
-          v-for="meal in allMeals"
-          :key="meal.id"
-          class="col-12 col-sm-8 col-md-6 mt-2"
-          :class="[cartObject.count ===0  ? 'col-lg-3' : 'col-lg-4']"
-        >
-          <meals-item :meal="meal" />
-        </div>
-        <div class="col-md-12">
-          <infinite-loading @infinite="infiniteHandler" />
-        </div>
+  <div class="w-100">
+    <div class="row w-100" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-md-12 d-flex justify-content-center mb-3">
+        <ul id="menu-flters">
+          <li
+            @click="handleClick()"
+            :class="[!selectedCategoryId ? 'filter-active' : '']"
+            class="mr-1"
+          >
+            {{ translate("front.all") }}
+          </li>
+          <li
+            @click="handleClick(category.id)"
+            class="text-capitalize mr-1"
+            :class="[selectedCategoryId == category.id ? 'filter-active' : '']"
+            v-for="category in categories"
+            :key="category.id"
+          >
+            {{ category.name }}
+          </li>
+        </ul>
       </div>
-    </transition>
+    </div>
+    <div class="row" data-aos="zoom-in" data-aos-delay="100">
+      <transition-group name="categories" tag="div" class="categories">
+        <div
+          class="category"
+          v-for="category in filteredCategories"
+          :key="category.id"
+        >
+          <h3 class="my-4">&middot; {{ category.name }}</h3>
+          <div class="row meals-latest-row">
+            <div
+              v-for="meal in category.meals"
+              :key="meal.id"
+              class="col-md-6  mb-4 meal"
+              :class="[fourCols ? 'col-lg-4 col-xl-4' : 'col-lg-3 col-xl-3']"
+            >
+              <meals-item :meal="meal"></meals-item>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </transition-group>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import MealsItem from "./MealsItem.vue";
-import MealsSearch from "./MealsSearch.vue";
-import MealsSkeleton from "./MealsSkeleton.vue";
-
 export default {
-  components: { MealsSkeleton, MealsSearch, MealsItem },
+  props: {
+    categories: {
+      type: Array,
+      required: true,
+    },
+    fourCols: {
+      type: Boolean,
+      required: false,
+      default : true
+    },
+  },
   data() {
     return {
-      page: 1,
+      selectedCategoryId: null,
     };
   },
   computed: {
-    getIsLoading() {
-      return this.isLoading["get"];
-    },
-
-    ...mapGetters("meals", ["allMeals", "isLoading"]),
-    ...mapGetters("cart", ["cartObject"]),
-  },
-  watch: {
-    // $route watcher will execute immediately after the component creation and when the route params/query changes
-    $route: {
-      immediate: true,
-      handler() {
-        // always reset the page to 1 when the route changes (in case of filtering)
-        this.page = 1;
-        // increment the page if the api call went through successfully
-        this.fetchMeals({ page: this.page, ...this.$route.query }).then(
-          () => (this.page += 1)
-        );
-      },
+    filteredCategories() {
+      if (!this.selectedCategoryId) return this.categories;
+      return this.categories.filter(
+        (category) => category.id === this.selectedCategoryId
+      );
     },
   },
   methods: {
-    infiniteHandler($state) {
-      if (this.allMeals.length) {
-        this.fetchMeals({ page: this.page, ...this.$route.query }).then(
-          (nextPageUrl) => {
-            if (nextPageUrl) {
-              this.page += 1;
-              $state.loaded();
-            } else {
-              $state.complete();
-            }
-          }
-        );
-      } else {
-        $state.complete();
-      }
+    handleClick(id) {
+      this.selectedCategoryId = id;
     },
-
-    ...mapActions("meals", ["fetchMeals"]),
   },
 };
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.6s;
+.category {
+  transition: all 0.35s ease-in-out;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.categories-enter {
+  transform: scale(0.5) translatey(-80px);
   opacity: 0;
+}
+.categories-leave-to {
+  transform: translatey(30px);
+  opacity: 0;
+}
+
+.categories-leave-active {
+  position: absolute;
+  z-index: -1;
 }
 </style>

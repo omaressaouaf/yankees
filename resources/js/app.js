@@ -21,19 +21,13 @@ import "vue-loaders/dist/vue-loaders.css";
 
 // ______________________________________________Component global registration______________________________
 
-Vue.component(
-    "meals-index",
-    require("./components/meals/MealsIndex.vue").default
-);
+
 Vue.component("vue-skeleton-loader", VueSkeletonLoader);
 Vue.component(
     "address-selector",
     require("./admin/components/addresses/AddressSelector.vue").default
 );
-Vue.component(
-    "address-list",
-    require("./admin/components/addresses/AddressList.vue").default
-);
+
 Vue.component(
     "checkout-form",
     require("./components/CheckoutForm.vue").default
@@ -51,7 +45,10 @@ Vue.component(
     "order-tracker",
     require("./components/OrderTracker.vue").default
 );
-
+Vue.component(
+    "meals-index",
+    require("./components/meals/MealsIndex.vue").default
+);
 Vue.component(
     "meals-item",
     require("./components/meals/MealsItem.vue").default
@@ -66,9 +63,14 @@ Vue.component(
     "meals-slider",
     require("./components/meals/MealsSlider.vue").default
 );
+
 Vue.component(
-    "meals-latest",
-    require("./components/meals/MealsLatest.vue").default
+    "meals-list",
+    require("./components/meals/MealsList.vue").default
+);
+Vue.component(
+    "address-list",
+    require("./admin/components/addresses/AddressList.vue").default
 );
 
 // ______________________________________________Filters______________________________________________

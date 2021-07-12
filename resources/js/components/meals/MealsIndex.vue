@@ -2,17 +2,25 @@
   <section>
     <div class="px-5">
       <div class="row">
-        <div v-if="cartObject.count || cartIsLoading" class="col-xl-4 order-xl-2 mt-3">
+        <div
+          v-if="cartObject.count || cartIsLoading"
+          class="col-xl-4 order-xl-2 mt-3"
+        >
           <div id="cartWrapper">
             <cart />
           </div>
         </div>
 
         <div
-          :class="[cartObject.count || cartIsLoading ? 'col-xl-8' : 'col-xl-12']"
-          class="order-xl-1"
+          :class="[
+            cartObject.count || cartIsLoading ? 'col-xl-8' : 'col-xl-12',
+          ]"
+          class="order-xl-1 menu"
         >
-          <meals-list />
+          <meals-list
+            :fourCols="cartObject.count > 0"
+            :categories="allCategories"
+          />
           <meals-single />
         </div>
       </div>
@@ -32,14 +40,17 @@ export default {
       return this.isLoading["get"];
     },
     ...mapGetters("cart", ["cartObject", "isLoading"]),
+    ...mapGetters("meals", ["allCategories"]),
   },
   methods: {
     ...mapActions("cart", ["fetchCart"]),
+    ...mapActions("meals", ["fetchCategories"]),
   },
   mounted() {
     if (this.$gate.can("shop")) {
       this.fetchCart();
     }
+    this.fetchCategories();
   },
 };
 </script>

@@ -91,6 +91,7 @@ export default {
     },
     ...mapActions("cart", ["addToCart"]),
   },
+
 };
 </script>
 

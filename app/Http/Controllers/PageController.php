@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Meal;
 use App\Models\Section;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Spatie\OpeningHours\OpeningHours;
 
@@ -14,9 +15,9 @@ class PageController extends Controller
 {
     public function home()
     {
-        $latestMeals = Meal::latest()->with('category' , 'extras' , 'extras.options')->where('active', 1)->get();
-        $categories = Category::all();
-        return view('pages.home' , compact('latestMeals' , 'categories'));
+        $categories = Category::with('meals' , 'meals.category' , 'meals.extras' , 'meals.extras.options')->get();
+
+        return view('pages.home', compact('categories'));
     }
     public function about()
     {

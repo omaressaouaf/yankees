@@ -21,20 +21,10 @@ class MealController extends Controller
 
             return view('pages.meals.index');
         }
-        $meals = Meal::latest()->where('active', 1);
+        $categories = Category::with('meals' , 'meals.category' , 'meals.extras' , 'meals.extras.options')->get();
 
-        if (request()->search_query) {
-            $meals = $meals->where('title', 'like', '%' . request()->search_query . '%')->orWhere('desc', 'like', '%' . request()->search_query . '%');
-        }
-        if (request()->category) {
-            $category_id = Category::where('slug', request()->category)->pluck('id')->first();
-            $meals = $meals->where('category_id', $category_id);
-        }
-        if (request()->max_price) {
-            $meals = $meals->where('price', '<=', request()->max_price);
-        }
         return response()->json([
-            'meals' => $meals->with(['category', 'extras', 'extras.options'])->paginate(9)
+            'categories' => $categories
         ]);
     }
 }

@@ -258,7 +258,7 @@ export default {
   },
   mounted() {
     //   listening for dropdown close event
-    $("#notificationsDropdown").on("hide.bs.dropdown", () => {
+    $("#notificationsDropdown").on("hidden.bs.dropdown", () => {
       if (this.unreadNotificationsLength) {
         this.markNotifications();
       }

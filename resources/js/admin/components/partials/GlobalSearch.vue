@@ -21,7 +21,7 @@
         <div class="ripple-container"></div>
       </span>
     </div>
-    <div
+    <div  
       class="dropdown w-100 has-cool-scrollbar"
       v-if="resultsNotEmpty && query.length && !closed"
     >

@@ -42,6 +42,7 @@ Vue.component(
 );
 Vue.component("vue-skeleton-loader", VueSkeletonLoader);
 
+
 // ______________________________________________Global mixins______________________________________________
 
 Vue.mixin({
