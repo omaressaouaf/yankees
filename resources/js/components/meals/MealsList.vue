@@ -110,4 +110,7 @@ export default {
   position: absolute;
   z-index: -1;
 }
+.categories {
+  width :100% !important;
+}
 </style>
