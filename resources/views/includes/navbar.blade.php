@@ -9,6 +9,7 @@
                 {{config('app.contact.email')}}</span>
         </div>
         <ul class="nav ml-auto ">
+
             @auth
             @if (auth()->user()->hasAnyRole(['admin', 'manager', 'deliveryman']))
             <li class="nav-item ">
@@ -29,7 +30,8 @@
 
         {{-- <h1 class="logo mr-auto"><a href="{{ route('home') }}">{{ config('app.name') }}</a></h1> --}}
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="{{route('home')}}" class="logo mr-auto"><img src="{{config('app.logo')}}" alt="logo" class="img-fluid"></a>
+        <a href="{{route('home')}}" class="logo mr-auto"><img src="{{config('app.logo')}}" alt="logo"
+                class="img-fluid"></a>
         <nav class="nav-menu d-none d-lg-block">
             <ul>
 

@@ -37,7 +37,7 @@ export const fireAlert = (icon, title, text) => {
 export const fireToast = (type, message) => {
     const inAdminPanel = window.location.href.indexOf("/admin") != -1;
     let icon;
-    let delay = 2000;
+    let delay = inAdminPanel ?  2000 : 4000;
     if (type == "success") {
         icon = "check";
     }

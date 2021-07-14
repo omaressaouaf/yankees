@@ -41,15 +41,16 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>{{ __('admin.openingHours') }}</h4>
 
-                    @foreach ($openingHours as $firstDay => $schedule)
+                    @foreach ($openingHours as $firstDayInGroup => $schedule)
                     <p class="text-capitalize">
                         <span class="">
-                            {{-- First Day is the actual key in each element in the array --}}
-                            {{ __('admin.' . $firstDay) }} -
-                            {{-- Last Day is the last element in the days array --}}
-                            {{ __('admin.' . $schedule['days'][count($schedule['days']) - 1]) }} :
+                            {{ __('admin.' . $schedule['days'][0] ) }} -
+                            {{-- if there is more than one day print the last one --}}
+                            @if (count($schedule['days']) > 1)
+                            {{__('admin.' . $schedule['days'][count($schedule['days']) - 1]) }}
+                            @endif
+                            :
                         </span>
-                        {{-- The Actual opening Hours --}}
                         {{ strlen($schedule['opening_hours'])  ? $schedule['opening_hours'] :  __('admin.closed')}}
                     </p>
                     @endforeach

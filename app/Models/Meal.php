@@ -18,7 +18,7 @@ class Meal extends Model implements Searchable
         'active' => 'boolean'
     ];
 
-    protected $fillable = ['title', 'desc', 'image', 'resized_image', 'price', 'active', 'category_id'];
+    protected $guarded = [];
 
     public $searchableType = 'menus';
 

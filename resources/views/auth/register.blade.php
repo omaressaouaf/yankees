@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+Inscription -
+@endsection
 @section('description')
 Rejoignez-nous pour le dîner
 @endsection

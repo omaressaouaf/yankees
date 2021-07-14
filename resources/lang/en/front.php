@@ -30,7 +30,7 @@ return [
     "dontDelay" => "Don't delay the purchase,
     adding items to your cart does not mean
     Reserving them",
-    "successMessage" => "Menu added to your cart",
+    "successMessage" => "Menu added successfully",
     "errorMessage" => "an Error ocurred . Try again",
     "and" => "and",
     "chooseAddress" => "Choose your Address",
@@ -45,7 +45,8 @@ return [
     "addressDirections" => "Address Directions",
     "detectAddresses" => "Detect Addresses Automatically",
     "toggleInstructions" => "Toggle Instructions",
-    "closedNow" => "Closed For Now"
+    "closedNow" => "Closed For Now",
+    "seeCart" => "See Cart"
 
 
 

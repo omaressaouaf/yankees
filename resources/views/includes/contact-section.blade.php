@@ -1,14 +1,14 @@
 <section id="contact" class="contact">
-    <div class="container" data-aos="fade-up">
+    <div class="container" >
 
         <div class="section-title">
             <h2>{{__('Contact')}}</h2>
             <p>{{__('Contact Us')}}</p>
         </div>
     </div>
-    <div class="container" data-aos="fade-up">
+    <div class="container" >
 
-        <div data-aos="fade-up">
+        <div >
             <iframe style="border:0; width: 100%; height: 350px;"
                 src="https://maps.google.com/maps?q={{config('app.contact.address')}}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
                 allowfullscreen></iframe>

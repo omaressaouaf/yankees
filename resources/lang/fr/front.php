@@ -29,7 +29,7 @@ return [
     "dontDelay"=> "Ne retardez pas l'achat,
     ajouter des articles à votre panier ne signifie pas les
     réserver",
-    "successMessage" => "Menu ajouté au panier",
+    "successMessage" => "menu ajouté avec succès",
     "errorMessage"=> "Une erreur s'est produite . Réessayer",
     "and"=> "et",
     "chooseAddress"=> "Choisissez votre adresse",
@@ -44,5 +44,6 @@ return [
     "addressDirections" => "Directions d'Adresse",
     "detectAddresses" => "Détecter automatiquement les adresses",
     "toggleInstructions" => "Basculer Instructions",
-    "closedNow" => "Fermé pour le moment"
+    "closedNow" => "Fermé pour le moment",
+    "seeCart" => "Voir le panier"
 ];

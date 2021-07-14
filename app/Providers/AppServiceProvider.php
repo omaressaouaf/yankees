@@ -68,7 +68,6 @@ class AppServiceProvider extends ServiceProvider
         });
         View::composer('includes.footer', function ($view) {
             $openingHours = OpeningHours::create(config('schedule.openingHours'))->forWeekConsecutiveDays();
-            // dd($openingHours);
             $view->with([
                 'openingHours' => $openingHours
             ]);

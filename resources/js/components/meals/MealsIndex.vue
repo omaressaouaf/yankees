@@ -19,7 +19,7 @@
           class="order-xl-1 menu"
         >
           <meals-list
-            :cols-four="cartObject.count || cartIsLoading"
+            :cols-four="cartObject.count > 0 || cartIsLoading"
             :categories="allCategories"
           />
           <meals-single />

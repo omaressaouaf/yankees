@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-     Validation de commande -
+Validation de commande -
 @endsection
 @section('head')
 <script src="https://js.stripe.com/v3/"></script>

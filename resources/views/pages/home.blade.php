@@ -47,7 +47,7 @@ Commandez le meilleur smash burger
 @include('includes.hero')
 <main id="main">
     {{-- preloader --}}
-    <div id="preloader"></div>
+    {{-- <div id="preloader"></div> --}}
 
 
     <!--  Menu Section -->
