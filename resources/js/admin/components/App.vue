@@ -1,8 +1,8 @@
 <template>
   <layout>
     <transition name="fade" mode="out-in">
-      <router-view :key="$route.fullPath"></router-view>
-      <!-- <offline v-else></offline> -->
+      <router-view v-if="$online" :key="$route.fullPath"></router-view>
+      <offline v-else></offline>
     </transition>
   </layout>
 </template>
