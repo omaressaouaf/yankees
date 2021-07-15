@@ -88,7 +88,7 @@ export default {
       if (!this.$v.$invalid) {
         this.loading = true;
         axios
-          .post("/api/settings/cart", this.form)
+          .post("/settings/cart", this.form)
           .then((res) => {
             fireToast(
               "success",

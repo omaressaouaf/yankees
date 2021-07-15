@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\V1\Client;
 
 use App\Models\Meal;
 use Illuminate\Http\Request;
 use App\Http\Requests\CartStoreRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Symfony\Component\HttpKernel\Event\ResponseEvent;
+use App\Http\Controllers\Controller;
+
 
 class CartController extends Controller
 {

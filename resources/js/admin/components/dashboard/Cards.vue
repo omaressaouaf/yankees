@@ -119,7 +119,7 @@ export default {
     getCount() {
       this.countLoading = true;
       axios
-        .get("/api/dashboard/count")
+        .get("/dashboard/count")
         .then((res) => {
           this.countData = res.data;
           this.countLoading = false;

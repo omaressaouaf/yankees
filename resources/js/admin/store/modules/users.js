@@ -43,7 +43,7 @@ const actions = {
     async fetchUsers(store) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get("/api/users");
+            const res = await axios.get("/users");
             store.commit("setUsers", res.data.users);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -55,7 +55,7 @@ const actions = {
     async fetchRoles(store) {
         try {
             store.commit("setLoading", "roles");
-            const res = await axios.get("/api/users/roles");
+            const res = await axios.get("/users/roles");
             store.commit("setRoles", res.data.roles);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -67,7 +67,7 @@ const actions = {
         fireConfirm(async () => {
             try {
                 nProgress.start();
-                await axios.delete(`/api/users/${id}`);
+                await axios.delete(`/users/${id}`);
                 store.commit("removeUser", id);
                 fireToast(
                     "success",
@@ -86,7 +86,7 @@ const actions = {
     async addUser(store, newUser) {
         try {
             store.commit("setLoading", "post");
-            const res = await axios.post("/api/users", newUser);
+            const res = await axios.post("/users", newUser);
             store.commit("addUser", res.data.user);
             store.commit("clearUser");
             fireToast(
@@ -105,7 +105,7 @@ const actions = {
     async fetchUser(store, id) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get(`/api/users/${id}`);
+            const res = await axios.get(`/users/${id}`);
             store.commit("setUser", res.data.user);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -119,7 +119,7 @@ const actions = {
             store.commit("setLoading", "post");
 
             const res = await axios.put(
-                `/api/users/${updatedUser.id}`,
+                `/users/${updatedUser.id}`,
                 updatedUser
             );
             store.commit("updateUser", res.data.user);
@@ -145,7 +145,7 @@ const actions = {
         return new Promise(async resolve => {
             try {
                 store.commit("setLoading", "post");
-                await axios.delete("/api/users/bulk/" + selectedItems);
+                await axios.delete("/users/bulk/" + selectedItems);
                 store.commit("bulkRemoveUsers", selectedItems);
                 fireToast("success", translate("admin.bulkDeleted"));
                 store.commit("clearLoading", "post");

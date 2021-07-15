@@ -213,7 +213,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.countLoading = true;
-      axios.get("/api/dashboard/count").then(function (res) {
+      axios.get("/dashboard/count").then(function (res) {
         _this.countData = res.data;
         _this.countLoading = false;
       })["catch"](function (err) {
@@ -448,7 +448,7 @@ __webpack_require__.r(__webpack_exports__);
         this.revenueChartLoading = true;
       }
 
-      axios.get("/api/dashboard/charts").then(function (res) {
+      axios.get("/dashboard/charts").then(function (res) {
         if (refreshArray.includes("orders")) {
           _this.ordersByMonth = {
             labels: [],

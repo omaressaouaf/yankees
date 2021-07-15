@@ -21,7 +21,7 @@
         <div class="ripple-container"></div>
       </span>
     </div>
-    <div  
+    <div
       class="dropdown w-100 has-cool-scrollbar"
       v-if="resultsNotEmpty && query.length && !closed"
     >
@@ -77,7 +77,7 @@ export default {
       this.closed = false;
       this.loading = true;
       axios
-        .get("/api/dashboard/search", { params: { query: this.query } })
+        .get("/dashboard/search", { params: { query: this.query } })
         .then((res) => {
           this.results = res.data.results;
         })

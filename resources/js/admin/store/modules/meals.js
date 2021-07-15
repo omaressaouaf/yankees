@@ -38,7 +38,7 @@ const actions = {
     async fetchMeals(store) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get("/api/meals");
+            const res = await axios.get("/meals");
             store.commit("setMeals", res.data.meals);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -50,7 +50,7 @@ const actions = {
         fireConfirm(async () => {
             try {
                 nProgress.start();
-                await axios.delete(`/api/meals/${id}`);
+                await axios.delete(`/meals/${id}`);
                 store.commit("removeMeal", id);
                 fireToast(
                     "success",
@@ -85,7 +85,7 @@ const actions = {
                 store.commit("setLoading", "post");
             }
 
-            const res = await axios.post("/api/meals", newMeal, {
+            const res = await axios.post("/meals", newMeal, {
                 headers: {
                     "Content-Type":
                         "multipart/form-data; charset=utf-8; boundary=" +
@@ -133,7 +133,7 @@ const actions = {
     async fetchMeal(store, id) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get(`/api/meals/${id}`);
+            const res = await axios.get(`/meals/${id}`);
             store.commit("setMeal", res.data.meal);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -160,7 +160,7 @@ const actions = {
             // we appended the put method in order for the route to catch it
             updatedMeal.append("_method", "PUT");
             const res = await axios.post(
-                `/api/meals/${updatedMeal.get("id")}`,
+                `/meals/${updatedMeal.get("id")}`,
                 updatedMeal,
                 {
                     headers: {
@@ -208,7 +208,7 @@ const actions = {
         return new Promise(async resolve => {
             try {
                 store.commit("setLoading", "post");
-                await axios.delete("/api/meals/bulk/" + selectedItems);
+                await axios.delete("/meals/bulk/" + selectedItems);
                 store.commit("bulkRemoveMeals", selectedItems);
                 fireToast("success", translate("admin.bulkDeleted"));
                 store.commit("clearLoading", "post");

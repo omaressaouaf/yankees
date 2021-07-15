@@ -34,7 +34,7 @@ const actions = {
     async fetchCategories(store) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get("/api/categories");
+            const res = await axios.get("/categories");
             store.commit("setCategories", res.data.categories);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -46,7 +46,7 @@ const actions = {
         fireConfirm(async () => {
             try {
                 nProgress.start();
-                await axios.delete(`/api/categories/${id}`);
+                await axios.delete(`/categories/${id}`);
                 store.commit("removeCategory", id);
                 fireToast(
                     "success",
@@ -65,7 +65,7 @@ const actions = {
     async addCategory(store, newCategory) {
         try {
             store.commit("setLoading", "post");
-            const res = await axios.post("/api/categories", newCategory);
+            const res = await axios.post("/categories", newCategory);
             store.commit("addCategory", res.data.category);
             store.commit("clearCategory");
             fireToast(
@@ -84,7 +84,7 @@ const actions = {
     async fetchCategory(store, id) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get(`/api/categories/${id}`);
+            const res = await axios.get(`/categories/${id}`);
             store.commit("setCategory", res.data.category);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -98,7 +98,7 @@ const actions = {
             store.commit("setLoading", "post");
 
             const res = await axios.put(
-                `/api/categories/${updatedCategory.id}`,
+                `/categories/${updatedCategory.id}`,
                 updatedCategory
             );
             store.commit("updateCategory", res.data.category);
@@ -120,7 +120,7 @@ const actions = {
         return new Promise(async resolve => {
             try {
                 store.commit("setLoading", "post");
-                await axios.delete("/api/categories/bulk/" + selectedItems);
+                await axios.delete("/categories/bulk/" + selectedItems);
                 store.commit("bulkRemoveCategories", selectedItems);
                 fireToast("success", translate("admin.bulkDeleted"));
                 store.commit("clearLoading", "post");
@@ -136,7 +136,7 @@ const actions = {
         try {
             nProgress.start();
             store.commit("updateCategoriesOrders");
-            await axios.put("/api/categories/updateOrders", {
+            await axios.put("/categories/updateOrders", {
                 categories: store.state.categories
             });
             nProgress.done();

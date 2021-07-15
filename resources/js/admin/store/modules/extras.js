@@ -34,7 +34,7 @@ const actions = {
     async fetchExtras(store) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get("/api/extras");
+            const res = await axios.get("/extras");
             store.commit("setExtras", res.data.extras);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -46,7 +46,7 @@ const actions = {
         fireConfirm(async () => {
             try {
                 nProgress.start();
-                await axios.delete(`/api/extras/${id}`);
+                await axios.delete(`/extras/${id}`);
                 store.commit("removeExtra", id);
                 fireToast(
                     "success",
@@ -65,7 +65,7 @@ const actions = {
     async addExtra(store, newExtra) {
         try {
             store.commit("setLoading", "post");
-            const res = await axios.post("/api/extras", newExtra);
+            const res = await axios.post("/extras", newExtra);
             store.commit("addExtra", res.data.extra);
             store.commit("clearExtra");
             fireToast(
@@ -84,7 +84,7 @@ const actions = {
     async fetchExtra(store, id) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get(`/api/extras/${id}`);
+            const res = await axios.get(`/extras/${id}`);
             store.commit("setExtra", res.data.extra);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -98,7 +98,7 @@ const actions = {
             store.commit("setLoading", "post");
 
             const res = await axios.put(
-                `/api/extras/${updatedExtra.id}`,
+                `/extras/${updatedExtra.id}`,
                 updatedExtra
             );
             store.commit("updateExtra", res.data.extra);
@@ -120,7 +120,7 @@ const actions = {
         return new Promise(async resolve => {
             try {
                 store.commit("setLoading", "post");
-                await axios.delete("/api/extras/bulk/" + selectedItems);
+                await axios.delete("/extras/bulk/" + selectedItems);
                 store.commit("bulkRemoveExtras", selectedItems);
                 fireToast("success", translate('admin.bulkDeleted'));
                 store.commit("clearLoading", "post");
