@@ -18,6 +18,7 @@ import "dayjs/locale/fr";
 
 import VueLoaders from "vue-loaders";
 import "vue-loaders/dist/vue-loaders.css";
+import axios from "axios";
 
 // ______________________________________________Component global registration______________________________
 
@@ -30,7 +31,7 @@ Vue.component(
 
 Vue.component(
     "checkout-form",
-    require("./components/CheckoutForm.vue").default
+    require("./components/orders/CheckoutForm.vue").default
 );
 Vue.component(
     "notifications-list",
@@ -43,7 +44,7 @@ Vue.component(
 
 Vue.component(
     "order-tracker",
-    require("./components/OrderTracker.vue").default
+    require("./components/orders/OrderTracker.vue").default
 );
 Vue.component(
     "meals-index",
@@ -119,6 +120,9 @@ if (document.documentElement.lang == "fr") {
     dayjs.locale("fr");
 }
 Vue.use(VueLoaders);
+
+
+axios.defaults.baseURL ="/api/v1/client" ;
 
 const router = new VueRouter({
     mode: "history",

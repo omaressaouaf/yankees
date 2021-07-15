@@ -2159,7 +2159,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.loading = true;
-      axios.get("/api/addresses?userId=".concat(this.userId)).then(function (res) {
+      axiosSharedApi.get("/addresses?userId=".concat(this.userId)).then(function (res) {
         _this.addresses = res.data.addresses;
       })["catch"](function (err) {
         (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.fireAlert)("error", translate("front.errorMessage"));
@@ -2172,7 +2172,7 @@ __webpack_require__.r(__webpack_exports__);
 
       (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.fireConfirm)(function () {
         nprogress__WEBPACK_IMPORTED_MODULE_1___default().start();
-        axios["delete"]("/api/addresses/".concat(id)).then(function (res) {
+        axiosSharedApi["delete"]("/addresses/".concat(id)).then(function (res) {
           _this2.addresses = _this2.addresses.filter(function (address) {
             return address.id != id;
           });
@@ -2335,7 +2335,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       this.postLoading = true;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/addresses?userId=".concat(this.userId), this.address).then(function (res) {
+      axiosSharedApi.post("/addresses?userId=".concat(this.userId), this.address).then(function (res) {
         _this.$emit("addressAdded", res.data.address);
 
         $("#addressSelectorModal").modal("hide");
@@ -2843,7 +2843,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.loading = true;
-      axios.get("/api/notifications").then(function (res) {
+      axiosSharedApi.get("/notifications").then(function (res) {
         _this.notifications = res.data.notifications;
 
         var unreadNotifications = _this.notifications.filter(function (notification) {
@@ -2862,7 +2862,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       e.stopPropagation();
       this.loading = true;
-      axios["delete"]("/api/notifications").then(function (res) {
+      axiosSharedApi["delete"]("/notifications").then(function (res) {
         _this2.notifications = [];
 
         _this2.revertToDefaultDocumentTitle();
@@ -2877,7 +2877,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     markNotifications: function markNotifications() {
       var _this3 = this;
 
-      axios.put("/api/notifications").then(function (res) {
+      axiosSharedApi.put("/notifications").then(function (res) {
         _this3.getNotifications();
 
         _this3.revertToDefaultDocumentTitle();
@@ -3146,7 +3146,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.closed = false;
       this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/dashboard/search", {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/dashboard/search", {
         params: {
           query: this.query
         }
@@ -4479,7 +4479,7 @@ var actions = {
               _context.prev = 0;
               store.commit("setLoading", "get");
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/categories");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/categories");
 
             case 4:
               res = _context.sent;
@@ -4513,7 +4513,7 @@ var actions = {
               _context2.prev = 0;
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/categories/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/categories/".concat(id));
 
             case 4:
               store.commit("removeCategory", id);
@@ -4551,7 +4551,7 @@ var actions = {
               _context3.prev = 0;
               store.commit("setLoading", "post");
               _context3.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/categories", newCategory);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/categories", newCategory);
 
             case 4:
               res = _context3.sent;
@@ -4591,7 +4591,7 @@ var actions = {
               _context4.prev = 0;
               store.commit("setLoading", "get");
               _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/categories/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/categories/".concat(id));
 
             case 4:
               res = _context4.sent;
@@ -4626,7 +4626,7 @@ var actions = {
               _context5.prev = 0;
               store.commit("setLoading", "post");
               _context5.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/categories/".concat(updatedCategory.id), updatedCategory);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/categories/".concat(updatedCategory.id), updatedCategory);
 
             case 4:
               res = _context5.sent;
@@ -4665,7 +4665,7 @@ var actions = {
                 _context6.prev = 0;
                 store.commit("setLoading", "post");
                 _context6.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/categories/bulk/" + selectedItems);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/categories/bulk/" + selectedItems);
 
               case 4:
                 store.commit("bulkRemoveCategories", selectedItems);
@@ -4707,7 +4707,7 @@ var actions = {
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               store.commit("updateCategoriesOrders");
               _context7.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/categories/updateOrders", {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/categories/updateOrders", {
                 categories: store.state.categories
               });
 
@@ -4872,7 +4872,7 @@ var actions = {
               _context.prev = 0;
               store.commit("setLoading", "get");
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/extras");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/extras");
 
             case 4:
               res = _context.sent;
@@ -4906,7 +4906,7 @@ var actions = {
               _context2.prev = 0;
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/extras/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/extras/".concat(id));
 
             case 4:
               store.commit("removeExtra", id);
@@ -4944,7 +4944,7 @@ var actions = {
               _context3.prev = 0;
               store.commit("setLoading", "post");
               _context3.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/extras", newExtra);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/extras", newExtra);
 
             case 4:
               res = _context3.sent;
@@ -4984,7 +4984,7 @@ var actions = {
               _context4.prev = 0;
               store.commit("setLoading", "get");
               _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/extras/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/extras/".concat(id));
 
             case 4:
               res = _context4.sent;
@@ -5019,7 +5019,7 @@ var actions = {
               _context5.prev = 0;
               store.commit("setLoading", "post");
               _context5.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/extras/".concat(updatedExtra.id), updatedExtra);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/extras/".concat(updatedExtra.id), updatedExtra);
 
             case 4:
               res = _context5.sent;
@@ -5058,7 +5058,7 @@ var actions = {
                 _context6.prev = 0;
                 store.commit("setLoading", "post");
                 _context6.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/extras/bulk/" + selectedItems);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/extras/bulk/" + selectedItems);
 
               case 4:
                 store.commit("bulkRemoveExtras", selectedItems);
@@ -5234,7 +5234,7 @@ var actions = {
               _context.prev = 0;
               store.commit("setLoading", "get");
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/meals");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/meals");
 
             case 4:
               res = _context.sent;
@@ -5268,7 +5268,7 @@ var actions = {
               _context2.prev = 0;
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/meals/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/meals/".concat(id));
 
             case 4:
               store.commit("removeMeal", id);
@@ -5335,7 +5335,7 @@ var actions = {
               }
 
               _context4.next = 6;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/meals", newMeal, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/meals", newMeal, {
                 headers: {
                   "Content-Type": "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
                 },
@@ -5401,7 +5401,7 @@ var actions = {
               _context5.prev = 0;
               store.commit("setLoading", "get");
               _context5.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/meals/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/meals/".concat(id));
 
             case 4:
               res = _context5.sent;
@@ -5452,7 +5452,7 @@ var actions = {
 
               updatedMeal.append("_method", "PUT");
               _context6.next = 7;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/meals/".concat(updatedMeal.get("id")), updatedMeal, {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/meals/".concat(updatedMeal.get("id")), updatedMeal, {
                 headers: {
                   "Content-Type": "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
                 },
@@ -5513,7 +5513,7 @@ var actions = {
                 _context7.prev = 0;
                 store.commit("setLoading", "post");
                 _context7.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/meals/bulk/" + selectedItems);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/meals/bulk/" + selectedItems);
 
               case 4:
                 store.commit("bulkRemoveMeals", selectedItems);
@@ -5700,7 +5700,7 @@ var actions = {
               _context.prev = 0;
               store.commit("setLoading", "get");
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/orders");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/orders");
 
             case 4:
               res = _context.sent;
@@ -5734,7 +5734,7 @@ var actions = {
               _context2.prev = 0;
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/orders/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/orders/".concat(id));
 
             case 4:
               store.commit("removeOrder", id);
@@ -5772,7 +5772,7 @@ var actions = {
                 _context3.prev = 0;
                 store.commit("setLoading", "post");
                 _context3.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/orders/bulk/" + selectedItems);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/orders/bulk/" + selectedItems);
 
               case 4:
                 store.commit("bulkRemoveOrders", selectedItems);
@@ -5814,7 +5814,7 @@ var actions = {
               _context4.prev = 0;
               store.commit("setLoading", "get");
               _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/orders/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/orders/".concat(id));
 
             case 4:
               res = _context4.sent;
@@ -5849,7 +5849,7 @@ var actions = {
               _context5.prev = 0;
               store.commit("setLoading", updatedOrder.loading);
               _context5.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/".concat(updatedOrder.id), updatedOrder);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/orders/".concat(updatedOrder.id), updatedOrder);
 
             case 4:
               res = _context5.sent;
@@ -5888,7 +5888,7 @@ var actions = {
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               store.commit("setLoading", "charge");
               _context6.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/charge/".concat(store.state.order.id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/orders/charge/".concat(store.state.order.id));
 
             case 5:
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.paymentSuccessful"));
@@ -5946,7 +5946,7 @@ var actions = {
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               store.commit("setLoading", "refund");
               _context7.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/orders/refund/".concat(store.state.order.id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/orders/refund/".concat(store.state.order.id));
 
             case 5:
               (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("success", translate("admin.refundSuccessful"));
@@ -5993,7 +5993,7 @@ var actions = {
               _context8.prev = 0;
               store.commit("setLoading", "deliverymen");
               _context8.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/deliverymen");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/users/deliverymen");
 
             case 4:
               res = _context8.sent;
@@ -6128,7 +6128,7 @@ var actions = {
               _context.prev = 0;
               store.commit("setLoading", "get");
               _context.next = 4;
-              return axios.get("/api/sections");
+              return axios.get("/sections");
 
             case 4:
               res = _context.sent;
@@ -6163,7 +6163,7 @@ var actions = {
               _context2.prev = 0;
               store.commit("setLoading", "post");
               _context2.next = 4;
-              return axios.put("/api/sections/".concat(selectedSection.id), selectedSection);
+              return axios.put("/sections/".concat(selectedSection.id), selectedSection);
 
             case 4:
               res = _context2.sent;
@@ -6312,7 +6312,7 @@ var actions = {
               _context.prev = 0;
               store.commit("setLoading", "get");
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/users");
 
             case 4:
               res = _context.sent;
@@ -6347,7 +6347,7 @@ var actions = {
               _context2.prev = 0;
               store.commit("setLoading", "roles");
               _context2.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/roles");
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/users/roles");
 
             case 4:
               res = _context2.sent;
@@ -6381,7 +6381,7 @@ var actions = {
               _context3.prev = 0;
               nprogress__WEBPACK_IMPORTED_MODULE_2___default().start();
               _context3.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/users/".concat(id));
 
             case 4:
               store.commit("removeUser", id);
@@ -6419,7 +6419,7 @@ var actions = {
               _context4.prev = 0;
               store.commit("setLoading", "post");
               _context4.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/api/users", newUser);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/users", newUser);
 
             case 4:
               res = _context4.sent;
@@ -6459,7 +6459,7 @@ var actions = {
               _context5.prev = 0;
               store.commit("setLoading", "get");
               _context5.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/users/".concat(id));
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/users/".concat(id));
 
             case 4:
               res = _context5.sent;
@@ -6494,7 +6494,7 @@ var actions = {
               _context6.prev = 0;
               store.commit("setLoading", "post");
               _context6.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/api/users/".concat(updatedUser.id), updatedUser);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().put("/users/".concat(updatedUser.id), updatedUser);
 
             case 4:
               res = _context6.sent;
@@ -6538,7 +6538,7 @@ var actions = {
                 _context7.prev = 0;
                 store.commit("setLoading", "post");
                 _context7.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/api/users/bulk/" + selectedItems);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().delete("/users/bulk/" + selectedItems);
 
               case 4:
                 store.commit("bulkRemoveUsers", selectedItems);
@@ -6661,7 +6661,12 @@ try {
 
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest"; // a default instance for shared api routes (other than management and client)
+
+window.axiosSharedApi = axios.create({
+  baseURL: "/api/v1/shared"
+});
+window.axiosSharedApi.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -6671,7 +6676,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
-  broadcaster: 'pusher',
+  broadcaster: "pusher",
   key: "4230ff277b08b9a8bb0a",
   cluster: "us2",
   forceTLS: true
@@ -74071,6 +74076,7 @@ Vue.prototype.$gate = _gate__WEBPACK_IMPORTED_MODULE_12__.default;
 window.gate = _gate__WEBPACK_IMPORTED_MODULE_12__.default;
 Vue.use(vue_loaders__WEBPACK_IMPORTED_MODULE_13__.default);
 Vue.use(vue_online_prop__WEBPACK_IMPORTED_MODULE_15__.default);
+axios.defaults.baseURL = "/api/v1/management";
 var app = new Vue({
   el: "#app",
   router: _router__WEBPACK_IMPORTED_MODULE_0__.default,

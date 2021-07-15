@@ -128,8 +128,8 @@ export default {
   methods: {
     handleSubmit() {
       this.postLoading = true;
-      axios
-        .post(`/api/addresses?userId=${this.userId}`, this.address)
+      axiosSharedApi
+        .post(`/addresses?userId=${this.userId}`, this.address)
         .then((res) => {
           this.$emit("addressAdded", res.data.address);
           $("#addressSelectorModal").modal("hide");

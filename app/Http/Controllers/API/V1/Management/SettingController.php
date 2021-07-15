@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\V1\Management;
 
 use Illuminate\Support\Str;
 use msztorc\LaravelEnv\Env;

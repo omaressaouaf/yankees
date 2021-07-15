@@ -4,16 +4,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\MealController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WebhookController;
 
-// use Akaunting\Setting\Facade as Setting;
 
 
 
@@ -31,13 +27,9 @@ Route::group(['middleware' => "setLocale"], function () {
     Route::get('/about', [PageController::class, 'about'])->name('about');
 
     // Meals
-    Route::resource('meals', MealController::class)->only(['index']);
+    Route::view('/meals', "pages.meals")->name('meals');
 
-    // Cart
-    Route::group(['middleware' => "can:shop"] , function() {
-        Route::get('/cart/destroyAll', [CartController::class, 'destroyAll']);
-        Route::resource('cart', CartController::class)->only(['index', 'store', 'update', 'destroy']);
-    });
+
 
     Route::group(['middleware' => "auth"], function () {
         //  Account
@@ -51,8 +43,9 @@ Route::group(['middleware' => "setLocale"], function () {
         Route::get('/account/orders', [OrderController::class,  'index'])->name('account.orders.index');
         Route::get('/account/orders/{order}/track', [OrderController::class,  'track'])->name('account.orders.track');
         Route::put('/account/orders/{order}/cancel', [OrderController::class,  'cancel'])->name('account.orders.cancel');
+
         // checkout
-        Route::resource('checkout', CheckoutController::class)->only(['index', 'store'])->middleware('can:shop');
+        Route::get('checkout', CheckoutController::class)->middleware(['can:shop' , 'can:checkout']);
     });
 
     // Webhook

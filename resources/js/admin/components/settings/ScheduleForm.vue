@@ -212,7 +212,7 @@ export default {
     handleSubmit() {
       this.loading = true;
       axios
-        .post("/api/settings/schedule", this.schedule)
+        .post("/settings/schedule", this.schedule)
         .then((res) => {
           fireToast(
             "success",

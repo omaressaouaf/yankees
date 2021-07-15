@@ -113,7 +113,7 @@ export default {
     fetchSettings() {
       this.loading = true;
       axios
-        .get("/api/settings")
+        .get("/settings")
         .then((res) => {
           this.settings = res.data.settings;
           this.$store.commit("setAppName", this.settings.app.name);

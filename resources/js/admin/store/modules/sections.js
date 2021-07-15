@@ -24,7 +24,7 @@ const actions = {
     async fetchSections(store) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get("/api/sections");
+            const res = await axios.get("/sections");
             store.commit("setSections", res.data.sections);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -36,7 +36,7 @@ const actions = {
         try {
             store.commit("setLoading", "post");
             const res = await axios.put(
-                `/api/sections/${selectedSection.id}`,
+                `/sections/${selectedSection.id}`,
                 selectedSection
             );
             store.commit("updateSection", res.data.section);

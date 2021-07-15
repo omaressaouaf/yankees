@@ -272,7 +272,7 @@ export default {
           }
         });
         axios
-          .post("/api/settings/app", formData)
+          .post("/settings/app", formData)
           .then((res) => {
             fireToast(
               "success",

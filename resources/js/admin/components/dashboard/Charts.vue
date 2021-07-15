@@ -197,7 +197,7 @@ export default {
         this.revenueChartLoading = true;
       }
       axios
-        .get("/api/dashboard/charts")
+        .get("/dashboard/charts")
         .then((res) => {
           if (refreshArray.includes("orders")) {
             (this.ordersByMonth = {

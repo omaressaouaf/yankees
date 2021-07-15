@@ -67,7 +67,7 @@
 
 <script>
 import axios from "axios";
-import { fireToast } from "../admin/helpers";
+import { fireToast } from "../../admin/helpers";
 export default {
   props: ["trackedOrder"],
   data() {

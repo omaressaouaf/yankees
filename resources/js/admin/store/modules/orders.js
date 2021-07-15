@@ -44,7 +44,7 @@ const actions = {
     async fetchOrders(store) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get("/api/orders");
+            const res = await axios.get("/orders");
             store.commit("setOrders", res.data.orders);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -56,7 +56,7 @@ const actions = {
         fireConfirm(async () => {
             try {
                 nProgress.start();
-                await axios.delete(`/api/orders/${id}`);
+                await axios.delete(`/orders/${id}`);
                 store.commit("removeOrder", id);
                 fireToast(
                     "success",
@@ -77,7 +77,7 @@ const actions = {
         return new Promise(async resolve => {
             try {
                 store.commit("setLoading", "post");
-                await axios.delete("/api/orders/bulk/" + selectedItems);
+                await axios.delete("/orders/bulk/" + selectedItems);
                 store.commit("bulkRemoveOrders", selectedItems);
                 fireToast("success", translate("admin.bulkDeleted"));
                 store.commit("clearLoading", "post");
@@ -92,7 +92,7 @@ const actions = {
     async fetchOrder(store, id) {
         try {
             store.commit("setLoading", "get");
-            const res = await axios.get(`/api/orders/${id}`);
+            const res = await axios.get(`/orders/${id}`);
             store.commit("setOrder", res.data.order);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);
@@ -104,7 +104,7 @@ const actions = {
         try {
             store.commit("setLoading", updatedOrder.loading);
             const res = await axios.put(
-                `/api/orders/${updatedOrder.id}`,
+                `/orders/${updatedOrder.id}`,
                 updatedOrder
             );
             store.commit("updateOrder", res.data.order);
@@ -125,7 +125,7 @@ const actions = {
         try {
             nProgress.start();
             store.commit("setLoading", "charge");
-            await axios.put(`/api/orders/charge/${store.state.order.id}`);
+            await axios.put(`/orders/charge/${store.state.order.id}`);
             fireToast("success", translate("admin.paymentSuccessful"));
             store.commit("updateOrder", { user_charged: true });
         } catch (err) {
@@ -160,7 +160,7 @@ const actions = {
         try {
             nProgress.start();
             store.commit("setLoading", "refund");
-            await axios.put(`/api/orders/refund/${store.state.order.id}`);
+            await axios.put(`/orders/refund/${store.state.order.id}`);
             fireToast("success", translate("admin.refundSuccessful"));
             store.commit("updateOrder", { user_refunded: true });
         } catch (err) {
@@ -183,7 +183,7 @@ const actions = {
     async fetchDeliverymen(store) {
         try {
             store.commit("setLoading", "deliverymen");
-            const res = await axios.get("/api/users/deliverymen");
+            const res = await axios.get("/users/deliverymen");
             store.commit("setDeliverymen", res.data.deliverymen);
         } catch (err) {
             redirectToErrorPageIfNeeded(err.response.status);

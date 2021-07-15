@@ -36,7 +36,7 @@
             <ul>
 
                 <li class=" {{ request()->is('meals') ? 'active' : '' }} "><a href="{{ route('about') }}"><a
-                            href="{{ route('meals.index') }}" class="normal-nav-link"><i
+                            href="{{ route('meals') }}" class="normal-nav-link"><i
                                 class="fa fa-utensils mr-2"></i>{{ __('Our menus') }}</a>
                 </li>
                 <li class=" {{ request()->is('about') ? 'active' : '' }} "><a class="normal-nav-link"

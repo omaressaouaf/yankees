@@ -164,8 +164,8 @@
 
 <script>
 import axios from "axios";
-import ServerErrorAlert from "../admin/components/partials/ServerErrorAlert.vue";
-import { fireToast } from "../admin/helpers";
+import ServerErrorAlert from "../../admin/components/partials/ServerErrorAlert.vue";
+import { fireToast } from "../../admin/helpers";
 export default {
   components: { ServerErrorAlert },
   props: ["clientSecret", "authUser", "authUserAddresses"],
