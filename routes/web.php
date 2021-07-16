@@ -10,9 +10,6 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WebhookController;
 
-
-
-
 Route::group(['middleware' => "setLocale"], function () {
 
     //  locale

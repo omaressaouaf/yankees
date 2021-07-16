@@ -33,9 +33,9 @@
         >
       </div>
       <ul class="d-flex flex-row d-lg-none navbar-nav align-items-center">
-        <notifications-list dropdown-unique-id="mobile"/>
+        <notifications-list v-if="windowWidth < 1000" />
         <locale-switcher />
-        <global-search v-if="$gate.can('manage-partially')" />
+        <global-search v-if="$gate.can('manage')" />
       </ul>
       <button
         class="navbar-toggler"
@@ -51,10 +51,10 @@
         <span class="navbar-toggler-icon icon-bar"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end">
-        <global-search v-if="$gate.can('manage-partially')" />
+        <global-search v-if="$gate.can('manage')" />
 
         <ul class="navbar-nav">
-          <notifications-list dropdown-unique-id="desktop"/>
+          <notifications-list v-if="windowWidth > 1000"  />
           <li class="nav-item dropdown d-none d-lg-block">
             <a
               class="nav-link"
@@ -74,7 +74,7 @@
                 translate("admin.profile")
               }}</router-link>
               <router-link
-                v-if="$gate.can('manage-partially')"
+                v-if="$gate.can('manage')"
                 class="dropdown-item"
                 :to="{ name: 'settings' }"
                 >{{ translate("admin.settings") }}</router-link
@@ -117,7 +117,16 @@ export default {
       csrf: document.querySelector('meta[name="csrf-token"]').content,
       currentLocale: window.currentLocale,
       availableLocales: window.availableLocales,
+      windowWidth: window.innerWidth,
     };
+  },
+  mounted() {
+    window.addEventListener("resize", () => {
+      this.windowWidth = window.innerWidth;
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize");
   },
 };
 </script>

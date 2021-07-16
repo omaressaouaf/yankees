@@ -17,7 +17,7 @@
                 </a>
             </li>
             @endif
-            <notifications-list dropdown-unique-id="desktop"> </notifications-list>
+            <notifications-list> </notifications-list>
             @endauth
             <locale-switcher> </locale-switcher>
         </ul>

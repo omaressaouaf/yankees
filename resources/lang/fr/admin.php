@@ -176,6 +176,8 @@ return [
     "logoAdvice" => "Pour mieux voir.",
     "cancel" => "Annuler",
     "uploading" => "Téléchargement / Création",
-    "uploadWasCancelled" => "Vous avez annulé le téléchargement"
+    "uploadWasCancelled" => "Vous avez annulé le téléchargement",
+    "updateStatusInOrderToCharge" => "Mettre à jour le statut afin de facturer le client"
+
 
 ];

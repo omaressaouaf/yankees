@@ -57,9 +57,10 @@ gate.define("manage-fully", () => {
 gate.define("charge", order => {
     return (
         gate.can("manage-partially") &&
+        order.payment_mode == "stripe" &&
         !order.user_charged &&
         !order.payment_confirmation_required &&
-        order.payment_mode == "stripe" &&
+        order.status != "pending" &&
         order.status != "cancelled" &&
         order.status != "failed"
     );

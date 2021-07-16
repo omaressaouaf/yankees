@@ -58,6 +58,7 @@ class AuthServiceProvider extends ServiceProvider
             return ($user->hasAnyRole(['admin', 'manager']) && $order->payment_mode == "stripe"  &&
                 !$order->user_charged &&
                 !$order->payment_confirmation_required &&
+                $order->status != "pending" &&
                 $order->status != "cancelled" &&
                 $order->status != "failed");
         });

@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Services\CheckoutService;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
-
-
 
 class CheckoutController extends Controller
 {

@@ -4,10 +4,7 @@ namespace App\Http\Controllers\API\V1\Client;
 
 use Illuminate\Http\Request;
 use App\Services\CheckoutService;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
-
-
 
 class CheckoutController extends Controller
 {

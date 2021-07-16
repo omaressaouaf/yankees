@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\Client\CartController;
 use App\Http\Controllers\API\V1\Client\CheckoutController;
+use App\Http\Controllers\API\V1\Client\MealController as ClientMealController;
 use App\Http\Controllers\API\V1\Shared\AddressController;
+use App\Http\Controllers\API\V1\Shared\NotificationController;
 use App\Http\Controllers\API\V1\Management\MealController;
 use App\Http\Controllers\API\V1\Management\UserController;
 use App\Http\Controllers\API\V1\Management\ExtraController;
@@ -11,9 +13,7 @@ use App\Http\Controllers\API\V1\Management\OrderController;
 use App\Http\Controllers\API\V1\Management\SectionController;
 use App\Http\Controllers\API\V1\Management\SettingController;
 use App\Http\Controllers\API\V1\Management\CategoryController;
-use App\Http\Controllers\API\V1\Shared\NotificationController;
 use App\Http\Controllers\API\V1\Management\DashboardController;
-use App\Http\Controllers\API\V1\Client\MealController as ClientMealController;
 
 Route::group(['middleware' => "setLocale"], function () {
 
