@@ -173,7 +173,8 @@ return [
     "stripeCheckoutNotice" => "We support credit/debit card payment . it's just disabled for now",
     "logoAdvice" => "For better look .",
     "cancel" => "Cancel",
-    "uploading" => "Uploading / Creating",
+    "uploading" => "Uploading",
+    "image" => "Image",
     "uploadWasCancelled" => "You have cancelled the upload",
     "updateStatusInOrderToCharge" => "Update the status in order to charge the client"
 

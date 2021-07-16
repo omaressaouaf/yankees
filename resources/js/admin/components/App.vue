@@ -9,10 +9,22 @@
 
 <script>
 import Layout from "./layouts/Layout.vue";
-import Offline from './errors/Offline'
+import Offline from "./errors/Offline";
+import { mapGetters } from "vuex";
 
 export default {
-  components: { Layout  , Offline},
+  components: { Layout, Offline },
+  computed: {
+    ...mapGetters("meals", ["uploadProgresses"]),
+  },
+  created() {
+    window.addEventListener("beforeunload", (event) => {
+      if (!this.uploadProgresses.length) return;
+      event.preventDefault();
+      // Chrome requires returnValue to be set.
+      event.returnValue = "";
+    });
+  },
 };
 </script>
 

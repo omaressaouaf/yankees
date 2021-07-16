@@ -41,8 +41,8 @@
               <div class="col-md-5">
                 <img
                   class="img-fluid w-100 rounded img-thumbnail"
-                  :src="mealObject.image"
-                  alt="Vans"
+                  :src="mealObject.resized_image"
+                  :alt="mealObject.title"
                 />
               </div>
               <div class="col-md-6 mt-3">

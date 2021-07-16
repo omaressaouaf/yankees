@@ -1,7 +1,8 @@
 <template>
   <div class="px-5" v-if="uploadProgresses.length">
     <h2 className="text-info">
-      {{ translate("admin.uploading") }} 2 {{ translate("admin.menu") }}(s)
+      {{ translate("admin.uploading") }} {{ uploadProgresses.length }}
+      {{ translate("admin.image") }}(s)
     </h2>
     <div v-for="progress in uploadProgresses" :key="progress.identifier">
       <h4>{{ progress.title }}</h4>
@@ -28,6 +29,7 @@ export default {
   methods: {
     ...mapActions("meals", ["cancelUpload"]),
   },
+
 };
 </script>
 

@@ -12,7 +12,7 @@
       :class="[!meal.active ? 'dark-bg' : '']"
       :src="meal.resized_image"
       style="min-height: 247px"
-      alt="Vans"
+      :alt="meal.title"
     />
 
     <div

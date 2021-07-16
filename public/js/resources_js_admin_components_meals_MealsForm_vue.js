@@ -570,7 +570,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     handleFileChange: function handleFileChange(e) {
       var file = e.target.files[0];
-      if (!(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.imageIsValid)(file)) return (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)('danger', "Invalid Image");
+      if (!(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.imageIsValid)(file)) return (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.fireToast)("danger", "Invalid Image");
       $(".inputFileVisible").val(file.name);
       this.newImage = file;
     },
@@ -727,6 +727,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -2636,8 +2637,10 @@ var render = function() {
             _vm._v(
               "\n    " +
                 _vm._s(_vm.translate("admin.uploading")) +
-                " 2 " +
-                _vm._s(_vm.translate("admin.menu")) +
+                " " +
+                _vm._s(_vm.uploadProgresses.length) +
+                "\n    " +
+                _vm._s(_vm.translate("admin.image")) +
                 "(s)\n  "
             )
           ]),

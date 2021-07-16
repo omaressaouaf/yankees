@@ -175,7 +175,8 @@ return [
     "stripeCheckoutNotice" => "Nous prenons en charge le paiement par carte de crédit/débit. c'est juste désactivé pour l'instant",
     "logoAdvice" => "Pour mieux voir.",
     "cancel" => "Annuler",
-    "uploading" => "Téléchargement / Création",
+    "uploading" => "Téléchargement de",
+    "image" => "Image",
     "uploadWasCancelled" => "Vous avez annulé le téléchargement",
     "updateStatusInOrderToCharge" => "Mettre à jour le statut afin de facturer le client"
 

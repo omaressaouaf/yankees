@@ -450,7 +450,7 @@ import { required, integer, minValue } from "vuelidate/lib/validators";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import "vue-multiselect/dist/vue-multiselect.min.css";
 import ProgressesList from "./ProgressesList.vue";
-import { fireToast, imageIsValid } from '../../helpers';
+import { fireToast, imageIsValid } from "../../helpers";
 
 export default {
   data() {
@@ -543,7 +543,6 @@ export default {
     ...mapGetters("extras", ["allExtras"]),
   },
   methods: {
-
     cancelImage() {
       $("#inputFileHidden").val("");
       $(".inputFileVisible").val("");
@@ -551,7 +550,7 @@ export default {
     },
     handleFileChange(e) {
       const file = e.target.files[0];
-      if(!imageIsValid(file)) return fireToast('danger' , "Invalid Image")
+      if (!imageIsValid(file)) return fireToast("danger", "Invalid Image");
       $(".inputFileVisible").val(file.name);
       this.newImage = file;
     },
@@ -641,6 +640,7 @@ export default {
     this.fetchCategories();
     this.fetchExtras();
   },
+
 };
 </script>
 <style scoped >
