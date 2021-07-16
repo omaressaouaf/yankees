@@ -144,6 +144,9 @@
                 </tbody>
               </table>
             </div>
+            <div class="mt-5">
+              <progresses-list />
+            </div>
           </div>
         </div>
       </div>
@@ -154,9 +157,11 @@
 <script>
 import { dataTableMixin } from "../../mixins";
 import { mapGetters, mapActions } from "vuex";
-import { fireAlert, fireConfirm } from "../../helpers";
+import { fireConfirm } from "../../helpers";
+import ProgressesList from "./ProgressesList.vue";
 
 export default {
+  components: { ProgressesList },
   mixins: [dataTableMixin],
   data() {
     return {

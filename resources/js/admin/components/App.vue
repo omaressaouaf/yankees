@@ -3,6 +3,7 @@
     <transition name="fade" mode="out-in">
       <router-view v-if="$online" :key="$route.fullPath"></router-view>
       <offline v-else></offline>
+          
     </transition>
   </layout>
 </template>

@@ -65,6 +65,8 @@ export const fireToast = (type, message) => {
     );
 };
 
+
+
 export const imageIsValid = file => {
     return (
         file &&

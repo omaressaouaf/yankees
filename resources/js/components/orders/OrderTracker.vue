@@ -127,7 +127,7 @@ export default {
     },
   },
   created() {
-    Echo.channel(`orders.${this.order.id}`).listen(
+    Echo.private(`orders.${this.order.id}`).listen(
       "OrderStatusChanged",
       (e) => {
         this.order.status = e.order.status;
