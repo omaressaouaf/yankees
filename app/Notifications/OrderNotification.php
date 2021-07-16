@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Laravel\Cashier\Payment;
 
-class OrderNotification extends Notification
+class OrderNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $order;
