@@ -33,9 +33,9 @@
         >
       </div>
       <ul class="d-flex flex-row d-lg-none navbar-nav align-items-center">
-        <notifications-list v-if="windowWidth < 1000" />
+        <notifications-list v-if="windowWidth < 1000"  />
         <locale-switcher />
-        <global-search v-if="$gate.can('manage')" />
+        <global-search v-if="$gate.can('manage-partially')" />
       </ul>
       <button
         class="navbar-toggler"
@@ -51,10 +51,10 @@
         <span class="navbar-toggler-icon icon-bar"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end">
-        <global-search v-if="$gate.can('manage')" />
+        <global-search v-if="$gate.can('manage-partially')" />
 
         <ul class="navbar-nav">
-          <notifications-list v-if="windowWidth > 1000"  />
+          <notifications-list v-if="windowWidth > 1000" />
           <li class="nav-item dropdown d-none d-lg-block">
             <a
               class="nav-link"
@@ -74,7 +74,7 @@
                 translate("admin.profile")
               }}</router-link>
               <router-link
-                v-if="$gate.can('manage')"
+                v-if="$gate.can('manage-partially')"
                 class="dropdown-item"
                 :to="{ name: 'settings' }"
                 >{{ translate("admin.settings") }}</router-link
