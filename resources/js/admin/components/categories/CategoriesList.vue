@@ -71,7 +71,7 @@
                 </thead>
                 <tbody v-if="getIsLoading">
                   <tr>
-                    <td colspan="6" class="text-center py-5">
+                    <td colspan="7" class="text-center py-5">
                       <vue-loaders-ball-scale-ripple-multiple
                         color="#2B51C4"
                         scale="1"

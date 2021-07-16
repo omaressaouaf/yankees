@@ -4327,7 +4327,7 @@ var render = function() {
                               "td",
                               {
                                 staticClass: "text-center py-5",
-                                attrs: { colspan: "6" }
+                                attrs: { colspan: "7" }
                               },
                               [
                                 _c("vue-loaders-ball-scale-ripple-multiple", {

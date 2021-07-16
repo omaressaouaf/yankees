@@ -15,9 +15,9 @@ class PageController extends Controller
 {
     public function home()
     {
-        $categories = Category::with('meals' , 'meals.category' , 'meals.extras' , 'meals.extras.options')->orderBy('order')->get();
+        $categoriesWithMeals = Category::with('meals' , 'meals.category' , 'meals.extras' , 'meals.extras.options')->orderBy('order')->get();
 
-        return view('pages.home', compact('categories'));
+        return view('pages.home', compact('categoriesWithMeals'));
     }
     public function about()
     {

@@ -1,5 +1,5 @@
 import nProgress from "nprogress";
-nProgress.configure({ easing: 'ease', speed: 300 });
+nProgress.configure({ easing: "ease", speed: 300 });
 import { fireToast } from "../../admin/helpers";
 const state = {
     meal: null,
@@ -21,20 +21,18 @@ const getters = {
     }
 };
 const actions = {
-
-    async fetchCategories(store) {
+    async fetchCategoriesWithMeals(store) {
         try {
-            store.commit('setLoading' , 'get')
+            store.commit("setLoading", "get");
             const res = await axios.get("/meals");
-            store.commit("setCategories", res.data.categories);
+            store.commit("setCategories", res.data.categoriesWithMeals);
         } catch (err) {
-            fireToast("danger", translate('front.successMessage'));
+            fireToast("danger", translate("front.successMessage"));
         }
-        store.commit('clearLoading' , 'get')
+        store.commit("clearLoading", "get");
     }
 };
 const mutations = {
-
     setCategories(state, categories) {
         state.categories = categories;
     },

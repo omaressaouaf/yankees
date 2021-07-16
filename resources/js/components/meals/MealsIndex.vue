@@ -11,7 +11,6 @@
           </div>
         </div>
 
-
         <div
           :class="[
             cartObject.count || cartIsLoading ? 'col-xl-8' : 'col-xl-12',
@@ -34,7 +33,7 @@ import { mapActions, mapGetters } from "vuex";
 import Cart from "../cart/Cart.vue";
 
 export default {
-  components: { Cart},
+  components: { Cart },
   computed: {
     cartIsLoading() {
       return this.isLoading["get"];
@@ -45,13 +44,13 @@ export default {
   },
   methods: {
     ...mapActions("cart", ["fetchCart"]),
-    ...mapActions("meals", ["fetchCategories"]),
+    ...mapActions("meals", ["fetchCategoriesWithMeals"]),
   },
   mounted() {
     if (this.$gate.can("shop")) {
       this.fetchCart();
     }
-    this.fetchCategories();
+    this.fetchCategoriesWithMeals();
   },
 };
 </script>

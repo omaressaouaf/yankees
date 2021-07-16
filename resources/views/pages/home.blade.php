@@ -56,7 +56,7 @@ Commandez le meilleur smash burger
             <div class="section-title">
                 <h2>Menu</h2>
             </div>
-            <meals-list :categories="{{$categories}}"></meals-list>
+            <meals-list :categories="{{$categoriesWithMeals}}"></meals-list>
         </div>
     </section>
     <meals-single> </meals-single>

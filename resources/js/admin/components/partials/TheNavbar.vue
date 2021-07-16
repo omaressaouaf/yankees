@@ -33,7 +33,7 @@
         >
       </div>
       <ul class="d-flex flex-row d-lg-none navbar-nav align-items-center">
-        <notifications-list />
+        <notifications-list dropdown-unique-id="mobile"/>
         <locale-switcher />
         <global-search v-if="$gate.can('manage-partially')" />
       </ul>
@@ -54,7 +54,7 @@
         <global-search v-if="$gate.can('manage-partially')" />
 
         <ul class="navbar-nav">
-          <notifications-list />
+          <notifications-list dropdown-unique-id="desktop"/>
           <li class="nav-item dropdown d-none d-lg-block">
             <a
               class="nav-link"
