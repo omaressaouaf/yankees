@@ -9,7 +9,7 @@
       <progress-bar :percentage="progress.percentage" />
       <button
         :disabled="progress.percentage === 100"
-        @click="cancelUpload(progress.source)"
+        @click="handleCancel(progress)"
         class="btn btn-danger btn-sm mt-2"
       >
         {{ translate("admin.cancel") }}
@@ -20,6 +20,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { fireConfirm } from '../../helpers';
 import ProgressBar from "./ProgressBar.vue";
 export default {
   components: { ProgressBar },
@@ -27,6 +28,11 @@ export default {
     ...mapGetters("meals", ["uploadProgresses"]),
   },
   methods: {
+    handleCancel(progress) {
+      fireConfirm(() => {
+        this.cancelUpload(progress.source)
+      })
+    },
     ...mapActions("meals", ["cancelUpload"]),
   },
 

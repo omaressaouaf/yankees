@@ -11,7 +11,7 @@
       </h4>
     </div>
     <div class="close" @click="showToast = false">
-      <i class="ml-4 fa fa-times"></i>
+      <i class=" fa fa-times"></i>
     </div>
   </div>
 </template>
@@ -46,6 +46,12 @@ export default {
   padding: 8px 17px 8px 7px;
   animation: fadeOut;
   animation-duration: 0.6s;
+}
+@media only screen and (max-width: 600px) {
+  #snackbar {
+    max-width: 95% !important;
+    padding: 5px 12px 5px 3px !important;
+  }
 }
 #snackbar .content {
   padding: 26px;
