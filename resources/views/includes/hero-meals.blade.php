@@ -14,7 +14,7 @@
                 <h4>
                     {{ __('We are closed now.') }}
                     @if (!$forcedClose)
-                    <span class="ml-1"> {{__('we will open at ') . $nextOpen}} </span>
+                    <span class="ml-1"> {{__('we will open on ') . $nextOpen}} </span>
                     @endif
                     <span></span>
                 </h4>
