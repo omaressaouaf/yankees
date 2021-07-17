@@ -168,10 +168,9 @@ import ServerErrorAlert from "../../admin/components/partials/ServerErrorAlert.v
 import { fireToast } from "../../admin/helpers";
 export default {
   components: { ServerErrorAlert },
-  props: ["clientSecret", "authUser", "authUserAddresses"],
+  props: ["clientSecret", "authUser", "authUserAddresses" , "stripeKey"],
   data() {
     return {
-      stripeKey: process.env.MIX_STRIPE_KEY,
       addresses: this.authUserAddresses,
       paymentProcessing: false,
       cardError: null,

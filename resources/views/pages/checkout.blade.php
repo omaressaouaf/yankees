@@ -53,7 +53,7 @@ Validation de commande -
             </div>
             <div class="col-md-7 order-md-1">
                 <h4 class="mb-3 mt-2">{{ __('Order Summary') }}</h4>
-                <checkout-form :client-secret="'{{ config('payment.stripeEnabled') ?  $intent->client_secret  : null}}'"
+                <checkout-form :stripe-key="'{{config('services.stripe.key')}}'" :client-secret="'{{ config('payment.stripeEnabled') ?  $intent->client_secret  : null}}'"
                     :auth-user="{{ auth()->user() }}" :auth-user-addresses="{{ auth()->user()->addresses }}" />
             </div>
         </div>
