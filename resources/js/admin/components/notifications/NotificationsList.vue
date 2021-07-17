@@ -1,5 +1,5 @@
 <template>
-  <li class="nav-item dropdown" :id="'notificationsDropdown' + dropdownUniqueId">
+  <li class="nav-item dropdown" id="notificationsDropdown">
     <a
       class="nav-link"
       href="#"
@@ -76,7 +76,6 @@
 import { fireToast } from "../../helpers";
 
 export default {
-  props : ['dropdownUniqueId'],
   data() {
     return {
       appLogo: this.$store.state.appLogo,
@@ -259,7 +258,7 @@ export default {
   },
   mounted() {
     //   listening for dropdown close event
-    $("#notificationsDropdown" + this.dropdownUniqueId).on("hidden.bs.dropdown", () => {
+    $("#notificationsDropdown").on("hide.bs.dropdown", () => {
       if (this.unreadNotificationsLength) {
         this.markNotifications();
       }
