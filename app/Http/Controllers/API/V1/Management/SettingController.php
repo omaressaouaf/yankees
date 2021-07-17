@@ -106,7 +106,7 @@ class SettingController extends Controller
 
             $env = new Env();
             $env->setValue('STRIPE_KEY', '"' . $request->stripeKey . '"');
-            $env->setValue('MIX_STRIPE_KEY', $request->stripeKey);
+            $env->setValue('MIX_STRIPE_KEY', '"' . $request->stripeKey . '"');
             $env->setValue('STRIPE_SECRET', '"' . $request->stripeSecret . '"');
 
 
