@@ -101,7 +101,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ["endAddressLine", "endAddressDetails"],
   data: function data() {
     return {
-      token: "pk.eyJ1Ijoib21hcmVzcyIsImEiOiJja25oa3k0cGQwMHRsMzByd2g4aHNhemliIn0.hQPV-6H9nfm_WvUIkpVlCA",
+      token: "pk.eyJ1IjoieWFua2VlcyIsImEiOiJja3IzczE4ZHgyYTF5MnRwbGoxNTVkNm84In0.GI1vBvqx9hTT0mGJhXla-A",
       deliveryZoneBounds: this.$store.state.deliveryZoneBounds,
       getLoading: false,
       postLoading: false,
