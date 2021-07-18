@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Section;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -29,14 +28,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        View::composer('includes.hero', function ($view) {
-            $view->with([
-                'header' => Section::where('name', 'header')->first(),
-            ]);
-        });
         View::composer('includes.about-section', function ($view) {
             $view->with([
-                'about' => Section::where('name', 'about')->first(),
                 "slides" => [
                     [
                         'image' => '/storage/images/design/sliders/slide1.jpg',

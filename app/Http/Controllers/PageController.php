@@ -2,13 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Meal;
-use App\Models\Section;
 use App\Models\Category;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
-use Spatie\OpeningHours\OpeningHours;
-
 
 
 class PageController extends Controller
