@@ -1,6 +1,6 @@
 <template>
   <div class="w-100">
-    <div class="row w-100" data-aos="fade-up" data-aos-delay="100">
+    <div class="row w-100" >
       <div class="col-md-12 d-flex justify-content-start mb-3">
         <ul id="menu-flters">
           <li

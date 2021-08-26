@@ -1,6 +1,6 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center hero-meals @cannot('shop') dark-hero @endcannot">
-    <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
+    <div class="container position-relative text-center text-lg-left" >
         <div class="row">
             <div class="col-lg-12 text-center text-light">
                 @can('shop')

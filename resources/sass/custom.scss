@@ -166,8 +166,17 @@ button:disabled {
 }
 [v-cloak]::before {
     content: "";
-    // position: relative; /*or absolute*/
-    // left: 10%;
+    display: block;
+    background-image: url("/storage/images/design/spinner.gif");
+    background-repeat: no-repeat;
+    background-position: 51% !important;
+    width: 100%;
+    height: 300px;
+}
+@media only screen and (max-width: 600px) {
+    [v-cloak]::before {
+        background-position: 45% !important;
+    }
 }
 // remove wait cursor from skeleton
 .loader {
@@ -526,5 +535,4 @@ button:disabled {
 .carousel-control-next {
     background-color: transparent !important;
     width: 2% !important;
-
 }

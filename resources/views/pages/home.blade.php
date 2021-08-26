@@ -52,11 +52,13 @@ Commandez le meilleur smash burger
 
     <!--  Menu Section -->
     <section id="menu" class="menu">
-        <div class="container" style="padding: 0px 30px" data-aos="fade-up">
+        <div class="container" style="padding: 0px 30px">
             <div class="section-title">
                 <h2>Menu</h2>
             </div>
-            <meals-list :categories="{{$categoriesWithMeals}}"></meals-list>
+            <div v-cloak>
+                <meals-list :categories="{{$categoriesWithMeals}}"></meals-list>
+            </div>
         </div>
     </section>
     <meals-single> </meals-single>
