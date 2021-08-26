@@ -39,16 +39,24 @@ class CartController extends Controller
 
         $meal = Meal::findOrFail($request->id);
         $user_selected_options = '';
+        $user_selected_options_total_price = 0;
         foreach ($request->extras as $extra) {
             if (count($extra['user_selected_options'])) {
                 $user_selected_options .=  '<strong>' . $extra['label'] . "</strong> : ";
             }
             foreach ($extra['user_selected_options'] as $option) {
                 $user_selected_options .= $option['name'] . ' , ';
+                $user_selected_options_total_price += (int)$option['price'];
             }
-            $user_selected_options.= " \n ";
+            $user_selected_options .= " \n ";
         }
-        Cart::add($meal->id, $meal->title, (int)$request->qty, $request->price, ['user_selected_options' => $user_selected_options])->associate(Meal::class);
+        Cart::add(
+            $meal->id,
+            $meal->title,
+            (int)$request->qty,
+            ($user_selected_options_total_price + $meal->price),
+            ['user_selected_options' => $user_selected_options]
+        )->associate(Meal::class);
 
         return response()->json([
             'content' => Cart::content()->reverse(),

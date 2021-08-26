@@ -10,7 +10,9 @@
     aria-hidden="true"
   >
     <div
-      class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
+      class="
+        modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg
+      "
       role="document"
     >
       <div class="modal-content" v-if="mealObject">
@@ -85,7 +87,8 @@
                   <hr />
 
                   <p class="text-small text-muted">
-                    Minimum {{ extra.pivot.min }} {{translate('front.and')}} Maximum
+                    Minimum {{ extra.pivot.min }}
+                    {{ translate("front.and") }} Maximum
                     {{ extra.pivot.max }}
                   </p>
                   <!--  -->
@@ -274,7 +277,6 @@ export default {
     handleAddToCart() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        this.cartItem.price = this.priceWithOptions;
         this.addToCart(this.cartItem).then(() => {
           this.cartItem = {};
           // this doesn't work now (after resetting the form values in the previous lines)
