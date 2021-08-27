@@ -3,15 +3,34 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta content="@yield('description')" name="description">
-    <meta content="" name="keywords">
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') {{ config('app.name') }} </title>
-
+    <!-- SEO -->
+    @hasSection ('title')
+    <title>@yield('title'){{ config('app.name') }}</title>
+    @else
+    <title>{{ config('app.name') }} - Commandez le meilleur smashburger à casablanca</title>
+    @endif
+    <meta content="@yield('description')" name="description">
+    <link rel="canonical" href="@yield('canonical')" />
+    <meta property="og:type" content="article" />
+    @hasSection ('title')
+    <meta property="og:title" content="@yield('title'){{ config('app.name') }}" />
+    @else
+    <meta property="og:title" content="{{ config('app.name') }} - Commandez le meilleur smashburger à casablanca" />
+    @endif
+    <meta property="og:description" content="@yield('description')" />
+    <meta property="og:image" content="/storage/images/design/logo-original.jpg" />
+    <meta property="og:url" content="@yield('canonical')" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:site_name" content="{{config('app.name')}}" />
+    <meta name="twitter:image:alt" content="{{config('app.name')}} Logo" />
+    <meta name="keywords"
+        content="yankees, Yankees, yankees smashburger, smash burger, yankees burger, yankees restaurant, smashburger restaurant, smashburger restaurants, smashburger menu,smashes burger, best smashburger,smashburger casablanca,fast food casablanca livraison, smashburger livraison casablanca,fast food casablanca Livraison gratuite casablanca, healthy food, nourriture, shake shack smashburger, american smash burgers, smashburger near me, fast food, fast food casablanca, fast food restaurant, fast food restaurant near me, burger, smashburger, hot dogs, submarine, sides, milkshake, fast food restaurants, mcdonalds, chicken burger, cheese burger, king burger, burger king, jumia food, tacos, snacks, ice cream, sandwich, dessert, chicken, big mac, food morocco, moroccan food, jumia food maroc, kfc menu, menu, new york yankees official website" />
+    <meta name="google-site-verification" content="IbQbDVr2xhS3jDB5pBSaWbdSpuugemzUrAIF3I7hRE8" />
 
     {{-- fav icons --}}
     <link rel="apple-touch-icon" sizes="180x180" href="/storage/images/design/favicons/apple-touch-icon.png">

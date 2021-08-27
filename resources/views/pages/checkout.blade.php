@@ -2,6 +2,12 @@
 @section('title')
 Validation de commande -
 @endsection
+@section('description')
+Livraison gratuite pour votre smashburger. Commandez maintenant pendant qu'il fait encore chaud
+@endsection
+@section('canonical')
+https://yankees.ma/checkout
+@endsection
 @section('head')
 <script src="https://js.stripe.com/v3/"></script>
 @endsection
