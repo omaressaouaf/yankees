@@ -3,7 +3,10 @@
 Inscription -
 @endsection
 @section('description')
-Rejoignez-nous pour le dîner
+Rejoignez notre site Web pour des coupons gratuits et un délicieux menu smashburger
+@endsection
+@section('canonical')
+https://yankees.ma/register
 @endsection
 @section('content')
 @include('includes.breadcrumb' , ['pageName'=> "Register"])

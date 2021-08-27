@@ -2,6 +2,10 @@
 @section('title')
 Réinitialisation du mot de passe -
 @endsection
+
+@section('canonical')
+https://yankees.ma/password/reset
+@endsection
 @section('content')
     @include('includes.breadcrumb' , ['pageName'=> 'Reset Password'])
     <main id="main">

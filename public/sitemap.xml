@@ -4,4 +4,7 @@
 <url><loc>https://yankees.ma/meals</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-08-20T15:39:25.065Z</lastmod></url>
 <url><loc>https://yankees.ma/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-08-20T15:39:25.065Z</lastmod></url>
 <url><loc>https://yankees.ma/checkout</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-08-20T15:39:25.065Z</lastmod></url>
+<url><loc>https://yankees.ma/login</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-08-20T15:39:25.065Z</lastmod></url>
+<url><loc>https://yankees.ma/register</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-08-20T15:39:25.065Z</lastmod></url>
+<url><loc>https://yankees.ma/password/reset</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-08-20T15:39:25.065Z</lastmod></url>
 </urlset>

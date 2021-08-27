@@ -4,7 +4,7 @@
 @endsection
 @section('description')
 Yankees s'engage à fournir à ses clients une nourriture savoureuse et abordable qui garantit une sécurité alimentaire
-maximale Notre objectif est d'être classé numéro un de la restauration rapide à Casablanca par
+maximale Notre objectif est d'être classé numéro un de la restauration rapide à Casablanca
 @endsection
 @section('canonical')
 https://yankees.ma/about
