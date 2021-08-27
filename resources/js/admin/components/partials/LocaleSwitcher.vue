@@ -21,7 +21,7 @@
     <div
       class="dropdown-menu dropdown-menu-right"
       aria-labelledby="navbarDropdown"
-      style="position: absolute ; background-color  :white ; height  :100px  "
+      style="position: absolute; background-color: white; height: 100px"
     >
       <a
         v-for="(locale, index) in availableLocales"
@@ -38,7 +38,9 @@
           class="mr-2"
           alt=""
         />
-        {{ locale }}
+        <span class="locale-span">
+          {{ locale }}
+        </span>
       </a>
     </div>
   </li>
@@ -52,10 +54,12 @@ export default {
       availableLocales: window.availableLocales,
     };
   },
-  mounted() {
-  }
+  mounted() {},
 };
 </script>
 
-<style>
+<style scoped>
+.locale-span {
+  color: #333 !important;
+}
 </style>
