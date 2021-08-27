@@ -64317,11 +64317,7 @@ var render = function() {
           "div",
           {
             staticClass: "order-xl-1 menu",
-            class: [
-              _vm.cartObject.count || _vm.cartIsLoading
-                ? "col-xl-8"
-                : "col-xl-12"
-            ]
+            class: [_vm.cartObject.count ? "col-xl-8" : "col-xl-12"]
           },
           [
             _c("meals-list", {
@@ -65226,50 +65222,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "col-sm-8 mt-2",
-      class: [_vm.colsFour ? "col-lg-4 col-xl-4" : "col-lg-3 col-xl-3"]
-    },
-    [
-      _c(
-        "div",
-        { staticClass: "card" },
-        [
-          _c("vue-skeleton-loader", {
-            attrs: { type: "rect", width: "100%", height: "247px" }
+  return _c("div", { staticClass: "col-sm-8 col-lg-3 col-xl-3 mt-2" }, [
+    _c(
+      "div",
+      { staticClass: "card" },
+      [
+        _c("vue-skeleton-loader", {
+          attrs: { type: "rect", width: "100%", height: "247px" }
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          _vm._l([1, 2, 3], function(item) {
+            return _c(
+              "div",
+              { key: item },
+              [
+                _c("vue-skeleton-loader", {
+                  attrs: {
+                    rounded: true,
+                    type: "rect",
+                    width: "95%",
+                    height: "10px"
+                  }
+                }),
+                _vm._v(" "),
+                _c("br")
+              ],
+              1
+            )
           }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body" },
-            _vm._l([1, 2, 3], function(item) {
-              return _c(
-                "div",
-                { key: item },
-                [
-                  _c("vue-skeleton-loader", {
-                    attrs: {
-                      rounded: true,
-                      type: "rect",
-                      width: "95%",
-                      height: "10px"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("br")
-                ],
-                1
-              )
-            }),
-            0
-          )
-        ],
-        1
-      )
-    ]
-  )
+          0
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

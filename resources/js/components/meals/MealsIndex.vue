@@ -13,7 +13,7 @@
 
         <div
           :class="[
-            cartObject.count || cartIsLoading ? 'col-xl-8' : 'col-xl-12',
+            cartObject.count  ? 'col-xl-8' : 'col-xl-12',
           ]"
           class="order-xl-1 menu"
         >
