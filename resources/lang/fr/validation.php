@@ -30,7 +30,7 @@ return [
         'string'  => 'texte :attribute doit contenir entre :min et :max caractères.',
     ],
     'boolean'              => ':attribute doit être vrai ou faux.',
-    'confirmed'            => 'de confirmation :attribute ne correspond pas.',
+    'confirmed'            => 'confirmation de :attribute ne correspond pas.',
     'date'                 => ':attribute n\'est pas une date valide.',
     'date_equals'          => ':attribute doit être une date égale à :date.',
     'date_format'          => ':attribute ne correspond pas au format :format.',

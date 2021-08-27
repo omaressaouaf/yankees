@@ -42,6 +42,14 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function redirectTo()
+    {
+        if (request()->has('redirect_to_checkout')) {
+            return '/checkout';
+        }
+
+        return  "/account/dashboard";
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -50,12 +58,21 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $validator = Validator::make($data, [
+            'register_name' => ['required', 'string', 'max:255'],
+            'register_email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'register_phone' => ['required'],
+            'register_password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        $validator->setAttributeNames([
+            "register_name" => __("validation.attributes.name"),
+            'register_email' => __('validation.attributes.email'),
+            "register_phone" => __("validation.attributes.phone"),
+            'register_password' => __('validation.attributes.password'),
+        ]);
+
+        return $validator;
     }
 
     /**
@@ -67,12 +84,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user =  User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'password' => Hash::make($data['password']),
+            'name' => $data['register_name'],
+            'email' => $data['register_email'],
+            'phone' => $data['register_phone'],
+            'password' => Hash::make($data['register_password']),
         ]);
-        $clientRole = Role::where('name' , 'client')->first();
+        $clientRole = Role::where('name', 'client')->first();
         $user->roles()->attach($clientRole);
         return $user;
     }

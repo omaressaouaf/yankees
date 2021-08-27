@@ -36,6 +36,9 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
+        if (request()->has('redirect_to_checkout')) {
+            return '/checkout';
+        }
         /** @var \App\Models\User */
         $authUser =  auth()->user();
         if ($authUser->hasAnyRole(['deliveryman', 'manager', 'admin'])) {

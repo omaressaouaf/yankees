@@ -31,9 +31,9 @@ $primary_color: #3f83c0;
 $primary_color_dark: #1d4060;
 $dark_color: #1d1d1b;
 
-a {
-    color: white;
-}
+// a {
+//     color: white;
+// }
 
 a:hover {
     color: $primary_color;
@@ -171,7 +171,10 @@ a:hover {
 }
 
 #topbar .languages ul a {
-    color: white;
+    color: white !important;
+}
+#topbar  a {
+    color: white !important;
 }
 
 #topbar .languages ul li + li {
@@ -1813,3 +1816,5 @@ section {
     font-size: 13px;
     color: #fff;
 }
+
+

@@ -208,14 +208,24 @@
                   <span>{{ minOrderPrice }} dhs</span>
                 </li>
               </ul>
-
-              <a
-                v-if="$gate.can('checkout', { cartObject, minOrderPrice })"
-                href="/checkout"
-                class="btn-orange text-center btn-square btn-block mt-2"
-              >
-                {{ translate("front.checkout") }}
-              </a>
+              <div v-if="$gate.can('checkout', { cartObject, minOrderPrice })">
+                <a
+                  v-if="$gate.user"
+                  href="/checkout"
+                  class="btn-orange text-center btn-square btn-block mt-2"
+                >
+                  {{ translate("front.checkout") }}
+                </a>
+                <a
+                  v-else
+                  href="#"
+                  class="btn-orange text-center btn-square btn-block mt-2"
+                  data-toggle="modal"
+                  data-target="#authModal"
+                >
+                  {{ translate("front.checkout") }}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -224,13 +234,13 @@
         <h5 class="mb-4">
           {{ translate("front.yourCart") }}
         </h5>
-        <div class="text-center" style="position : relative">
+        <div class="text-center" style="position: relative">
           <img
             src="/storage/images/design/hamburger.svg"
             alt="Fermé temporairement"
             class="img-fluid"
           />
-        <h2>{{translate('front.closedNow')}}</h2>
+          <h2>{{ translate("front.closedNow") }}</h2>
         </div>
       </div>
     </div>
@@ -261,7 +271,6 @@ export default {
   methods: {
     ...mapActions("cart", ["deleteFromCart", "updateCart"]),
   },
-
 };
 </script>
 

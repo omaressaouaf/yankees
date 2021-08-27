@@ -88,7 +88,10 @@ import BaseModal from "../partials/BaseModal.vue";
 import MapBoxGl from "../partials/MapBoxGl.vue";
 export default {
   components: { BaseModal, MapBoxGl },
-  props: ["userId", "applyFrontTheme"],
+  props: {
+    userId: Number,
+    applyFrontTheme: Boolean,
+  },
   data() {
     return {
       token: process.env.MIX_MAPBOX_TOKEN,
@@ -127,7 +130,8 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.postLoading = true;
+      if (!this.userId) return this.$emit("addressAdded", this.address);
+
       axiosSharedApi
         .post(`/addresses?userId=${this.userId}`, this.address)
         .then((res) => {
@@ -245,8 +249,7 @@ export default {
             });
             this.setMarker([this.address.longitude, this.address.latitude]);
           } catch (err) {
-
-            console.log(err)
+            console.log(err);
             fireAlert("error", translate("front.errorMessage"));
           }
           this.getLoading = false;

@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         // For Clients
-        Gate::define('checkout', function (User $user) {
+        Gate::define('checkout', function (User $user = null) {
             return Cart::total()  >= config('cart.min_order_price') && Cart::count() > 0;
         });
         Gate::define('track_order', function (User $user, $status) {

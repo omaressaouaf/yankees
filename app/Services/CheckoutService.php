@@ -28,7 +28,7 @@ class CheckoutService
         /** @var \App\Models\User */
         $authUser = auth()->user();
         $authUserAddress = $authUser->addresses()->findOrFail($address_id);
-
+        
         try {
             DB::beginTransaction();
             $order = $authUser->orders()->create([

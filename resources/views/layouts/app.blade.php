@@ -77,6 +77,7 @@
         window.canCheckoutWithStripe = @json(Gate::allows('checkout-with-stripe'))
 
     </script>
+
     <div id="app">
         {{-- Navbar --}}
         @include('includes.navbar')
@@ -87,7 +88,20 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
-
+    {{-- Determine whether to show the auth modal and which tab should be open based on the errors session --}}
+    @error('email')
+    <script>
+        $('#authModal').modal('show')
+        $('#authTab a[href="#login"]').tab('show')
+    </script>
+    @enderror
+    @if($errors->has('register_name') || $errors->has('register_email') || $errors->has('register_phone') ||
+    $errors->has('register_password') )
+    <script>
+        $('#authModal').modal('show')
+        $('#authTab a[href="#register"]').tab('show')
+    </script>
+    @endif
     @yield('scripts')
 </body>
 
