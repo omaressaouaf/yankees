@@ -86,9 +86,10 @@ button:disabled {
 }
 
 .form-control {
-    border-radius: 0;
+    border-radius: 3px !important;
     box-shadow: none;
     font-size: 14px;
+    height: 45px !important;
 }
 .form-control:focus {
     border-color: $primary_color;
@@ -535,4 +536,13 @@ button:disabled {
 .carousel-control-next {
     background-color: transparent !important;
     width: 2% !important;
+}
+.auth-card {
+    padding: 50px !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .auth-card {
+        padding: 10px !important;
+    }
 }

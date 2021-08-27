@@ -664,7 +664,7 @@
     "Order Tracker": "Suivi des Commandes",
     "Track": "Suivi",
     "We are closed now.": "Nous sommes fermés maintenant.",
-    "we will open on ": "nous ouvrirons le",
+    "we will open on": "nous ouvrirons le",
     "Quick Links": "Liens rapides",
     "Home": "Accueil",
     "Check Our Menus": "Consultez nos menus",
@@ -673,5 +673,10 @@
     "Closed" : "Fermé",
     "Thanks" : "Merci",
     "Check out" : "Vérifiez ça",
-    "Order Notification" : "Notification de commande"
+    "Order Notification" : "Notification de commande",
+    "Login Into Your Account" : "Connectez-vous à votre compte",
+    "Sign In With" : "Se connecter avec",
+    "Sign Up With" : "inscrivez-vous avec",
+    "Already have an account ?" : "Vous avez déjà un compte ?",
+    "Create Your Account" : "Créez votre compte"
 }
