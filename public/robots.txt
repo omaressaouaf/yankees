@@ -1,2 +1,11 @@
+# *
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /account/
+
+# Host
+Host: https://yankees.ma/
+
+# Sitemaps
+Sitemap: https://yankees.ma/sitemap.xml
