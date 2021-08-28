@@ -22,7 +22,6 @@ import axios from "axios";
 
 // ______________________________________________Component global registration______________________________
 
-
 Vue.component("vue-skeleton-loader", VueSkeletonLoader);
 Vue.component(
     "address-selector",
@@ -77,6 +76,14 @@ Vue.component(
     "address-list",
     require("./admin/components/addresses/AddressList.vue").default
 );
+Vue.component(
+    "cart",
+    require("./components/cart/Cart.vue").default
+);
+Vue.component(
+    "cart-floating-button",
+    require("./components/cart/CartFloatingButton.vue").default
+);
 
 // ______________________________________________Filters______________________________________________
 
@@ -121,8 +128,7 @@ if (document.documentElement.lang == "fr") {
 }
 Vue.use(VueLoaders);
 
-
-axios.defaults.baseURL ="/api/v1/client" ;
+axios.defaults.baseURL = "/api/v1/client";
 
 const router = new VueRouter({
     mode: "history",

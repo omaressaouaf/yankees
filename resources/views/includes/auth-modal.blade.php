@@ -1,9 +1,9 @@
-<div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel" aria-hidden="true">
+<div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel" aria-hidden="true" style="z-index: 100000;">
     <div class="modal-dialog" style="max-width : 700px" role="document">
         <div class="modal-content">
 
             <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close ml-2" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <ul class="nav nav-tabs nav-fill" id="authTab" role="tablist">

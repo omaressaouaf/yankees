@@ -546,3 +546,87 @@ button:disabled {
         padding: 10px !important;
     }
 }
+
+// floating cart button
+.floating-cart-btn {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    z-index: 995;
+    border-radius: 100%;
+    padding: 20px !important;
+    background-color: #55b559 !important;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;
+}
+.sidebar-modal {
+    // right modal
+    .modal.right_modal {
+        position: fixed;
+        z-index: 99999;
+    }
+
+    .modal.right_modal .modal-dialog {
+        position: fixed;
+        margin: auto;
+        width: 35%;
+        height: 100%;
+        -webkit-transform: translate3d(0%, 0, 0);
+        -ms-transform: translate3d(0%, 0, 0);
+        -o-transform: translate3d(0%, 0, 0);
+        transform: translate3d(0%, 0, 0);
+    }
+
+    @media only screen and (max-width: 600px) {
+        .modal.right_modal .modal-dialog {
+            width: 95% !important;
+        }
+    }
+
+    .modal.right_modal .modal-content {
+        /*overflow-y: auto;
+    overflow-x: hidden;*/
+        height: 100vh !important;
+    }
+
+    .modal.right_modal .modal-body {
+        padding: 15px 15px 30px;
+    }
+
+    .modal-backdrop {
+        display: none;
+    }
+
+    /*Right*/
+    .modal.right_modal.fade .modal-dialog {
+        right: -50%;
+        -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+        -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+        -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+        transition: opacity 0.3s linear, right 0.3s ease-out;
+    }
+
+    .modal.right_modal.fade.show .modal-dialog {
+        right: 0;
+        box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ----- MODAL STYLE ----- */
+    .modal-content {
+        border-radius: 0;
+        border: none;
+    }
+
+    .modal-header.right_modal {
+        padding: 10px 15px;
+        border-bottom-color: #eeeeee;
+        background-color: #fafafa;
+    }
+
+    .modal_outer .modal-body {
+        /*height:90%;*/
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 91vh;
+    }
+}

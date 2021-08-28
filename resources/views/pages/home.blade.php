@@ -11,10 +11,6 @@ https://yankees.ma/
 @include('includes.hero')
 <article>
 
-    {{-- preloader --}}
-    {{-- <div id="preloader"></div> --}}
-
-
     <!--  Menu Section -->
     <section id="menu" class="menu">
         <div class="container" style="padding: 0px 30px">

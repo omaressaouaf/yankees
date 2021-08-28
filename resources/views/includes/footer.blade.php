@@ -32,8 +32,8 @@
                     <h4>{{ __('Quick Links') }}</h4>
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a
-                                href="{{ route('meals') }}">{{ __('Our menus') }}</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('meals') }}">{{ __('Our menus') }}</a>
+                        </li>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{ route('about') }}">{{ __('About') }}</a>
                         </li>
 
@@ -90,4 +90,4 @@
         </div>
     </div>
 </footer><!-- End Footer -->
-<a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+

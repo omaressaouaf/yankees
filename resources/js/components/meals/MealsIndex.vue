@@ -30,10 +30,8 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Cart from "../cart/Cart.vue";
 
 export default {
-  components: { Cart },
   computed: {
     cartIsLoading() {
       return this.isLoading["get"];
@@ -43,13 +41,9 @@ export default {
     ...mapGetters("meals", ["allCategories"]),
   },
   methods: {
-    ...mapActions("cart", ["fetchCart"]),
     ...mapActions("meals", ["fetchCategoriesWithMeals"]),
   },
   mounted() {
-    if (this.$gate.can("shop")) {
-      this.fetchCart();
-    }
     this.fetchCategoriesWithMeals();
   },
 };

@@ -144,9 +144,19 @@
         {{-- Content --}}
         <main id="main">
             @yield('content')
+            {{--cart sidebar modal --}}
+            @include('includes.cart-sidebar-modal')
         </main>
+
         {{-- Footer --}}
         @include('includes.footer')
+
+        {{-- Floating buttons --}}
+        <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+        <cart-floating-button :cart-initial-count={{Cart::count()}} />
+
+
+
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
