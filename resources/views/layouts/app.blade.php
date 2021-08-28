@@ -31,6 +31,47 @@
     <meta name="keywords"
         content="yankees, Yankees, yankees smashburger, smash burger, yankees burger, yankees restaurant, smashburger restaurant, smashburger restaurants, smashburger menu,smashes burger, best smashburger,smashburger casablanca,fast food casablanca livraison, smashburger livraison casablanca,fast food casablanca Livraison gratuite casablanca, healthy food, nourriture, shake shack smashburger, american smash burgers, smashburger near me, fast food, fast food casablanca, fast food restaurant, fast food restaurant near me, burger, smashburger, hot dogs, submarine, sides, milkshake, fast food restaurants, mcdonalds, chicken burger, cheese burger, king burger, burger king, jumia food, tacos, snacks, ice cream, sandwich, dessert, chicken, big mac, food morocco, moroccan food, jumia food maroc, kfc menu, menu, new york yankees official website" />
     <meta name="google-site-verification" content="IbQbDVr2xhS3jDB5pBSaWbdSpuugemzUrAIF3I7hRE8" />
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FastFoodRestaurant",
+          "name": "Yankees",
+          "image": "https://yankees.ma/storage/images/design/logo-original.jpg",
+          "@id": "https://yankees.ma/",
+          "url": "https://yankees.ma/",
+          "telephone": "05 29 29 9000 - 07 07 07 2928",
+          "priceRange": "6-100",
+          "menu": "https://yankees.ma/meals",
+          "servesCuisine": "smashburger",
+          "acceptsReservations": "false",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "42 bis Rue Abbas Mahmoud Al Akkad",
+            "addressLocality": "Casablanca",
+            "postalCode": "",
+            "addressCountry": "MA"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 33.595301058434536,
+            "longitude": -7.633085138387365
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "12:00",
+            "closes": "21:00"
+          }
+        }
+    </script>
 
     {{-- fav icons --}}
     <link rel="apple-touch-icon" sizes="180x180" href="/storage/images/design/favicons/apple-touch-icon.png">
