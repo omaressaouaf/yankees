@@ -11,8 +11,7 @@ https://yankees.ma/meals
 @endsection
 @section('content')
 @include('includes.hero-meals' )
-{{-- Auth modals --}}
-@include('includes.auth-modal')
+
 <article v-cloak>
     <meals-index />
 </article>

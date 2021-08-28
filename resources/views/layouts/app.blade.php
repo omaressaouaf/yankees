@@ -146,6 +146,8 @@
             @yield('content')
             {{--cart sidebar modal --}}
             @include('includes.cart-sidebar-modal')
+            {{-- Auth modal --}}
+            @include('includes.auth-modal')
         </main>
 
         {{-- Footer --}}
