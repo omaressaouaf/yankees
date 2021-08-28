@@ -8,7 +8,7 @@ https://yankees.ma/password/reset
 @endsection
 @section('content')
     @include('includes.breadcrumb' , ['pageName'=> 'Reset Password'])
-    <main id="main">
+    <article>
         <section class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -57,5 +57,5 @@ https://yankees.ma/password/reset
                 </div>
             </div>
         </section>
-    </main>
+    </article>
 @endsection

@@ -13,7 +13,7 @@ https://yankees.ma/checkout
 @endsection
 @section('content')
 @include('includes.breadcrumb' , ['pageName'=> __('front.checkout')])
-<main id="main">
+<article>
     <section class="container ">
         <div class="row">
             <div class="col-md-5 order-md-2 mb-4">
@@ -67,6 +67,6 @@ https://yankees.ma/checkout
     </section>
 
 
-</main>
+</article>
 <!-- End #main -->
 @endsection

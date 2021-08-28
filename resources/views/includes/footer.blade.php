@@ -14,11 +14,13 @@
                         </p>
                         <div class="social-links mt-3">
                             @if (strlen(config('app.contact.social_media.facebook')))
-                            <a href="{{ config('app.contact.social_media.facebook') }}" class="facebook"><i
+                            <a href="{{ config('app.contact.social_media.facebook') }}" class="facebook"
+                                rel="noopener noreferrer" aria-label="Facebook" target="_blank"><i
                                     class="bx bxl-facebook"></i></a>
                             @endif
                             @if (strlen(config('app.contact.social_media.instagram')))
-                            <a href="{{ config('app.contact.social_media.instagram') }}" class="instagram"><i
+                            <a href="{{ config('app.contact.social_media.instagram') }}" class="instagram"
+                                rel="noopener noreferrer" aria-label="Instagram" target="_blank"><i
                                     class="bx bxl-instagram"></i></a>
                             @endif
 
@@ -31,7 +33,7 @@
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{ route('home') }}">{{ __('Home') }}</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a
-                                href="{{ route('meals.index') }}">{{ __('Our menus') }}</a></li>
+                                href="{{ route('meals') }}">{{ __('Our menus') }}</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{ route('about') }}">{{ __('About') }}</a>
                         </li>
 

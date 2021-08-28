@@ -4,7 +4,7 @@ verification du mot de passe -
 @endsection
 @section('content')
 @include('includes.breadcrumb' , ['pageName'=> 'Verify Password'])
-<main id="main">
+<article>
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -30,5 +30,5 @@ verification du mot de passe -
             </div>
         </div>
     </section>
-</main>
+</article>
 @endsection

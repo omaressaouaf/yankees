@@ -142,7 +142,9 @@
         {{-- Navbar --}}
         @include('includes.navbar')
         {{-- Content --}}
-        @yield('content')
+        <main id="main">
+            @yield('content')
+        </main>
         {{-- Footer --}}
         @include('includes.footer')
     </div>
@@ -162,6 +164,7 @@
         $('#authTab a[href="#register"]').tab('show')
     </script>
     @endif
+
     @yield('scripts')
 </body>
 

@@ -3,7 +3,8 @@
 Nos Menus -
 @endsection
 @section('description')
-Nous avons le meilleur menu de smashburger , Hot dogs , Submarine à casablanca. avec des extras tels que des milkshakes et des sides délicieux
+Nous avons le meilleur menu de smashburger , Hot dogs , Submarine à casablanca. avec des extras tels que des milkshakes
+et des sides délicieux
 @endsection
 @section('canonical')
 https://yankees.ma/meals
@@ -12,9 +13,9 @@ https://yankees.ma/meals
 @include('includes.hero-meals' )
 {{-- Auth modals --}}
 @include('includes.auth-modal')
-<main id="main" v-cloak>
+<article v-cloak>
     <meals-index />
-</main>
+</article>
 <div>
 
 </div>

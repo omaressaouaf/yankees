@@ -11,7 +11,7 @@ https://yankees.ma/register
 @section('content')
 @include('includes.breadcrumb' , ['pageName'=> "Register"])
 
-<main id="main">
+<article>
     <section class="container">
         <div class="row justify-content-center">
             <div class="col-md-7">
@@ -21,5 +21,5 @@ https://yankees.ma/register
             </div>
         </div>
     </section>
-</main>
+</article>
 @endsection

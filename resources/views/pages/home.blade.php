@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
 @section('description')
-Livraison gratuite de Smashburger et hot-dogs des yankees et plus de fast food à casablanca. Commandez maintenant auprès du meilleur restaurant de smashburger.
+Livraison gratuite de Smashburger et hot-dogs des yankees et plus de fast food à casablanca. Commandez maintenant auprès
+du meilleur restaurant de smashburger.
 @endsection
 @section('canonical')
 https://yankees.ma/
 @endsection
 @section('content')
 @include('includes.hero')
-<main id="main">
+<article>
+
     {{-- preloader --}}
     {{-- <div id="preloader"></div> --}}
 
@@ -33,6 +35,6 @@ https://yankees.ma/
     <!-- ======= Contact Section ======= -->
     @include('includes.contact-section')
     <!-- End Contact Section -->
+</article>
 
-</main><!-- End #main -->
 @endsection

@@ -11,11 +11,11 @@ https://yankees.ma/about
 @endsection
 @section('content')
 @include('includes.breadcrumb' , ['pageName'=> 'About'])
-<main id="main">
+<article>
     <!-- ======= About Section ======= -->
     @include('includes.about-section' )
     <!-- End About Section -->
     <br>
     <br>
-</main><!-- End #main -->
+</article><!-- End #main -->
 @endsection
