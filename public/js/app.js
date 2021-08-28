@@ -3152,6 +3152,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7441,10 +7443,10 @@ var mutations = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 /* harmony import */ var skeleton_loader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! skeleton-loader-vue */ "./node_modules/skeleton-loader-vue/dist/skeleton-loader-vue.esm.js");
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
 /* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
@@ -7461,6 +7463,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loaders_dist_vue_loaders_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_loaders_dist_vue_loaders_css__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _admin_helpers__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./admin/helpers */ "./resources/js/admin/helpers.js");
 // const { default: axios } = require("axios");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -7477,6 +7480,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 
 
 dayjs__WEBPACK_IMPORTED_MODULE_5___default().extend((dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_6___default()));
+
 
 
 
@@ -7513,8 +7517,8 @@ if (document.documentElement.lang == "fr") {
   dayjs__WEBPACK_IMPORTED_MODULE_5___default().locale("fr");
 }
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_11__.default);
-Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_12__.default);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_12__.default);
+Vue.use(vuelidate__WEBPACK_IMPORTED_MODULE_13__.default);
 Vue.use((vue_infinite_loading__WEBPACK_IMPORTED_MODULE_2___default()), {
   props: {
     spinner: "spiral"
@@ -7538,7 +7542,7 @@ if (document.documentElement.lang == "fr") {
 
 Vue.use(vue_loaders__WEBPACK_IMPORTED_MODULE_8__.default);
 (axios__WEBPACK_IMPORTED_MODULE_10___default().defaults.baseURL) = "/api/v1/client";
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_11__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__.default({
   mode: "history",
   routes: []
 });
@@ -7759,13 +7763,7 @@ var actions = {
                 });
                 store.commit("clearServerErrors");
                 $("#mealModal").modal("hide");
-
-                if (window.location.pathname === "/meals") {
-                  (0,_admin_helpers__WEBPACK_IMPORTED_MODULE_2__.fireToast)("success", translate("front.successMessage"));
-                } else {
-                  (0,_admin_helpers__WEBPACK_IMPORTED_MODULE_2__.fireToast)("success", "<a href=\"/meals\" > ".concat(translate("front.successMessage"), " <u class=\"font-weight-bold\">").concat(translate("front.seeCart"), "</u></a>"));
-                }
-
+                (0,_admin_helpers__WEBPACK_IMPORTED_MODULE_2__.fireToast)("success", translate("front.successMessage"));
                 resolve();
                 _context2.next = 18;
                 break;
@@ -64338,10 +64336,12 @@ var render = function() {
                     },
                     [
                       _c("img", {
-                        staticClass: "img-fluid",
+                        staticClass: "img-fluid mb-4",
                         attrs: {
-                          src: "/storage/images/design/hamburger.svg",
-                          alt: "Fermé temporairement"
+                          src: "/storage/images/design/cooking.svg",
+                          alt: "Fermé temporairement",
+                          width: "200",
+                          height: "300"
                         }
                       }),
                       _vm._v(" "),

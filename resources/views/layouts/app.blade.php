@@ -174,7 +174,6 @@
         $('#authTab a[href="#register"]').tab('show')
     </script>
     @endif
-
     @yield('scripts')
 </body>
 

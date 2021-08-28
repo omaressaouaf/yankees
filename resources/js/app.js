@@ -19,6 +19,7 @@ import "dayjs/locale/fr";
 import VueLoaders from "vue-loaders";
 import "vue-loaders/dist/vue-loaders.css";
 import axios from "axios";
+import { fireToast } from "./admin/helpers";
 
 // ______________________________________________Component global registration______________________________
 
@@ -76,10 +77,7 @@ Vue.component(
     "address-list",
     require("./admin/components/addresses/AddressList.vue").default
 );
-Vue.component(
-    "cart",
-    require("./components/cart/Cart.vue").default
-);
+Vue.component("cart", require("./components/cart/Cart.vue").default);
 Vue.component(
     "cart-floating-button",
     require("./components/cart/CartFloatingButton.vue").default
@@ -143,3 +141,6 @@ const app = new Vue({
 // template
 require("material-dashboard/assets/js/plugins/bootstrap-notify.js");
 require("./template/main.js");
+
+
+

@@ -241,9 +241,11 @@
         </h5>
         <div class="text-center" style="position: relative">
           <img
-            src="/storage/images/design/hamburger.svg"
+            src="/storage/images/design/cooking.svg"
             alt="Fermé temporairement"
-            class="img-fluid"
+            class="img-fluid mb-4"
+            width="200"
+            height="300"
           />
           <h2>{{ translate("front.closedNow") }}</h2>
         </div>

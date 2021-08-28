@@ -50,18 +50,8 @@ const actions = {
                 store.commit("clearServerErrors");
                 $("#mealModal").modal("hide");
 
-                if (window.location.pathname === "/meals") {
-                    fireToast("success", translate("front.successMessage"));
-                } else {
-                    fireToast(
-                        "success",
-                        `<a href="/meals" > ${translate(
-                            "front.successMessage"
-                        )} <u class="font-weight-bold">${translate(
-                            "front.seeCart"
-                        )}</u></a>`
-                    );
-                }
+                fireToast("success", translate("front.successMessage"));
+
                 resolve();
             } catch (err) {
                 if (err.response.status != "422") {
