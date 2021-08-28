@@ -128,6 +128,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("auth", ["authUser"]))
@@ -349,7 +350,17 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4" }, [
           _c("div", { staticClass: "card card-profile" }, [
-            _vm._m(0),
+            _c("div", { staticClass: "card-avatar" }, [
+              _c("a", { attrs: { href: "javascript:;" } }, [
+                _c("img", {
+                  staticClass: "img",
+                  attrs: {
+                    alt: _vm.authUser.name,
+                    src: "/storage/images/design/avatarplaceholder.png"
+                  }
+                })
+              ])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("h4", { staticClass: "card-title" }, [
@@ -373,21 +384,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-avatar" }, [
-      _c("a", { attrs: { href: "javascript:;" } }, [
-        _c("img", {
-          staticClass: "img",
-          attrs: { src: "/storage/images/design/avatarplaceholder.png" }
-        })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

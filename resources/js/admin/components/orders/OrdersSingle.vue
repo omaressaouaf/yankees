@@ -183,7 +183,11 @@
                 :key="meal.id"
               >
                 <div class="col-md-3">
-                  <img :src="meal.resized_image" class="img-fluid" alt="" />
+                  <img
+                    :src="meal.resized_image"
+                    class="img-fluid"
+                    :alt="meal.title"
+                  />
                 </div>
                 <div class="col-md-5">
                   <h4 class="mb-0 pb-0" :class="{ 'text-danger': !meal.id }">

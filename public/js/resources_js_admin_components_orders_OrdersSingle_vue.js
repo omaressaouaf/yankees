@@ -775,6 +775,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2582,7 +2586,10 @@ var render = function() {
                             _c("div", { staticClass: "col-md-3" }, [
                               _c("img", {
                                 staticClass: "img-fluid",
-                                attrs: { src: meal.resized_image, alt: "" }
+                                attrs: {
+                                  src: meal.resized_image,
+                                  alt: meal.title
+                                }
                               })
                             ]),
                             _vm._v(" "),

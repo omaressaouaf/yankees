@@ -185,6 +185,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -928,7 +929,8 @@ var render = function() {
                                     attrs: {
                                       width: "80",
                                       height: "80",
-                                      src: meal.resized_image
+                                      src: meal.resized_image,
+                                      alt: meal.title
                                     }
                                   })
                                 ]),

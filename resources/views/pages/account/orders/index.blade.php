@@ -17,7 +17,8 @@ Vos commandes -
                 <div class="card p-3 mb-4 ">
                     <div class="row">
                         <div class="col-md-2 pr-0">
-                            <img class="w-100" src="{{ $order->detailsWithRemovedMeals()[0]->resized_image }}" alt="Order Items Image">
+                            <img class="w-100" src="{{ $order->detailsWithRemovedMeals()[0]->resized_image }}"
+                                alt="{{$order->detailsWithRemovedMeals()[0]->title}}">
                         </div>
                         <div class="col-md-6">
                             <h3>

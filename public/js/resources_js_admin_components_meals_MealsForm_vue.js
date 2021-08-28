@@ -1741,7 +1741,7 @@ var render = function() {
                                           src: _vm.form.resized_image,
                                           width: "100",
                                           height: "100",
-                                          alt: ""
+                                          alt: _vm.form.title
                                         }
                                       })
                                     ]

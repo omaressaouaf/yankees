@@ -88,6 +88,7 @@
           <div class="card-avatar">
             <a href="javascript:;">
               <img
+                :alt="authUser.name"
                 class="img"
                 src="/storage/images/design/avatarplaceholder.png"
               />

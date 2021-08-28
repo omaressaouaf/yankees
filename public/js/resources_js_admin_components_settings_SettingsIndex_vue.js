@@ -2023,7 +2023,7 @@ var render = function() {
               src: _vm.$v.form.logo.$model,
               width: "100",
               height: "100",
-              alt: ""
+              alt: "Yankees Logo"
             }
           })
         ])

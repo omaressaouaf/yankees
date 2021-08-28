@@ -220,7 +220,7 @@
                       width="100"
                       height="100"
                       class="img-fluid rounded"
-                      alt=""
+                      :alt="form.title"
                     />
                   </div>
                 </div>

@@ -111,6 +111,7 @@
                         height="80"
                         class="img-fluid rounded"
                         :src="meal.resized_image"
+                        :alt="meal.title"
                       />
                     </td>
                     <td class="text-center">
