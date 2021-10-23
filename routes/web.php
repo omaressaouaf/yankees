@@ -42,7 +42,7 @@ Route::group(['middleware' => "setLocale"], function () {
         Route::put('/account/orders/{order}/cancel', [OrderController::class,  'cancel'])->name('account.orders.cancel');
 
         // checkout
-        Route::get('checkout', CheckoutController::class)->middleware(['can:shop' , 'can:checkout']);
+        Route::get('checkout', CheckoutController::class)->middleware(['can:shop' , 'can:checkout'])->name('checkout.index');
     });
 
     // Webhook

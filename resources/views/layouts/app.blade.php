@@ -82,7 +82,8 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <!--     Fonts      -->
-    {{-- <link
+    {{--
+    <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet"> --}}
 
@@ -155,7 +156,9 @@
 
         {{-- Floating buttons --}}
         <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+        @if (!Route::is('checkout.index'))
         <cart-floating-button :cart-initial-count={{Cart::count()}} />
+        @endif
 
 
 
@@ -163,19 +166,24 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
     {{-- Determine whether to show the auth modal and which tab should be open based on the errors session --}}
+    @if(!Route::is('login'))
     @error('email')
     <script>
         $('#authModal').modal('show')
         $('#authTab a[href="#login"]').tab('show')
     </script>
     @enderror
-    @if($errors->has('register_name') || $errors->has('register_email') || $errors->has('register_phone') ||
-    $errors->has('register_password') )
+    @endif
+
+    @if(!Route::is('register') && ($errors->has('register_name') || $errors->has('register_email') ||
+    $errors->has('register_phone') ||
+    $errors->has('register_password') ))
     <script>
         $('#authModal').modal('show')
         $('#authTab a[href="#register"]').tab('show')
     </script>
     @endif
+
     @yield('scripts')
 </body>
 
