@@ -87,6 +87,7 @@
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Developed by <a href="https://www.sourceup.ma/">Source Up Team</a>
         </div>
     </div>
 </footer><!-- End Footer -->
