@@ -1323,14 +1323,6 @@ var render = function() {
                           "div",
                           { staticClass: "d-flex flex-row align-items-center" },
                           [
-                            _c("img", {
-                              attrs: {
-                                src: _vm.appLogo,
-                                width: "70",
-                                height: "70"
-                              }
-                            }),
-                            _vm._v(" "),
                             _c("div", { staticClass: "d-flex flex-column" }, [
                               _c("span", { staticClass: "font-weight-bold" }, [
                                 _vm._v(_vm._s(_vm.appName))

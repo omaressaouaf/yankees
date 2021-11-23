@@ -15,7 +15,7 @@
                 <div class="col-md-12">
                   <div class="card p-4">
                     <div class="d-flex flex-row align-items-center">
-                      <img :src="appLogo" class="" width="70" height="70" />
+                      <!-- <img :src="appLogo" class="" width="70" height="70" /> -->
                       <div class="d-flex flex-column">
                         <span class="font-weight-bold">{{ appName }}</span>
                         <small>#-{{ orderObject.id }}</small>
