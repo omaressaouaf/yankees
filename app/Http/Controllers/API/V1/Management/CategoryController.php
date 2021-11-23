@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories =  Category::latest()->withCount('meals')->orderBy('order')->get();
+        $categories =  Category::withCount('meals')->orderBy('order')->get();
         return response()->json([
             'categories' => $categories
         ], 200);
