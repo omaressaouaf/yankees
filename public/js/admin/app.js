@@ -6813,7 +6813,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* route transitions */\n.fade-enter-active[data-v-118babc6],\r\n.fade-leave-active[data-v-118babc6] {\r\n  transition-duration: 0.3s;\r\n  transition-property: opacity;\r\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-118babc6],\r\n.fade-leave-active[data-v-118babc6] {\r\n  opacity: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* route transitions */\n.fade-enter-active[data-v-118babc6],\n.fade-leave-active[data-v-118babc6] {\n  transition-duration: 0.3s;\n  transition-property: opacity;\n  transition-timing-function: ease;\n}\n.fade-enter[data-v-118babc6],\n.fade-leave-active[data-v-118babc6] {\n  opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6837,7 +6837,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.address-box[data-v-cfad6bac] {\r\n  border: 1px #3f83c0 solid;\r\n  border-radius: 10px !important;\n}\n.address-delete-btn[data-v-cfad6bac] {\r\n  color: #3f83c0 !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.address-box[data-v-cfad6bac] {\n  border: 1px #3f83c0 solid;\n  border-radius: 10px !important;\n}\n.address-delete-btn[data-v-cfad6bac] {\n  color: #3f83c0 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6861,7 +6861,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* The snackbar - position it at the bottom and in the middle of the screen */\n#snackbar[data-v-98217040] {\r\n  display: flex;\r\n  min-width: 250px;\r\n  margin-left: -125px;\r\n  background: linear-gradient(60deg, #464642, #3b3b38, #1d1d1b) !important;\r\n  color: #fff !important;\r\n  border-radius: 5px;\r\n  position: fixed;\r\n  right: 2%;\r\n  bottom: 30px;\r\n  z-index: 1000000;\r\n  padding: 8px 17px 8px 7px;\r\n  -webkit-animation: fadeOut;\r\n          animation: fadeOut;\r\n  -webkit-animation-duration: 0.6s;\r\n          animation-duration: 0.6s;\n}\n@media only screen and (max-width: 600px) {\n#snackbar[data-v-98217040] {\r\n    max-width: 95% !important;\r\n    padding: 5px 12px 5px 3px !important;\n}\n}\n#snackbar .content[data-v-98217040] {\r\n  padding: 26px;\n}\n#snackbar.unvisible[data-v-98217040] {\r\n  visibility: hidden;\r\n  transition: visibility 0.1s;\n}\n#snackbar.visible[data-v-98217040] {\r\n  visibility: visible;\r\n  -webkit-animation: fadeInUp;\r\n          animation: fadeInUp;\r\n  -webkit-animation-duration: 0.6s;\r\n          animation-duration: 0.6s;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* The snackbar - position it at the bottom and in the middle of the screen */\n#snackbar[data-v-98217040] {\n  display: flex;\n  min-width: 250px;\n  margin-left: -125px;\n  background: linear-gradient(60deg, #464642, #3b3b38, #1d1d1b) !important;\n  color: #fff !important;\n  border-radius: 5px;\n  position: fixed;\n  right: 2%;\n  bottom: 30px;\n  z-index: 1000000;\n  padding: 8px 17px 8px 7px;\n  -webkit-animation: fadeOut;\n          animation: fadeOut;\n  -webkit-animation-duration: 0.6s;\n          animation-duration: 0.6s;\n}\n@media only screen and (max-width: 600px) {\n#snackbar[data-v-98217040] {\n    max-width: 95% !important;\n    padding: 5px 12px 5px 3px !important;\n}\n}\n#snackbar .content[data-v-98217040] {\n  padding: 26px;\n}\n#snackbar.unvisible[data-v-98217040] {\n  visibility: hidden;\n  transition: visibility 0.1s;\n}\n#snackbar.visible[data-v-98217040] {\n  visibility: visible;\n  -webkit-animation: fadeInUp;\n          animation: fadeInUp;\n  -webkit-animation-duration: 0.6s;\n          animation-duration: 0.6s;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6885,7 +6885,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.noti-wrapper[data-v-47d36d38] {\r\n  max-height: 450px !important;\r\n  overflow-y: auto !important;\r\n  min-width: 100% !important;\n}\n.bg-grey[data-v-47d36d38] {\r\n  background-color: #eeeeee;\n}\n.dropdown-item[data-v-47d36d38] {\r\n  white-space: normal !important;\n}\n.dropdown-menu[data-v-47d36d38] {\r\n  position: absolute;\r\n  margin-left: -10px;\r\n  background-color: white !important ;\n}\n@media (min-width: 1124px) {\n.dropdown-menu[data-v-47d36d38] {\r\n    min-width: 449px;\n}\n}\n@media (max-width: 500px) {\n.dropdown-menu[data-v-47d36d38] {\r\n    min-width: 300px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.noti-wrapper[data-v-47d36d38] {\n  max-height: 450px !important;\n  overflow-y: auto !important;\n  min-width: 100% !important;\n}\n.bg-grey[data-v-47d36d38] {\n  background-color: #eeeeee;\n}\n.dropdown-item[data-v-47d36d38] {\n  white-space: normal !important;\n}\n.dropdown-menu[data-v-47d36d38] {\n  position: absolute;\n  margin-left: -10px;\n  background-color: white !important ;\n}\n@media (min-width: 1124px) {\n.dropdown-menu[data-v-47d36d38] {\n    min-width: 449px;\n}\n}\n@media (max-width: 500px) {\n.dropdown-menu[data-v-47d36d38] {\n    min-width: 300px;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6909,7 +6909,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.high-z-index[data-v-eab2716c] {\r\n    z-index: 1060 !important;\n}\n@media (min-width: 768px) {\n.modal-xl[data-v-eab2716c] {\r\n    width: 90%;\r\n   max-width:1200px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.high-z-index[data-v-eab2716c] {\n    z-index: 1060 !important;\n}\n@media (min-width: 768px) {\n.modal-xl[data-v-eab2716c] {\n    width: 90%;\n   max-width:1200px;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6933,7 +6933,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.has-danger input[data-v-4df09461] {\r\n  background-image: none !important ;\r\n  border-bottom: red 2px solid !important;\n}\n.has-danger input[data-v-4df09461]:focus {\r\n  border-bottom: none !important;\r\n  border-bottom: red 2px solid !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.has-danger input[data-v-4df09461] {\n  background-image: none !important ;\n  border-bottom: red 2px solid !important;\n}\n.has-danger input[data-v-4df09461]:focus {\n  border-bottom: none !important;\n  border-bottom: red 2px solid !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6957,7 +6957,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dropdown[data-v-601c882d] {\r\n  position: absolute;\r\n  top: 35px;\r\n  left: 0;\r\n  border: 1px solid rgb(230, 228, 228);\r\n  border-radius: 5px;\r\n  background-color: white;\r\n  z-index: 10000;\r\n  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%),\r\n    0 1px 5px 0 rgb(0 0 0 / 12%);\r\n  max-height: 500px;\r\n  overflow: auto;\n}\n@media only screen and (max-width: 768px) {\n.dropdown[data-v-601c882d] {\r\n     width : 200px !important;\r\n     left : -50px !important;\n}\n}\n.search-form[data-v-601c882d] {\r\n  position: relative;\r\n  min-width: 30% !important;\n}\n@media (min-width: 1124px) {\n.search-form[data-v-601c882d] {\r\n    min-width: 30% !important;\n}\n}\n@media (max-width: 500px) {\n.search-form[data-v-601c882d] {\r\n    max-width: 100px !important;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dropdown[data-v-601c882d] {\n  position: absolute;\n  top: 35px;\n  left: 0;\n  border: 1px solid rgb(230, 228, 228);\n  border-radius: 5px;\n  background-color: white;\n  z-index: 10000;\n  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%),\n    0 1px 5px 0 rgb(0 0 0 / 12%);\n  max-height: 500px;\n  overflow: auto;\n}\n@media only screen and (max-width: 768px) {\n.dropdown[data-v-601c882d] {\n     width : 200px !important;\n     left : -50px !important;\n}\n}\n.search-form[data-v-601c882d] {\n  position: relative;\n  min-width: 30% !important;\n}\n@media (min-width: 1124px) {\n.search-form[data-v-601c882d] {\n    min-width: 30% !important;\n}\n}\n@media (max-width: 500px) {\n.search-form[data-v-601c882d] {\n    max-width: 100px !important;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6981,7 +6981,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.locale-span[data-v-769e0ddd] {\r\n  color: #333 !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.locale-span[data-v-769e0ddd] {\n  color: #333 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7005,7 +7005,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.sidebar[data-color=\"orange\"] li.active > a[data-v-344b1d2d] {\r\n  background-color: #3f83c0 !important;\r\n  box-shadow: 0 4px 20px 0px rgb(50 92 168 / 14%),\r\n    0 7px 10px -5px rgb(50 92 168 / 40%);\n}\n.logo img[data-v-344b1d2d] {\r\n    max-height: 40px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.sidebar[data-color=\"orange\"] li.active > a[data-v-344b1d2d] {\n  background-color: #3f83c0 !important;\n  box-shadow: 0 4px 20px 0px rgb(50 92 168 / 14%),\n    0 7px 10px -5px rgb(50 92 168 / 40%);\n}\n.logo img[data-v-344b1d2d] {\n    max-height: 40px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

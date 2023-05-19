@@ -1309,7 +1309,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#map[data-v-363cec69] {\r\n  height: 500px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#map[data-v-363cec69] {\n  height: 500px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1333,7 +1333,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.toggle-stripe-key-btn[data-v-62214769] {\r\n  cursor: pointer;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.toggle-stripe-key-btn[data-v-62214769] {\n  cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1357,7 +1357,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.low-opacity {\r\n  opacity: 0.4;\n}\n.red-border {\r\n  border: 1px solid red !important;\r\n  border-radius: 10px;\n}\n.business-hours {\r\n  border-radius: 3px !important;\r\n  background: #222;\r\n  padding: 40px 14px;\r\n  margin-top: -15px;\r\n  position: relative;\r\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.356),\r\n    0 3px 1px -2px rgba(0, 0, 0, 0.534), 0 1px 5px 0 rgba(0, 0, 0, 0.548);\n}\n.business-hours:before {\r\n  content: \"\";\r\n  width: 23px;\r\n  height: 23px;\r\n  background: #111;\r\n  position: absolute;\r\n  top: 5px;\r\n  left: -12px;\r\n  transform: rotate(-45deg);\r\n  z-index: -1;\n}\n.business-hours .title {\r\n  font-size: 20px;\r\n  color: #bbb;\r\n  text-transform: uppercase;\r\n  padding-left: 5px;\r\n  border-left: 4px solid #3f83c0;\n}\n.business-hours li {\r\n  color: #888;\r\n  line-height: 30px;\r\n  border-bottom: 1px solid #333;\n}\n.business-hours li:last-child {\r\n  border-bottom: none;\n}\n.business-hours .opening-hours li.today {\r\n  color: #3f83c0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.low-opacity {\n  opacity: 0.4;\n}\n.red-border {\n  border: 1px solid red !important;\n  border-radius: 10px;\n}\n.business-hours {\n  border-radius: 3px !important;\n  background: #222;\n  padding: 40px 14px;\n  margin-top: -15px;\n  position: relative;\n  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.356),\n    0 3px 1px -2px rgba(0, 0, 0, 0.534), 0 1px 5px 0 rgba(0, 0, 0, 0.548);\n}\n.business-hours:before {\n  content: \"\";\n  width: 23px;\n  height: 23px;\n  background: #111;\n  position: absolute;\n  top: 5px;\n  left: -12px;\n  transform: rotate(-45deg);\n  z-index: -1;\n}\n.business-hours .title {\n  font-size: 20px;\n  color: #bbb;\n  text-transform: uppercase;\n  padding-left: 5px;\n  border-left: 4px solid #3f83c0;\n}\n.business-hours li {\n  color: #888;\n  line-height: 30px;\n  border-bottom: 1px solid #333;\n}\n.business-hours li:last-child {\n  border-bottom: none;\n}\n.business-hours .opening-hours li.today {\n  color: #3f83c0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

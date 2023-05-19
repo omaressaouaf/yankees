@@ -14540,7 +14540,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.address-box[data-v-cfad6bac] {\r\n  border: 1px #3f83c0 solid;\r\n  border-radius: 10px !important;\n}\n.address-delete-btn[data-v-cfad6bac] {\r\n  color: #3f83c0 !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.address-box[data-v-cfad6bac] {\n  border: 1px #3f83c0 solid;\n  border-radius: 10px !important;\n}\n.address-delete-btn[data-v-cfad6bac] {\n  color: #3f83c0 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14564,7 +14564,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.noti-wrapper[data-v-47d36d38] {\r\n  max-height: 450px !important;\r\n  overflow-y: auto !important;\r\n  min-width: 100% !important;\n}\n.bg-grey[data-v-47d36d38] {\r\n  background-color: #eeeeee;\n}\n.dropdown-item[data-v-47d36d38] {\r\n  white-space: normal !important;\n}\n.dropdown-menu[data-v-47d36d38] {\r\n  position: absolute;\r\n  margin-left: -10px;\r\n  background-color: white !important ;\n}\n@media (min-width: 1124px) {\n.dropdown-menu[data-v-47d36d38] {\r\n    min-width: 449px;\n}\n}\n@media (max-width: 500px) {\n.dropdown-menu[data-v-47d36d38] {\r\n    min-width: 300px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.noti-wrapper[data-v-47d36d38] {\n  max-height: 450px !important;\n  overflow-y: auto !important;\n  min-width: 100% !important;\n}\n.bg-grey[data-v-47d36d38] {\n  background-color: #eeeeee;\n}\n.dropdown-item[data-v-47d36d38] {\n  white-space: normal !important;\n}\n.dropdown-menu[data-v-47d36d38] {\n  position: absolute;\n  margin-left: -10px;\n  background-color: white !important ;\n}\n@media (min-width: 1124px) {\n.dropdown-menu[data-v-47d36d38] {\n    min-width: 449px;\n}\n}\n@media (max-width: 500px) {\n.dropdown-menu[data-v-47d36d38] {\n    min-width: 300px;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14588,7 +14588,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.high-z-index[data-v-eab2716c] {\r\n    z-index: 1060 !important;\n}\n@media (min-width: 768px) {\n.modal-xl[data-v-eab2716c] {\r\n    width: 90%;\r\n   max-width:1200px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.high-z-index[data-v-eab2716c] {\n    z-index: 1060 !important;\n}\n@media (min-width: 768px) {\n.modal-xl[data-v-eab2716c] {\n    width: 90%;\n   max-width:1200px;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14612,7 +14612,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.locale-span[data-v-769e0ddd] {\r\n  color: #333 !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.locale-span[data-v-769e0ddd] {\n  color: #333 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14636,7 +14636,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n@media (min-width: 1024px) and (max-height: 657px) {\n#cartInnerWrapper[data-v-61043394] {\r\n    min-height: 1000px;\n}\n}\n#cartContentWrapper[data-v-61043394] {\r\n  max-height: 400px;\r\n  overflow-y: scroll;\r\n  overflow-x: hidden;\n}\n.div-disabled[data-v-61043394] {\r\n  filter: brightness(80%);\r\n  pointer-events: none;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n@media (min-width: 1024px) and (max-height: 657px) {\n#cartInnerWrapper[data-v-61043394] {\n    min-height: 1000px;\n}\n}\n#cartContentWrapper[data-v-61043394] {\n  max-height: 400px;\n  overflow-y: scroll;\n  overflow-x: hidden;\n}\n.div-disabled[data-v-61043394] {\n  filter: brightness(80%);\n  pointer-events: none;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14660,7 +14660,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#cartWrapper[data-v-18b061ec] {\r\n  position: sticky;\r\n  top: 90px;\n}\n@media (min-width: 1024px) and (max-height: 657px) {\n#cartWrapper[data-v-18b061ec] {\r\n    overflow-y: auto;\r\n    max-height: 800px;\n}\n#cartWrapper[data-v-18b061ec]::-webkit-scrollbar {\r\n    display: none;\n}\r\n\r\n  /* Hide scrollbar for IE, Edge and Firefox */\n#cartWrapper[data-v-18b061ec] {\r\n    -ms-overflow-style: none; /* IE and Edge */\r\n    scrollbar-width: none; /* Firefox */\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#cartWrapper[data-v-18b061ec] {\n  position: sticky;\n  top: 90px;\n}\n@media (min-width: 1024px) and (max-height: 657px) {\n#cartWrapper[data-v-18b061ec] {\n    overflow-y: auto;\n    max-height: 800px;\n}\n#cartWrapper[data-v-18b061ec]::-webkit-scrollbar {\n    display: none;\n}\n\n  /* Hide scrollbar for IE, Edge and Firefox */\n#cartWrapper[data-v-18b061ec] {\n    -ms-overflow-style: none; /* IE and Edge */\n    scrollbar-width: none; /* Firefox */\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14684,7 +14684,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.dark-bg[data-v-37f43469] {\r\n  filter: brightness(35%);\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.dark-bg[data-v-37f43469] {\n  filter: brightness(35%);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14708,7 +14708,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.category[data-v-41f9ac74] {\r\n  transition: all 0.35s ease-in-out;\n}\n.categories-enter[data-v-41f9ac74] {\r\n  transform: scale(0.5) translatey(-80px);\r\n  opacity: 0;\n}\n.categories-leave-to[data-v-41f9ac74] {\r\n  transform: translatey(30px);\r\n  opacity: 0;\n}\n.categories-leave-active[data-v-41f9ac74] {\r\n  position: absolute;\r\n  z-index: -1;\n}\n.categories[data-v-41f9ac74] {\r\n  width :100% !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.category[data-v-41f9ac74] {\n  transition: all 0.35s ease-in-out;\n}\n.categories-enter[data-v-41f9ac74] {\n  transform: scale(0.5) translatey(-80px);\n  opacity: 0;\n}\n.categories-leave-to[data-v-41f9ac74] {\n  transform: translatey(30px);\n  opacity: 0;\n}\n.categories-leave-active[data-v-41f9ac74] {\n  position: absolute;\n  z-index: -1;\n}\n.categories[data-v-41f9ac74] {\n  width :100% !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14732,7 +14732,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/* ___________________________________________________________________________________ */\n.red-border[data-v-09e8839e] {\r\n  border: 1px solid red !important;\r\n  border-radius: 10px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* ___________________________________________________________________________________ */\n.red-border[data-v-09e8839e] {\n  border: 1px solid red !important;\n  border-radius: 10px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14756,7 +14756,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.StripeElement--focus[data-v-4f6ac639] {\r\n  border-color: #cda45e;\r\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #cda45e;\n}\n.StripeElement--invalid[data-v-4f6ac639] {\r\n  border-color: #fa755a;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.StripeElement--focus[data-v-4f6ac639] {\n  border-color: #cda45e;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #cda45e;\n}\n.StripeElement--invalid[data-v-4f6ac639] {\n  border-color: #fa755a;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -14780,7 +14780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.steps .step[data-v-426f61ce] {\r\n  display: block;\r\n  width: 100%;\r\n  margin-bottom: 35px;\r\n  text-align: center;\n}\n.steps .step .step-icon-wrap[data-v-426f61ce] {\r\n  display: block;\r\n  position: relative;\r\n  width: 100%;\r\n  height: 80px;\r\n  text-align: center;\n}\n.steps .step .step-icon-wrap[data-v-426f61ce]::before,\r\n.steps .step .step-icon-wrap[data-v-426f61ce]::after {\r\n  display: block;\r\n  position: absolute;\r\n  top: 50%;\r\n  width: 50%;\r\n  height: 3px;\r\n  margin-top: -1px;\r\n  background-color: #e1e7ec;\r\n  content: \"\";\r\n  z-index: 1;\n}\n.steps .step .step-icon-wrap[data-v-426f61ce]::before {\r\n  left: 0;\n}\n.steps .step .step-icon-wrap[data-v-426f61ce]::after {\r\n  right: 0;\n}\n.steps .step .step-icon[data-v-426f61ce] {\r\n  display: inline-block;\r\n  position: relative;\r\n  width: 50px;\r\n  height: 50px;\r\n  border: 1px solid #e1e7ec;\r\n  border-radius: 50%;\r\n  background-color: #f5f5f5;\r\n  color: #374250;\r\n  font-size: 20px;\r\n  line-height: 50px;\r\n  z-index: 5;\n}\n.steps .step .step-title[data-v-426f61ce] {\r\n  margin-top: 16px;\r\n  margin-bottom: 0;\r\n  color: #606975;\r\n  font-size: 14px;\r\n  font-weight: 500;\n}\n.steps .step:first-child .step-icon-wrap[data-v-426f61ce]::before {\r\n  display: none;\n}\n.steps .step:last-child .step-icon-wrap[data-v-426f61ce]::after {\r\n  display: none;\n}\n.steps .step.completed .step-icon-wrap[data-v-426f61ce]::before,\r\n.steps .step.completed .step-icon-wrap[data-v-426f61ce]::after {\r\n  background-color: #0da9ef;\n}\n.steps .step.completed .step-icon[data-v-426f61ce] {\r\n  background-color: #0da9ef;\r\n  color: #fff;\n}\n@media (max-width: 576px) {\n.flex-sm-nowrap .step .step-icon-wrap[data-v-426f61ce]::before,\r\n  .flex-sm-nowrap .step .step-icon-wrap[data-v-426f61ce]::after {\r\n    display: none;\n}\n}\n@media (max-width: 768px) {\n.flex-md-nowrap .step .step-icon-wrap[data-v-426f61ce]::before,\r\n  .flex-md-nowrap .step .step-icon-wrap[data-v-426f61ce]::after {\r\n    display: none;\n}\n}\n@media (max-width: 991px) {\n.flex-lg-nowrap .step .step-icon-wrap[data-v-426f61ce]::before,\r\n  .flex-lg-nowrap .step .step-icon-wrap[data-v-426f61ce]::after {\r\n    display: none;\n}\n}\n@media (max-width: 1200px) {\n.flex-xl-nowrap .step .step-icon-wrap[data-v-426f61ce]::before,\r\n  .flex-xl-nowrap .step .step-icon-wrap[data-v-426f61ce]::after {\r\n    display: none;\n}\n}\n.bg-faded[data-v-426f61ce],\r\n.bg-secondary[data-v-426f61ce] {\r\n  background-color: #f5f5f5 !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.steps .step[data-v-426f61ce] {\n  display: block;\n  width: 100%;\n  margin-bottom: 35px;\n  text-align: center;\n}\n.steps .step .step-icon-wrap[data-v-426f61ce] {\n  display: block;\n  position: relative;\n  width: 100%;\n  height: 80px;\n  text-align: center;\n}\n.steps .step .step-icon-wrap[data-v-426f61ce]::before,\n.steps .step .step-icon-wrap[data-v-426f61ce]::after {\n  display: block;\n  position: absolute;\n  top: 50%;\n  width: 50%;\n  height: 3px;\n  margin-top: -1px;\n  background-color: #e1e7ec;\n  content: \"\";\n  z-index: 1;\n}\n.steps .step .step-icon-wrap[data-v-426f61ce]::before {\n  left: 0;\n}\n.steps .step .step-icon-wrap[data-v-426f61ce]::after {\n  right: 0;\n}\n.steps .step .step-icon[data-v-426f61ce] {\n  display: inline-block;\n  position: relative;\n  width: 50px;\n  height: 50px;\n  border: 1px solid #e1e7ec;\n  border-radius: 50%;\n  background-color: #f5f5f5;\n  color: #374250;\n  font-size: 20px;\n  line-height: 50px;\n  z-index: 5;\n}\n.steps .step .step-title[data-v-426f61ce] {\n  margin-top: 16px;\n  margin-bottom: 0;\n  color: #606975;\n  font-size: 14px;\n  font-weight: 500;\n}\n.steps .step:first-child .step-icon-wrap[data-v-426f61ce]::before {\n  display: none;\n}\n.steps .step:last-child .step-icon-wrap[data-v-426f61ce]::after {\n  display: none;\n}\n.steps .step.completed .step-icon-wrap[data-v-426f61ce]::before,\n.steps .step.completed .step-icon-wrap[data-v-426f61ce]::after {\n  background-color: #0da9ef;\n}\n.steps .step.completed .step-icon[data-v-426f61ce] {\n  background-color: #0da9ef;\n  color: #fff;\n}\n@media (max-width: 576px) {\n.flex-sm-nowrap .step .step-icon-wrap[data-v-426f61ce]::before,\n  .flex-sm-nowrap .step .step-icon-wrap[data-v-426f61ce]::after {\n    display: none;\n}\n}\n@media (max-width: 768px) {\n.flex-md-nowrap .step .step-icon-wrap[data-v-426f61ce]::before,\n  .flex-md-nowrap .step .step-icon-wrap[data-v-426f61ce]::after {\n    display: none;\n}\n}\n@media (max-width: 991px) {\n.flex-lg-nowrap .step .step-icon-wrap[data-v-426f61ce]::before,\n  .flex-lg-nowrap .step .step-icon-wrap[data-v-426f61ce]::after {\n    display: none;\n}\n}\n@media (max-width: 1200px) {\n.flex-xl-nowrap .step .step-icon-wrap[data-v-426f61ce]::before,\n  .flex-xl-nowrap .step .step-icon-wrap[data-v-426f61ce]::after {\n    display: none;\n}\n}\n.bg-faded[data-v-426f61ce],\n.bg-secondary[data-v-426f61ce] {\n  background-color: #f5f5f5 !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

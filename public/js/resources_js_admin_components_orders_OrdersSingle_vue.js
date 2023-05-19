@@ -1215,7 +1215,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n@media print {\n.modal-dialog {\r\n    max-width: 100%;\r\n    width: 100%;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n@media print {\n.modal-dialog {\n    max-width: 100%;\n    width: 100%;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1239,7 +1239,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\na[data-v-323e875c] {\r\n  color: rgb(13, 82, 139) !important;\n}\na[data-v-323e875c]:hover {\r\n  text-decoration: underline;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\na[data-v-323e875c] {\n  color: rgb(13, 82, 139) !important;\n}\na[data-v-323e875c]:hover {\n  text-decoration: underline;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
