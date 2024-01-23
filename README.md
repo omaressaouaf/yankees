@@ -1,62 +1,20 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Yankees Restaurant Web App
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[Yankees](https://yankees.ma/) is an online food delivery app for an american restaurant that offers a variety of delicious and fresh dishes
 
-## About Laravel
+![website](https://lh3.googleusercontent.com/pw/ABLVV86e4475Mt1QOHZl7s8GqVklLQneVPO5ztVyh2KaO3y5ogse-zdqsUxLoKp6XZ85OSQHHEtaCSqrOPskL_huXjrxzwIbIZy7YncRDcAS1g5FRrR6beHacryUz3kfRzpDNoun3vD8fzl8iac3WaR2sOFIubnUKTaozcXiBUBGaYuKhsNvDpSfst_GTTgk0jgczhubCXQIj1wZPVz_HJ0fQH3QSRuZzYR0v2jeni_R6k36E1FNKd6ZFL5lBPI64uYBKn-VPetR-qfW1szGk9hYJZCgNtHmlk_43_31bWujCFU-DJIp_PpGyfFjp0GQ7PUMIyQaIE_pwoXj20EBGy3ibU8-aTQkQuO4WqdWRUWXk77GlKHxYho_OojGkH_Na8xim64mKnBF3NEB-n3TJ8X1V999ZgzORdFGI4yZJWJisRNknbnF2rpxboSHKPxjQdThBjonLdfTcBD2usNVjY1LzU4Kme8jOaC-wW0i9nMu9iWdOgs3LnWMBFHnLRG-aG-8bPBafoUa7gC4ZVKKax_YCpmhO4yc8ybLsJpadp-DtXFgXxHBRzVGga-xCfI7VtnikKM6xLnc04hIxaSSF-v8WI-5Qn2jhNqIS3EVflcGyZfRzkQ1jiMKQJxhQFwCnXgLK9EXOPQnCuEuHNl67KxDsCFV_K09UfLrRmqOfiidv0fvm4Y9rthw7KMtyjjuowIpghnjFntn2Vwm1BlKPMsdsh1axKwzhsWxNdBoXjTtXTcH-DOjK-cxIf0chn7CcDMcgyEXkeJ96vwhm-jKuVpSyH265uXtTsoj94oyhdEr5pk9hbgG8o6f_xaAMINeiO398qM3Jkx1zW5YvS13h5CNvxkLmStQbijQlde2OFsC-XkmNWkeNGISPN3ZBIk3Z8AUgRcDP_Svs4LXGIxWG9yPYLa7a2dWuq7urq2vvO5pP5x-8N_ll5YnkTkXzUlodmlHBMltS5eaN9aYEDV1STzVdA_YLvSWbR1QRd93ifFhW4-XYwMxVKBuvIGhd8ptdG-KDe58UUK8CXtXAJKq8KrBi5x-LumWprLe0QBnMusvYg=w1163-h565-no?authuser=0)
+![admin](https://lh3.googleusercontent.com/pw/ABLVV87QMZEK4B1f5dVZVhh-aQ8JwcycgMO-F8P5-cOAfwrcPvviDC49UJDfCYBHtp53VgFhxSoEqGRLfDZZrgfWjt4qniR8z7xMkJiKdEmqlJBzAQ0EM-XnlKLeV27Eon2-qkcmu8ik2Es4Gcr-Gt0Hclj6Y9EuASefeWz2PIgmg1lTohYz-M0LDNi1tYOK1Owz1cQMAcn2I0s9aeZIYUUc6e0_kC3Ct0OqU090M9_o8fn_fUfn6DSBS1DTMGGnVziWcpyq4dqxWO1N9UOQviAGNE0YgYeUU6M2A1zToIBvUCV8pa7tZQEaUXToDJZDHJMKosTN_KESudBEocssd5JBac-dwBzVPkU9C0h6MARw1KVBrVVCyzjYDqiOyPmaVruw-9QRqjJuAdTKHudGkCiHrYqFlguT27owzuJsuZc1i55Y2K8EpC1PQWhCKqRjckDp4Z3wRoP4A6D2IYqPyRuuOOv-jM1-pHnDLeqoFHd1UKia7dE4XNSah7PqPY8HBy0urBIlalZD1e21RAVtvKUIQ29kQLGJbd4dx5VlrvScUZ-8IgNCIEmYnIgUG1t-l_E9FID0yazE4SHsKcyTSc_MWedJCHSR0pzl3x0hMuCQ0vNsS91iy4f0qrl22nFBXd2vxz63SdQL1pSrPzsBEtir5M0jI97pu264v1coAKIs6yzGH1ybY9h_nmaZj1VG8eHChBeTkcP36ZLSw-AyimXX_Ty9kQeOOtU6bKXTFQUfLykuj54T7R2A1fW8KOa2aJEDY0OSnJ4UlavCwvcRhRc8taT5get922sPUl2sbj6h8WbtetA3RaHWlh2RqyRMzRbZEgNXY_M6HMITPU7EDG1M9Sbjw4QSUKMM4UQZAXeup4mNi-kxCB8jqtI_xFD_lWu9m2uqSdctMDAKJGnfDTwQgRnqbSHqJFMlurQ4oPvdUs4IvPspaqqiG6ykcRqJwKIl1IQF99qSS88h-STJmtuInI-kZ6AxjkBwFz37ibNO3I-ggQqP3BMCCE0ldIJSNsIf9j-jmSrZM7gN-dagDZ1j2St1wNNG0CgF0XboDGd-nQ=w1163-h575-no?authuser=0)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-----
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### How to use
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Clone the project with `git clone`
+- Copy `.env.example` file to `.env` and edit database credentials there
+- Run `composer install`
+- Run `php artisan key:generate`
+- Run `php artisan migrate --seed` (it has sample testing data)
+- Run `php artisan storage:link`
+- Run `npm install && npm run dev`
+- Launch the [yankees.test](yankees.test/) for website
+- Launch the [yankees.test/admin](yankees.test/admin) for the admin app
